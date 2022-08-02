@@ -2,6 +2,7 @@ package Menu;
 
 import java.awt.EventQueue;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -10,10 +11,13 @@ import java.awt.GridBagConstraints;
 public class PanelMenu {
 
 	private JFrame frame;
-
+	private ImageIcon image;
+	private JLabel label;
+	
 	/**
 	 * Launch the application.
 	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -26,7 +30,7 @@ public class PanelMenu {
 			}
 		});
 	}
-
+	
 	/**
 	 * Create the application.
 	 */
@@ -38,9 +42,17 @@ public class PanelMenu {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
+		image = new ImageIcon(this.getClass().getResource("/"));
+		
+		
+		
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 782, 498);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		frame.setResizable(false);
+		frame.setVisible(true);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0};
@@ -48,12 +60,5 @@ public class PanelMenu {
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		frame.getContentPane().setLayout(gridBagLayout);
 		
-		JLabel lblNewLabel = new JLabel("Lello puzza");
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.anchor = GridBagConstraints.BASELINE;
-		gbc_lblNewLabel.gridx = 5;
-		gbc_lblNewLabel.gridy = 3;
-		frame.getContentPane().add(lblNewLabel, gbc_lblNewLabel);
 	}
-
 }
