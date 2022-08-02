@@ -1,11 +1,17 @@
 package Menu;
 
 import java.awt.EventQueue;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import java.awt.GridBagLayout;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 
@@ -43,10 +49,16 @@ public class PanelMenu {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		BufferedImage img = null;
+		try {
+		    img = ImageIO.read(new File("strawberry.jpg"));
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
 		
-		image = new ImageIcon(this.getClass().getResource("/yamatojpg"));
+		image = new ImageIcon(this.getClass().getResource("/yamato.jpg"));
 		label = new JLabel(image);
-		label.setSize(1920, 1080);
+		
 		
 		
 		frame = new JFrame();
@@ -54,7 +66,12 @@ public class PanelMenu {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		frame.setResizable(false);
+		frame.setUndecorated(true);
 		frame.setVisible(true);
+		label.setSize(frame.getBounds().width, frame.getBounds().height);
+		Image dimg = img.getScaledInstance(label.getWidth()-100, label.getHeight()-100, Image.SCALE_SMOOTH);
+
+		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0};
