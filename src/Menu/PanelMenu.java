@@ -1,7 +1,8 @@
 package Menu;
 
 import java.awt.EventQueue;
-
+import javax.swing.*;
+import java.awt.*;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import java.awt.GridBagLayout;
@@ -43,12 +44,13 @@ public class PanelMenu {
 	 */
 	private void initialize() {
 		
-		image = new ImageIcon(this.getClass().getResource("/"));
-		
+		image = new ImageIcon(this.getClass().getResource("/yamatojpg"));
+		label = new JLabel(image);
+		label.setSize(1920, 1080);
 		
 		
 		frame = new JFrame();
-		frame.setBounds(100, 100, 782, 498);
+		frame.add(label);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		frame.setResizable(false);
