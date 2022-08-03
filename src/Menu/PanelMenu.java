@@ -11,6 +11,8 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.swing.JLabel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class PanelMenu {
 
@@ -56,24 +58,52 @@ public class PanelMenu {
 		
 		
 		
-		
 		frame = new JFrame();
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		
-		//frame.setSize(1920, 1080); 
+		frame.setSize(1536, 864); 
 		frame.setResizable(false);
 		frame.setUndecorated(true);
 		frame.setVisible(true);
 		
+		JButton startBtn = new JButton("START");
+		startBtn.setFont(new Font("Segoe Script", Font.BOLD, 15));
+		startBtn.setBounds(68, 679-60, 218, 21);
+		frame.getContentPane().add(startBtn);
+		
+		JButton optionBtn = new JButton("OPTION");
+		optionBtn.setFont(new Font("Segoe Script", Font.BOLD, 15));
+		optionBtn.setBounds(68, 679-30, 218, 21);
+		frame.getContentPane().add(optionBtn);
+		
+		JButton exitBtn = new JButton("EXIT");
+		exitBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				frame.setVisible(false);
+				frame.dispose();
+				
+				//JPanel exit = new JPanel();
+				//exit.setBounds(1536/2, 864/2, 100, 60);
+				//exit.setVisible(true);
+			}
+		});
+		
+		exitBtn.setFont(new Font("Segoe Script", Font.BOLD, 15));
+		exitBtn.setBounds(68, 679, 218, 21);
+		frame.getContentPane().add(exitBtn);
+		
 		image = img.getScaledInstance(frame.getWidth(), frame.getHeight(),Image.SCALE_SMOOTH);
 		ImageIcon imageIcon = new ImageIcon(image);
-		//image = new ImageIcon(this.getClass().getResource("/yamato.jpg"));
+		frame.getContentPane().setLayout(null);
 		label = new JLabel(imageIcon);
+		label.setBounds(0, 0, 1536, 864);
 		
+		frame.getContentPane().add(label);
 		
-		frame.add(label);
+
 		
 
 		
