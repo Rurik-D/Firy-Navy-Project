@@ -96,6 +96,7 @@ public class Buttons {
 		startBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				Sounds.clickMenuBtn();
 
 			}
 		});
@@ -103,6 +104,7 @@ public class Buttons {
 		optionBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				Sounds.clickMenuBtn();
 				backBtn.setVisible(true);
 				langBtn.setVisible(true);
 				volumeBtn.setVisible(true);
@@ -114,6 +116,7 @@ public class Buttons {
 		
 		exitBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Sounds.clickMenuBtn();
 				exitPanel.setVisible(true);
 				optionBtn.setVisible(false);
 				startBtn.setVisible(false);
@@ -126,6 +129,7 @@ public class Buttons {
 		backBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				Sounds.clickMenuBtn();
 				backBtn.setVisible(false);
 				langBtn.setVisible(false);
 				volumeBtn.setVisible(false);
@@ -138,6 +142,7 @@ public class Buttons {
 		backToOptBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				Sounds.clickMenuBtn();
 				backToOptBtn.setVisible(false);
 				langBtn.setVisible(true);
 				volumeBtn.setVisible(true);
@@ -147,6 +152,7 @@ public class Buttons {
 		
 		extNoBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Sounds.clickMenuBtn();
 				exitPanel.setVisible(false);
 				optionBtn.setVisible(true);
 				startBtn.setVisible(true);
@@ -156,6 +162,7 @@ public class Buttons {
 		
 		extYesBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Sounds.clickMenuBtn();
 				frame.setVisible(false);
 				frame.dispose();
 			}
@@ -164,6 +171,7 @@ public class Buttons {
 		langBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				Sounds.clickMenuBtn();
 				langBtn.setVisible(false);
 				volumeBtn.setVisible(false);
 				backBtn.setVisible(false);
@@ -174,6 +182,7 @@ public class Buttons {
 		volumeBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				Sounds.clickMenuBtn();
 				langBtn.setVisible(false);
 				volumeBtn.setVisible(false);
 				backBtn.setVisible(false);
