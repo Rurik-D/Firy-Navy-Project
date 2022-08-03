@@ -18,7 +18,7 @@ public class PanelMenu {
 
 	private JFrame frame;
 	private Image image;
-	private JLabel label;
+	private Background background = new Background(1536, 864);
 	
 	/**
 	 * Launch the application.
@@ -48,15 +48,6 @@ public class PanelMenu {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-
-		BufferedImage img = null;
-		try {
-		    img = ImageIO.read(new File("C:\\Users\\manud\\eclipse-workspace\\Firy Navy Project\\img\\yamato.jpg"));
-		} catch (IOException e) {
-		    e.printStackTrace();
-		}
-		
-		
 		
 		frame = new JFrame();
 		
@@ -67,6 +58,7 @@ public class PanelMenu {
 		frame.setResizable(false);
 		frame.setUndecorated(true);
 		frame.setVisible(true);
+		frame.getContentPane().setLayout(null);
 		
 		JButton startBtn = new JButton("START");
 		startBtn.setFont(new Font("Segoe Script", Font.BOLD, 15));
@@ -95,13 +87,9 @@ public class PanelMenu {
 		exitBtn.setBounds(68, 679, 218, 21);
 		frame.getContentPane().add(exitBtn);
 		
-		image = img.getScaledInstance(frame.getWidth(), frame.getHeight(),Image.SCALE_SMOOTH);
-		ImageIcon imageIcon = new ImageIcon(image);
-		frame.getContentPane().setLayout(null);
-		label = new JLabel(imageIcon);
-		label.setBounds(0, 0, 1536, 864);
 		
-		frame.getContentPane().add(label);
+		
+		frame.getContentPane().add(background.getBackground());
 		
 
 		
