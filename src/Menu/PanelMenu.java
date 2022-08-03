@@ -11,6 +11,9 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.swing.JLabel;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -19,8 +22,8 @@ public class PanelMenu {
 	private final int HEIGHT = 864;
 	private static JFrame frame = new JFrame("Firy Navy Project");
 	private static JPanel menu = new JPanel();
+	private JPanel exitPanel = new JPanel();
 	private Background background = new Background(WIDTH, HEIGHT);
-	private Option option = new Option(WIDTH, HEIGHT, frame, menu);
 	
 	
 	/**
@@ -51,8 +54,7 @@ public class PanelMenu {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		
-		frame.getContentPane().add(option.getOption());
+		frame.getContentPane().add(exitPanel);
 		frame.getContentPane().add(menu);
 		
 		
@@ -66,51 +68,8 @@ public class PanelMenu {
 		frame.getContentPane().setLayout(null);
 		menu.setLayout(null);
 		
+		Buttons buttons = new Buttons(menu, exitPanel, frame);
 		
-		JButton startBtn = new JButton("START");
-		startBtn.setFont(new Font("Segoe Script", Font.BOLD, 15));
-		startBtn.setBounds(68, 679-60, 218, 21);
-		//frame.getContentPane().add(startBtn);
-		menu.add(startBtn);
-		
-		JButton optionBtn = new JButton("OPTION");
-		optionBtn.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-				option.getOption().setVisible(true);
-				frame.getContentPane().remove(menu);
-				
-				
-			}
-		});
-
-		optionBtn.setFont(new Font("Segoe Script", Font.BOLD, 15));
-		optionBtn.setBounds(68, 679-30, 218, 21);
-		//frame.getContentPane().add(optionBtn);
-		menu.add(optionBtn);
-		
-		JButton exitBtn = new JButton("EXIT");
-		exitBtn.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				frame.setVisible(false);
-				frame.dispose();
-				
-				JPanel exit = new JPanel();
-				//exit.setBounds(1536/2, 864/2, 100, 60);
-				//exit.setVisible(true);
-			}
-		});
-		
-		exitBtn.setFont(new Font("Segoe Script", Font.BOLD, 15));
-		exitBtn.setBounds(68, 679, 218, 21);
-		//frame.getContentPane().add(exitBtn);
-		menu.add(exitBtn);
-		
-		
-		
-		//frame.getContentPane().add(background.getBackground());
 		menu.add(background.getBackground());
 		menu.setVisible(true);
 		
