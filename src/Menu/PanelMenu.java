@@ -18,7 +18,7 @@ public class PanelMenu {
 	private final int WIDTH = 1536;
 	private final int HEIGHT = 864;
 	private JFrame frame;
-	//private JPanel menu;
+	private JPanel menu = new JPanel();
 	private Background background = new Background(WIDTH, HEIGHT);
 	private Option option = new Option(WIDTH, HEIGHT);
 	
@@ -52,8 +52,10 @@ public class PanelMenu {
 	 */
 	private void initialize() {
 		
-		frame = new JFrame();
-		//frame.add(menu);
+		frame = new JFrame("Firy Navy Project");
+		frame.getContentPane().add(option.getOption());
+		frame.getContentPane().add(menu);
+		
 		
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,30 +66,30 @@ public class PanelMenu {
 		frame.setUndecorated(true);
 		frame.setVisible(true);
 		frame.getContentPane().setLayout(null);
-		//menu.setLayout(null);
+		menu.setLayout(null);
 		
 		
 		JButton startBtn = new JButton("START");
 		startBtn.setFont(new Font("Segoe Script", Font.BOLD, 15));
 		startBtn.setBounds(68, 679-60, 218, 21);
-		frame.getContentPane().add(startBtn);
-		//menu.add(startBtn);
+		//frame.getContentPane().add(startBtn);
+		menu.add(startBtn);
 		
 		JButton optionBtn = new JButton("OPTION");
 		optionBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//frame.add(option.getOption());
-				//option.start();
-				frame.getContentPane().setVisible(false);
+				
+				option.start();
+				menu.setVisible(false);
 				
 			}
 		});
 
 		optionBtn.setFont(new Font("Segoe Script", Font.BOLD, 15));
 		optionBtn.setBounds(68, 679-30, 218, 21);
-		frame.getContentPane().add(optionBtn);
-		//menu.add(optionBtn);
+		//frame.getContentPane().add(optionBtn);
+		menu.add(optionBtn);
 		
 		JButton exitBtn = new JButton("EXIT");
 		exitBtn.addMouseListener(new MouseAdapter() {
@@ -104,14 +106,14 @@ public class PanelMenu {
 		
 		exitBtn.setFont(new Font("Segoe Script", Font.BOLD, 15));
 		exitBtn.setBounds(68, 679, 218, 21);
-		frame.getContentPane().add(exitBtn);
-		//menu.add(exitBtn);
+		//frame.getContentPane().add(exitBtn);
+		menu.add(exitBtn);
 		
 		
 		
-		frame.getContentPane().add(background.getBackground());
-		//menu.add(background.getBackground());
-
+		//frame.getContentPane().add(background.getBackground());
+		menu.add(background.getBackground());
+		menu.setVisible(true);
 		
 
 		

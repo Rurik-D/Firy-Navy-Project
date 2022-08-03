@@ -25,7 +25,7 @@ public class Background {
 		
 		BufferedImage img = null;
 		try {
-		    img = ImageIO.read(new File("C:\\Users\\manud\\eclipse-workspace\\Firy Navy Project\\img\\yamato.jpg"));
+		    img = ImageIO.read(new File("img\\yamato.jpg"));
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}

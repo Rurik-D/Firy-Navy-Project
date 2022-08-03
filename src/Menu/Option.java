@@ -16,6 +16,7 @@ public class Option {
 		option.setBounds(0, 0, WIDTH, HEIGHT);
 		option.setLayout(null);
 		option.add(background.getBackground());
+		option.setVisible(false);
 		
 		
 	}
