@@ -17,10 +17,10 @@ import java.awt.event.MouseEvent;
 public class PanelMenu {
 	private final int WIDTH = 1536;
 	private final int HEIGHT = 864;
-	private JFrame frame;
-	private JPanel menu = new JPanel();
+	private static JFrame frame = new JFrame("Firy Navy Project");
+	private static JPanel menu = new JPanel();
 	private Background background = new Background(WIDTH, HEIGHT);
-	private Option option = new Option(WIDTH, HEIGHT);
+	private Option option = new Option(WIDTH, HEIGHT, frame, menu);
 	
 	
 	/**
@@ -52,10 +52,8 @@ public class PanelMenu {
 	 */
 	private void initialize() {
 		
-		frame = new JFrame("Firy Navy Project");
 		frame.getContentPane().add(option.getOption());
 		frame.getContentPane().add(menu);
-		
 		
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -80,8 +78,9 @@ public class PanelMenu {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				option.start();
-				menu.setVisible(false);
+				option.getOption().setVisible(true);
+				frame.getContentPane().remove(menu);
+				
 				
 			}
 		});
@@ -115,7 +114,10 @@ public class PanelMenu {
 		menu.add(background.getBackground());
 		menu.setVisible(true);
 		
-
-		
 	}
+	
+	public JPanel getMenu() {
+		return menu;
+	}
+	
 }
