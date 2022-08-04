@@ -12,6 +12,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Menu.PanelMenu;
+
 public class Background {
 	private static Image image;
 	private static JLabel background;
@@ -48,23 +50,22 @@ public class Background {
 		return background;
 	}
 	
-	public static JPanel getTitle(int width, int height) {
-		int titleX = (int)Math.round(width * 66.40 / 100);
-		int titleY = (int)Math.round(height * 8.10 / 100);
-		int titleW = (int)Math.round(width * 26.04 / 100);
-		int titleH = (int)Math.round(height * 57.87 / 100);
-		int fontDim = (int)Math.round((width + height) * 2.08 / 100);
+	public static JPanel getTitle() {
+		int titleX = (int)Math.round(PanelMenu.WIDTH * 66.40 / 100);
+		int titleY = (int)Math.round(PanelMenu.HEIGHT * 8.10 / 100);
+		int titleW = (int)Math.round(PanelMenu.WIDTH * 26.04 / 100);
+		int titleH = (int)Math.round(PanelMenu.HEIGHT * 57.87 / 100);
+		int titleSpacing = (int)Math.round(PanelMenu.HEIGHT * 5.78 / 100);
+		int fontDim = (int)Math.round((PanelMenu.WIDTH + PanelMenu.HEIGHT) * 2.08 / 100);
 		
 		JLabel title = new JLabel("Firy");
 		JLabel title1 = new JLabel("Navy");
 		JLabel title2 = new JLabel("Project");
 		JPanel titlePanel = new JPanel();
 		
-		
 		setTitle(title, 0, fontDim);
-		setTitle(title1, 50, fontDim);
-		setTitle(title2, 100, fontDim);
-		
+		setTitle(title1, titleSpacing, fontDim);
+		setTitle(title2, titleSpacing*2, fontDim);
 		
 		titlePanel.setBounds(titleX, titleY, titleW, titleH);
 		titlePanel.setLayout(null);
@@ -76,8 +77,11 @@ public class Background {
 	}
 	
 	private static void setTitle(JLabel title, int y, int fontDim) {
+		int titleLblW = (int)Math.round(PanelMenu.WIDTH * 13.02 / 100);
+		int titleLblH = (int)Math.round(PanelMenu.HEIGHT * 11.57 / 100);
+		
 		title.setFont(new Font("Segoe Script", Font.BOLD, fontDim));
-		title.setBounds(0, y, 400, 100);
+		title.setBounds(0, y, 200, titleLblH);
 		title.setVisible(true);
 		title.setForeground(Color.RED.darker().darker());
 	}

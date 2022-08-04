@@ -13,9 +13,9 @@ import javax.swing.JPanel;
 import Assets.Background;
 
 public class PanelMenu {
-	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	private final int WIDTH = (int)screenSize.getWidth();
-	private final int HEIGHT = (int)screenSize.getHeight();
+	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	public static final int WIDTH = (int)screenSize.getWidth();
+	public static final int HEIGHT = (int)screenSize.getHeight();
 	private JFrame frame = new JFrame("Firy Navy Project");
 
 	private JPanel menu = new JPanel();
@@ -70,7 +70,7 @@ public class PanelMenu {
 		
 		new Buttons(menu, exitPanel, frame);
 
-		menu.add(Background.getTitle(WIDTH, HEIGHT));
+		menu.add(Background.getTitle());
 		menu.add(Background.getMenuBackground(WIDTH, HEIGHT));
 		
 		menu.setVisible(true);
