@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Assets.Background;
+import Assets.Sounds;
 
 public class PanelMenu {
 	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -67,7 +68,7 @@ public class PanelMenu {
 		exitPanel.setLayout(null);
 		exitPanel.setVisible(false);
 		exitPanel.setBackground(Color.ORANGE);
-		
+		Sounds.backgroundSong();
 		new Buttons(menu, exitPanel, frame);
 
 		menu.add(Background.getTitle());
