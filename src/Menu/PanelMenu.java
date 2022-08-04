@@ -1,27 +1,18 @@
 package Menu;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
-import javax.swing.ImageIcon;
+
+import java.awt.EventQueue;
+
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.swing.JLabel;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import Assets.Background;
 
 public class PanelMenu {
 	private final int WIDTH = 1536;
 	private final int HEIGHT = 864;
-	private static JFrame frame = new JFrame("Firy Navy Project");
-	private static JPanel menu = new JPanel();
+	private JFrame frame = new JFrame("Firy Navy Project");
+	private JPanel menu = new JPanel();
 	private JPanel exitPanel = new JPanel();
 	private Background background = new Background(WIDTH, HEIGHT);
 	
@@ -29,8 +20,8 @@ public class PanelMenu {
 	/**
 	 * Launch the application.
 	 */
-	
 	public static void main(String[] args) {
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -41,6 +32,7 @@ public class PanelMenu {
 				}
 			}
 		});
+		
 	}
 	
 	/**
@@ -57,10 +49,7 @@ public class PanelMenu {
 		frame.getContentPane().add(exitPanel);
 		frame.getContentPane().add(menu);
 		
-		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-		
 		frame.setSize(WIDTH, HEIGHT); 
 		frame.setResizable(false);
 		frame.setUndecorated(true);
@@ -68,15 +57,11 @@ public class PanelMenu {
 		frame.getContentPane().setLayout(null);
 		menu.setLayout(null);
 		
-		Buttons buttons = new Buttons(menu, exitPanel, frame);
+		new Buttons(menu, exitPanel, frame);
 		
 		menu.add(background.getBackground());
 		menu.setVisible(true);
 		
-	}
-	
-	public JPanel getMenu() {
-		return menu;
 	}
 	
 }

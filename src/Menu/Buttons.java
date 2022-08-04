@@ -12,10 +12,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Assets.Sounds;
+
 public class Buttons {
 	
-	private JPanel menu;
-	private JPanel exitPanel;
 	private JButton startBtn = new JButton("START");
 	private JButton optionBtn = new JButton("OPTION");
 	private JButton exitBtn = new JButton("EXIT");
@@ -27,6 +27,7 @@ public class Buttons {
 	private JButton volumeBtn = new JButton("VOLUME");
 	private JButton extYesBtn = new JButton("YES");
 	private JButton extNoBtn = new JButton("NO");
+	private Font font = new Font("Segoe Script", Font.BOLD, 15);
 	
 	public Buttons(JPanel menu, JPanel exitPanel, JFrame frame) {
 		startBtn.setVisible(true);
@@ -49,41 +50,40 @@ public class Buttons {
 		exitPanel.setBounds(1536/2-250, 864/2-100, 500, 200);
 		
 		
-		startBtn.setFont(new Font("Segoe Script", Font.BOLD, 15));
+		startBtn.setFont(font);
 		startBtn.setBounds(68, 679-60, 218, 21);
 		
-		optionBtn.setFont(new Font("Segoe Script", Font.BOLD, 15));
+		optionBtn.setFont(font);
 		optionBtn.setBounds(68, 679-30, 218, 21);
 		
-		exitBtn.setFont(new Font("Segoe Script", Font.BOLD, 15));
+		exitBtn.setFont(font);
 		exitBtn.setBounds(68, 679, 218, 21);
 		
-		pveBtn.setFont(new Font("Segoe Script", Font.BOLD, 15));
+		pveBtn.setFont(font);
 		pveBtn.setBounds(68, 679-60, 218, 21);
 		
-		pvpBtn.setFont(new Font("Segoe Script", Font.BOLD, 15));
+		pvpBtn.setFont(font);
 		pvpBtn.setBounds(68, 679-30, 218, 21);
 		
-		backBtn.setFont(new Font("Segoe Script", Font.BOLD, 15));
+		backBtn.setFont(font);
 		backBtn.setBounds(68, 679, 218, 21);
 		
-		backToOptBtn.setFont(new Font("Segoe Script", Font.BOLD, 15));
+		backToOptBtn.setFont(font);
 		backToOptBtn.setBounds(68, 679, 218, 21);
 
-		langBtn.setFont(new Font("Segoe Script", Font.BOLD, 15));
+		langBtn.setFont(font);
 		langBtn.setBounds(68, 679-30, 218, 21);
 		
-		volumeBtn.setFont(new Font("Segoe Script", Font.BOLD, 15));
+		volumeBtn.setFont(font);
 		volumeBtn.setBounds(68, 679-60, 218, 21);
-
+		
+		extYesBtn.setFont(font);
 		extYesBtn.setBackground(Color.YELLOW);
-		extYesBtn.setLocation(41, 127);
+		extYesBtn.setBounds(41, 127, 93, 63);
 		
+		extNoBtn.setFont(font);
 		extNoBtn.setBackground(Color.YELLOW);
-		extNoBtn.setLocation(332, 127);
-		
-		extNoBtn.setSize(93, 63);
-		extYesBtn.setSize(93, 63);
+		extNoBtn.setBounds(332, 127, 93, 63);
 		
 		
 		menu.add(startBtn);
@@ -97,9 +97,8 @@ public class Buttons {
 		menu.add(langBtn);
 		
 		JLabel extLabel = new JLabel("Do You Want To Leave?");
-		extLabel.setFont(new Font("Georgia Pro Cond Black", Font.BOLD, 15));
-		extLabel.setLocation(144, 0);
-		extLabel.setSize(178, 100);
+		extLabel.setFont(new Font("Segoe Script", Font.BOLD, 15));
+		extLabel.setBounds(144, 0, 200, 100);
 		
 		exitPanel.add(extLabel);
 		exitPanel.add(extNoBtn);

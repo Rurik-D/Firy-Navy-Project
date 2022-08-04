@@ -1,4 +1,4 @@
-package Menu;
+package Assets;
 
 import java.io.File;
 
@@ -6,7 +6,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
 public class Sounds {
-	static void clickMenuBtn() {
+	public static void clickMenuBtn() {
 		try {
 		    File wavFile = new File("sound\\swipeSound.wav");
 		    Clip clip = AudioSystem.getClip();
