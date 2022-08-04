@@ -15,9 +15,11 @@ public class Background {
 	private Image image;
 	private JLabel background;
 	
-	/*
+	/**
 	 * Create a label that will be used as background in 
-	 * menu panels 
+	 * menu panel
+	 * @param width   Width of the frame
+	 * @param height  Height of the frame
 	 */
 	public Background(int width, int height) {
 		this.WIDTH = width;

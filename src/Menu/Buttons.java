@@ -19,6 +19,8 @@ public class Buttons {
 	private JButton startBtn = new JButton("START");
 	private JButton optionBtn = new JButton("OPTION");
 	private JButton exitBtn = new JButton("EXIT");
+	private JButton pveBtn = new JButton("PVE");
+	private JButton pvpBtn = new JButton("PVP");
 	private JButton backBtn = new JButton("BACK");
 	private JButton backToOptBtn = new JButton("BACK");
 	private JButton langBtn = new JButton("LANGUAGE");
@@ -30,6 +32,9 @@ public class Buttons {
 		startBtn.setVisible(true);
 		optionBtn.setVisible(true);
 		exitBtn.setVisible(true);
+		pvpBtn.setVisible(false);
+		pveBtn.setVisible(false);
+		backBtn.setVisible(false);
 		backBtn.setVisible(false);
 		backToOptBtn.setVisible(false);
 		langBtn.setVisible(false);
@@ -49,21 +54,27 @@ public class Buttons {
 		
 		optionBtn.setFont(new Font("Segoe Script", Font.BOLD, 15));
 		optionBtn.setBounds(68, 679-30, 218, 21);
-
-		langBtn.setFont(new Font("Segoe Script", Font.BOLD, 15));
-		langBtn.setBounds(68, 679-30, 218, 21);
 		
-		volumeBtn.setFont(new Font("Segoe Script", Font.BOLD, 15));
-		volumeBtn.setBounds(68, 679-60, 218, 21);
-
 		exitBtn.setFont(new Font("Segoe Script", Font.BOLD, 15));
 		exitBtn.setBounds(68, 679, 218, 21);
+		
+		pveBtn.setFont(new Font("Segoe Script", Font.BOLD, 15));
+		pveBtn.setBounds(68, 679-60, 218, 21);
+		
+		pvpBtn.setFont(new Font("Segoe Script", Font.BOLD, 15));
+		pvpBtn.setBounds(68, 679-30, 218, 21);
 		
 		backBtn.setFont(new Font("Segoe Script", Font.BOLD, 15));
 		backBtn.setBounds(68, 679, 218, 21);
 		
 		backToOptBtn.setFont(new Font("Segoe Script", Font.BOLD, 15));
 		backToOptBtn.setBounds(68, 679, 218, 21);
+
+		langBtn.setFont(new Font("Segoe Script", Font.BOLD, 15));
+		langBtn.setBounds(68, 679-30, 218, 21);
+		
+		volumeBtn.setFont(new Font("Segoe Script", Font.BOLD, 15));
+		volumeBtn.setBounds(68, 679-60, 218, 21);
 
 		extYesBtn.setBackground(Color.YELLOW);
 		extYesBtn.setLocation(41, 127);
@@ -76,14 +87,16 @@ public class Buttons {
 		
 		
 		menu.add(startBtn);
-		menu.add(exitBtn);
 		menu.add(optionBtn);
+		menu.add(exitBtn);
+		menu.add(pveBtn);
+		menu.add(pvpBtn);
 		menu.add(backBtn);
 		menu.add(backToOptBtn);
 		menu.add(volumeBtn);
 		menu.add(langBtn);
 		
-		JLabel extLabel = new JLabel("Do You Wanna Leave?");
+		JLabel extLabel = new JLabel("Do You Want To Leave?");
 		extLabel.setFont(new Font("Georgia Pro Cond Black", Font.BOLD, 15));
 		extLabel.setLocation(144, 0);
 		extLabel.setSize(178, 100);
@@ -97,7 +110,12 @@ public class Buttons {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Sounds.clickMenuBtn();
-
+				startBtn.setVisible(false);
+				optionBtn.setVisible(false);
+				exitBtn.setVisible(false);
+				pveBtn.setVisible(true);
+				pvpBtn.setVisible(true);
+				backBtn.setVisible(true);
 			}
 		});
 		
@@ -126,6 +144,20 @@ public class Buttons {
 			}
 		});
 		
+		pveBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Sounds.clickMenuBtn();
+				
+			}
+		});
+		
+		pvpBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Sounds.clickMenuBtn();
+				
+			}
+		});
+		
 		backBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -133,6 +165,8 @@ public class Buttons {
 				backBtn.setVisible(false);
 				langBtn.setVisible(false);
 				volumeBtn.setVisible(false);
+				pveBtn.setVisible(false);
+				pvpBtn.setVisible(false);
 				optionBtn.setVisible(true);
 				startBtn.setVisible(true);
 				exitBtn.setVisible(true);
@@ -189,6 +223,5 @@ public class Buttons {
 				backToOptBtn.setVisible(true);
 			}
 		});
-		
-		
+
 }}
