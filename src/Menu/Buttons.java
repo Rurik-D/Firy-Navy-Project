@@ -27,7 +27,7 @@ public class Buttons {
 	private JButton volumeBtn = new JButton("VOLUME");
 	private JButton extYesBtn = new JButton("YES");
 	private JButton extNoBtn = new JButton("NO");
-	private Font font = new Font("Segoe Script", Font.BOLD, 15);
+	private Font font = new Font("Segoe Script", Font.BOLD, 25);
 	
 	public Buttons(JPanel menu, JPanel exitPanel, JFrame frame) {
 		startBtn.setVisible(true);
@@ -42,13 +42,6 @@ public class Buttons {
 		volumeBtn.setVisible(false);
 		extYesBtn.setVisible(false);
 		extNoBtn.setVisible(false);
-		
-		exitPanel.setLayout(null);
-		exitPanel.setVisible(false);
-		
-		exitPanel.setBackground(Color.ORANGE);
-		exitPanel.setBounds(1536/2-250, 864/2-100, 500, 200);
-		
 		
 		startBtn.setFont(font);
 		startBtn.setBounds(68, 679-60, 218, 21);
@@ -85,6 +78,15 @@ public class Buttons {
 		extNoBtn.setBackground(Color.YELLOW);
 		extNoBtn.setBounds(332, 127, 93, 63);
 		
+		setTrasparent(startBtn);
+		setTrasparent(optionBtn);
+		setTrasparent(exitBtn);
+		setTrasparent(pveBtn);
+		setTrasparent(pvpBtn);
+		setTrasparent(backBtn);
+		setTrasparent(backToOptBtn);
+		setTrasparent(volumeBtn);
+		setTrasparent(langBtn);
 		
 		menu.add(startBtn);
 		menu.add(optionBtn);
@@ -97,13 +99,12 @@ public class Buttons {
 		menu.add(langBtn);
 		
 		JLabel extLabel = new JLabel("Do You Want To Leave?");
-		extLabel.setFont(new Font("Segoe Script", Font.BOLD, 15));
-		extLabel.setBounds(144, 0, 200, 100);
+		extLabel.setFont(new Font("Segoe Script", Font.BOLD, 25));
+		extLabel.setBounds(100, 0, 2700, 100);
 		
 		exitPanel.add(extLabel);
 		exitPanel.add(extNoBtn);
 		exitPanel.add(extYesBtn);
-		
 		
 		startBtn.addMouseListener(new MouseAdapter() {
 			@Override
@@ -222,5 +223,12 @@ public class Buttons {
 				backToOptBtn.setVisible(true);
 			}
 		});
+	}
+	
+	private void setTrasparent(JButton button) {
+		button.setOpaque(false);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+	}
+}
 
-}}
