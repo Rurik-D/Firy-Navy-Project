@@ -17,7 +17,7 @@ public class Background {
 	
 	/**
 	 * Create a label that will be used as background in 
-	 * menu panel
+	 * menu panel.
 	 * @param width   Width of the frame
 	 * @param height  Height of the frame
 	 */
