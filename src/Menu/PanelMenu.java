@@ -1,9 +1,12 @@
 package Menu;
 
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Assets.Background;
@@ -12,6 +15,7 @@ public class PanelMenu {
 	private final int WIDTH = 1536;
 	private final int HEIGHT = 864;
 	private JFrame frame = new JFrame("Firy Navy Project");
+	private JLabel title = new JLabel("Firy Navy Project");
 	private JPanel menu = new JPanel();
 	private JPanel exitPanel = new JPanel();
 	private Background background = new Background(WIDTH, HEIGHT);
@@ -59,7 +63,14 @@ public class PanelMenu {
 		
 		new Buttons(menu, exitPanel, frame);
 		
+		title.setFont(new Font("Segoe Script", Font.BOLD, 80));
+		title.setBounds(WIDTH/2-400, 20, 800, 100);
+		title.setVisible(true);
+		title.setForeground(Color.RED.darker().darker());
+		
+		menu.add(title);
 		menu.add(background.getBackground());
+		
 		menu.setVisible(true);
 		
 	}
