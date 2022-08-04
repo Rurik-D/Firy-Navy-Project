@@ -28,20 +28,22 @@ public class Buttons {
 	private JButton extYesBtn = new JButton("YES");
 	private JButton extNoBtn = new JButton("NO");
 	private Font font = new Font("Segoe Script", Font.BOLD, 35);
+	private JButton backToPveBtn = new JButton("BACK");
 	
 	public Buttons(JPanel menu, JPanel exitPanel, JFrame frame) {
+		StartButtons startPveBtn = new StartButtons(menu);
 		startBtn.setVisible(true);
 		optionBtn.setVisible(true);
 		exitBtn.setVisible(true);
 		pvpBtn.setVisible(false);
 		pveBtn.setVisible(false);
 		backBtn.setVisible(false);
-		backBtn.setVisible(false);
 		backToOptBtn.setVisible(false);
 		langBtn.setVisible(false);
 		volumeBtn.setVisible(false);
 		extYesBtn.setVisible(false);
 		extNoBtn.setVisible(false);
+		backToPveBtn.setVisible(false);
 		
 		startBtn.setFont(font);
 		startBtn.setBounds(68, 679-80, 270, 40);
@@ -64,6 +66,9 @@ public class Buttons {
 		backToOptBtn.setFont(font);
 		backToOptBtn.setBounds(68, 679, 270, 40);
 
+		backToPveBtn.setFont(font);
+		backToPveBtn.setBounds(68, 679, 270, 40);
+		
 		langBtn.setFont(font);
 		langBtn.setBounds(68, 679-40, 270, 40);
 		
@@ -87,6 +92,7 @@ public class Buttons {
 		setTrasparent(backToOptBtn);
 		setTrasparent(volumeBtn);
 		setTrasparent(langBtn);
+		setTrasparent(backToPveBtn);
 		
 		menu.add(startBtn);
 		menu.add(optionBtn);
@@ -95,6 +101,7 @@ public class Buttons {
 		menu.add(pvpBtn);
 		menu.add(backBtn);
 		menu.add(backToOptBtn);
+		menu.add(backToPveBtn);
 		menu.add(volumeBtn);
 		menu.add(langBtn);
 		
@@ -147,7 +154,11 @@ public class Buttons {
 		pveBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Sounds.clickMenuBtn();
-				
+				startPveBtn.srnameBtn.setVisible(true);
+				backToPveBtn.setVisible(true);
+				pvpBtn.setVisible(false);
+				pveBtn.setVisible(false);
+				backBtn.setVisible(false);
 			}
 		});
 		
@@ -184,6 +195,30 @@ public class Buttons {
 			}
 		});
 		
+		backToPveBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Sounds.clickMenuBtn();
+				startPveBtn.srnameBtn.setVisible(false);
+				startPveBtn.avatarBtn1.setVisible(false);
+				startPveBtn.avatarBtn2.setVisible(false);
+				startPveBtn.avatarBtn3.setVisible(false);
+				startPveBtn.avatarBtn4.setVisible(false);
+				startPveBtn.avatarBtn5.setVisible(false);
+				startPveBtn.avatarBtn6.setVisible(false);
+				startPveBtn.confirmBtn.setVisible(false);
+				startPveBtn.saveBtn.setVisible(false);
+				startPveBtn.txtWrite.setVisible(false);
+				startPveBtn.obstacle = true;
+				startPveBtn.txtWrite.setText("");
+				backToPveBtn.setVisible(false);
+				
+				pveBtn.setVisible(true);
+				pvpBtn.setVisible(true);
+				backBtn.setVisible(true);
+				
+			}
+		});
 		extNoBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Sounds.clickMenuBtn();
