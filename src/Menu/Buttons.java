@@ -27,7 +27,7 @@ public class Buttons {
 	private JButton volumeBtn = new JButton("VOLUME");
 	private JButton extYesBtn = new JButton("YES");
 	private JButton extNoBtn = new JButton("NO");
-	private Font font = new Font("Segoe Script", Font.BOLD, 25);
+	private Font font = new Font("Segoe Script", Font.BOLD, 35);
 	
 	public Buttons(JPanel menu, JPanel exitPanel, JFrame frame) {
 		startBtn.setVisible(true);
@@ -44,37 +44,37 @@ public class Buttons {
 		extNoBtn.setVisible(false);
 		
 		startBtn.setFont(font);
-		startBtn.setBounds(68, 679-60, 218, 21);
+		startBtn.setBounds(68, 679-80, 270, 40);
 		
 		optionBtn.setFont(font);
-		optionBtn.setBounds(68, 679-30, 218, 21);
+		optionBtn.setBounds(68, 679-40, 270, 40);
 		
 		exitBtn.setFont(font);
-		exitBtn.setBounds(68, 679, 218, 21);
+		exitBtn.setBounds(68, 679, 270, 40);
 		
 		pveBtn.setFont(font);
-		pveBtn.setBounds(68, 679-60, 218, 21);
+		pveBtn.setBounds(68, 679-80, 270, 40);
 		
 		pvpBtn.setFont(font);
-		pvpBtn.setBounds(68, 679-30, 218, 21);
+		pvpBtn.setBounds(68, 679-40, 270, 40);
 		
 		backBtn.setFont(font);
-		backBtn.setBounds(68, 679, 218, 21);
+		backBtn.setBounds(68, 679, 270, 40);
 		
 		backToOptBtn.setFont(font);
-		backToOptBtn.setBounds(68, 679, 218, 21);
+		backToOptBtn.setBounds(68, 679, 270, 40);
 
 		langBtn.setFont(font);
-		langBtn.setBounds(68, 679-30, 218, 21);
+		langBtn.setBounds(68, 679-40, 270, 40);
 		
 		volumeBtn.setFont(font);
-		volumeBtn.setBounds(68, 679-60, 218, 21);
+		volumeBtn.setBounds(68, 679-80, 270, 40);
 		
-		extYesBtn.setFont(font);
+		extYesBtn.setFont(new Font("Segoe Script", Font.BOLD, 25));
 		extYesBtn.setBackground(Color.YELLOW);
 		extYesBtn.setBounds(41, 127, 93, 63);
 		
-		extNoBtn.setFont(font);
+		extNoBtn.setFont(new Font("Segoe Script", Font.BOLD, 25));
 		extNoBtn.setBackground(Color.YELLOW);
 		extNoBtn.setBounds(332, 127, 93, 63);
 		

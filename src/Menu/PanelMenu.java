@@ -20,7 +20,6 @@ public class PanelMenu {
 
 	private JPanel menu = new JPanel();
 	private JPanel exitPanel = new JPanel();
-	private Background background = new Background();
 	
 	
 	/**
@@ -71,9 +70,8 @@ public class PanelMenu {
 		
 		new Buttons(menu, exitPanel, frame);
 
-		
-		menu.add(background.getTitle());
-		menu.add(background.getMenuBackground(WIDTH, HEIGHT));
+		menu.add(Background.getTitle(WIDTH, HEIGHT));
+		menu.add(Background.getMenuBackground(WIDTH, HEIGHT));
 		
 		menu.setVisible(true);
 		

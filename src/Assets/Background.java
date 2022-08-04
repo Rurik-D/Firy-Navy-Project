@@ -16,7 +16,7 @@ public class Background {
 	private static Image image;
 	private static JLabel background;
 	
-	public JLabel getMenuBackground(int width, int height) {
+	public static JLabel getMenuBackground(int width, int height) {
 		BufferedImage img = null;
 		try {
 		    img = ImageIO.read(new File("img\\yamato.jpg"));
@@ -48,19 +48,25 @@ public class Background {
 		return background;
 	}
 	
-	public static JPanel getTitle() {
+	public static JPanel getTitle(int width, int height) {
+		int titleX = (int)Math.round(width * 66.40 / 100);
+		int titleY = (int)Math.round(height * 8.10 / 100);
+		int titleW = (int)Math.round(width * 26.04 / 100);
+		int titleH = (int)Math.round(height * 57.87 / 100);
+		int fontDim = (int)Math.round((width + height) * 2.08 / 100);
+		
 		JLabel title = new JLabel("Firy");
 		JLabel title1 = new JLabel("Navy");
 		JLabel title2 = new JLabel("Project");
 		JPanel titlePanel = new JPanel();
 		
 		
-		setTitle(title, 0);
-		setTitle(title1, 50);
-		setTitle(title2, 100);
+		setTitle(title, 0, fontDim);
+		setTitle(title1, 50, fontDim);
+		setTitle(title2, 100, fontDim);
 		
 		
-		titlePanel.setBounds(1000, 60, 400, 500);
+		titlePanel.setBounds(titleX, titleY, titleW, titleH);
 		titlePanel.setLayout(null);
 		titlePanel.add(title);
 		titlePanel.add(title1);
@@ -69,8 +75,8 @@ public class Background {
 		return titlePanel;
 	}
 	
-	private static void setTitle(JLabel title, int y) {
-		title.setFont(new Font("Segoe Script", Font.BOLD, 50));
+	private static void setTitle(JLabel title, int y, int fontDim) {
+		title.setFont(new Font("Segoe Script", Font.BOLD, fontDim));
 		title.setBounds(0, y, 400, 100);
 		title.setVisible(true);
 		title.setForeground(Color.RED.darker().darker());
