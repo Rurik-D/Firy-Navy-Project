@@ -200,12 +200,9 @@ public class Buttons {
 			public void mouseClicked(MouseEvent e) {
 				Sounds.clickMenuBtn();
 				startPveBtn.srnameBtn.setVisible(false);
-				startPveBtn.avatarBtn1.setVisible(false);
-				startPveBtn.avatarBtn2.setVisible(false);
-				startPveBtn.avatarBtn3.setVisible(false);
-				startPveBtn.avatarBtn4.setVisible(false);
-				startPveBtn.avatarBtn5.setVisible(false);
-				startPveBtn.avatarBtn6.setVisible(false);
+				for (int i = 0; i<6; i++) {
+					startPveBtn.avatarBtns.get(i).setVisible(false);
+				}
 				startPveBtn.confirmBtn.setVisible(false);
 				startPveBtn.saveBtn.setVisible(false);
 				startPveBtn.txtWrite.setVisible(false);

@@ -3,32 +3,31 @@ package Menu;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 
+import Assets.Background;
 import Assets.Sounds;
 
 public class StartButtons {
 	
 	//private JFrame frame;
 	//private JButton pveBtn = new JButton();
-	private Font font = new Font("Segoe Script", Font.BOLD, 15);
+	private Font font = new Font("Segoe Script", Font.BOLD, 35);
 	
 	public boolean obstacle = true;
 	public JTextField txtWrite;
 	public JButton saveBtn = new JButton("START");
-	public JButton avatarBtn1 = new JButton("A1");
-	public JButton avatarBtn2 = new JButton("A2");
-	public JButton avatarBtn3 = new JButton("A3");
-	public JButton avatarBtn4 = new JButton("A4");
-	public JButton avatarBtn5 = new JButton("A5");
-	public JButton avatarBtn6 = new JButton("A6");
 	public JButton confirmBtn = new JButton("CONFIRM");
 	public JButton srnameBtn = new JButton("SURNAME");
+	public List<JButton> avatarBtns = new ArrayList<>();
 
 	
-	
 	public StartButtons( JPanel menu) {
+		List<Icon> avatars = new ArrayList<>();
 		
 		
 		txtWrite = new JTextField();
@@ -36,40 +35,21 @@ public class StartButtons {
 
 		
 		saveBtn.setVisible(false);
-		avatarBtn1.setVisible(false);
-		avatarBtn2.setVisible(false);
-		avatarBtn3.setVisible(false);
-		avatarBtn4.setVisible(false);
-		avatarBtn5.setVisible(false);	
-		avatarBtn6.setVisible(false);
 		confirmBtn.setVisible(false);
 		srnameBtn.setVisible(false);
 		txtWrite.setVisible(false);
 
 		
-		saveBtn.setBounds(131, 583, 96, 21);
-		avatarBtn1.setBounds(68, 288, 62, 47);
-		avatarBtn2.setBounds(147, 288, 62, 47);
-		avatarBtn3.setBounds(224, 288, 62, 47);
-		avatarBtn4.setBounds(68, 366, 62, 47);
-		avatarBtn5.setBounds(147, 366, 62, 47);
-		avatarBtn6.setBounds(224, 366, 62, 47);
-		confirmBtn.setBounds(69, 190, 218, 21);
-		srnameBtn.setBounds(69, 190, 218, 21);
-		txtWrite.setBounds(131, 221, 96, 19);
+		saveBtn.setBounds(131, 583, 270, 40);
+		confirmBtn.setBounds(69, 190, 270, 40);
+		srnameBtn.setBounds(69, 190, 270, 40);
+		txtWrite.setBounds(131, 221, 270, 40);
 		
-	
 		saveBtn.setFont(font);
 		confirmBtn.setFont(font);
 		srnameBtn.setFont(font);
 
 		menu.add(saveBtn);
-		menu.add(avatarBtn1);
-		menu.add(avatarBtn2);
-		menu.add(avatarBtn3);
-		menu.add(avatarBtn4);
-		menu.add(avatarBtn5);
-		menu.add(avatarBtn6);
 		menu.add(confirmBtn);
 		menu.add(srnameBtn);
 		menu.add(txtWrite);
@@ -79,27 +59,48 @@ public class StartButtons {
 		setTrasparent(srnameBtn);
 		
 		
-		avatarBtn1.addActionListener(new ActionListener() {
+		for (int i = 0; i<2; i++) {
+			for (int j = 0; j<3; j++) {
+				JButton box;
+				box = new JButton("");
+				box.setBounds(68 + 60*j, 288 + 50*i, 60, 50);
+				box.setFont(new Font("Arial", Font.BOLD, 12));
+				box.setText("A" + (j+i*3));
+				//box.setIcon(avatars.get(j+i*3));  //da implementare, in questo modo si dovrebbe essere scorrevole
+				box.setOpaque(false);
+				box.setContentAreaFilled(false);
+				box.setVisible(false);
+				box.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						System.out.print(box.getName() + " ");
+					}
+				});
+				avatarBtns.add(box);
+				menu.add(box);
+			}
+			
+		}
+		
+		
+		
+		avatarBtns.get(0).addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Sounds.clickMenuBtn();
 
 				if (obstacle == true) {
 					saveBtn.setVisible(true);
-					avatarBtn2.setVisible(false);
-					avatarBtn3.setVisible(false);
-					avatarBtn4.setVisible(false);
-					avatarBtn5.setVisible(false);
-					avatarBtn6.setVisible(false);
+					for (int i = 0; i<6; i++) {
+						if (i != 0) { avatarBtns.get(i).setVisible(false); }
+					}
 
 					obstacle = false;
 				}
 				else {
 					saveBtn.setVisible(false);
-					avatarBtn2.setVisible(true);
-					avatarBtn3.setVisible(true);
-					avatarBtn4.setVisible(true);
-					avatarBtn5.setVisible(true);
-					avatarBtn6.setVisible(true);
+					for (int i = 0; i<6; i++) {
+						if (i != 0) { avatarBtns.get(i).setVisible(true); }
+					}
 					obstacle = true;
 				}
 			}
@@ -107,126 +108,106 @@ public class StartButtons {
 		
 		
 		
-		avatarBtn2.addActionListener(new ActionListener() {
+		avatarBtns.get(1).addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Sounds.clickMenuBtn();
 
 				if (obstacle == true) {
 					saveBtn.setVisible(true);
-					avatarBtn1.setVisible(false);
-					avatarBtn3.setVisible(false);
-					avatarBtn4.setVisible(false);
-					avatarBtn5.setVisible(false);
-					avatarBtn6.setVisible(false);
+					for (int i = 0; i<6; i++) {
+						if (i != 1) { avatarBtns.get(i).setVisible(false); }
+					}
 					obstacle = false;
 				}
 				else {
 					saveBtn.setVisible(false);
-					avatarBtn1.setVisible(true);
-					avatarBtn3.setVisible(true);
-					avatarBtn4.setVisible(true);
-					avatarBtn5.setVisible(true);
-					avatarBtn6.setVisible(true);
+					for (int i = 0; i<6; i++) {
+						if (i != 1) { avatarBtns.get(i).setVisible(true); }
+					}
 					obstacle = true;
 				}
 			}
 		});
 
-		avatarBtn3.addActionListener(new ActionListener() {
+		avatarBtns.get(2).addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Sounds.clickMenuBtn();
 
 				if (obstacle == true) {
 					saveBtn.setVisible(true);
-					avatarBtn2.setVisible(false);
-					avatarBtn1.setVisible(false);
-					avatarBtn4.setVisible(false);
-					avatarBtn5.setVisible(false);
-					avatarBtn6.setVisible(false);
+					for (int i = 0; i<6; i++) {
+						if (i != 2) { avatarBtns.get(i).setVisible(false); }
+					}
 					obstacle = false;
 				}
 				else {
 					saveBtn.setVisible(true);
-					avatarBtn2.setVisible(true);
-					avatarBtn1.setVisible(true);
-					avatarBtn4.setVisible(true);
-					avatarBtn5.setVisible(true);
-					avatarBtn6.setVisible(true);
+					for (int i = 0; i<6; i++) {
+						if (i != 2) { avatarBtns.get(i).setVisible(true); }
+					}
 					obstacle = true;
 				}
 			}
 		});
 	
-		avatarBtn4.addActionListener(new ActionListener() {
+		avatarBtns.get(3).addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Sounds.clickMenuBtn();
 
 				if (obstacle == true) {
 					saveBtn.setVisible(true);
-					avatarBtn2.setVisible(false);
-					avatarBtn3.setVisible(false);
-					avatarBtn1.setVisible(false);
-					avatarBtn5.setVisible(false);
-					avatarBtn6.setVisible(false);
+					for (int i = 0; i<6; i++) {
+						if (i != 3) { avatarBtns.get(i).setVisible(false); }
+					}
 					obstacle = false;
 				}
 				else {
 					saveBtn.setVisible(false);
-					avatarBtn2.setVisible(true);
-					avatarBtn3.setVisible(true);
-					avatarBtn1.setVisible(true);
-					avatarBtn5.setVisible(true);
-					avatarBtn6.setVisible(true);
+					for (int i = 0; i<6; i++) {
+						if (i != 3) { avatarBtns.get(i).setVisible(true); }
+					}
 					obstacle = true;
 				}
 			}
 		});
 	
-		avatarBtn5.addActionListener(new ActionListener() {
+		avatarBtns.get(4).addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Sounds.clickMenuBtn();
 
 				if (obstacle == true) {
 					saveBtn.setVisible(true);
-					avatarBtn2.setVisible(false);
-					avatarBtn3.setVisible(false);
-					avatarBtn4.setVisible(false);
-					avatarBtn1.setVisible(false);
-					avatarBtn6.setVisible(false);
+					for (int i = 0; i<6; i++) {
+						if (i != 4) { avatarBtns.get(i).setVisible(false); }
+					}
 					obstacle = false;
 				}
 				else {
 					saveBtn.setVisible(false);
-					avatarBtn2.setVisible(true);
-					avatarBtn3.setVisible(true);
-					avatarBtn4.setVisible(true);
-					avatarBtn1.setVisible(true);
-					avatarBtn6.setVisible(true);
+					for (int i = 0; i<6; i++) {
+						if (i != 4) { avatarBtns.get(i).setVisible(true); }
+					}
 					obstacle = true;
 				}
 			}
 		});
 	
-		avatarBtn6.addActionListener(new ActionListener() {
+		avatarBtns.get(5).addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Sounds.clickMenuBtn();
 
 				if (obstacle == true) {
 					saveBtn.setVisible(true);
-					avatarBtn2.setVisible(false);
-					avatarBtn3.setVisible(false);
-					avatarBtn4.setVisible(false);
-					avatarBtn5.setVisible(false);
-					avatarBtn1.setVisible(false);
+					for (int i = 0; i<6; i++) {
+						if (i != 5) { avatarBtns.get(i).setVisible(false); }
+					}
 					obstacle = false;
 				}
 				else {
 					saveBtn.setVisible(false);
-					avatarBtn2.setVisible(true);
-					avatarBtn3.setVisible(true);
-					avatarBtn4.setVisible(true);
-					avatarBtn5.setVisible(true);
-					avatarBtn1.setVisible(true);
+					for (int i = 0; i<6; i++) {
+						if (i != 5) { avatarBtns.get(i).setVisible(true); }
+					}
 					obstacle = true;
 				}
 			}
@@ -239,12 +220,9 @@ public class StartButtons {
 				String testo = txtWrite.getText();
 				if (!testo.equals("")) {
 					
-				avatarBtn1.setVisible(true);
-				avatarBtn2.setVisible(true);
-				avatarBtn3.setVisible(true);
-				avatarBtn4.setVisible(true);
-				avatarBtn5.setVisible(true);
-				avatarBtn6.setVisible(true);
+					for (int i = 0; i<6; i++) {
+						avatarBtns.get(i).setVisible(true);
+					}
 				
 				}
 			}
