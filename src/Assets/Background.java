@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Frame.Menu;
-import Frame.MenuProportion;
+import Util.MenuProportion;
 
 public class Background extends MenuProportion {
 

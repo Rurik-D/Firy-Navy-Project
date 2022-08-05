@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Assets.Sounds;
+import Util.MenuProportion;
 
 public class Buttons extends MenuProportion{
 	

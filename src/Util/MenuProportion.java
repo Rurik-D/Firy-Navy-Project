@@ -1,5 +1,6 @@
-package Frame;
+package Util;
 
+import Frame.Menu;
 
 public abstract class MenuProportion{
 	//public MenuProportion(JPanel exitPanel) {

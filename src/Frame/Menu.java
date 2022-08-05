@@ -22,7 +22,7 @@ public class Menu {
 	private JFrame frame = new JFrame("Firy Navy Project");
 
 	private JPanel menu = new JPanel();
-	static JPanel exitPanel = new JPanel();
+	public static JPanel exitPanel = new JPanel();
 	
 	
 	/**
