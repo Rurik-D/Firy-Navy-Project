@@ -1,4 +1,4 @@
-package Menu;
+package Frame;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -13,14 +13,16 @@ import javax.swing.JPanel;
 import Assets.Background;
 import Assets.Sounds;
 
-public class PanelMenu {
-	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+public class Menu {
+	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //1536 * 864
 	public static final int WIDTH = (int)screenSize.getWidth();
 	public static final int HEIGHT = (int)screenSize.getHeight();
+	//public static final int WIDTH = 1536;
+	//public static final int HEIGHT = 864;
 	private JFrame frame = new JFrame("Firy Navy Project");
 
 	private JPanel menu = new JPanel();
-	private JPanel exitPanel = new JPanel();
+	static JPanel exitPanel = new JPanel();
 	
 	
 	/**
@@ -32,7 +34,7 @@ public class PanelMenu {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PanelMenu window = new PanelMenu();
+					Menu window = new Menu();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,7 +47,7 @@ public class PanelMenu {
 	/**
 	 * Create the application.
 	 */
-	public PanelMenu() {
+	public Menu() {
 		initialize();
 	}
 
@@ -53,6 +55,9 @@ public class PanelMenu {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		int exitPnlW = (int)Math.round(WIDTH * 32.552 / 100);
+		int exitPnlH = (int)Math.round(HEIGHT * 23.148 / 100);
+		
 		frame.getContentPane().add(exitPanel);
 		frame.getContentPane().add(menu);
 		
@@ -64,7 +69,7 @@ public class PanelMenu {
 		frame.getContentPane().setLayout(null);
 		menu.setLayout(null);
 		
-		exitPanel.setBounds(WIDTH/2-250, HEIGHT/2-100, 500, 200);
+		exitPanel.setBounds(WIDTH/2 - exitPnlW/2, HEIGHT/2 - exitPnlH/2, exitPnlW, exitPnlH);
 		exitPanel.setLayout(null);
 		exitPanel.setVisible(false);
 		exitPanel.setBackground(Color.ORANGE);

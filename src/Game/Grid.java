@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -72,6 +74,8 @@ public class Grid {
 				box.setOpaque(false);
 				box.setContentAreaFilled(false);
 				box.setVisible(true);
+				box.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
+				box.setBorderPainted(true);
 				box.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {

@@ -12,9 +12,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import Menu.PanelMenu;
+import Frame.Menu;
+import Frame.MenuProportion;
 
-public class Background {
+public class Background extends MenuProportion {
+
 	private static Image image;
 	private static JLabel background;
 	
@@ -25,7 +27,7 @@ public class Background {
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
-		
+		int i = buttonX;
 		image = img.getScaledInstance(width, height,Image.SCALE_SMOOTH);
 		ImageIcon imageIcon = new ImageIcon(image);
 		
@@ -51,21 +53,14 @@ public class Background {
 	}
 	
 	public static JPanel getTitle() {
-		int titleX = (int)Math.round(PanelMenu.WIDTH * 66.40 / 100);
-		int titleY = (int)Math.round(PanelMenu.HEIGHT * 8.10 / 100);
-		int titleW = (int)Math.round(PanelMenu.WIDTH * 26.04 / 100);
-		int titleH = (int)Math.round(PanelMenu.HEIGHT * 57.87 / 100);
-		int titleSpacing = (int)Math.round(PanelMenu.HEIGHT * 5.78 / 100);
-		int fontDim = (int)Math.round((PanelMenu.WIDTH + PanelMenu.HEIGHT) * 2.08 / 100);
-		
 		JLabel title = new JLabel("Firy");
 		JLabel title1 = new JLabel("Navy");
 		JLabel title2 = new JLabel("Project");
 		JPanel titlePanel = new JPanel();
 		
-		setTitle(title, 0, fontDim);
-		setTitle(title1, titleSpacing, fontDim);
-		setTitle(title2, titleSpacing*2, fontDim);
+		setTitle(title, 0, titleFontDim);
+		setTitle(title1, titleSpacing, titleFontDim);
+		setTitle(title2, titleSpacing*2, titleFontDim);
 		
 		titlePanel.setBounds(titleX, titleY, titleW, titleH);
 		titlePanel.setLayout(null);
@@ -77,11 +72,11 @@ public class Background {
 	}
 	
 	private static void setTitle(JLabel title, int y, int fontDim) {
-		int titleLblW = (int)Math.round(PanelMenu.WIDTH * 13.02 / 100);
-		int titleLblH = (int)Math.round(PanelMenu.HEIGHT * 11.57 / 100);
+		int titleLblW = (int)Math.round(Menu.WIDTH * 13.02 / 100);
+		int titleLblH = (int)Math.round(Menu.HEIGHT * 11.57 / 100);
 		
 		title.setFont(new Font("Segoe Script", Font.BOLD, fontDim));
-		title.setBounds(0, y, 200, titleLblH);
+		title.setBounds(0, y, titleLblW, titleLblH);
 		title.setVisible(true);
 		title.setForeground(Color.RED.darker().darker());
 	}
