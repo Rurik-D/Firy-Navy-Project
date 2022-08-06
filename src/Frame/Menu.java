@@ -1,10 +1,15 @@
 package Frame;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,15 +19,15 @@ import Assets.Background;
 import Assets.Sounds;
 
 public class Menu {
-	//private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //1536 * 864
-	//public static final int WIDTH = (int)screenSize.getWidth();
-	//public static final int HEIGHT = (int)screenSize.getHeight();
-	public static final int WIDTH = 1536;
-	public static final int HEIGHT = 864;
+	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //1536 * 864
+	public static final int WIDTH = (int)screenSize.getWidth();
+	public static final int HEIGHT = (int)screenSize.getHeight();
+	//public static final int WIDTH = 1536;
+	//public static final int HEIGHT = 864;
 	private JFrame frame = new JFrame("Firy Navy Project");
-
 	private JPanel menu = new JPanel();
 	public static JPanel exitPanel = new JPanel();
+	private Toolkit kit = Toolkit.getDefaultToolkit();
 	
 	
 	/**
@@ -57,6 +62,18 @@ public class Menu {
 	private void initialize() {
 		int exitPnlW = (int)Math.round(WIDTH * 32.552 / 100);
 		int exitPnlH = (int)Math.round(HEIGHT * 23.148 / 100);
+		
+		frame.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+		    	Image image = kit.getImage("img\\missile.png");
+		    	Cursor a = kit.createCustomCursor(image , new Point(1, 1), null);
+		    	frame.setCursor (a);
+			}
+		});
+
+		Image img = kit.getImage("img\\ship.png");
+		frame.setIconImage(img);
 		
 		frame.getContentPane().add(exitPanel);
 		frame.getContentPane().add(menu);

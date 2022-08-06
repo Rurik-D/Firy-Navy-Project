@@ -33,12 +33,12 @@ public class Buttons extends MenuProportion{
 	private JButton volumeBtn = new JButton("VOLUME");
 	private JButton extYesBtn = new JButton("YES");
 	private JButton extNoBtn = new JButton("NO");
-	private JButton saveBtn = new JButton("START");
+	private JButton startGameBtn = new JButton("START");
 	private JButton confirmBtn = new JButton("CONFIRM");
-	private JButton srnameBtn = new JButton("SURNAME");
+	private JButton srnameBtn = new JButton("NICKNAME");
 	private JButton moreVolumeBtn = new JButton("+");
 	private JButton lessVolumeBtn = new JButton("-");
-	private JTextField txtWrite = new JTextField();
+	private JTextField selectNickname = new JTextField();
 	private JLabel volumeLevel = new JLabel("50");
 	private JLabel extLabel = new JLabel("Do You Want To Leave?");
 	private List<JButton> avatarBtns = new ArrayList<>();
@@ -138,10 +138,10 @@ public class Buttons extends MenuProportion{
 				}
 				srnameBtn.setVisible(false);
 				confirmBtn.setVisible(false);
-				saveBtn.setVisible(false);
-				txtWrite.setVisible(false);
+				startGameBtn.setVisible(false);
+				selectNickname.setVisible(false);
 				obstacle = true;
-				txtWrite.setText("");
+				selectNickname.setText("");
 				backToStartBtn.setVisible(false);
 				
 				pveBtn.setVisible(true);
@@ -211,7 +211,7 @@ public class Buttons extends MenuProportion{
 			public void mouseClicked(MouseEvent e) {
 				Sounds.clickMenuBtn();
 				volume = Integer.parseInt(volumeLevel.getText());
-				if (volume < 100) {
+				if (volume < 99) {
 					volume += 1;
 					Sounds.setVolume((float)volume/100);
 					volumeLevel.setText(String.valueOf(volume));
@@ -225,7 +225,7 @@ public class Buttons extends MenuProportion{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Sounds.clickMenuBtn();
-				String testo = txtWrite.getText();
+				String testo = selectNickname.getText();
 				if (!testo.equals("")) {
 					
 					for (int i = 0; i<6; i++) {
@@ -240,7 +240,7 @@ public class Buttons extends MenuProportion{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Sounds.clickMenuBtn();
-				txtWrite.setVisible(true);
+				selectNickname.setVisible(true);
 				srnameBtn.setVisible(false);
 				confirmBtn.setVisible(true);
 				
@@ -264,10 +264,10 @@ public class Buttons extends MenuProportion{
 		volumeLevel.setVisible(false);
 		extYesBtn.setVisible(false);
 		extNoBtn.setVisible(false);
-		saveBtn.setVisible(false);
+		startGameBtn.setVisible(false);
 		confirmBtn.setVisible(false);
 		srnameBtn.setVisible(false);
-		txtWrite.setVisible(false);
+		selectNickname.setVisible(false);
 		
 	}
 	
@@ -297,18 +297,17 @@ public class Buttons extends MenuProportion{
 		backToStartBtn.setBounds(buttonX, buttonY, buttonW, buttonH);
 		langBtn.setBounds(buttonX, buttonY - buttonH, buttonW, buttonH);
 		volumeBtn.setBounds(buttonX, buttonY - buttonH * 2, buttonW, buttonH);
+		//exitPanel.setBounds(exitPnlX,exitPnlY, exitPnlW, exitPnlH);
 		extYesBtn.setBounds(yesBtnX, yesBtnY, yesBtnW, yesBtnH);
 		extNoBtn.setBounds(noBtnX, yesBtnY, yesBtnW, yesBtnH);
 		extLabel.setBounds(extLabelX, extLabelY, extLabelW, extLabelH);
-		saveBtn.setBounds(70, 435, 270, 40);
-		confirmBtn.setBounds(69, 235, 270, 40);
-		srnameBtn.setBounds(69, 190, 280, 40);
-		txtWrite.setBounds(80, 190, 270, 40);
-		lessVolumeBtn.setBounds(100, 600, 80, 50);
-		volumeLevel.setBounds(180, 600, 100, 50);
-		moreVolumeBtn.setBounds(270, 600, 80, 50);
-
-		
+		srnameBtn.setBounds(pveMenuX, srnameBtnY, pveMenuW, buttonH);
+		confirmBtn.setBounds(pveMenuX, confirmBtnY, pveMenuW, buttonH);
+		startGameBtn.setBounds(pveMenuX, startGameBtnY, pveMenuW, buttonH);
+		selectNickname.setBounds(selectNickX, srnameBtnY, selectNickW, buttonH);
+		lessVolumeBtn.setBounds(lessVolumeBtnX, volumeBtnsY, lessVolumeBtnW, buttonH);
+		volumeLevel.setBounds(volumeLevelX, volumeBtnsY, volumeLevelW, buttonH);
+		moreVolumeBtn.setBounds(moreVolumeBtnX, volumeBtnsY, lessVolumeBtnW, buttonH);
 	}
 
 	private void setFont() {
@@ -328,10 +327,10 @@ public class Buttons extends MenuProportion{
 		extYesBtn.setFont(extPnlFont);
 		extNoBtn.setFont(extPnlFont);
 		extLabel.setFont(extPnlFont);
-		saveBtn.setFont(font);
+		startGameBtn.setFont(font);
 		confirmBtn.setFont(font);
 		srnameBtn.setFont(font);
-		txtWrite.setFont(font);
+		selectNickname.setFont(font);
 
 	}
 	
@@ -341,8 +340,8 @@ public class Buttons extends MenuProportion{
 		extYesBtn.setBackground(Color.YELLOW);
 		extNoBtn.setBackground(Color.YELLOW);
 		
-		txtWrite.setOpaque(false);
-		txtWrite.setBorder(BorderFactory.createLineBorder(Color.BLACK,2));
+		selectNickname.setOpaque(false);
+		selectNickname.setBorder(BorderFactory.createLineBorder(Color.BLACK,2));
 		
 		volumeLevel.setOpaque(false);
 		
@@ -358,7 +357,7 @@ public class Buttons extends MenuProportion{
 		setTrasparent(lessVolumeBtn);
 		setTrasparent(langBtn);
 		setTrasparent(backToStartBtn);
-		setTrasparent(saveBtn);
+		setTrasparent(startGameBtn);
 		setTrasparent(confirmBtn);
 		setTrasparent(srnameBtn);
 		
@@ -378,10 +377,10 @@ public class Buttons extends MenuProportion{
 		menu.add(lessVolumeBtn);
 		menu.add(volumeLevel);
 		menu.add(langBtn);
-		menu.add(saveBtn);
+		menu.add(startGameBtn);
 		menu.add(confirmBtn);
 		menu.add(srnameBtn);
-		menu.add(txtWrite);
+		menu.add(selectNickname);
 		
 		exitPanel.add(extLabel);
 		exitPanel.add(extNoBtn);
@@ -405,7 +404,8 @@ public class Buttons extends MenuProportion{
 			for (int j = 0; j<3; j++) {
 				JButton box;
 				box = new JButton("");
-				box.setBounds(112 + 63*j, 288 + 63*i, 60, 60);
+				//box.setBounds(112 + 63*j, 288 + 63*i, 60, 60);	// valori relativi a 1536 * 864
+				box.setBounds(avatarX + avatarSpacing*j, avatarY + avatarSpacing*i, avatarSide, avatarSide);
 				box.setFont(new Font("Arial", Font.BOLD, 12));
 				box.setText("A" + (j+i*3));
 				//box.setIcon(avatars.get(j+i*3)); // PARTE DI LELLO (lista di icone)// 
@@ -432,7 +432,7 @@ public class Buttons extends MenuProportion{
 
 				if (obstacle == true) {
 					confirmBtn.setVisible(false);
-					saveBtn.setVisible(true);
+					startGameBtn.setVisible(true);
 					for (int i = 0; i<6; i++) {
 						if (i != btnNumb) { avatarBtns.get(i).setVisible(false); }
 					}
@@ -440,7 +440,7 @@ public class Buttons extends MenuProportion{
 				}
 				else {
 					confirmBtn.setVisible(true);
-					saveBtn.setVisible(false);
+					startGameBtn.setVisible(false);
 					for (int i = 0; i<6; i++) {
 						if (i != btnNumb) { avatarBtns.get(i).setVisible(true); }
 					}
