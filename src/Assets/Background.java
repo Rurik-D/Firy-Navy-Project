@@ -13,9 +13,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Frame.Menu;
-import Util.MenuProportion;
+import Util.FrameProportion;
 
-public class Background extends MenuProportion {
+public class Background extends FrameProportion {
 
 	private static Image image;
 	private static JLabel background;
@@ -27,7 +27,6 @@ public class Background extends MenuProportion {
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
-		int i = buttonX;
 		image = img.getScaledInstance(width, height,Image.SCALE_SMOOTH);
 		ImageIcon imageIcon = new ImageIcon(image);
 		

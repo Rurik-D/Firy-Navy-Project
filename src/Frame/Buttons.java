@@ -17,9 +17,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Assets.Sounds;
-import Util.MenuProportion;
+import Util.FrameProportion;
 
-public class Buttons extends MenuProportion{
+public class Buttons extends FrameProportion{
 	
 	private JButton startBtn = new JButton("START");
 	private JButton optionBtn = new JButton("OPTION");

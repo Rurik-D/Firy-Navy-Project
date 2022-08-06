@@ -1,8 +1,8 @@
 package Util;
 
-import Frame.*;
+import Frame.Menu;
 
-public abstract class MenuProportion{
+public abstract class FrameProportion{
 		private static int panelWidth = Menu.exitPanel.getWidth();
 		private static int panelHeight = Menu.exitPanel.getHeight();
 		
@@ -15,6 +15,7 @@ public abstract class MenuProportion{
 		protected static int exitPnlH = (int)Math.round(Menu.HEIGHT * 23.148 / 100);
 		protected static int exitPnlX = (int)Math.round(Menu.WIDTH/2 - exitPnlW/2);
 		protected static int exitPnlY = (int)Math.round(Menu.HEIGHT/2 - exitPnlH/2);
+		
 		protected static int yesBtnX = (int)Math.round(panelWidth * 8.2 / 100);
 		protected static int yesBtnY = (int)Math.round(panelHeight * 63.5 / 100);
 		protected static int yesBtnW = (int)Math.round(panelWidth * 18.6 / 100);

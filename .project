@@ -14,11 +14,4 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>img/missile.png</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/Prova_App_Grafica/img/missile.png</locationURI>
-		</link>
-	</linkedResources>
 </projectDescription>
