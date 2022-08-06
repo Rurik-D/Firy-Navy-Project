@@ -72,9 +72,6 @@ public class Background extends MenuProportion {
 	}
 	
 	private static void setTitle(JLabel title, int y, int fontDim) {
-		int titleLblW = (int)Math.round(Menu.WIDTH * 13.02 / 100);
-		int titleLblH = (int)Math.round(Menu.HEIGHT * 11.57 / 100);
-		
 		title.setFont(new Font("Segoe Script", Font.BOLD, fontDim));
 		title.setBounds(0, y, titleLblW, titleLblH);
 		title.setVisible(true);

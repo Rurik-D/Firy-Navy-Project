@@ -3,7 +3,6 @@ package Util;
 import Frame.Menu;
 
 public abstract class MenuProportion{
-	//public MenuProportion(JPanel exitPanel) {
 		private static int panelWidth = Menu.exitPanel.getWidth();
 		private static int panelHeight = Menu.exitPanel.getHeight();
 		
@@ -35,5 +34,4 @@ public abstract class MenuProportion{
 		
 		protected static int titleLblW = (int)Math.round(Menu.WIDTH * 13.02 / 100);
 		protected static int titleLblH = (int)Math.round(Menu.HEIGHT * 11.57 / 100);
-	//}
 }

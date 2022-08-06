@@ -14,11 +14,11 @@ import Assets.Background;
 import Assets.Sounds;
 
 public class Menu {
-	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //1536 * 864
-	public static final int WIDTH = (int)screenSize.getWidth();
-	public static final int HEIGHT = (int)screenSize.getHeight();
-	//public static final int WIDTH = 1536;
-	//public static final int HEIGHT = 864;
+	//private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //1536 * 864
+	//public static final int WIDTH = (int)screenSize.getWidth();
+	//public static final int HEIGHT = (int)screenSize.getHeight();
+	public static final int WIDTH = 1536;
+	public static final int HEIGHT = 864;
 	private JFrame frame = new JFrame("Firy Navy Project");
 
 	private JPanel menu = new JPanel();

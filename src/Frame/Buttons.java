@@ -6,11 +6,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import Assets.Sounds;
 import Util.MenuProportion;
@@ -22,108 +26,36 @@ public class Buttons extends MenuProportion{
 	private JButton exitBtn = new JButton("EXIT");
 	private JButton pveBtn = new JButton("PVE");
 	private JButton pvpBtn = new JButton("PVP");
-	private JButton backBtn = new JButton("BACK");
+	private JButton backToMenuBtn = new JButton("BACK");
 	private JButton backToOptBtn = new JButton("BACK");
-	private JButton backToPveBtn = new JButton("BACK");
+	private JButton backToStartBtn = new JButton("BACK");
 	private JButton langBtn = new JButton("LANGUAGE");
 	private JButton volumeBtn = new JButton("VOLUME");
 	private JButton extYesBtn = new JButton("YES");
 	private JButton extNoBtn = new JButton("NO");
+	private JButton saveBtn = new JButton("START");
+	private JButton confirmBtn = new JButton("CONFIRM");
+	private JButton srnameBtn = new JButton("SURNAME");
+	private JButton moreVolumeBtn = new JButton("+");
+	private JButton lessVolumeBtn = new JButton("-");
+	private JTextField txtWrite = new JTextField();
+	private JLabel volumeLevel = new JLabel("50");
 	private JLabel extLabel = new JLabel("Do You Want To Leave?");
-	
-	public Buttons(JPanel menu, JPanel exitPanel, JFrame frame) {
-		StartButtons startPveBtn = new StartButtons(menu);
-		int panelWidth = exitPanel.getWidth();
-		int panelHeight = exitPanel.getHeight();
-				
-		System.out.println(panelWidth);
-		System.out.println(panelHeight);
-		System.out.println(fontDim);
-		System.out.println(exitPnlFontDim);
-		
-		Font font = new Font("Segoe Script", Font.BOLD, fontDim);
-		Font extPnlFont = new Font("Segoe Script", Font.BOLD, exitPnlFontDim);
-		
-		
-		startBtn.setVisible(true);
-		optionBtn.setVisible(true);
-		exitBtn.setVisible(true);
-		pvpBtn.setVisible(false);
-		pveBtn.setVisible(false);
-		backBtn.setVisible(false);
-		backToOptBtn.setVisible(false);
-		langBtn.setVisible(false);
-		volumeBtn.setVisible(false);
-		extYesBtn.setVisible(false);
-		extNoBtn.setVisible(false);
-		backToPveBtn.setVisible(false);
-		
-		startBtn.setFont(font);
-		startBtn.setBounds(buttonX, buttonY - buttonH * 2, buttonW, buttonH);
-		
-		optionBtn.setFont(font);
-		optionBtn.setBounds(buttonX, buttonY - buttonH, buttonW, buttonH);
-		
-		exitBtn.setFont(font);
-		exitBtn.setBounds(buttonX, buttonY, buttonW, buttonH);
-		
-		pveBtn.setFont(font);
-		pveBtn.setBounds(buttonX, buttonY - buttonH * 2, buttonW, buttonH);
-		
-		pvpBtn.setFont(font);
-		pvpBtn.setBounds(buttonX, buttonY - buttonH, buttonW, buttonH);
-		
-		backBtn.setFont(font);
-		backBtn.setBounds(buttonX, buttonY, buttonW, buttonH);
-		
-		backToOptBtn.setFont(font);
-		backToOptBtn.setBounds(buttonX, buttonY, buttonW, buttonH);
+	private List<JButton> avatarBtns = new ArrayList<>();
+	private Font font = new Font("Segoe Script", Font.BOLD, fontDim);
+	private Font extPnlFont = new Font("Segoe Script", Font.BOLD, exitPnlFontDim);
+	private boolean obstacle = true;
+	private int volume;
 
-		backToPveBtn.setFont(font);
-		backToPveBtn.setBounds(buttonX, buttonY, buttonW, buttonH);
-		
-		langBtn.setFont(font);
-		langBtn.setBounds(buttonX, buttonY - buttonH, buttonW, buttonH);
-		
-		volumeBtn.setFont(font);
-		volumeBtn.setBounds(buttonX, buttonY - buttonH * 2, buttonW, buttonH);
-		
-		extYesBtn.setFont(extPnlFont);
-		extYesBtn.setBackground(Color.YELLOW);
-		extYesBtn.setBounds(yesBtnX, yesBtnY, yesBtnW, yesBtnH);
-		
-		extNoBtn.setFont(extPnlFont);
-		extNoBtn.setBackground(Color.YELLOW);
-		extNoBtn.setBounds(noBtnX, yesBtnY, yesBtnW, yesBtnH);
-		
-		extLabel.setFont(extPnlFont);
-		extLabel.setBounds(extLabelX, extLabelY, extLabelW, extLabelH);
-		
-		setTrasparent(startBtn);
-		setTrasparent(optionBtn);
-		setTrasparent(exitBtn);
-		setTrasparent(pveBtn);
-		setTrasparent(pvpBtn);
-		setTrasparent(backBtn);
-		setTrasparent(backToOptBtn);
-		setTrasparent(volumeBtn);
-		setTrasparent(langBtn);
-		setTrasparent(backToPveBtn);
-		
-		menu.add(startBtn);
-		menu.add(optionBtn);
-		menu.add(exitBtn);
-		menu.add(pveBtn);
-		menu.add(pvpBtn);
-		menu.add(backBtn);
-		menu.add(backToOptBtn);
-		menu.add(backToPveBtn);
-		menu.add(volumeBtn);
-		menu.add(langBtn);
-		
-		exitPanel.add(extLabel);
-		exitPanel.add(extNoBtn);
-		exitPanel.add(extYesBtn);
+
+	public Buttons(JPanel menu, JPanel exitPanel, JFrame frame) {
+
+
+		initialButtonsState();
+		setProportion();
+		setGraphics();
+		addToPanels(menu, exitPanel);
+		createAvatarGrid(menu);		// PARTE DI LELLO //
 		
 		startBtn.addMouseListener(new MouseAdapter() {
 			@Override
@@ -134,7 +66,7 @@ public class Buttons extends MenuProportion{
 				exitBtn.setVisible(false);
 				pveBtn.setVisible(true);
 				pvpBtn.setVisible(true);
-				backBtn.setVisible(true);
+				backToMenuBtn.setVisible(true);
 			}
 		});
 		
@@ -142,22 +74,17 @@ public class Buttons extends MenuProportion{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Sounds.clickMenuBtn();
-				backBtn.setVisible(true);
-				langBtn.setVisible(true);
-				volumeBtn.setVisible(true);
-				optionBtn.setVisible(false);
-				startBtn.setVisible(false);
-				exitBtn.setVisible(false);				
+				optionState();
 			}
 		});
 		
 		exitBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Sounds.clickMenuBtn();
-				exitPanel.setVisible(true);
-				optionBtn.setVisible(false);
 				startBtn.setVisible(false);
+				optionBtn.setVisible(false);
 				exitBtn.setVisible(false);
+				exitPanel.setVisible(true);
 				extNoBtn.setVisible(true);
 				extYesBtn.setVisible(true);
 			}
@@ -166,33 +93,31 @@ public class Buttons extends MenuProportion{
 		pveBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Sounds.clickMenuBtn();
-				startPveBtn.srnameBtn.setVisible(true);
-				backToPveBtn.setVisible(true);
 				pvpBtn.setVisible(false);
 				pveBtn.setVisible(false);
-				backBtn.setVisible(false);
+				backToMenuBtn.setVisible(false);
+				srnameBtn.setVisible(true);
+				backToStartBtn.setVisible(true);
 			}
 		});
 		
 		pvpBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Sounds.clickMenuBtn();
+				pvpBtn.setVisible(false);
+				pveBtn.setVisible(false);
+				backToMenuBtn.setVisible(false);
+				srnameBtn.setVisible(true);
+				backToStartBtn.setVisible(true);
 				
 			}
 		});
 		
-		backBtn.addMouseListener(new MouseAdapter() {
+		backToMenuBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Sounds.clickMenuBtn();
-				backBtn.setVisible(false);
-				langBtn.setVisible(false);
-				volumeBtn.setVisible(false);
-				pveBtn.setVisible(false);
-				pvpBtn.setVisible(false);
-				optionBtn.setVisible(true);
-				startBtn.setVisible(true);
-				exitBtn.setVisible(true);
+				initialButtonsState();
 			}
 		});
 		
@@ -200,31 +125,28 @@ public class Buttons extends MenuProportion{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Sounds.clickMenuBtn();
-				backToOptBtn.setVisible(false);
-				langBtn.setVisible(true);
-				volumeBtn.setVisible(true);
-				backBtn.setVisible(true);
+				optionState();
 			}
 		});
 		
-		backToPveBtn.addMouseListener(new MouseAdapter() {
+		backToStartBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Sounds.clickMenuBtn();
-				startPveBtn.srnameBtn.setVisible(false);
 				for (int i = 0; i<6; i++) {
-					startPveBtn.avatarBtns.get(i).setVisible(false);
+					avatarBtns.get(i).setVisible(false);
 				}
-				startPveBtn.confirmBtn.setVisible(false);
-				startPveBtn.saveBtn.setVisible(false);
-				startPveBtn.txtWrite.setVisible(false);
-				startPveBtn.obstacle = true;
-				startPveBtn.txtWrite.setText("");
-				backToPveBtn.setVisible(false);
+				srnameBtn.setVisible(false);
+				confirmBtn.setVisible(false);
+				saveBtn.setVisible(false);
+				txtWrite.setVisible(false);
+				obstacle = true;
+				txtWrite.setText("");
+				backToStartBtn.setVisible(false);
 				
 				pveBtn.setVisible(true);
 				pvpBtn.setVisible(true);
-				backBtn.setVisible(true);
+				backToMenuBtn.setVisible(true);
 				
 			}
 		});
@@ -232,9 +154,7 @@ public class Buttons extends MenuProportion{
 			public void actionPerformed(ActionEvent e) {
 				Sounds.clickMenuBtn();
 				exitPanel.setVisible(false);
-				optionBtn.setVisible(true);
-				startBtn.setVisible(true);
-				exitBtn.setVisible(true);
+				initialButtonsState();
 			}
 		});
 		
@@ -252,7 +172,7 @@ public class Buttons extends MenuProportion{
 				Sounds.clickMenuBtn();
 				langBtn.setVisible(false);
 				volumeBtn.setVisible(false);
-				backBtn.setVisible(false);
+				backToMenuBtn.setVisible(false);
 				backToOptBtn.setVisible(true);
 			}
 		});
@@ -263,8 +183,269 @@ public class Buttons extends MenuProportion{
 				Sounds.clickMenuBtn();
 				langBtn.setVisible(false);
 				volumeBtn.setVisible(false);
-				backBtn.setVisible(false);
+				backToMenuBtn.setVisible(false);
 				backToOptBtn.setVisible(true);
+				moreVolumeBtn.setVisible(true);
+				lessVolumeBtn.setVisible(true);
+				volumeLevel.setVisible(true);
+			}
+		});
+		
+		lessVolumeBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Sounds.clickMenuBtn();
+				volume = Integer.parseInt(volumeLevel.getText());
+				
+				if (volume > 0) {
+					volume -= 1;
+					Sounds.setVolume((float)volume/100);
+					volumeLevel.setText(String.valueOf(volume));
+				}
+				
+			}
+		});
+		
+		moreVolumeBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Sounds.clickMenuBtn();
+				volume = Integer.parseInt(volumeLevel.getText());
+				if (volume < 100) {
+					volume += 1;
+					Sounds.setVolume((float)volume/100);
+					volumeLevel.setText(String.valueOf(volume));
+				}
+				
+			}
+		});
+		
+		
+		confirmBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Sounds.clickMenuBtn();
+				String testo = txtWrite.getText();
+				if (!testo.equals("")) {
+					
+					for (int i = 0; i<6; i++) {
+						avatarBtns.get(i).setVisible(true);
+					}
+				
+				}
+			}
+		});
+		
+		srnameBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Sounds.clickMenuBtn();
+				txtWrite.setVisible(true);
+				srnameBtn.setVisible(false);
+				confirmBtn.setVisible(true);
+				
+			}
+		});	
+	}
+
+	private void initialButtonsState() {
+		startBtn.setVisible(true);
+		optionBtn.setVisible(true);
+		exitBtn.setVisible(true);
+		pvpBtn.setVisible(false);
+		pveBtn.setVisible(false);
+		backToMenuBtn.setVisible(false);
+		backToOptBtn.setVisible(false);
+		backToStartBtn.setVisible(false);
+		langBtn.setVisible(false);
+		volumeBtn.setVisible(false);
+		moreVolumeBtn.setVisible(false);
+		lessVolumeBtn.setVisible(false);
+		volumeLevel.setVisible(false);
+		extYesBtn.setVisible(false);
+		extNoBtn.setVisible(false);
+		saveBtn.setVisible(false);
+		confirmBtn.setVisible(false);
+		srnameBtn.setVisible(false);
+		txtWrite.setVisible(false);
+		
+	}
+	
+	private void optionState() {
+		startBtn.setVisible(false);
+		optionBtn.setVisible(false);
+		exitBtn.setVisible(false);
+		backToOptBtn.setVisible(false);
+		volumeLevel.setVisible(false);
+		moreVolumeBtn.setVisible(false);
+		lessVolumeBtn.setVisible(false);
+		backToMenuBtn.setVisible(true);
+		langBtn.setVisible(true);
+		volumeBtn.setVisible(true);
+		
+	}
+	
+	
+	private void setProportion() {
+		startBtn.setBounds(buttonX, buttonY - buttonH * 2, buttonW, buttonH);
+		optionBtn.setBounds(buttonX, buttonY - buttonH, buttonW, buttonH);
+		exitBtn.setBounds(buttonX, buttonY, buttonW, buttonH);
+		pveBtn.setBounds(buttonX, buttonY - buttonH * 2, buttonW, buttonH);
+		pvpBtn.setBounds(buttonX, buttonY - buttonH, buttonW, buttonH);
+		backToMenuBtn.setBounds(buttonX, buttonY, buttonW, buttonH);
+		backToOptBtn.setBounds(buttonX, buttonY, buttonW, buttonH);
+		backToStartBtn.setBounds(buttonX, buttonY, buttonW, buttonH);
+		langBtn.setBounds(buttonX, buttonY - buttonH, buttonW, buttonH);
+		volumeBtn.setBounds(buttonX, buttonY - buttonH * 2, buttonW, buttonH);
+		extYesBtn.setBounds(yesBtnX, yesBtnY, yesBtnW, yesBtnH);
+		extNoBtn.setBounds(noBtnX, yesBtnY, yesBtnW, yesBtnH);
+		extLabel.setBounds(extLabelX, extLabelY, extLabelW, extLabelH);
+		saveBtn.setBounds(70, 435, 270, 40);
+		confirmBtn.setBounds(69, 235, 270, 40);
+		srnameBtn.setBounds(69, 190, 280, 40);
+		txtWrite.setBounds(80, 190, 270, 40);
+		lessVolumeBtn.setBounds(100, 600, 80, 50);
+		volumeLevel.setBounds(180, 600, 100, 50);
+		moreVolumeBtn.setBounds(270, 600, 80, 50);
+
+		
+	}
+
+	private void setFont() {
+		startBtn.setFont(font);		
+		optionBtn.setFont(font);
+		exitBtn.setFont(font);
+		pveBtn.setFont(font);
+		pvpBtn.setFont(font);
+		backToMenuBtn.setFont(font);
+		backToOptBtn.setFont(font);
+		backToStartBtn.setFont(font);
+		langBtn.setFont(font);
+		volumeBtn.setFont(font);
+		volumeLevel.setFont(font);
+		moreVolumeBtn.setFont(font);
+		lessVolumeBtn.setFont(font);
+		extYesBtn.setFont(extPnlFont);
+		extNoBtn.setFont(extPnlFont);
+		extLabel.setFont(extPnlFont);
+		saveBtn.setFont(font);
+		confirmBtn.setFont(font);
+		srnameBtn.setFont(font);
+		txtWrite.setFont(font);
+
+	}
+	
+	private void setGraphics() {
+		setFont();
+		
+		extYesBtn.setBackground(Color.YELLOW);
+		extNoBtn.setBackground(Color.YELLOW);
+		
+		txtWrite.setOpaque(false);
+		txtWrite.setBorder(BorderFactory.createLineBorder(Color.BLACK,2));
+		
+		volumeLevel.setOpaque(false);
+		
+		setTrasparent(startBtn);
+		setTrasparent(optionBtn);
+		setTrasparent(exitBtn);
+		setTrasparent(pveBtn);
+		setTrasparent(pvpBtn);
+		setTrasparent(backToMenuBtn);
+		setTrasparent(backToOptBtn);
+		setTrasparent(volumeBtn);
+		setTrasparent(moreVolumeBtn);
+		setTrasparent(lessVolumeBtn);
+		setTrasparent(langBtn);
+		setTrasparent(backToStartBtn);
+		setTrasparent(saveBtn);
+		setTrasparent(confirmBtn);
+		setTrasparent(srnameBtn);
+		
+	}
+	
+	private void addToPanels(JPanel menu, JPanel exitPanel) {
+		menu.add(startBtn);
+		menu.add(optionBtn);
+		menu.add(exitBtn);
+		menu.add(pveBtn);
+		menu.add(pvpBtn);
+		menu.add(backToMenuBtn);
+		menu.add(backToOptBtn);
+		menu.add(backToStartBtn);
+		menu.add(volumeBtn);
+		menu.add(moreVolumeBtn);
+		menu.add(lessVolumeBtn);
+		menu.add(volumeLevel);
+		menu.add(langBtn);
+		menu.add(saveBtn);
+		menu.add(confirmBtn);
+		menu.add(srnameBtn);
+		menu.add(txtWrite);
+		
+		exitPanel.add(extLabel);
+		exitPanel.add(extNoBtn);
+		exitPanel.add(extYesBtn);
+		
+	}
+	
+	private void createAvatarGrid(JPanel menu) {
+		createAvatarBtnList(menu);		// PARTE DI LELLO (lista di icone)//
+		setAvatarBtn(avatarBtns, 0);
+		setAvatarBtn(avatarBtns, 1);
+		setAvatarBtn(avatarBtns, 2);
+		setAvatarBtn(avatarBtns, 3);
+		setAvatarBtn(avatarBtns, 4);
+		setAvatarBtn(avatarBtns, 5);
+		
+	}
+	
+	private void createAvatarBtnList(JPanel menu) {
+		for (int i = 0; i<2; i++) {
+			for (int j = 0; j<3; j++) {
+				JButton box;
+				box = new JButton("");
+				box.setBounds(112 + 63*j, 288 + 63*i, 60, 60);
+				box.setFont(new Font("Arial", Font.BOLD, 12));
+				box.setText("A" + (j+i*3));
+				//box.setIcon(avatars.get(j+i*3)); // PARTE DI LELLO (lista di icone)// 
+				box.setOpaque(false);
+				box.setContentAreaFilled(false);
+				box.setVisible(false);
+				box.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						System.out.print(box.getName() + " ");
+					}
+				});
+				avatarBtns.add(box);
+				menu.add(box);
+			}
+		}
+	}
+	
+	private void setAvatarBtn(List<JButton> avatarBtns, int btnNumb) {
+		avatarBtns.get(btnNumb).addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Sounds.clickMenuBtn();
+
+				if (obstacle == true) {
+					confirmBtn.setVisible(false);
+					saveBtn.setVisible(true);
+					for (int i = 0; i<6; i++) {
+						if (i != btnNumb) { avatarBtns.get(i).setVisible(false); }
+					}
+					obstacle = false;
+				}
+				else {
+					confirmBtn.setVisible(true);
+					saveBtn.setVisible(false);
+					for (int i = 0; i<6; i++) {
+						if (i != btnNumb) { avatarBtns.get(i).setVisible(true); }
+					}
+					obstacle = true;
+				}
 			}
 		});
 	}
