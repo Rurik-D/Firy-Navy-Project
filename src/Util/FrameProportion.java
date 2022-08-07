@@ -48,7 +48,7 @@ public abstract class FrameProportion{
 		protected static int lessVolumeBtnX = (int)Math.round(Menu.WIDTH * 7.161 / 100);
 		protected static int volumeLevelX = (int)Math.round(Menu.WIDTH * 11.718 / 100);
 		protected static int moreVolumeBtnX= (int)Math.round(Menu.WIDTH * 15.625 / 100);
-		protected static int volumeBtnsY = (int)Math.round(Menu.HEIGHT * 69.444 / 100);
+		protected static int volumeBtnsY = (int)Math.round(Menu.HEIGHT * 71.412 / 100);
 		protected static int lessVolumeBtnW = (int)Math.round(Menu.WIDTH * 3.906 / 100);
 		protected static int volumeLevelW = (int)Math.round(Menu.WIDTH * 6.51 / 100);
 		
