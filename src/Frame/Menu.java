@@ -26,7 +26,6 @@ public class Menu {
 	//public static final int HEIGHT = 864;
 	private JFrame frame = new JFrame("Firy Navy Project");
 	private JPanel menu = new JPanel();
-	public static JPanel exitPanel = new JPanel();
 	private Toolkit kit = Toolkit.getDefaultToolkit();
 	
 	
@@ -59,9 +58,7 @@ public class Menu {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		int exitPnlW = (int)Math.round(WIDTH * 32.552 / 100);
-		int exitPnlH = (int)Math.round(HEIGHT * 23.148 / 100);
-		
+
 		frame.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -74,7 +71,6 @@ public class Menu {
 		Image img = kit.getImage("img\\ship.png");
 		frame.setIconImage(img);
 		
-		frame.getContentPane().add(exitPanel);
 		frame.getContentPane().add(menu);
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -85,12 +81,8 @@ public class Menu {
 		frame.getContentPane().setLayout(null);
 		menu.setLayout(null);
 		
-		exitPanel.setBounds(WIDTH/2 - exitPnlW/2, HEIGHT/2 - exitPnlH/2, exitPnlW, exitPnlH);
-		exitPanel.setLayout(null);
-		exitPanel.setVisible(false);
-		exitPanel.setBackground(Color.ORANGE);
 		Sounds.backgroundSong();
-		new Buttons(menu, exitPanel, frame);
+		new Buttons(menu, frame);
 
 		menu.add(Background.getTitle());
 		menu.add(Background.getMenuBackground(WIDTH, HEIGHT));

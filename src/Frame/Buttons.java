@@ -43,18 +43,17 @@ public class Buttons extends FrameProportion{
 	private JLabel extLabel = new JLabel("Do You Want To Leave?");
 	private List<JButton> avatarBtns = new ArrayList<>();
 	private Font font = new Font("Segoe Script", Font.BOLD, fontDim);
-	private Font extPnlFont = new Font("Segoe Script", Font.BOLD, exitPnlFontDim);
 	private boolean obstacle = true;
 	private int volume;
 
 
-	public Buttons(JPanel menu, JPanel exitPanel, JFrame frame) {
+	public Buttons(JPanel menu, JFrame frame) {
 
 
 		initialButtonsState();
 		setProportion();
 		setGraphics();
-		addToPanels(menu, exitPanel);
+		addToPanels(menu);
 		createAvatarGrid(menu);		// PARTE DI LELLO //
 		
 		startBtn.addMouseListener(new MouseAdapter() {
@@ -84,7 +83,8 @@ public class Buttons extends FrameProportion{
 				startBtn.setVisible(false);
 				optionBtn.setVisible(false);
 				exitBtn.setVisible(false);
-				exitPanel.setVisible(true);
+				//exitPanel.setVisible(true);
+				extLabel.setVisible(true);
 				extNoBtn.setVisible(true);
 				extYesBtn.setVisible(true);
 			}
@@ -153,7 +153,7 @@ public class Buttons extends FrameProportion{
 		extNoBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Sounds.clickMenuBtn();
-				exitPanel.setVisible(false);
+				//exitPanel.setVisible(false);
 				initialButtonsState();
 			}
 		});
@@ -264,6 +264,7 @@ public class Buttons extends FrameProportion{
 		volumeLevel.setVisible(false);
 		extYesBtn.setVisible(false);
 		extNoBtn.setVisible(false);
+		extLabel.setVisible(false);
 		startGameBtn.setVisible(false);
 		confirmBtn.setVisible(false);
 		srnameBtn.setVisible(false);
@@ -298,9 +299,9 @@ public class Buttons extends FrameProportion{
 		langBtn.setBounds(buttonX, buttonY - buttonH, buttonW, buttonH);
 		volumeBtn.setBounds(buttonX, buttonY - buttonH * 2, buttonW, buttonH);
 		//exitPanel.setBounds(exitPnlX,exitPnlY, exitPnlW, exitPnlH);
-		extYesBtn.setBounds(yesBtnX, yesBtnY, yesBtnW, yesBtnH);
-		extNoBtn.setBounds(noBtnX, yesBtnY, yesBtnW, yesBtnH);
-		extLabel.setBounds(extLabelX, extLabelY, extLabelW, extLabelH);
+		extYesBtn.setBounds(yesBtnX, yesBtnY, yesBtnW, buttonH);
+		extNoBtn.setBounds(noBtnX, yesBtnY, yesBtnW, buttonH);
+		extLabel.setBounds(extLabelX, extLabelY, extLabelW, buttonH);
 		srnameBtn.setBounds(pveMenuX, srnameBtnY, pveMenuW, buttonH);
 		confirmBtn.setBounds(pveMenuX, confirmBtnY, pveMenuW, buttonH);
 		startGameBtn.setBounds(pveMenuX, startGameBtnY, pveMenuW, buttonH);
@@ -324,9 +325,9 @@ public class Buttons extends FrameProportion{
 		volumeLevel.setFont(font);
 		moreVolumeBtn.setFont(font);
 		lessVolumeBtn.setFont(font);
-		extYesBtn.setFont(extPnlFont);
-		extNoBtn.setFont(extPnlFont);
-		extLabel.setFont(extPnlFont);
+		extYesBtn.setFont(font);
+		extNoBtn.setFont(font);
+		extLabel.setFont(font);
 		startGameBtn.setFont(font);
 		confirmBtn.setFont(font);
 		srnameBtn.setFont(font);
@@ -337,9 +338,6 @@ public class Buttons extends FrameProportion{
 	private void setGraphics() {
 		setFont();
 		
-		extYesBtn.setBackground(Color.YELLOW);
-		extNoBtn.setBackground(Color.YELLOW);
-		
 		selectNickname.setOpaque(false);
 		selectNickname.setBorder(BorderFactory.createLineBorder(Color.BLACK,2));
 		
@@ -348,6 +346,8 @@ public class Buttons extends FrameProportion{
 		setTrasparent(startBtn);
 		setTrasparent(optionBtn);
 		setTrasparent(exitBtn);
+		setTrasparent(extYesBtn);
+		setTrasparent(extNoBtn);
 		setTrasparent(pveBtn);
 		setTrasparent(pvpBtn);
 		setTrasparent(backToMenuBtn);
@@ -363,7 +363,7 @@ public class Buttons extends FrameProportion{
 		
 	}
 	
-	private void addToPanels(JPanel menu, JPanel exitPanel) {
+	private void addToPanels(JPanel menu) {
 		menu.add(startBtn);
 		menu.add(optionBtn);
 		menu.add(exitBtn);
@@ -382,9 +382,9 @@ public class Buttons extends FrameProportion{
 		menu.add(srnameBtn);
 		menu.add(selectNickname);
 		
-		exitPanel.add(extLabel);
-		exitPanel.add(extNoBtn);
-		exitPanel.add(extYesBtn);
+		menu.add(extLabel);
+		menu.add(extNoBtn);
+		menu.add(extYesBtn);
 		
 	}
 	
