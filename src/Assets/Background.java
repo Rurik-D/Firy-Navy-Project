@@ -19,19 +19,34 @@ public class Background extends FrameProportion {
 
 	private static Image image;
 	private static JLabel background;
+	private static JLabel menuBackground = setBackground("img\\yamato.jpg");
+	private static JLabel gameBackground = setBackground("img\\world_map.jpg");
+	private static JLabel title = new JLabel("Firy");
+	private static JLabel title1 = new JLabel("Navy");
+	private static JLabel title2 = new JLabel("Project");
+	private static JPanel titlePanel = new JPanel();
 	
-	public static JLabel getMenuBackground(int width, int height) {
+	public static JLabel getMenuBackground() {
+		return menuBackground;
+	}
+	
+	public static JLabel getGameBackground() {
+
+		return gameBackground;
+	}
+	
+		private static JLabel setBackground(String file) {
 		BufferedImage img = null;
 		try {
-		    img = ImageIO.read(new File("img\\yamato.jpg"));
+		    img = ImageIO.read(new File(file));
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
-		image = img.getScaledInstance(width, height,Image.SCALE_SMOOTH);
+		image = img.getScaledInstance(Menu.WIDTH, Menu.HEIGHT, Image.SCALE_SMOOTH);
 		ImageIcon imageIcon = new ImageIcon(image);
 		
 		background = new JLabel(imageIcon);
-		background.setBounds(0, 0, width, height);
+		background.setBounds(0, 0, Menu.WIDTH, Menu.HEIGHT);
 		return background;
 	}
 	
@@ -46,16 +61,12 @@ public class Background extends FrameProportion {
 		image = img.getScaledInstance(width, height,Image.SCALE_SMOOTH);
 		ImageIcon imageIcon = new ImageIcon(image);
 		
-		background = new JLabel(imageIcon);
-		background.setBounds(0, 0, width, height);
-		return background;
+		menuBackground = new JLabel(imageIcon);
+		menuBackground.setBounds(0, 0, width, height);
+		return menuBackground;
 	}
 	
 	public static JPanel getTitle() {
-		JLabel title = new JLabel("Firy");
-		JLabel title1 = new JLabel("Navy");
-		JLabel title2 = new JLabel("Project");
-		JPanel titlePanel = new JPanel();
 		
 		setTitle(title, 0, titleFontDim);
 		setTitle(title1, titleSpacing, titleFontDim);
@@ -75,5 +86,20 @@ public class Background extends FrameProportion {
 		title.setBounds(0, y, titleLblW, titleLblH);
 		title.setVisible(true);
 		title.setForeground(Color.RED.darker().darker());
+	}
+	
+	
+	public static void showTitle() {
+		title.setVisible(true);
+		title1.setVisible(true);
+		title2.setVisible(true);
+		titlePanel.setVisible(true);
+	}
+	
+	public static void hideTitle() {
+		title.setVisible(false);
+		title1.setVisible(false);
+		title2.setVisible(false);
+		titlePanel.setVisible(false);
 	}
 }

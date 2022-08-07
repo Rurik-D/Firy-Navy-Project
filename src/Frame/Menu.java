@@ -85,7 +85,8 @@ public class Menu {
 		new Buttons(menu, frame);
 
 		menu.add(Background.getTitle());
-		menu.add(Background.getMenuBackground(WIDTH, HEIGHT));
+		menu.add(Background.getMenuBackground());
+		menu.add(Background.getGameBackground());
 		
 		menu.setVisible(true);
 		

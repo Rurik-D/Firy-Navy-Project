@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Assets.Background;
 import Assets.Sounds;
 import Util.FrameProportion;
 
@@ -153,7 +154,6 @@ public class Buttons extends FrameProportion{
 		extNoBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Sounds.clickMenuBtn();
-				//exitPanel.setVisible(false);
 				initialButtonsState();
 			}
 		});
@@ -246,6 +246,24 @@ public class Buttons extends FrameProportion{
 				
 			}
 		});	
+		
+		startGameBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Sounds.clickMenuBtn();
+				for (int i = 0; i<6; i++) {
+					avatarBtns.get(i).setVisible(false);
+				}
+				startGameBtn.setVisible(false);
+				selectNickname.setVisible(false);
+				srnameBtn.setVisible(false);
+				confirmBtn.setVisible(false);
+				confirmBtn.setVisible(false);
+				backToStartBtn.setVisible(false);
+				Background.getMenuBackground().setVisible(false);
+				Background.hideTitle();
+			}
+		});	
 	}
 
 	private void initialButtonsState() {
@@ -298,7 +316,6 @@ public class Buttons extends FrameProportion{
 		backToStartBtn.setBounds(buttonX, buttonY, buttonW, buttonH);
 		langBtn.setBounds(buttonX, buttonY - buttonH, buttonW, buttonH);
 		volumeBtn.setBounds(buttonX, buttonY - buttonH * 2, buttonW, buttonH);
-		//exitPanel.setBounds(exitPnlX,exitPnlY, exitPnlW, exitPnlH);
 		extYesBtn.setBounds(yesBtnX, yesBtnY, yesBtnW, buttonH);
 		extNoBtn.setBounds(noBtnX, yesBtnY, yesBtnW, buttonH);
 		extLabel.setBounds(extLabelX, extLabelY, extLabelW, buttonH);
