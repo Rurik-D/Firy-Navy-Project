@@ -32,13 +32,13 @@ public abstract class FrameProportion{
 		
 		protected static int pveMenuX= (int)Math.round(Menu.WIDTH * 5.078 / 100);
 		protected static int selectNickX= (int)Math.round(Menu.WIDTH * 5.859 / 100);
-		protected static int srnameBtnY = (int)Math.round(Menu.HEIGHT * 21.99 / 100);
+		protected static int nicknameBtnY = (int)Math.round(Menu.HEIGHT * 21.99 / 100);
 		protected static int confirmBtnY= (int)Math.round(Menu.HEIGHT * 27.199 / 100);
 		protected static int startGameBtnY = (int)Math.round(Menu.HEIGHT * 50.347 / 100);
 		protected static int selectNickW= (int)Math.round(Menu.WIDTH * 15.299 / 100);
 		protected static int pveMenuW = (int)Math.round(Menu.WIDTH * 16.276 / 100);
-		protected static int srnameBtnW = (int)Math.round(Menu.WIDTH * 13.02 / 100);
-		protected static int srnameBtnH = (int)Math.round(Menu.HEIGHT * 11.57 / 100);
+		protected static int nicknameBtnW = (int)Math.round(Menu.WIDTH * 13.02 / 100);
+		protected static int nicknameBtnH = (int)Math.round(Menu.HEIGHT * 11.57 / 100);
 		
 		protected static int avatarX= (int)Math.round(Menu.WIDTH * 7.291 / 100);
 		protected static int avatarY = (int)Math.round(Menu.HEIGHT * 33.333 / 100);

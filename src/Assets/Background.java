@@ -35,21 +35,6 @@ public class Background extends FrameProportion {
 		return gameBackground;
 	}
 	
-		private static JLabel setBackground(String file) {
-		BufferedImage img = null;
-		try {
-		    img = ImageIO.read(new File(file));
-		} catch (IOException e) {
-		    e.printStackTrace();
-		}
-		image = img.getScaledInstance(Menu.WIDTH, Menu.HEIGHT, Image.SCALE_SMOOTH);
-		ImageIcon imageIcon = new ImageIcon(image);
-		
-		background = new JLabel(imageIcon);
-		background.setBounds(0, 0, Menu.WIDTH, Menu.HEIGHT);
-		return background;
-	}
-	
 	public static JLabel getGridBackground(int width, int height) {
 		BufferedImage img = null;
 		try {
@@ -80,6 +65,21 @@ public class Background extends FrameProportion {
 		titlePanel.setOpaque(false);
 		return titlePanel;
 	}
+	
+	private static JLabel setBackground(String file) {
+	BufferedImage img = null;
+	try {
+	    img = ImageIO.read(new File(file));
+	} catch (IOException e) {
+	    e.printStackTrace();
+	}
+	image = img.getScaledInstance(Menu.WIDTH, Menu.HEIGHT, Image.SCALE_SMOOTH);
+	ImageIcon imageIcon = new ImageIcon(image);
+	
+	background = new JLabel(imageIcon);
+	background.setBounds(0, 0, Menu.WIDTH, Menu.HEIGHT);
+	return background;
+}
 	
 	private static void setTitle(JLabel title, int y, int fontDim) {
 		title.setFont(new Font("Segoe Script", Font.BOLD, fontDim));

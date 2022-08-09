@@ -36,7 +36,7 @@ public class Buttons extends FrameProportion{
 	private JButton extNoBtn = new JButton("NO");
 	private JButton startGameBtn = new JButton("START");
 	private JButton confirmBtn = new JButton("CONFIRM");
-	private JButton srnameBtn = new JButton("NICKNAME");
+	private JButton nicknameBtn = new JButton("NICKNAME");
 	private JButton moreVolumeBtn = new JButton("+");
 	private JButton lessVolumeBtn = new JButton("-");
 	private JTextField selectNickname = new JTextField();
@@ -97,7 +97,7 @@ public class Buttons extends FrameProportion{
 				pvpBtn.setVisible(false);
 				pveBtn.setVisible(false);
 				backToMenuBtn.setVisible(false);
-				srnameBtn.setVisible(true);
+				nicknameBtn.setVisible(true);
 				backToStartBtn.setVisible(true);
 			}
 		});
@@ -108,7 +108,7 @@ public class Buttons extends FrameProportion{
 				pvpBtn.setVisible(false);
 				pveBtn.setVisible(false);
 				backToMenuBtn.setVisible(false);
-				srnameBtn.setVisible(true);
+				nicknameBtn.setVisible(true);
 				backToStartBtn.setVisible(true);
 				
 			}
@@ -137,7 +137,7 @@ public class Buttons extends FrameProportion{
 				for (int i = 0; i<6; i++) {
 					avatarBtns.get(i).setVisible(false);
 				}
-				srnameBtn.setVisible(false);
+				nicknameBtn.setVisible(false);
 				confirmBtn.setVisible(false);
 				startGameBtn.setVisible(false);
 				selectNickname.setVisible(false);
@@ -226,22 +226,23 @@ public class Buttons extends FrameProportion{
 			public void mouseClicked(MouseEvent e) {
 				Sounds.clickMenuBtn();
 				String testo = selectNickname.getText();
+				selectNickname.setEditable(false);
 				if (!testo.equals("")) {
-					
 					for (int i = 0; i<6; i++) {
 						avatarBtns.get(i).setVisible(true);
 					}
-				
 				}
+				
 			}
 		});
 		
-		srnameBtn.addMouseListener(new MouseAdapter() {
+		nicknameBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Sounds.clickMenuBtn();
+				selectNickname.setEditable(true);
 				selectNickname.setVisible(true);
-				srnameBtn.setVisible(false);
+				nicknameBtn.setVisible(false);
 				confirmBtn.setVisible(true);
 				
 			}
@@ -256,7 +257,7 @@ public class Buttons extends FrameProportion{
 				}
 				startGameBtn.setVisible(false);
 				selectNickname.setVisible(false);
-				srnameBtn.setVisible(false);
+				nicknameBtn.setVisible(false);
 				confirmBtn.setVisible(false);
 				confirmBtn.setVisible(false);
 				backToStartBtn.setVisible(false);
@@ -285,7 +286,7 @@ public class Buttons extends FrameProportion{
 		extLabel.setVisible(false);
 		startGameBtn.setVisible(false);
 		confirmBtn.setVisible(false);
-		srnameBtn.setVisible(false);
+		nicknameBtn.setVisible(false);
 		selectNickname.setVisible(false);
 		
 	}
@@ -319,10 +320,10 @@ public class Buttons extends FrameProportion{
 		extYesBtn.setBounds(yesBtnX, yesBtnY, yesBtnW, buttonH);
 		extNoBtn.setBounds(noBtnX, yesBtnY, yesBtnW, buttonH);
 		extLabel.setBounds(extLabelX, extLabelY, extLabelW, buttonH);
-		srnameBtn.setBounds(pveMenuX, srnameBtnY, pveMenuW, buttonH);
+		nicknameBtn.setBounds(pveMenuX, nicknameBtnY, pveMenuW, buttonH);
 		confirmBtn.setBounds(pveMenuX, confirmBtnY, pveMenuW, buttonH);
 		startGameBtn.setBounds(pveMenuX, startGameBtnY, pveMenuW, buttonH);
-		selectNickname.setBounds(selectNickX, srnameBtnY, selectNickW, buttonH);
+		selectNickname.setBounds(selectNickX, nicknameBtnY, selectNickW, buttonH);
 		lessVolumeBtn.setBounds(lessVolumeBtnX, volumeBtnsY, lessVolumeBtnW, buttonH);
 		volumeLevel.setBounds(volumeLevelX, volumeBtnsY, volumeLevelW, buttonH);
 		moreVolumeBtn.setBounds(moreVolumeBtnX, volumeBtnsY, lessVolumeBtnW, buttonH);
@@ -347,7 +348,7 @@ public class Buttons extends FrameProportion{
 		extLabel.setFont(font);
 		startGameBtn.setFont(font);
 		confirmBtn.setFont(font);
-		srnameBtn.setFont(font);
+		nicknameBtn.setFont(font);
 		selectNickname.setFont(font);
 
 	}
@@ -376,7 +377,7 @@ public class Buttons extends FrameProportion{
 		setTrasparent(backToStartBtn);
 		setTrasparent(startGameBtn);
 		setTrasparent(confirmBtn);
-		setTrasparent(srnameBtn);
+		setTrasparent(nicknameBtn);
 		
 	}
 	
@@ -396,7 +397,7 @@ public class Buttons extends FrameProportion{
 		menu.add(langBtn);
 		menu.add(startGameBtn);
 		menu.add(confirmBtn);
-		menu.add(srnameBtn);
+		menu.add(nicknameBtn);
 		menu.add(selectNickname);
 		
 		menu.add(extLabel);
@@ -432,7 +433,7 @@ public class Buttons extends FrameProportion{
 				box.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						System.out.print(box.getName() + " ");
+						Sounds.clickMenuBtn();
 					}
 				});
 				avatarBtns.add(box);
