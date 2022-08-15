@@ -8,7 +8,7 @@ https://www.flaticon.com/free-icon/warship_7154812?related_id=7154812&origin=tag
 Warship icon made Freepik from www.flaticon.com
 https://www.flaticon.com/premium-icon/ship_3836776
 
-Warship icon made  max.icons from www.flaticon.com
+Warship icon made max.icons from www.flaticon.com
 https://www.flaticon.com/premium-icon/battleship_3857575
 
 Warship icon made smalllikeart from www.flaticon.com
@@ -23,3 +23,5 @@ https://www.flaticon.com/free-icon/battleship_3117907?related_id=3117907&origin=
 Warship icon made smalllikeart from www.flaticon.com
 https://www.flaticon.com/free-icon/submarine_3118037
 
+Menu background music: Ludum Dare 32 Track 2 - by Abstraction - http://www.abstractionmusic.com/
+Downloaded from https://tallbeard.itch.io/music-loop-bundle

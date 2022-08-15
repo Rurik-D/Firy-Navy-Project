@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
 
 public class Buttons extends FrameProportion{
 	
-	private ResourceBundle resourceBundle = ResourceBundle.getBundle("utils/setLanguage", Locale.forLanguageTag("en"));
+	private ResourceBundle resourceBundle = ResourceBundle.getBundle("utils.file/setLanguage", Locale.forLanguageTag("en"));
 
 	private JButton startBtn = new JButton(resourceBundle.getString("button.startBtn"));
 	private JButton optionBtn = new JButton(resourceBundle.getString("button.optionBtn"));
@@ -239,7 +239,9 @@ public class Buttons extends FrameProportion{
 			public void mouseClicked(MouseEvent e) {
 				Sounds.clickMenuBtn();
 				String testo = selectNickname.getText();
-				selectNickname.setEditable(false);
+				if (testo.length() > 0) {
+					selectNickname.setEditable(false);
+				}
 				if (!testo.equals("")) {
 					for (int i = 0; i<6; i++) {
 						avatarBtns.get(i).setVisible(true);
@@ -367,8 +369,8 @@ public class Buttons extends FrameProportion{
 		lessVolumeBtn.setBounds(lessVolumeBtnX, volumeBtnsY, lessVolumeBtnW, buttonH);
 		volumeLevel.setBounds(volumeLevelX, volumeBtnsY, volumeLevelW, buttonH);
 		moreVolumeBtn.setBounds(moreVolumeBtnX, volumeBtnsY, lessVolumeBtnW, buttonH);
-		itaBtn.setBounds(68, 230, buttonW, buttonH);
-		engBtn.setBounds(68, 290, buttonW, buttonH);
+		itaBtn.setBounds(buttonX, 590, buttonW, buttonH);
+		engBtn.setBounds(buttonX, 630, buttonW, buttonH);
 	}
 
 	private void setFont() {
@@ -524,7 +526,7 @@ public class Buttons extends FrameProportion{
 	}
 
 	public void setLanguageLocalBtns(String kLang) {
-		resourceBundle  = ResourceBundle.getBundle("utils/setLanguage", Locale.forLanguageTag(kLang)) ;
+		resourceBundle  = ResourceBundle.getBundle("utils.file/setLanguage", Locale.forLanguageTag(kLang)) ;
 		
 		startBtn.setText(resourceBundle.getString("button.startBtn"));
 		optionBtn.setText(resourceBundle.getString("button.optionBtn"));
