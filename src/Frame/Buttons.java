@@ -1,6 +1,7 @@
 package Frame;
 
 import java.awt.Color;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,6 +12,7 @@ import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -19,35 +21,46 @@ import javax.swing.JTextField;
 import Assets.Background;
 import Assets.Sounds;
 import Util.FrameProportion;
+import Util.Language;
+
+
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class Buttons extends FrameProportion{
 	
-	private JButton startBtn = new JButton("START");
-	private JButton optionBtn = new JButton("OPTION");
-	private JButton exitBtn = new JButton("EXIT");
-	private JButton pveBtn = new JButton("PVE");
-	private JButton pvpBtn = new JButton("PVP");
-	private JButton backToMenuBtn = new JButton("BACK");
-	private JButton backToOptBtn = new JButton("BACK");
-	private JButton backToStartBtn = new JButton("BACK");
-	private JButton langBtn = new JButton("LANGUAGE");
-	private JButton volumeBtn = new JButton("VOLUME");
-	private JButton extYesBtn = new JButton("YES");
-	private JButton extNoBtn = new JButton("NO");
-	private JButton startGameBtn = new JButton("START");
-	private JButton confirmBtn = new JButton("CONFIRM");
-	private JButton nicknameBtn = new JButton("NICKNAME");
+	private ResourceBundle resourceBundle = ResourceBundle.getBundle("Util/setLanguage", Locale.forLanguageTag("en"));
+
+	private JButton startBtn = new JButton(resourceBundle.getString("button.startBtn"));
+	private JButton optionBtn = new JButton(resourceBundle.getString("button.optionBtn"));
+	private JButton exitBtn = new JButton(resourceBundle.getString("button.exitBtn"));
+	private JButton pveBtn = new JButton(resourceBundle.getString("button.pveBtn"));
+	private JButton pvpBtn = new JButton(resourceBundle.getString("button.pvpBtn"));
+	private JButton backToMenuBtn = new JButton(resourceBundle.getString("button.backToMenuBtn"));
+	private JButton backToOptBtn = new JButton(resourceBundle.getString("button.backToOptBtn"));
+	private JButton backToStartBtn = new JButton(resourceBundle.getString("button.backToStartBtn"));
+	private JButton langBtn = new JButton(resourceBundle.getString("button.langBtn"));
+	private JButton volumeBtn = new JButton(resourceBundle.getString("button.volumeBtn"));
+	private JButton extYesBtn = new JButton(resourceBundle.getString("button.extYesBtn"));
+	private JButton extNoBtn = new JButton(resourceBundle.getString("button.extNoBtn"));
+	private JButton startGameBtn = new JButton(resourceBundle.getString("button.startGameBtn"));
+	private JButton confirmBtn = new JButton(resourceBundle.getString("button.confirmBtn"));
+	private JButton nicknameBtn = new JButton(resourceBundle.getString("button.nicknameBtn"));
+	private JButton itaBtn = new JButton(resourceBundle.getString("button.itaBtn"));
+	private JButton engBtn = new JButton(resourceBundle.getString("button.engBtn"));
+	private JLabel extLabel = new JLabel(resourceBundle.getString("label.extLabel"));
 	private JButton moreVolumeBtn = new JButton("+");
 	private JButton lessVolumeBtn = new JButton("-");
 	private JTextField selectNickname = new JTextField();
 	private JLabel volumeLevel = new JLabel("50");
-	private JLabel extLabel = new JLabel("Do You Want To Leave?");
+	
 	private List<JButton> avatarBtns = new ArrayList<>();
 	private Font font = new Font("Segoe Script", Font.BOLD, fontDim);
 	private boolean obstacle = true;
 	private int volume;
 
-
+	
+	
 	public Buttons(JPanel menu, JFrame frame) {
 
 
@@ -127,6 +140,7 @@ public class Buttons extends FrameProportion{
 			public void mouseClicked(MouseEvent e) {
 				Sounds.clickMenuBtn();
 				optionState();
+				
 			}
 		});
 		
@@ -170,6 +184,8 @@ public class Buttons extends FrameProportion{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Sounds.clickMenuBtn();
+				itaBtn.setVisible(true);
+				engBtn.setVisible(true);
 				langBtn.setVisible(false);
 				volumeBtn.setVisible(false);
 				backToMenuBtn.setVisible(false);
@@ -265,6 +281,28 @@ public class Buttons extends FrameProportion{
 				Background.hideTitle();
 			}
 		});	
+		
+		itaBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Sounds.clickMenuBtn();
+				
+				optionState();
+
+				setLanguageLocalBtns("it");
+			}
+		});
+		
+		engBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Sounds.clickMenuBtn();
+				
+				optionState();
+				setLanguageLocalBtns("en");
+			}
+		});
+		
 	}
 
 	private void initialButtonsState() {
@@ -288,10 +326,13 @@ public class Buttons extends FrameProportion{
 		confirmBtn.setVisible(false);
 		nicknameBtn.setVisible(false);
 		selectNickname.setVisible(false);
+		itaBtn.setVisible(false);
+		engBtn.setVisible(false);
 		
 	}
 	
 	private void optionState() {
+		
 		startBtn.setVisible(false);
 		optionBtn.setVisible(false);
 		exitBtn.setVisible(false);
@@ -302,6 +343,8 @@ public class Buttons extends FrameProportion{
 		backToMenuBtn.setVisible(true);
 		langBtn.setVisible(true);
 		volumeBtn.setVisible(true);
+		engBtn.setVisible(false);
+		itaBtn.setVisible(false);
 		
 	}
 	
@@ -327,6 +370,8 @@ public class Buttons extends FrameProportion{
 		lessVolumeBtn.setBounds(lessVolumeBtnX, volumeBtnsY, lessVolumeBtnW, buttonH);
 		volumeLevel.setBounds(volumeLevelX, volumeBtnsY, volumeLevelW, buttonH);
 		moreVolumeBtn.setBounds(moreVolumeBtnX, volumeBtnsY, lessVolumeBtnW, buttonH);
+		itaBtn.setBounds(68, 230, buttonW, buttonH);
+		engBtn.setBounds(68, 290, buttonW, buttonH);
 	}
 
 	private void setFont() {
@@ -350,6 +395,8 @@ public class Buttons extends FrameProportion{
 		confirmBtn.setFont(font);
 		nicknameBtn.setFont(font);
 		selectNickname.setFont(font);
+		itaBtn.setFont(font);
+		engBtn.setFont(font);
 
 	}
 	
@@ -378,8 +425,12 @@ public class Buttons extends FrameProportion{
 		setTrasparent(startGameBtn);
 		setTrasparent(confirmBtn);
 		setTrasparent(nicknameBtn);
+		setTrasparent(engBtn);
+		setTrasparent(itaBtn);
 		
 	}
+	
+	
 	
 	private void addToPanels(JPanel menu) {
 		menu.add(startBtn);
@@ -399,7 +450,8 @@ public class Buttons extends FrameProportion{
 		menu.add(confirmBtn);
 		menu.add(nicknameBtn);
 		menu.add(selectNickname);
-		
+		menu.add(itaBtn);
+		menu.add(engBtn);
 		menu.add(extLabel);
 		menu.add(extNoBtn);
 		menu.add(extYesBtn);
@@ -473,5 +525,29 @@ public class Buttons extends FrameProportion{
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
 	}
+
+	public void setLanguageLocalBtns(String kLang) {
+		resourceBundle  = ResourceBundle.getBundle("Util/setLanguage", Locale.forLanguageTag(kLang)) ;
+		
+		startBtn.setText(resourceBundle.getString("button.startBtn"));
+		optionBtn.setText(resourceBundle.getString("button.optionBtn"));
+		exitBtn.setText(resourceBundle.getString("button.exitBtn"));
+		pveBtn.setText(resourceBundle.getString("button.pveBtn"));
+		pvpBtn.setText(resourceBundle.getString("button.pvpBtn"));
+		backToMenuBtn.setText(resourceBundle.getString("button.backToMenuBtn"));
+		backToOptBtn.setText(resourceBundle.getString("button.backToOptBtn"));
+		backToStartBtn.setText(resourceBundle.getString("button.backToStartBtn"));
+		langBtn.setText(resourceBundle.getString("button.langBtn"));
+		volumeBtn.setText(resourceBundle.getString("button.volumeBtn"));
+		extYesBtn.setText(resourceBundle.getString("button.extYesBtn"));
+		extNoBtn.setText(resourceBundle.getString("button.extNoBtn"));
+		startGameBtn.setText(resourceBundle.getString("button.startGameBtn"));
+		confirmBtn.setText(resourceBundle.getString("button.confirmBtn"));
+		nicknameBtn.setText(resourceBundle.getString("button.nicknameBtn"));
+		engBtn.setText(resourceBundle.getString("button.engBtn"));
+		itaBtn.setText(resourceBundle.getString("button.itaBtn"));
+		extLabel.setText(resourceBundle.getString("label.extLabel"));
+	}
+
 }
 
