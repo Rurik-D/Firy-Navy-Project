@@ -3,14 +3,20 @@ package main.frame;
 import java.awt.Color;
 
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -55,7 +61,10 @@ public class Buttons extends FrameProportion{
 	private Font font = new Font("Segoe Script", Font.BOLD, fontDim);
 	private boolean obstacle = true;
 	private int volume;
-
+	private static Image image;
+	private static JButton profile;
+	private static List<ImageIcon> avatarList = new ArrayList();
+	private JButton chooseBtn = new JButton();
 	
 	
 	public Buttons(JPanel menu, JFrame frame) {
@@ -287,7 +296,6 @@ public class Buttons extends FrameProportion{
 				Sounds.clickMenuBtn();
 				
 				optionState();
-
 				setLanguageLocalBtns("it");
 			}
 		});
@@ -458,6 +466,12 @@ public class Buttons extends FrameProportion{
 	}
 	
 	private void createAvatarGrid(JPanel menu) {
+		createAvatarPicture("src/resources/images/navy.png");
+		createAvatarPicture("src/resources/images/ship.png");
+		createAvatarPicture("src/resources/images/ship1.png");
+		createAvatarPicture("src/resources/images/ship2.png");
+		createAvatarPicture("src/resources/images/ship3.png");
+		createAvatarPicture("src/resources/images/warship.png");
 		createAvatarBtnList(menu);		// PARTE DI LELLO (lista di icone)//
 		setAvatarBtn(avatarBtns, 0);
 		setAvatarBtn(avatarBtns, 1);
@@ -476,8 +490,8 @@ public class Buttons extends FrameProportion{
 				//box.setBounds(112 + 63*j, 288 + 63*i, 60, 60);	// valori relativi a 1536 * 864
 				box.setBounds(avatarX + avatarSpacing*j, avatarY + avatarSpacing*i, avatarSide, avatarSide);
 				box.setFont(new Font("Arial", Font.BOLD, 12));
-				box.setText("A" + (j+i*3));
-				//box.setIcon(avatars.get(j+i*3)); // PARTE DI LELLO (lista di icone)// 
+				//box.setText("A" + (j+i*3));
+				box.setIcon(avatarList.get(j+i*3));//(avatars.get(j+i*3)); // PARTE DI LELLO (lista di icone)// 
 				box.setOpaque(false);
 				box.setContentAreaFilled(false);
 				box.setVisible(false);
@@ -494,11 +508,12 @@ public class Buttons extends FrameProportion{
 	}
 	
 	private void setAvatarBtn(List<JButton> avatarBtns, int btnNumb) {
+		
 		avatarBtns.get(btnNumb).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Sounds.clickMenuBtn();
-
+				
 				if (obstacle == true) {
 					confirmBtn.setVisible(false);
 					startGameBtn.setVisible(true);
@@ -506,6 +521,7 @@ public class Buttons extends FrameProportion{
 						if (i != btnNumb) { avatarBtns.get(i).setVisible(false); }
 					}
 					obstacle = false;
+					chooseBtn = avatarBtns.get(btnNumb);
 				}
 				else {
 					confirmBtn.setVisible(true);
@@ -514,9 +530,26 @@ public class Buttons extends FrameProportion{
 						if (i != btnNumb) { avatarBtns.get(i).setVisible(true); }
 					}
 					obstacle = true;
+					chooseBtn = new JButton();
 				}
 			}
 		});
+	}
+	
+	private void createAvatarPicture(String file_img) {
+		BufferedImage img = null;
+		try {
+		    img = ImageIO.read(new File(file_img));
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+		image = img.getScaledInstance(avatarSide, avatarSide,Image.SCALE_SMOOTH);
+		ImageIcon imageIcon = new ImageIcon(image);
+		
+//		profile = new JButton(imageIcon);
+//		profile.setBounds(0, 0, Menu.WIDTH, Menu.HEIGHT);
+		avatarList.add(imageIcon);
+		
 	}
 	
 	private void setTrasparent(JButton button) {
