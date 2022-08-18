@@ -22,7 +22,7 @@ public class Menu {
 	//public static final int HEIGHT = 864;
 	private JFrame frame = new JFrame("Firy Navy Project");
 	private JPanel menu = new JPanel();
-	private Toolkit kit = Toolkit.getDefaultToolkit();
+//	private Toolkit kit = Toolkit.getDefaultToolkit();
 	
 	
 	/**
@@ -55,16 +55,16 @@ public class Menu {
 	 */
 	private void initialize() {
 
-		frame.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-		    	Image image = kit.getImage("src/resources/images/missile.png");
-		    	Cursor a = kit.createCustomCursor(image , new Point(1, 1), null);
-		    	frame.setCursor (a);
-			}
-		});
+//		frame.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseEntered(MouseEvent e) {
+//		    	Image image = kit.getImage("src/resources/images/missile.png");
+//		    	Cursor a = kit.createCustomCursor(image , new Point(1, 1), null);
+//		    	frame.setCursor (a);
+//			}
+//		});
 
-		Image img = kit.getImage("src/resources/images/ship.png");
+		Image img = ImagesManagement.getKit(frame);//kit.getImage("src/resources/images/ship.png");
 		frame.setIconImage(img);
 		
 		frame.getContentPane().add(menu);
@@ -77,12 +77,12 @@ public class Menu {
 		frame.getContentPane().setLayout(null);
 		menu.setLayout(null);
 		
-		Sounds.backgroundSong();
+		SoundsManagement.backgroundSong();
 		new Buttons(menu, frame);
-
-		menu.add(Background.getTitle());
-		menu.add(Background.getMenuBackground());
-		menu.add(Background.getGameBackground());
+		
+		menu.add(ImagesManagement.getTitle());
+		menu.add(ImagesManagement.getMenuBackground());
+		menu.add(ImagesManagement.getGameBackground());
 		
 		menu.setVisible(true);
 		

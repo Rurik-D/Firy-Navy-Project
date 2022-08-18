@@ -25,7 +25,7 @@ import javax.swing.JTextField;
 
 import resources.*;
 import utils.FrameProportion;
-
+import utils.UtilsProperties;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -33,7 +33,8 @@ import java.util.ResourceBundle;
 public class Buttons extends FrameProportion{
 	
 	private ResourceBundle resourceBundle = ResourceBundle.getBundle("utils.file/setLanguage", Locale.forLanguageTag("en"));
-
+	private ResourceBundle imagesBundle = ResourceBundle.getBundle("utils.file/setImagesManagement", Locale.forLanguageTag("img"));
+	//imagesBundle.getString("image.warShip")
 	private JButton startBtn = new JButton(resourceBundle.getString("button.startBtn"));
 	private JButton optionBtn = new JButton(resourceBundle.getString("button.optionBtn"));
 	private JButton exitBtn = new JButton(resourceBundle.getString("button.exitBtn"));
@@ -61,8 +62,8 @@ public class Buttons extends FrameProportion{
 	private Font font = new Font("Segoe Script", Font.BOLD, fontDim);
 	private boolean obstacle = true;
 	private int volume;
-	private static Image image;
-	private static JButton profile;
+//	private static Image image;
+//	private static JButton profile;
 	private static List<ImageIcon> avatarList = new ArrayList();
 	private JButton chooseBtn = new JButton();
 	
@@ -79,7 +80,7 @@ public class Buttons extends FrameProportion{
 		startBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Sounds.clickMenuBtn();
+				SoundsManagement.clickMenuBtn();
 				startBtn.setVisible(false);
 				optionBtn.setVisible(false);
 				exitBtn.setVisible(false);
@@ -92,14 +93,14 @@ public class Buttons extends FrameProportion{
 		optionBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Sounds.clickMenuBtn();
+				SoundsManagement.clickMenuBtn();
 				optionState();
 			}
 		});
 		
 		exitBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Sounds.clickMenuBtn();
+				SoundsManagement.clickMenuBtn();
 				startBtn.setVisible(false);
 				optionBtn.setVisible(false);
 				exitBtn.setVisible(false);
@@ -112,7 +113,7 @@ public class Buttons extends FrameProportion{
 		
 		pveBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Sounds.clickMenuBtn();
+				SoundsManagement.clickMenuBtn();
 				pvpBtn.setVisible(false);
 				pveBtn.setVisible(false);
 				backToMenuBtn.setVisible(false);
@@ -123,7 +124,7 @@ public class Buttons extends FrameProportion{
 		
 		pvpBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Sounds.clickMenuBtn();
+				SoundsManagement.clickMenuBtn();
 				pvpBtn.setVisible(false);
 				pveBtn.setVisible(false);
 				backToMenuBtn.setVisible(false);
@@ -136,7 +137,7 @@ public class Buttons extends FrameProportion{
 		backToMenuBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Sounds.clickMenuBtn();
+				SoundsManagement.clickMenuBtn();
 				initialButtonsState();
 			}
 		});
@@ -144,7 +145,7 @@ public class Buttons extends FrameProportion{
 		backToOptBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Sounds.clickMenuBtn();
+				SoundsManagement.clickMenuBtn();
 				optionState();
 				
 			}
@@ -153,7 +154,7 @@ public class Buttons extends FrameProportion{
 		backToStartBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Sounds.clickMenuBtn();
+				SoundsManagement.clickMenuBtn();
 				for (int i = 0; i<6; i++) {
 					avatarBtns.get(i).setVisible(false);
 				}
@@ -173,14 +174,14 @@ public class Buttons extends FrameProportion{
 		});
 		extNoBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Sounds.clickMenuBtn();
+				SoundsManagement.clickMenuBtn();
 				initialButtonsState();
 			}
 		});
 		
 		extYesBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Sounds.clickMenuBtn();
+				SoundsManagement.clickMenuBtn();
 				frame.setVisible(false);
 				frame.dispose();
 			}
@@ -189,7 +190,7 @@ public class Buttons extends FrameProportion{
 		langBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Sounds.clickMenuBtn();
+				SoundsManagement.clickMenuBtn();
 				itaBtn.setVisible(true);
 				engBtn.setVisible(true);
 				langBtn.setVisible(false);
@@ -202,7 +203,7 @@ public class Buttons extends FrameProportion{
 		volumeBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Sounds.clickMenuBtn();
+				SoundsManagement.clickMenuBtn();
 				langBtn.setVisible(false);
 				volumeBtn.setVisible(false);
 				backToMenuBtn.setVisible(false);
@@ -216,12 +217,12 @@ public class Buttons extends FrameProportion{
 		lessVolumeBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Sounds.clickMenuBtn();
+				SoundsManagement.clickMenuBtn();
 				volume = Integer.parseInt(volumeLevel.getText());
 				
 				if (volume > 0) {
 					volume -= 1;
-					Sounds.setVolume((float)volume/100);
+					SoundsManagement.setVolume((float)volume/100);
 					volumeLevel.setText(String.valueOf(volume));
 				}
 				
@@ -231,11 +232,11 @@ public class Buttons extends FrameProportion{
 		moreVolumeBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Sounds.clickMenuBtn();
+				SoundsManagement.clickMenuBtn();
 				volume = Integer.parseInt(volumeLevel.getText());
 				if (volume < 99) {
 					volume += 1;
-					Sounds.setVolume((float)volume/100);
+					SoundsManagement.setVolume((float)volume/100);
 					volumeLevel.setText(String.valueOf(volume));
 				}
 				
@@ -246,7 +247,7 @@ public class Buttons extends FrameProportion{
 		confirmBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Sounds.clickMenuBtn();
+				SoundsManagement.clickMenuBtn();
 				String testo = selectNickname.getText();
 				if (testo.length() > 0) {
 					selectNickname.setEditable(false);
@@ -263,7 +264,7 @@ public class Buttons extends FrameProportion{
 		nicknameBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Sounds.clickMenuBtn();
+				SoundsManagement.clickMenuBtn();
 				selectNickname.setEditable(true);
 				selectNickname.setVisible(true);
 				nicknameBtn.setVisible(false);
@@ -275,7 +276,7 @@ public class Buttons extends FrameProportion{
 		startGameBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Sounds.clickMenuBtn();
+				SoundsManagement.clickMenuBtn();
 				for (int i = 0; i<6; i++) {
 					avatarBtns.get(i).setVisible(false);
 				}
@@ -285,15 +286,15 @@ public class Buttons extends FrameProportion{
 				confirmBtn.setVisible(false);
 				confirmBtn.setVisible(false);
 				backToStartBtn.setVisible(false);
-				Background.getMenuBackground().setVisible(false);
-				Background.hideTitle();
+				ImagesManagement.getMenuBackground().setVisible(false);
+				ImagesManagement.hideTitle();
 			}
 		});	
 		
 		itaBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Sounds.clickMenuBtn();
+				SoundsManagement.clickMenuBtn();
 				
 				optionState();
 				setLanguageLocalBtns("it");
@@ -303,7 +304,7 @@ public class Buttons extends FrameProportion{
 		engBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Sounds.clickMenuBtn();
+				SoundsManagement.clickMenuBtn();
 				
 				optionState();
 				setLanguageLocalBtns("en");
@@ -466,12 +467,15 @@ public class Buttons extends FrameProportion{
 	}
 	
 	private void createAvatarGrid(JPanel menu) {
-		createAvatarPicture("src/resources/images/navy.png");
-		createAvatarPicture("src/resources/images/ship.png");
-		createAvatarPicture("src/resources/images/ship1.png");
-		createAvatarPicture("src/resources/images/ship2.png");
-		createAvatarPicture("src/resources/images/ship3.png");
-		createAvatarPicture("src/resources/images/warship.png");
+		ImagesManagement.createAvatarPicture(imagesBundle.getString("image.blueShip"),avatarList);
+		ImagesManagement.createAvatarPicture(imagesBundle.getString("image.orangeShip"),avatarList);
+		ImagesManagement.createAvatarPicture(imagesBundle.getString("image.whiteShip"),avatarList);
+		ImagesManagement.createAvatarPicture(imagesBundle.getString("image.greyShip"),avatarList);
+		ImagesManagement.createAvatarPicture(imagesBundle.getString("image.armyShip"),avatarList);
+		ImagesManagement.createAvatarPicture(imagesBundle.getString("image.warShip"),avatarList);
+
+
+		
 		createAvatarBtnList(menu);		// PARTE DI LELLO (lista di icone)//
 		setAvatarBtn(avatarBtns, 0);
 		setAvatarBtn(avatarBtns, 1);
@@ -494,11 +498,12 @@ public class Buttons extends FrameProportion{
 				box.setIcon(avatarList.get(j+i*3));//(avatars.get(j+i*3)); // PARTE DI LELLO (lista di icone)// 
 				box.setOpaque(false);
 				box.setContentAreaFilled(false);
+				box.setBorder(null);
 				box.setVisible(false);
 				box.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						Sounds.clickMenuBtn();
+						SoundsManagement.clickMenuBtn();
 					}
 				});
 				avatarBtns.add(box);
@@ -512,7 +517,7 @@ public class Buttons extends FrameProportion{
 		avatarBtns.get(btnNumb).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Sounds.clickMenuBtn();
+				SoundsManagement.clickMenuBtn();
 				
 				if (obstacle == true) {
 					confirmBtn.setVisible(false);
@@ -536,21 +541,21 @@ public class Buttons extends FrameProportion{
 		});
 	}
 	
-	private void createAvatarPicture(String file_img) {
-		BufferedImage img = null;
-		try {
-		    img = ImageIO.read(new File(file_img));
-		} catch (IOException e) {
-		    e.printStackTrace();
-		}
-		image = img.getScaledInstance(avatarSide, avatarSide,Image.SCALE_SMOOTH);
-		ImageIcon imageIcon = new ImageIcon(image);
-		
-//		profile = new JButton(imageIcon);
-//		profile.setBounds(0, 0, Menu.WIDTH, Menu.HEIGHT);
-		avatarList.add(imageIcon);
-		
-	}
+//	private void createAvatarPicture(String file_img) {
+//		BufferedImage img = null;
+//		try {
+//		    img = ImageIO.read(new File(file_img));
+//		} catch (IOException e) {
+//		    e.printStackTrace();
+//		}
+//		image = img.getScaledInstance(avatarSide, avatarSide,Image.SCALE_SMOOTH);
+//		ImageIcon imageIcon = new ImageIcon(image);
+//		
+////		profile = new JButton(imageIcon);
+////		profile.setBounds(0, 0, Menu.WIDTH, Menu.HEIGHT);
+//		avatarList.add(imageIcon);
+//		
+//	}
 	
 	private void setTrasparent(JButton button) {
 		button.setOpaque(false);

@@ -13,7 +13,7 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import resources.Background;
+import resources.ImagesManagement;
 
 public class Grid {
 
@@ -82,7 +82,7 @@ public class Grid {
 			}
 			
 		}
-		grid.add(Background.getGridBackground(300, 300));
+		grid.add(ImagesManagement.getGridBackground(300, 300));
 
 		
 		grid.setVisible(true);

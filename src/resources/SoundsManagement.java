@@ -1,18 +1,21 @@
 package resources;
 
 import java.io.File;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
-public class Sounds {
-	private static Clip menuSong = getClip(new File("src/resources/sounds/Ludum Dare 32 - Track 2.wav"));
+public class SoundsManagement {
+	private static ResourceBundle soundBundle =  ResourceBundle.getBundle("utils.file/setSounds", Locale.forLanguageTag("sound"));
+	private static Clip menuSong = getClip(new File(soundBundle.getString("sound.background")));
 	private static float volume = 0.5f;
 	
 	
 	public static void clickMenuBtn() {
-		Clip click = getClip(new File("src/resources/sounds/swipeSound.wav"));
+		Clip click = getClip(new File(soundBundle.getString("sound.button")));
 	    FloatControl gainControl1 = (FloatControl) click.getControl(FloatControl.Type.MASTER_GAIN);        
 	    gainControl1.setValue(20f * (float) Math.log10(volume));
 		click.start();

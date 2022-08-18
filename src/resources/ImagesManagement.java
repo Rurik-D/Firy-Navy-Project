@@ -1,30 +1,47 @@
 package resources;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Point;
+import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import main.frame.Menu;
 import utils.FrameProportion;
 
-public class Background extends FrameProportion {
+public class ImagesManagement extends FrameProportion {
+	private static ResourceBundle imagesBundle = ResourceBundle.getBundle("utils.file/setImagesManagement", Locale.forLanguageTag("img"));
 
 	private static Image image;
 	private static JLabel background;
-	private static JLabel menuBackground = setBackground("src/resources/images/yamato.jpg");
-	private static JLabel gameBackground = setBackground("src/resources/images/world_map.jpg");
+	private static JLabel menuBackground = setBackground(imagesBundle.getString("image.yamato"));
+	private static JLabel gameBackground = setBackground(imagesBundle.getString("image.worldMap"));
 	private static JLabel title = new JLabel("Firy");
 	private static JLabel title1 = new JLabel("Navy");
 	private static JLabel title2 = new JLabel("Project");
 	private static JPanel titlePanel = new JPanel();
+	private static Toolkit kit = Toolkit.getDefaultToolkit();
+	private static Image imageAvatar;
+	private static JButton profile;
+//	private static List<ImageIcon> avatarList = new ArrayList();
+	
 	
 	public static JLabel getMenuBackground() {
 		return menuBackground;
@@ -38,7 +55,7 @@ public class Background extends FrameProportion {
 	public static JLabel getGridBackground(int width, int height) {
 		BufferedImage img = null;
 		try {
-		    img = ImageIO.read(new File("src/resources/images/water.jpg"));
+		    img = ImageIO.read(new File(imagesBundle.getString("image.water")));
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
@@ -101,5 +118,33 @@ public class Background extends FrameProportion {
 		title1.setVisible(false);
 		title2.setVisible(false);
 		titlePanel.setVisible(false);
+	}
+	
+	public static Image getKit(JFrame frame) {
+		frame.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+		    	Image image = kit.getImage(imagesBundle.getString("image.missile"));
+		    	Cursor a = kit.createCustomCursor(image , new Point(1, 1), null);
+		    	frame.setCursor (a);
+			}
+		});
+		return kit.getImage("image.blueShip");
+	}
+	
+	public static void createAvatarPicture(String file_img, List<ImageIcon> avatarList) {
+		BufferedImage imgShip = null;
+		try {
+		    imgShip = ImageIO.read(new File(file_img));
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+		imageAvatar = imgShip.getScaledInstance(avatarSide, avatarSide,Image.SCALE_SMOOTH);
+		ImageIcon iconAvatar = new ImageIcon(imageAvatar);
+		
+//		profile = new JButton(imageIcon);
+//		profile.setBounds(0, 0, Menu.WIDTH, Menu.HEIGHT);
+		avatarList.add(iconAvatar);
+		
 	}
 }
