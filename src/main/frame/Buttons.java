@@ -288,6 +288,8 @@ public class Buttons extends FrameProportion{
 				backToStartBtn.setVisible(false);
 				ImagesManagement.getMenuBackground().setVisible(false);
 				ImagesManagement.hideTitle();
+				new GameButtons(menu);
+				
 			}
 		});	
 		
