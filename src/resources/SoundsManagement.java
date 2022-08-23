@@ -1,7 +1,6 @@
 package resources;
 
 import java.io.File;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javax.sound.sampled.AudioSystem;
@@ -9,7 +8,7 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
 public class SoundsManagement {
-	private static ResourceBundle soundBundle =  ResourceBundle.getBundle("utils.file/setSounds", Locale.forLanguageTag("sound"));
+	private static ResourceBundle soundBundle =  ResourceBundle.getBundle("utils.file/sounds");
 	private static Clip menuSong = getClip(new File(soundBundle.getString("sound.background")));
 	private static float volume = 0.5f;
 	

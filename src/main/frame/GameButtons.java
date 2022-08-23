@@ -35,7 +35,7 @@ import java.util.ResourceBundle;
 public class GameButtons {
 	
 	
-	private ResourceBundle resourceBundle = ResourceBundle.getBundle("utils.file/setLanguage", Locale.forLanguageTag("en"));
+	private ResourceBundle resourceBundle = ResourceBundle.getBundle("utils.file/lang", Locale.forLanguageTag("en"));
 	//private Font font = new Font("Segoe Script", Font.BOLD, fontDim);
 	private JButton newOptionBtn = new JButton(resourceBundle.getString("button.newOptionBtn"));
 	private JButton newBackToMenuBtn = new JButton(resourceBundle.getString("button.newBackToMenuBtn"));

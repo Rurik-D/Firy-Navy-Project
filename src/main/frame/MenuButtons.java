@@ -3,18 +3,13 @@ package main.frame;
 import java.awt.Color;
 
 import java.awt.Font;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -24,17 +19,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import resources.*;
-import utils.FrameProportion;
-import utils.UtilsProperties;
+import utils.*;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class Buttons extends FrameProportion{
+public class MenuButtons extends FrameProportion{
 	
-	private ResourceBundle resourceBundle = ResourceBundle.getBundle("utils.file/setLanguage", Locale.forLanguageTag("en"));
-	private ResourceBundle imagesBundle = ResourceBundle.getBundle("utils.file/setImagesManagement", Locale.forLanguageTag("img"));
-	//imagesBundle.getString("image.warShip")
+	private ResourceBundle resourceBundle = ResourceBundle.getBundle("utils.file/lang", Locale.forLanguageTag("en"));
+	private ResourceBundle imagesBundle = ResourceBundle.getBundle("utils.file/images");
 	private JButton startBtn = new JButton(resourceBundle.getString("button.startBtn"));
 	private JButton optionBtn = new JButton(resourceBundle.getString("button.optionBtn"));
 	private JButton exitBtn = new JButton(resourceBundle.getString("button.exitBtn"));
@@ -62,13 +55,11 @@ public class Buttons extends FrameProportion{
 	private Font font = new Font("Segoe Script", Font.BOLD, fontDim);
 	private boolean obstacle = true;
 	private int volume;
-//	private static Image image;
-//	private static JButton profile;
 	private static List<ImageIcon> avatarList = new ArrayList();
 	private JButton chooseBtn = new JButton();
 	
 	
-	public Buttons(JPanel menu, JFrame frame) {
+	public MenuButtons(JPanel menu, JFrame frame) {
 
 
 		initialButtonsState();
@@ -566,7 +557,7 @@ public class Buttons extends FrameProportion{
 	}
 
 	public void setLanguageLocalBtns(String kLang) {
-		resourceBundle  = ResourceBundle.getBundle("utils.file/setLanguage", Locale.forLanguageTag(kLang)) ;
+		resourceBundle  = ResourceBundle.getBundle("utils.file/lang", Locale.forLanguageTag(kLang)) ;
 		
 		startBtn.setText(resourceBundle.getString("button.startBtn"));
 		optionBtn.setText(resourceBundle.getString("button.optionBtn"));

@@ -27,7 +27,7 @@ import main.frame.Menu;
 import utils.FrameProportion;
 
 public class ImagesManagement extends FrameProportion {
-	private static ResourceBundle imagesBundle = ResourceBundle.getBundle("utils.file/setImagesManagement", Locale.forLanguageTag("img"));
+	private static ResourceBundle imagesBundle = ResourceBundle.getBundle("utils.file/images");
 
 	private static Image image;
 	private static JLabel background;
@@ -105,6 +105,22 @@ public class ImagesManagement extends FrameProportion {
 		title.setForeground(Color.RED.darker().darker());
 	}
 	
+	public static void setFrameIcon(JFrame frame) {
+		Image img = kit.getImage(imagesBundle.getString("image.orangeShip"));
+		frame.setIconImage(img);
+	}
+	
+	public static void setCursor(JFrame frame) {
+		frame.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+		    	Image image = kit.getImage(imagesBundle.getString("image.missile"));
+		    	Cursor a = kit.createCustomCursor(image , new Point(1, 1), null);
+		    	frame.setCursor (a);
+			}
+		});
+	}
+	
 	
 	public static void showTitle() {
 		title.setVisible(true);
@@ -120,18 +136,6 @@ public class ImagesManagement extends FrameProportion {
 		titlePanel.setVisible(false);
 	}
 	
-	public static Image getKit(JFrame frame) {
-		frame.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-		    	Image image = kit.getImage(imagesBundle.getString("image.missile"));
-		    	Cursor a = kit.createCustomCursor(image , new Point(1, 1), null);
-		    	frame.setCursor (a);
-			}
-		});
-		return kit.getImage("image.blueShip");
-	}
-	
 	public static void createAvatarPicture(String file_img, List<ImageIcon> avatarList) {
 		BufferedImage imgShip = null;
 		try {
@@ -142,8 +146,6 @@ public class ImagesManagement extends FrameProportion {
 		imageAvatar = imgShip.getScaledInstance(avatarSide, avatarSide,Image.SCALE_SMOOTH);
 		ImageIcon iconAvatar = new ImageIcon(imageAvatar);
 		
-//		profile = new JButton(imageIcon);
-//		profile.setBounds(0, 0, Menu.WIDTH, Menu.HEIGHT);
 		avatarList.add(iconAvatar);
 		
 	}
