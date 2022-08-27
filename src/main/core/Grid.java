@@ -1,4 +1,4 @@
-package main.game_logic;
+package main.core;
 
 import java.awt.EventQueue;
 import java.awt.Font;

@@ -13,7 +13,6 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -26,11 +25,11 @@ import java.util.ResourceBundle;
 
 public class MenuButtons extends FrameProportion{
 	
-	private ResourceBundle resourceBundle = ResourceBundle.getBundle("utils.file/lang", Locale.forLanguageTag("en"));
-	private ResourceBundle imagesBundle = ResourceBundle.getBundle("utils.file/images");
-	private JButton startBtn = new JButton(resourceBundle.getString("button.startBtn"));
-	private JButton optionBtn = new JButton(resourceBundle.getString("button.optionBtn"));
-	private JButton exitBtn = new JButton(resourceBundle.getString("button.exitBtn"));
+	private static ResourceBundle resourceBundle = ResourceBundle.getBundle("utils.file/lang", Locale.forLanguageTag("en"));
+	private static ResourceBundle imagesBundle = ResourceBundle.getBundle("utils.file/images");
+	private static JButton startBtn = new JButton(resourceBundle.getString("button.startBtn"));
+	private static JButton optionBtn = new JButton(resourceBundle.getString("button.optionBtn"));
+	private static JButton exitBtn = new JButton(resourceBundle.getString("button.exitBtn"));
 	private JButton pveBtn = new JButton(resourceBundle.getString("button.pveBtn"));
 	private JButton pvpBtn = new JButton(resourceBundle.getString("button.pvpBtn"));
 	private JButton backToMenuBtn = new JButton(resourceBundle.getString("button.backToMenuBtn"));
@@ -59,14 +58,14 @@ public class MenuButtons extends FrameProportion{
 	private JButton chooseBtn = new JButton();
 	
 	
-	public MenuButtons(JPanel menu, JFrame frame) {
+	public MenuButtons(JPanel menu) {
 
 
 		initialButtonsState();
 		setProportion();
 		setGraphics();
 		addToPanels(menu);
-		createAvatarGrid(menu);		// PARTE DI LELLO //
+		createAvatarGrid(menu);
 		
 		startBtn.addMouseListener(new MouseAdapter() {
 			@Override
@@ -173,8 +172,7 @@ public class MenuButtons extends FrameProportion{
 		extYesBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SoundsManagement.clickMenuBtn();
-				frame.setVisible(false);
-				frame.dispose();
+				Menu.closeFrame();
 			}
 		});
 		
@@ -279,7 +277,8 @@ public class MenuButtons extends FrameProportion{
 				backToStartBtn.setVisible(false);
 				ImagesManagement.getMenuBackground().setVisible(false);
 				ImagesManagement.hideTitle();
-				new GameButtons(menu);
+				GameButtons.getGameOptionBtn().setVisible(true);
+				
 				
 			}
 		});	
@@ -329,7 +328,6 @@ public class MenuButtons extends FrameProportion{
 		selectNickname.setVisible(false);
 		itaBtn.setVisible(false);
 		engBtn.setVisible(false);
-		
 	}
 	
 	private void optionState() {
@@ -469,7 +467,7 @@ public class MenuButtons extends FrameProportion{
 
 
 		
-		createAvatarBtnList(menu);		// PARTE DI LELLO (lista di icone)//
+		createAvatarBtnList(menu);
 		setAvatarBtn(avatarBtns, 0);
 		setAvatarBtn(avatarBtns, 1);
 		setAvatarBtn(avatarBtns, 2);
@@ -484,11 +482,9 @@ public class MenuButtons extends FrameProportion{
 			for (int j = 0; j<3; j++) {
 				JButton box;
 				box = new JButton("");
-				//box.setBounds(112 + 63*j, 288 + 63*i, 60, 60);	// valori relativi a 1536 * 864
 				box.setBounds(avatarX + avatarSpacing*j, avatarY + avatarSpacing*i, avatarSide, avatarSide);
 				box.setFont(new Font("Arial", Font.BOLD, 12));
-				//box.setText("A" + (j+i*3));
-				box.setIcon(avatarList.get(j+i*3));//(avatars.get(j+i*3)); // PARTE DI LELLO (lista di icone)// 
+				box.setIcon(avatarList.get(j+i*3)); 
 				box.setOpaque(false);
 				box.setContentAreaFilled(false);
 				box.setBorder(null);
@@ -534,22 +530,6 @@ public class MenuButtons extends FrameProportion{
 		});
 	}
 	
-//	private void createAvatarPicture(String file_img) {
-//		BufferedImage img = null;
-//		try {
-//		    img = ImageIO.read(new File(file_img));
-//		} catch (IOException e) {
-//		    e.printStackTrace();
-//		}
-//		image = img.getScaledInstance(avatarSide, avatarSide,Image.SCALE_SMOOTH);
-//		ImageIcon imageIcon = new ImageIcon(image);
-//		
-////		profile = new JButton(imageIcon);
-////		profile.setBounds(0, 0, Menu.WIDTH, Menu.HEIGHT);
-//		avatarList.add(imageIcon);
-//		
-//	}
-	
 	private void setTrasparent(JButton button) {
 		button.setOpaque(false);
 		button.setContentAreaFilled(false);
@@ -577,6 +557,12 @@ public class MenuButtons extends FrameProportion{
 		engBtn.setText(resourceBundle.getString("button.engBtn"));
 		itaBtn.setText(resourceBundle.getString("button.itaBtn"));
 		extLabel.setText(resourceBundle.getString("label.extLabel"));
+	}
+	
+	public static void openMenu() {
+		startBtn.setVisible(true);
+		optionBtn.setVisible(true);
+		exitBtn.setVisible(true);
 	}
 
 }

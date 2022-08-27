@@ -11,9 +11,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
@@ -38,10 +36,7 @@ public class ImagesManagement extends FrameProportion {
 	private static JLabel title2 = new JLabel("Project");
 	private static JPanel titlePanel = new JPanel();
 	private static Toolkit kit = Toolkit.getDefaultToolkit();
-	private static Image imageAvatar;
-	private static JButton profile;
-//	private static List<ImageIcon> avatarList = new ArrayList();
-	
+	private static Image imageAvatar;	
 	
 	public static JLabel getMenuBackground() {
 		return menuBackground;

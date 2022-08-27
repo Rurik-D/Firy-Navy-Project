@@ -9,11 +9,11 @@ import resources.*;
 
 public class Menu{
 	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //1536 * 864
-	public static final int WIDTH = (int)screenSize.getWidth();
-	public static final int HEIGHT = (int)screenSize.getHeight();
-	//public static final int WIDTH = 1536;
-	//public static final int HEIGHT = 864;
-	private JFrame frame = new JFrame("Firy Navy Project");
+//	public static final int WIDTH = (int)screenSize.getWidth();
+//	public static final int HEIGHT = (int)screenSize.getHeight();
+	public static final int WIDTH = 1536;
+	public static final int HEIGHT = 864;
+	private static JFrame frame = new JFrame("Firy Navy Project");
 	private JPanel menu = new JPanel();	
 	
 	/**
@@ -56,7 +56,8 @@ public class Menu{
 		
 		menu.setLayout(null);
 		
-		new MenuButtons(menu, frame);
+		new GameButtons(menu);
+		new MenuButtons(menu);
 		
 		menu.add(ImagesManagement.getTitle());
 		menu.add(ImagesManagement.getMenuBackground());
@@ -67,5 +68,11 @@ public class Menu{
 		
 		menu.setVisible(true);
 		
+	}
+	
+	
+	public static void closeFrame() {
+		frame.setVisible(false);
+		frame.dispose();
 	}
 }
