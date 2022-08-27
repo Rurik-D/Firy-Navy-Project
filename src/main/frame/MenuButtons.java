@@ -289,7 +289,8 @@ public class MenuButtons extends FrameProportion{
 				Menu.getShips().getSubmarine().setVisible(true);
 				
 				boxLabel.setVisible(true);
-				boxLabel.setText(selectNickname.getText());
+				String testo = selectNickname.getText();
+				boxLabel.setText(testo);
 				
 				boxBtn.setFont(new Font("Arial", Font.BOLD, 12));
 				boxBtn.setIcon(avatarList.get(chooseBtn)); 
@@ -397,7 +398,7 @@ public class MenuButtons extends FrameProportion{
 		itaBtn.setBounds(buttonX, 590, buttonW, buttonH);
 		engBtn.setBounds(buttonX, 630, buttonW, buttonH);
 		boxBtn.setBounds(0, 0, avatarSide, avatarSide);
-		boxLabel.setBounds(avatarSide,0, extLabelW, buttonH);
+		boxLabel.setBounds(avatarSide,10, extLabelW, buttonH);
 	}
 
 	private void setFont() {
@@ -483,7 +484,7 @@ public class MenuButtons extends FrameProportion{
 		menu.add(extNoBtn);
 		menu.add(extYesBtn);
 		menu.add(boxBtn);
-		
+		menu.add(boxLabel);
 	}
 	
 	private void createAvatarGrid(JPanel menu) {
@@ -544,7 +545,7 @@ public class MenuButtons extends FrameProportion{
 						if (i != btnNumb) { avatarBtns.get(i).setVisible(false); }
 					}
 					obstacle = false;
-					
+					chooseBtn = btnNumb;
 					
 				}
 				else {
@@ -601,6 +602,9 @@ public class MenuButtons extends FrameProportion{
 		return boxBtn;
 	}
 
+	public static JLabel getBoxLabel() {
+		return boxLabel;
+	}
 	
 
 }
