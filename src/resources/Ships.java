@@ -20,11 +20,11 @@ public class Ships {
 	private Image image;
 	
 	public Ships() {
-		carrier = getShip(100, 700, "5_carrier");
-		battleship = getShip(200, 700, "4_battleship");
-		cruiser = getShip(300, 700, "3_cruiser");
-		submarine = getShip(400, 700, "3_submarine");
-		assaultShip = getShip(500, 700, "2_assaultShip");
+		carrier = getShip(350, 650, "5_carrier");
+		battleship = getShip(400, 650, "4_battleship");
+		cruiser = getShip(450, 650, "3_cruiser");
+		submarine = getShip(500, 650, "3_submarine");
+		assaultShip = getShip(550, 650, "2_assaultShip");
 		
 	}
 
@@ -43,7 +43,7 @@ public class Ships {
 		
 		JLabel ship = new JLabel(imageIcon);
 		ship.setBounds(x, y, shipW, shipH);
-
+		ship.setVisible(false);
 		return ship;
 	}
 	

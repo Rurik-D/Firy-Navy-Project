@@ -17,7 +17,7 @@ public class Menu{
 	private static JFrame frame = new JFrame("Firy Navy Project");
 	private static Grid playerGrid = new Grid(300, 300, 300, 300, 5);
 	private static Grid enemyGrid = new Grid(950, 300, 300, 300, 5);
-	private Ships ships = new Ships();
+	private static Ships ships = new Ships();
 
 
 	private JPanel mainPanel = new JPanel();	
@@ -96,5 +96,9 @@ public class Menu{
 	
 	public static Grid getEnemyGrid() {
 		return enemyGrid;
+	}
+	
+	public static Ships getShips() {
+		return ships;
 	}
 }

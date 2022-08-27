@@ -55,8 +55,9 @@ public class MenuButtons extends FrameProportion{
 	private boolean obstacle = true;
 	private int volume;
 	private static List<ImageIcon> avatarList = new ArrayList();
-	private JButton chooseBtn = new JButton();
-	
+	private static int chooseBtn;
+	private static JButton boxBtn = new JButton("");
+	private static JLabel boxLabel = new JLabel();
 	
 	public MenuButtons(JPanel menu) {
 
@@ -238,6 +239,7 @@ public class MenuButtons extends FrameProportion{
 			public void mouseClicked(MouseEvent e) {
 				SoundsManagement.clickMenuBtn();
 				String testo = selectNickname.getText();
+
 				if (testo.length() > 0) {
 					selectNickname.setEditable(false);
 				}
@@ -278,9 +280,25 @@ public class MenuButtons extends FrameProportion{
 				ImagesManagement.getMenuBackground().setVisible(false);
 				ImagesManagement.hideTitle();
 				GameButtons.getGameOptionBtn().setVisible(true);
-				selectNickname.setText(null);
 				Menu.getPlayerGrid().setVisible(true);
 				Menu.getEnemyGrid().setVisible(true);
+				Menu.getShips().getAssaultShip().setVisible(true);
+				Menu.getShips().getBattleship().setVisible(true);
+				Menu.getShips().getCarrier().setVisible(true);
+				Menu.getShips().getCruiser().setVisible(true);
+				Menu.getShips().getSubmarine().setVisible(true);
+				
+				boxLabel.setVisible(true);
+				boxLabel.setText(selectNickname.getText());
+				
+				boxBtn.setFont(new Font("Arial", Font.BOLD, 12));
+				boxBtn.setIcon(avatarList.get(chooseBtn)); 
+				boxBtn.setOpaque(false);
+				boxBtn.setContentAreaFilled(false);
+				boxBtn.setBorder(null);
+				boxBtn.setVisible(true);
+
+				selectNickname.setText(null);
 
 			}
 		});	
@@ -332,6 +350,9 @@ public class MenuButtons extends FrameProportion{
 		selectNickname.setVisible(false);
 		itaBtn.setVisible(false);
 		engBtn.setVisible(false);
+		boxBtn.setVisible(false);
+		boxLabel.setVisible(false);
+
 	}
 	
 	private void optionState() {
@@ -375,6 +396,8 @@ public class MenuButtons extends FrameProportion{
 		moreVolumeBtn.setBounds(moreVolumeBtnX, volumeBtnsY, lessVolumeBtnW, buttonH);
 		itaBtn.setBounds(buttonX, 590, buttonW, buttonH);
 		engBtn.setBounds(buttonX, 630, buttonW, buttonH);
+		boxBtn.setBounds(0, 0, avatarSide, avatarSide);
+		boxLabel.setBounds(avatarSide,0, extLabelW, buttonH);
 	}
 
 	private void setFont() {
@@ -400,7 +423,7 @@ public class MenuButtons extends FrameProportion{
 		selectNickname.setFont(font);
 		itaBtn.setFont(font);
 		engBtn.setFont(font);
-
+		boxLabel.setFont(font);
 	}
 	
 	private void setGraphics() {
@@ -431,6 +454,7 @@ public class MenuButtons extends FrameProportion{
 		setTrasparent(engBtn);
 		setTrasparent(itaBtn);
 		
+		
 	}
 	
 	
@@ -458,6 +482,7 @@ public class MenuButtons extends FrameProportion{
 		menu.add(extLabel);
 		menu.add(extNoBtn);
 		menu.add(extYesBtn);
+		menu.add(boxBtn);
 		
 	}
 	
@@ -519,7 +544,8 @@ public class MenuButtons extends FrameProportion{
 						if (i != btnNumb) { avatarBtns.get(i).setVisible(false); }
 					}
 					obstacle = false;
-					chooseBtn = avatarBtns.get(btnNumb);
+					
+					
 				}
 				else {
 					confirmBtn.setVisible(true);
@@ -528,7 +554,7 @@ public class MenuButtons extends FrameProportion{
 						if (i != btnNumb) { avatarBtns.get(i).setVisible(true); }
 					}
 					obstacle = true;
-					chooseBtn = new JButton();
+					
 				}
 			}
 		});
@@ -568,7 +594,13 @@ public class MenuButtons extends FrameProportion{
 		startBtn.setVisible(true);
 		optionBtn.setVisible(true);
 		exitBtn.setVisible(true);
+		
+	}
+	
+	public static JButton getBoxBtn() {
+		return boxBtn;
 	}
 
-}
+	
 
+}
