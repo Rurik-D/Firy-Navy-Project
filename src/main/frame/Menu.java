@@ -15,7 +15,10 @@ public class Menu{
 	public static final int WIDTH = 1536;
 	public static final int HEIGHT = 864;
 	private static JFrame frame = new JFrame("Firy Navy Project");
-	private static Grid grid = new Grid(300, 300, 300, 300, 5);
+	private static Grid playerGrid = new Grid(300, 300, 300, 300, 5);
+	private static Grid enemyGrid = new Grid(950, 300, 300, 300, 5);
+	private Ships ships = new Ships();
+
 
 	private JPanel mainPanel = new JPanel();	
 	
@@ -60,9 +63,14 @@ public class Menu{
 		
 		mainPanel.setLayout(null);
 		
-		
+		mainPanel.add(ships.getAssaultShip());
+		mainPanel.add(ships.getBattleship());
+		mainPanel.add(ships.getCarrier());
+		mainPanel.add(ships.getCruiser());
+		mainPanel.add(ships.getSubmarine());
 
-		mainPanel.add(grid);
+		mainPanel.add(playerGrid);
+		mainPanel.add(enemyGrid);
 		new GameButtons(mainPanel);
 		new MenuButtons(mainPanel);
 
@@ -82,7 +90,11 @@ public class Menu{
 		frame.dispose();
 	}
 	
-	public static Grid getGrid() {
-		return grid;
+	public static Grid getPlayerGrid() {
+		return playerGrid;
+	}
+	
+	public static Grid getEnemyGrid() {
+		return enemyGrid;
 	}
 }

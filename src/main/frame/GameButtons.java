@@ -16,7 +16,6 @@ import java.util.ResourceBundle;
 
 public class GameButtons extends FrameProportion{
 	
-	
 	private static ResourceBundle resourceBundle = ResourceBundle.getBundle("utils.file/lang", Locale.forLanguageTag("en"));
 	private Font font = new Font("Segoe Script", Font.BOLD, fontDim);
 	private static JButton gameOptionBtn = new JButton(resourceBundle.getString("button.gameOptionBtn"));
@@ -60,7 +59,8 @@ public class GameButtons extends FrameProportion{
 				gameOptionBtn.setVisible(false);
 				mainMenuBtn.setVisible(false);
 				backToGameBtn.setVisible(false);
-				Menu.getGrid().setVisible(false);;
+				Menu.getPlayerGrid().setVisible(false);
+				Menu.getEnemyGrid().setVisible(false);
 				ImagesManagement.getMenuBackground().setVisible(true);
 				ImagesManagement.showTitle();
 				MenuButtons.openMenu();
@@ -77,7 +77,6 @@ public class GameButtons extends FrameProportion{
 		});
 	}
 	
-	
 	private void setTrasparent(JButton button) {
 		button.setOpaque(false);
 		button.setContentAreaFilled(false);
@@ -88,6 +87,4 @@ public class GameButtons extends FrameProportion{
 		return gameOptionBtn;
 	}
 	
-	
-
 }

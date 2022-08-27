@@ -26,7 +26,6 @@ import utils.FrameProportion;
 
 public class ImagesManagement extends FrameProportion {
 	private static ResourceBundle imagesBundle = ResourceBundle.getBundle("utils.file/images");
-
 	private static Image image;
 	private static JLabel background;
 	private static JLabel menuBackground = setBackground(imagesBundle.getString("image.yamato"));
@@ -44,7 +43,6 @@ public class ImagesManagement extends FrameProportion {
 	}
 	
 	public static JLabel getGameBackground() {
-
 		return gameBackground;
 	}
 	
@@ -63,6 +61,8 @@ public class ImagesManagement extends FrameProportion {
 		gridBackground.setBounds(x, y, width, height);
 		return gridBackground;
 	}
+	
+	
 	
 	public static JPanel getTitle() {
 		
@@ -117,7 +117,6 @@ public class ImagesManagement extends FrameProportion {
 		});
 	}
 	
-	
 	public static void showTitle() {
 		title.setVisible(true);
 		title1.setVisible(true);
@@ -143,6 +142,6 @@ public class ImagesManagement extends FrameProportion {
 		ImageIcon iconAvatar = new ImageIcon(imageAvatar);
 		
 		avatarList.add(iconAvatar);
-		
 	}
+	
 }
