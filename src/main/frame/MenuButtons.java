@@ -246,6 +246,7 @@ public class MenuButtons extends FrameProportion{
 						avatarBtns.get(i).setVisible(true);
 					}
 				}
+				
 			}
 		});
 		
@@ -278,7 +279,8 @@ public class MenuButtons extends FrameProportion{
 				ImagesManagement.hideTitle();
 				GameButtons.getGameOptionBtn().setVisible(true);
 				selectNickname.setText(null);
-				Menu.getGrid().setVisible(true);;
+				Menu.getGrid().setVisible(true);
+				
 			}
 		});	
 		
@@ -289,6 +291,7 @@ public class MenuButtons extends FrameProportion{
 				
 				optionState();
 				setLanguageLocalBtns("it");
+				GameButtons.setGameBtnsLanguage("it");
 			}
 		});
 		
@@ -299,6 +302,7 @@ public class MenuButtons extends FrameProportion{
 				
 				optionState();
 				setLanguageLocalBtns("en");
+				GameButtons.setGameBtnsLanguage("en");
 			}
 		});
 		
@@ -556,6 +560,7 @@ public class MenuButtons extends FrameProportion{
 		engBtn.setText(resourceBundle.getString("button.engBtn"));
 		itaBtn.setText(resourceBundle.getString("button.itaBtn"));
 		extLabel.setText(resourceBundle.getString("label.extLabel"));
+
 	}
 	
 	public static void openMenu() {
