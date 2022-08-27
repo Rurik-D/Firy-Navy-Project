@@ -19,50 +19,59 @@ public class GameButtons extends FrameProportion{
 	
 	private static ResourceBundle resourceBundle = ResourceBundle.getBundle("utils.file/lang", Locale.forLanguageTag("en"));
 	private Font font = new Font("Segoe Script", Font.BOLD, fontDim);
-	private static JButton gameOptionBtn = new JButton(resourceBundle.getString("button.newOptionBtn"));
-	private JButton gameBackBtn = new JButton(resourceBundle.getString("button.newBackToMenuBtn"));
-	private JButton newPauseBtn = new JButton(resourceBundle.getString("button.newPauseBtn")); 
+	private static JButton gameOptionBtn = new JButton(resourceBundle.getString("button.gameOptionBtn"));
+	private JButton mainMenuBtn = new JButton(resourceBundle.getString("button.mainMenuBtn"));
+	private JButton backToGameBtn = new JButton(resourceBundle.getString("button.backToGameBtn")); 
 	
 	public GameButtons(JPanel menu) {
 		
 		gameOptionBtn.setVisible(false);
-		gameBackBtn.setVisible(false);
-		newPauseBtn.setVisible(false);
+		mainMenuBtn.setVisible(false);
+		backToGameBtn.setVisible(false);
 		
-		gameOptionBtn.setBounds((Menu.WIDTH/2) - 100, 20, 200, 50);
-		gameBackBtn.setBounds((Menu.WIDTH/2) - 200, 60, 200, 50);
-		newPauseBtn.setBounds((Menu.WIDTH/2) - 50, 60, 200, 50);
+		gameOptionBtn.setBounds((Menu.WIDTH/2) - 100, 20, 200, 40);
+		mainMenuBtn.setBounds((Menu.WIDTH/2) - 150, 60, 300, 40);
+		backToGameBtn.setBounds((Menu.WIDTH/2) - 200, 100, 400, 40);
 		
 		gameOptionBtn.setFont(font);
-		gameBackBtn.setFont(font);
-		newPauseBtn.setFont(font);
+		mainMenuBtn.setFont(font);
+		backToGameBtn.setFont(font);
 		
 		setTrasparent(gameOptionBtn);
-		setTrasparent(gameBackBtn);
-		setTrasparent(newPauseBtn);
+		setTrasparent(mainMenuBtn);
+		setTrasparent(backToGameBtn);
 		
-		menu.add(gameBackBtn);
+		menu.add(mainMenuBtn);
 		menu.add(gameOptionBtn);
-		menu.add(newPauseBtn);
+		menu.add(backToGameBtn);
 		
 		gameOptionBtn.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				SoundsManagement.clickMenuBtn();
 				gameOptionBtn.setVisible(false);
-				gameBackBtn.setVisible(true);
-				newPauseBtn.setVisible(true);
+				mainMenuBtn.setVisible(true);
+				backToGameBtn.setVisible(true);
 			}
 		});
 		
-		gameBackBtn.addMouseListener(new MouseAdapter() {
+		mainMenuBtn.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				SoundsManagement.clickMenuBtn();
 				gameOptionBtn.setVisible(false);
-				gameBackBtn.setVisible(false);
-				newPauseBtn.setVisible(false);
+				mainMenuBtn.setVisible(false);
+				backToGameBtn.setVisible(false);
 				ImagesManagement.getMenuBackground().setVisible(true);
 				ImagesManagement.showTitle();
 				MenuButtons.openMenu();
+			}
+		});
+		
+		backToGameBtn.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				SoundsManagement.clickMenuBtn();
+				gameOptionBtn.setVisible(true);
+				mainMenuBtn.setVisible(false);
+				backToGameBtn.setVisible(false);
 			}
 		});
 	}
