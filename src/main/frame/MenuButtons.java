@@ -246,7 +246,6 @@ public class MenuButtons extends FrameProportion{
 						avatarBtns.get(i).setVisible(true);
 					}
 				}
-				
 			}
 		});
 		
@@ -279,7 +278,7 @@ public class MenuButtons extends FrameProportion{
 				ImagesManagement.hideTitle();
 				GameButtons.getGameOptionBtn().setVisible(true);
 				selectNickname.setText(null);
-				
+				Menu.getGrid().setVisible(true);;
 			}
 		});	
 		

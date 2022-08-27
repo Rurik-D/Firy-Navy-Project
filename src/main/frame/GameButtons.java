@@ -60,6 +60,7 @@ public class GameButtons extends FrameProportion{
 				gameOptionBtn.setVisible(false);
 				mainMenuBtn.setVisible(false);
 				backToGameBtn.setVisible(false);
+				Menu.getGrid().setVisible(false);;
 				ImagesManagement.getMenuBackground().setVisible(true);
 				ImagesManagement.showTitle();
 				MenuButtons.openMenu();

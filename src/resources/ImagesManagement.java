@@ -31,6 +31,7 @@ public class ImagesManagement extends FrameProportion {
 	private static JLabel background;
 	private static JLabel menuBackground = setBackground(imagesBundle.getString("image.yamato"));
 	private static JLabel gameBackground = setBackground(imagesBundle.getString("image.worldMap"));
+	private static JLabel gridBackground = setBackground(imagesBundle.getString("image.water"));
 	private static JLabel title = new JLabel("Firy");
 	private static JLabel title1 = new JLabel("Navy");
 	private static JLabel title2 = new JLabel("Project");
@@ -47,7 +48,7 @@ public class ImagesManagement extends FrameProportion {
 		return gameBackground;
 	}
 	
-	public static JLabel getGridBackground(int width, int height) {
+	public static JLabel getGridBackground(int x, int y, int width, int height) {
 		BufferedImage img = null;
 		try {
 		    img = ImageIO.read(new File(imagesBundle.getString("image.water")));
@@ -58,9 +59,9 @@ public class ImagesManagement extends FrameProportion {
 		image = img.getScaledInstance(width, height,Image.SCALE_SMOOTH);
 		ImageIcon imageIcon = new ImageIcon(image);
 		
-		menuBackground = new JLabel(imageIcon);
-		menuBackground.setBounds(0, 0, width, height);
-		return menuBackground;
+		gridBackground = new JLabel(imageIcon);
+		gridBackground.setBounds(x, y, width, height);
+		return gridBackground;
 	}
 	
 	public static JPanel getTitle() {

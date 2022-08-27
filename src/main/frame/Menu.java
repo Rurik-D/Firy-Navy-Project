@@ -6,6 +6,7 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import resources.*;
+import main.core.Grid;
 
 public class Menu{
 	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //1536 * 864
@@ -14,7 +15,10 @@ public class Menu{
 	public static final int WIDTH = 1536;
 	public static final int HEIGHT = 864;
 	private static JFrame frame = new JFrame("Firy Navy Project");
-	private JPanel menu = new JPanel();	
+	private static Grid grid = new Grid(300, 300, 300, 300, 5);
+
+	private JPanel mainPanel = new JPanel();	
+	
 	
 	/**
 	 * Launch the application.
@@ -46,7 +50,7 @@ public class Menu{
 	 */
 	private void initialize() {
 		
-		frame.getContentPane().add(menu);
+		frame.getContentPane().add(mainPanel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(WIDTH, HEIGHT); 
 		frame.setResizable(false);
@@ -54,25 +58,31 @@ public class Menu{
 		frame.setVisible(true);
 		frame.getContentPane().setLayout(null);
 		
-		menu.setLayout(null);
+		mainPanel.setLayout(null);
 		
-		new GameButtons(menu);
-		new MenuButtons(menu);
 		
-		menu.add(ImagesManagement.getTitle());
-		menu.add(ImagesManagement.getMenuBackground());
-		menu.add(ImagesManagement.getGameBackground());
+
+		mainPanel.add(grid);
+		new GameButtons(mainPanel);
+		new MenuButtons(mainPanel);
+
+		mainPanel.add(ImagesManagement.getTitle());
+		mainPanel.add(ImagesManagement.getMenuBackground());
+		mainPanel.add(ImagesManagement.getGameBackground());
 		ImagesManagement.setCursor(frame);
 		ImagesManagement.setFrameIcon(frame);
 		SoundsManagement.backgroundSong();
 		
-		menu.setVisible(true);
+		mainPanel.setVisible(true);
 		
 	}
 	
 	
 	public static void closeFrame() {
-		frame.setVisible(false);
 		frame.dispose();
+	}
+	
+	public static Grid getGrid() {
+		return grid;
 	}
 }
