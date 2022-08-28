@@ -284,11 +284,9 @@ public class MenuButtons extends FrameProportion{
 				GameButtons.getGameOptionBtn().setVisible(true);
 				Menu.getPlayerGrid().setVisible(true);
 				Menu.getEnemyGrid().setVisible(true);
-				Menu.getShips().getAssaultShip().setVisible(true);
-				Menu.getShips().getBattleship().setVisible(true);
-				Menu.getShips().getCarrier().setVisible(true);
-				Menu.getShips().getCruiser().setVisible(true);
-				Menu.getShips().getSubmarine().setVisible(true);
+				for (int i = 0; i<10; i++) {
+					Menu.getShips().getNavy().get(i).setVisible(true);
+				}
 				
 				boxLabel.setVisible(true);
 				String testo = selectNickname.getText();

@@ -105,11 +105,9 @@ public class GameButtons extends FrameProportion{
 				saveLabel.setVisible(false);
 				Menu.getPlayerGrid().setVisible(false);
 				Menu.getEnemyGrid().setVisible(false);
-				Menu.getShips().getAssaultShip().setVisible(false);
-				Menu.getShips().getBattleship().setVisible(false);
-				Menu.getShips().getCarrier().setVisible(false);
-				Menu.getShips().getCruiser().setVisible(false);
-				Menu.getShips().getSubmarine().setVisible(false);
+				for (int i = 0; i<10; i++) {
+					Menu.getShips().getNavy().get(i).setVisible(false);
+				}
 
 				ImagesManagement.getMenuBackground().setVisible(true);
 				ImagesManagement.showTitle();
@@ -127,11 +125,9 @@ public class GameButtons extends FrameProportion{
 				backToGameOptionBtn.setVisible(false);
 				Menu.getPlayerGrid().setVisible(false);
 				Menu.getEnemyGrid().setVisible(false);
-				Menu.getShips().getAssaultShip().setVisible(false);
-				Menu.getShips().getBattleship().setVisible(false);
-				Menu.getShips().getCarrier().setVisible(false);
-				Menu.getShips().getCruiser().setVisible(false);
-				Menu.getShips().getSubmarine().setVisible(false);
+				for (int i = 0; i<10; i++) {
+					Menu.getShips().getNavy().get(i).setVisible(false);
+				}
 
 				yesSaveBtn.setVisible(false);
 				noSaveBtn.setVisible(false);
