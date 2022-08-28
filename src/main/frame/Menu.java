@@ -63,11 +63,15 @@ public class Menu{
 		
 		mainPanel.setLayout(null);
 		
-		mainPanel.add(ships.getAssaultShip());
-		mainPanel.add(ships.getBattleship());
-		mainPanel.add(ships.getCarrier());
-		mainPanel.add(ships.getCruiser());
-		mainPanel.add(ships.getSubmarine());
+//		mainPanel.add(ships.getAssaultShip());
+//		mainPanel.add(ships.getBattleship());
+//		mainPanel.add(ships.getCarrier());
+//		mainPanel.add(ships.getCruiser());
+//		mainPanel.add(ships.getSubmarine());
+		for (int i = 0; i<10; i++) {
+			mainPanel.add(ships.getNavy().get(i));
+		}
+		
 
 		mainPanel.add(playerGrid);
 		mainPanel.add(enemyGrid);
