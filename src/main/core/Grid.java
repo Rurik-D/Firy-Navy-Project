@@ -7,18 +7,19 @@ import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.border.Border;
 
 import resources.ImagesManagement;
 
 public class Grid extends JLabel{
 	private char[] letters = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
-	private int boxSide;
+	private static int boxSide;
+	private static int lblBorder = 5;
 	
-	public Grid (int x, int y, int w, int h, int border) {
+	public Grid (int x, int y, int w, int h, boolean interactable) {
 	
 	this.setLayout(null);
-	this.setBounds(x, y, w + border * 2, h + border * 2);
-	this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+	this.setBounds(x, y, w + lblBorder * 2, h + lblBorder * 2);
 	this.setBackground(Color.BLACK);
 	this.setOpaque(true);
 	this.boxSide = (int) w/10;
@@ -26,9 +27,10 @@ public class Grid extends JLabel{
 	for (int i = 0; i<10; i++) {
 		for (int j = 0; j<10; j++) {
 			JButton box;
+
 			box = new JButton("");
 			box.setName("" + letters[j] + i);
-			box.setBounds(boxSide*i + border, boxSide*j + border, boxSide, boxSide);
+			box.setBounds(boxSide*i + lblBorder, boxSide*j + lblBorder, boxSide, boxSide);
 			box.setOpaque(false);
 			box.setContentAreaFilled(false);
 			box.setVisible(true);
@@ -40,11 +42,22 @@ public class Grid extends JLabel{
 					System.out.print(box.getName() + " ");
 				}
 			});
-		this.add(box);
+
+			box.setEnabled(interactable);
+			this.add(box);
+			
 		}
 		
 	}
-	this.add(ImagesManagement.getGridBackground(border, border, w, h));
+	this.add(ImagesManagement.getGridBackground(lblBorder, lblBorder, w, h));
 	this.setVisible(false);
+	}
+	
+	public static int getLblBorder() {
+		return lblBorder;
+	}
+	
+	public static int getBoxSide() {
+		return boxSide;
 	}
 }

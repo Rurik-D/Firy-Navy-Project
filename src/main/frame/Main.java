@@ -7,21 +7,20 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import resources.*;
 import main.core.Grid;
+import main.core.Ships;
 
-public class Menu{
+public class Main{
 	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //1536 * 864
 //	public static final int WIDTH = (int)screenSize.getWidth();
 //	public static final int HEIGHT = (int)screenSize.getHeight();
 	public static final int WIDTH = 1536;
 	public static final int HEIGHT = 864;
 	private static JFrame frame = new JFrame("Firy Navy Project");
-	private static Grid playerGrid = new Grid(300, 300, 300, 300, 5);
-	private static Grid enemyGrid = new Grid(950, 300, 300, 300, 5);
+	private static Grid playerGrid = new Grid(300, 300, 300, 300, false);
+	private static Grid enemyGrid = new Grid(950, 300, 300, 300, true);
 	private static Ships ships = new Ships();
 
-
-	private JPanel mainPanel = new JPanel();	
-	
+	private static JPanel mainPanel = new JPanel();	
 	
 	/**
 	 * Launch the application.
@@ -31,7 +30,7 @@ public class Menu{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Menu window = new Menu();
+					Main window = new Main();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,7 +43,7 @@ public class Menu{
 	/**
 	 * Create the application.
 	 */
-	public Menu() {
+	public Main() {
 		initialize();
 	}
 
@@ -66,10 +65,10 @@ public class Menu{
 		for (int i = 0; i<10; i++) {
 			mainPanel.add(ships.getNavy().get(i));
 		}
-		
 
 		mainPanel.add(playerGrid);
 		mainPanel.add(enemyGrid);
+		
 		new GameButtons(mainPanel);
 		new MenuButtons(mainPanel);
 
@@ -84,9 +83,16 @@ public class Menu{
 		
 	}
 	
-	
 	public static void closeFrame() {
 		frame.dispose();
+	}
+	
+	public static JFrame getFrame() {
+		return frame;
+	}
+	
+	public static JPanel getMainPanel() {
+		return mainPanel;
 	}
 	
 	public static Grid getPlayerGrid() {

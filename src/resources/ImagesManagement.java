@@ -21,7 +21,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import main.frame.Menu;
+import main.frame.Main;
 import utils.FrameProportion;
 
 public class ImagesManagement extends FrameProportion {
@@ -86,11 +86,11 @@ public class ImagesManagement extends FrameProportion {
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}
-	image = img.getScaledInstance(Menu.WIDTH, Menu.HEIGHT, Image.SCALE_SMOOTH);
+	image = img.getScaledInstance(Main.WIDTH, Main.HEIGHT, Image.SCALE_SMOOTH);
 	ImageIcon imageIcon = new ImageIcon(image);
 	
 	background = new JLabel(imageIcon);
-	background.setBounds(0, 0, Menu.WIDTH, Menu.HEIGHT);
+	background.setBounds(0, 0, Main.WIDTH, Main.HEIGHT);
 	return background;
 }
 	

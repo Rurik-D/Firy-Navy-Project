@@ -1,7 +1,9 @@
-package resources;
+package main.core;
 
 import javax.swing.JLabel;
+
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +18,7 @@ public class Ships extends JLabel{
 	private ResourceBundle imagesBundle = ResourceBundle.getBundle("utils.file/images");
 	private List<Ships> navy = new ArrayList<>();
 	private Image image;
-	private int xPos = 350;
+	private int xPos = 200;
 	private String type;
 
 	public Ships() {
@@ -42,6 +44,7 @@ public class Ships extends JLabel{
 		}
 			xPos += 50;
 		}
+		
 	}
 	
 	private Ships(int xPos, String type) {
@@ -85,6 +88,7 @@ public class Ships extends JLabel{
 		this.setIcon(imageIcon);
 		this.setBounds(x, y, shipW, shipH);
 		this.setVisible(false);
+		Movement move = new Movement(this, new Point(x, y));
 		
 	}
 	
