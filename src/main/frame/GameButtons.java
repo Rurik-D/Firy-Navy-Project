@@ -116,6 +116,8 @@ public class GameButtons extends FrameProportion{
 				MenuButtons.openMenu();
 				MenuButtons.getBoxBtn().setVisible(false);
 				MenuButtons.getBoxLabel().setVisible(false);
+				MenuButtons.getBoxCpuBtn().setVisible(false);
+				MenuButtons.getBoxCpuLabel().setVisible(false);
 			}
 		});
 	
@@ -139,7 +141,8 @@ public class GameButtons extends FrameProportion{
 				MenuButtons.openMenu();
 				MenuButtons.getBoxBtn().setVisible(false);
 				MenuButtons.getBoxLabel().setVisible(false);
-
+				MenuButtons.getBoxCpuBtn().setVisible(false);
+				MenuButtons.getBoxCpuLabel().setVisible(false);
 			}
 		});
 		

@@ -57,7 +57,9 @@ public class MenuButtons extends FrameProportion{
 	private static List<ImageIcon> avatarList = new ArrayList();
 	private static int chooseBtn;
 	private static JButton boxBtn = new JButton("");
+	private static JButton boxCpuBtn = new JButton("");
 	private static JLabel boxLabel = new JLabel();
+	private static JLabel boxCpuLabel = new JLabel(resourceBundle.getString("label.boxCpuLabel"));
 	
 	public MenuButtons(JPanel menu) {
 
@@ -292,13 +294,13 @@ public class MenuButtons extends FrameProportion{
 				String testo = selectNickname.getText();
 				boxLabel.setText(testo);
 				
-				boxBtn.setFont(new Font("Arial", Font.BOLD, 12));
-				boxBtn.setIcon(avatarList.get(chooseBtn)); 
-				boxBtn.setOpaque(false);
-				boxBtn.setContentAreaFilled(false);
-				boxBtn.setBorder(null);
-				boxBtn.setVisible(true);
+				boxCpuLabel.setVisible(true);
+				
+				boxCpuBtn.setIcon(avatarList.get(6)); 
+				buttonsSetUp(boxCpuBtn);
 
+				boxBtn.setIcon(avatarList.get(chooseBtn)); 
+				buttonsSetUp(boxBtn);
 				selectNickname.setText(null);
 
 			}
@@ -353,7 +355,8 @@ public class MenuButtons extends FrameProportion{
 		engBtn.setVisible(false);
 		boxBtn.setVisible(false);
 		boxLabel.setVisible(false);
-
+		boxCpuBtn.setVisible(false);
+		boxCpuLabel.setVisible(false);
 	}
 	
 	private void optionState() {
@@ -399,6 +402,8 @@ public class MenuButtons extends FrameProportion{
 		engBtn.setBounds(buttonX, 630, buttonW, buttonH);
 		boxBtn.setBounds(0, 0, avatarSide, avatarSide);
 		boxLabel.setBounds(avatarSide,10, extLabelW, buttonH);
+		boxCpuBtn.setBounds(Menu.WIDTH - avatarSide, 0, avatarSide, avatarSide);
+		boxCpuLabel.setBounds(Menu.WIDTH - avatarSide-extLabelW/2 + 50, 10, extLabelW, buttonH);
 	}
 
 	private void setFont() {
@@ -425,6 +430,7 @@ public class MenuButtons extends FrameProportion{
 		itaBtn.setFont(font);
 		engBtn.setFont(font);
 		boxLabel.setFont(font);
+		boxCpuLabel.setFont(font);
 	}
 	
 	private void setGraphics() {
@@ -485,6 +491,8 @@ public class MenuButtons extends FrameProportion{
 		menu.add(extYesBtn);
 		menu.add(boxBtn);
 		menu.add(boxLabel);
+		menu.add(boxCpuBtn);
+		menu.add(boxCpuLabel);
 	}
 	
 	private void createAvatarGrid(JPanel menu) {
@@ -494,7 +502,7 @@ public class MenuButtons extends FrameProportion{
 		ImagesManagement.createAvatarPicture(imagesBundle.getString("image.greyShip"),avatarList);
 		ImagesManagement.createAvatarPicture(imagesBundle.getString("image.armyShip"),avatarList);
 		ImagesManagement.createAvatarPicture(imagesBundle.getString("image.warShip"),avatarList);
-
+		ImagesManagement.createAvatarPicture(imagesBundle.getString("image.submarine"), avatarList);
 
 		
 		createAvatarBtnList(menu);
@@ -605,6 +613,18 @@ public class MenuButtons extends FrameProportion{
 	public static JLabel getBoxLabel() {
 		return boxLabel;
 	}
+	public static JButton getBoxCpuBtn() {
+		return boxCpuBtn;
+	}
+	public static JLabel getBoxCpuLabel() {
+		return boxCpuLabel;
+	}
 	
-
+	public static void buttonsSetUp(JButton btn) {
+		btn.setFont(new Font("Arial", Font.BOLD, 12));
+		btn.setOpaque(false);
+		btn.setContentAreaFilled(false);
+		btn.setBorder(null);
+		btn.setVisible(true);
+	}
 }
