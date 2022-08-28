@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 
 import resources.*;
 import utils.*;
@@ -60,6 +61,11 @@ public class MenuButtons extends FrameProportion{
 	private static JButton boxCpuBtn = new JButton("");
 	private static JLabel boxLabel = new JLabel();
 	private static JLabel boxCpuLabel = new JLabel(resourceBundle.getString("label.boxCpuLabel"));
+	public static Timer timer;
+	static int k = 0;
+	static String minutes ="0"; 
+	static int minute;
+
 	
 	public MenuButtons(JPanel menu) {
 
@@ -265,7 +271,6 @@ public class MenuButtons extends FrameProportion{
 				
 			}
 		});	
-		
 		startGameBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -301,7 +306,7 @@ public class MenuButtons extends FrameProportion{
 				boxBtn.setIcon(avatarList.get(chooseBtn)); 
 				buttonsSetUp(boxBtn);
 				selectNickname.setText(null);
-
+				setTimer();
 			}
 		});	
 		
@@ -625,5 +630,23 @@ public class MenuButtons extends FrameProportion{
 		btn.setContentAreaFilled(false);
 		btn.setBorder(null);
 		btn.setVisible(true);
+	}
+	public void setTimer() {
+		GameButtons.getJlbTimer().setVisible(true);
+		timer = new Timer(1000,new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				GameButtons.getJlbTimer().setText( minutes + ":" + String.valueOf(k));
+				k++;
+				
+				if (k == 60) {
+					k = 0;
+					minute = Integer.parseInt(minutes) + 1;
+					minutes = String.valueOf(minute);
+				}
+
+			}
+		});
+		timer.start();
 	}
 }

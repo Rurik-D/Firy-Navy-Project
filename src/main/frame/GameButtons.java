@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import resources.*;
 import utils.FrameProportion;
@@ -27,6 +28,8 @@ public class GameButtons extends FrameProportion{
 	private static JButton noSaveBtn = new JButton(resourceBundle.getString("button.noSaveBtn"));
 	private static JButton backToGameOptionBtn = new JButton(resourceBundle.getString("button.backToGameOptionBtn"));
 	private static JLabel saveLabel = new JLabel(resourceBundle.getString("button.saveLabel"));
+	private static JLabel jlbTimer = new JLabel("");
+	
 	
 	public GameButtons(JPanel menu) {
 		
@@ -39,6 +42,7 @@ public class GameButtons extends FrameProportion{
 		noSaveBtn.setVisible(false);
 		saveLabel.setVisible(false);
 		backToGameOptionBtn.setVisible(false);
+		jlbTimer.setVisible(false);
 		
 		
 		gameOptionBtn.setBounds((Menu.WIDTH/2) - 100, 10, 200, 40);
@@ -48,6 +52,8 @@ public class GameButtons extends FrameProportion{
 		noSaveBtn.setBounds((Menu.WIDTH/2) - 85, 60, yesBtnW, buttonH);
 		backToGameOptionBtn.setBounds((Menu.WIDTH/2) -30 , 60, buttonW, buttonH);
 		saveLabel.setBounds((Menu.WIDTH/2) - extLabelW/2, 10, extLabelW, buttonH);
+		jlbTimer.setBounds((Menu.WIDTH/2)-30 , 60, 300, 40);
+		
 		
 		gameOptionBtn.setFont(font);
 		mainMenuBtn.setFont(font);
@@ -56,6 +62,7 @@ public class GameButtons extends FrameProportion{
 		noSaveBtn.setFont(font);
 		backToGameOptionBtn.setFont(font);
 		saveLabel.setFont(font);
+		jlbTimer.setFont(font);
 		
 		setTrasparent(gameOptionBtn);
 		setTrasparent(mainMenuBtn);
@@ -72,13 +79,17 @@ public class GameButtons extends FrameProportion{
 		menu.add(yesSaveBtn);
 		menu.add(backToGameOptionBtn);
 		menu.add(saveLabel);
+		menu.add(jlbTimer);
 		
 		gameOptionBtn.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				SoundsManagement.clickMenuBtn();
 				gameOptionBtn.setVisible(false);
+				jlbTimer.setVisible(false);
+				MenuButtons.timer.stop();
 				mainMenuBtn.setVisible(true);
 				backToGameBtn.setVisible(true);
+				
 			}
 		});
 		
@@ -116,6 +127,7 @@ public class GameButtons extends FrameProportion{
 				MenuButtons.getBoxLabel().setVisible(false);
 				MenuButtons.getBoxCpuBtn().setVisible(false);
 				MenuButtons.getBoxCpuLabel().setVisible(false);
+				jlbTimer.setVisible(false);
 			}
 		});
 	
@@ -139,6 +151,8 @@ public class GameButtons extends FrameProportion{
 				MenuButtons.getBoxLabel().setVisible(false);
 				MenuButtons.getBoxCpuBtn().setVisible(false);
 				MenuButtons.getBoxCpuLabel().setVisible(false);
+				jlbTimer.setVisible(false);
+
 			}
 		});
 		
@@ -148,6 +162,10 @@ public class GameButtons extends FrameProportion{
 				gameOptionBtn.setVisible(true);
 				mainMenuBtn.setVisible(false);
 				backToGameBtn.setVisible(false);
+				jlbTimer.setVisible(true);
+				MenuButtons.timer.start();
+
+
 			}
 		});
 		backToGameOptionBtn.addMouseListener(new MouseAdapter() {
@@ -160,6 +178,10 @@ public class GameButtons extends FrameProportion{
 				noSaveBtn.setVisible(false);
 				saveLabel.setVisible(false);
 				backToGameOptionBtn.setVisible(false);
+				jlbTimer.setVisible(true);
+				MenuButtons.timer.start();
+
+
 			}
 		});
 	}
@@ -174,6 +196,11 @@ public class GameButtons extends FrameProportion{
 	public static JButton getGameOptionBtn() {
 		return gameOptionBtn;
 	}
+	public static JLabel getJlbTimer() {
+		return jlbTimer;
+	}
+	
+	
 	public static void setGameBtnsLanguage(String kLang) {
 		resourceBundle  = ResourceBundle.getBundle("utils.file/lang", Locale.forLanguageTag(kLang)) ;
 
