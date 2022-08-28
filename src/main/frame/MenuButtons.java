@@ -284,6 +284,7 @@ public class MenuButtons extends FrameProportion{
 				GameButtons.getGameOptionBtn().setVisible(true);
 				Menu.getPlayerGrid().setVisible(true);
 				Menu.getEnemyGrid().setVisible(true);
+				
 				for (int i = 0; i<10; i++) {
 					Menu.getShips().getNavy().get(i).setVisible(true);
 				}
