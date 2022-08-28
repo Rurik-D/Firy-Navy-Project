@@ -16,9 +16,6 @@ public class Movement implements MouseListener, MouseMotionListener{
 	private int boxSide = Grid.getBoxSide();
 	private Ships ship;
 
-	
-
-
 	private Point initialPostion;
 	
 	public Movement(Ships ship, Point initialPostion) {
