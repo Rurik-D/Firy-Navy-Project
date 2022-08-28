@@ -45,14 +45,14 @@ public class GameButtons extends FrameProportion{
 		jlbTimer.setVisible(false);
 		
 		
-		gameOptionBtn.setBounds((Menu.WIDTH/2) - 100, 10, 200, 40);
-		mainMenuBtn.setBounds((Menu.WIDTH/2) - 150, 60, 300, 40);
-		backToGameBtn.setBounds((Menu.WIDTH/2) - 200, 100, 400, 40);
-		yesSaveBtn.setBounds((Menu.WIDTH/2) - extLabelW/2 +20 , 60, yesBtnW, buttonH);
-		noSaveBtn.setBounds((Menu.WIDTH/2) - 85, 60, yesBtnW, buttonH);
-		backToGameOptionBtn.setBounds((Menu.WIDTH/2) -30 , 60, buttonW, buttonH);
-		saveLabel.setBounds((Menu.WIDTH/2) - extLabelW/2, 10, extLabelW, buttonH);
-		jlbTimer.setBounds((Menu.WIDTH/2)-30 , 60, 300, 40);
+		gameOptionBtn.setBounds((Main.WIDTH/2) - 100, 10, 200, 40);
+		mainMenuBtn.setBounds((Main.WIDTH/2) - 150, 60, 300, 40);
+		backToGameBtn.setBounds((Main.WIDTH/2) - 200, 100, 400, 40);
+		yesSaveBtn.setBounds((Main.WIDTH/2) - extLabelW/2 +20 , 60, yesBtnW, buttonH);
+		noSaveBtn.setBounds((Main.WIDTH/2) - 85, 60, yesBtnW, buttonH);
+		backToGameOptionBtn.setBounds((Main.WIDTH/2) -30 , 60, buttonW, buttonH);
+		saveLabel.setBounds((Main.WIDTH/2) - extLabelW/2, 10, extLabelW, buttonH);
+		jlbTimer.setBounds((Main.WIDTH/2)-30 , 60, 300, 40);
 		
 		
 		gameOptionBtn.setFont(font);
@@ -114,10 +114,13 @@ public class GameButtons extends FrameProportion{
 				yesSaveBtn.setVisible(false);
 				noSaveBtn.setVisible(false);
 				saveLabel.setVisible(false);
-				Menu.getPlayerGrid().setVisible(false);
-				Menu.getEnemyGrid().setVisible(false);
+				Main.getPlayerGrid().setVisible(false);
+				Main.getEnemyGrid().setVisible(false);
+				int Xpos = 200;
 				for (int i = 0; i<10; i++) {
-					Menu.getShips().getNavy().get(i).setVisible(false);
+					Main.getShips().getNavy().get(i).setVisible(false);
+					Main.getShips().getNavy().get(i).setLocation(Xpos, 650);
+					Xpos += 50;
 				}
 
 				ImagesManagement.getMenuBackground().setVisible(true);
@@ -135,10 +138,13 @@ public class GameButtons extends FrameProportion{
 			public void mouseClicked(MouseEvent e) {
 				SoundsManagement.clickMenuBtn();
 				backToGameOptionBtn.setVisible(false);
-				Menu.getPlayerGrid().setVisible(false);
-				Menu.getEnemyGrid().setVisible(false);
+				Main.getPlayerGrid().setVisible(false);
+				Main.getEnemyGrid().setVisible(false);
+				int Xpos = 200;
 				for (int i = 0; i<10; i++) {
-					Menu.getShips().getNavy().get(i).setVisible(false);
+					Main.getShips().getNavy().get(i).setVisible(false);
+					Main.getShips().getNavy().get(i).setLocation(Xpos, 650);
+					Xpos += 50;
 				}
 
 				yesSaveBtn.setVisible(false);

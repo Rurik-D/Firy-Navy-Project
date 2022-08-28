@@ -21,7 +21,7 @@ public class Main{
 	private static Ships ships = new Ships();
 
 	private static JPanel mainPanel = new JPanel();	
-	
+
 	/**
 	 * Launch the application.
 	 */

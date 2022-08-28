@@ -1,6 +1,5 @@
 package main.core;
 
-import java.awt.Component;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -15,16 +14,18 @@ public class Movement implements MouseListener, MouseMotionListener{
 	private int gridW = Main.getPlayerGrid().getWidth();
 	private int gridH = Main.getPlayerGrid().getHeight();
 	private int boxSide = Grid.getBoxSide();
+	private Ships ship;
 
 	
 
 
 	private Point initialPostion;
 	
-	public Movement(Component component, Point initialPostion) {
+	public Movement(Ships ship, Point initialPostion) {
+		this.ship = ship;
 		this.initialPostion = initialPostion;
-		component.addMouseListener(this);
-		component.addMouseMotionListener(this);
+		ship.addMouseListener(this);
+		ship.addMouseMotionListener(this);
 		
 	}
 	
@@ -40,9 +41,10 @@ public class Movement implements MouseListener, MouseMotionListener{
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void mouseClicked(MouseEvent event) {
+	  if (event.getClickCount() == 2 && event.getButton() == MouseEvent.BUTTON1) {
+		    ship.rotateShip();
+	  }
 	}
 
 	@Override
@@ -61,9 +63,11 @@ public class Movement implements MouseListener, MouseMotionListener{
 		int currentBoxY;
 		
 		if (gridX < currentX && currentX + componentW < gridX + gridW && gridY < currentY && currentY + componentH < gridY + gridH) {
+//			for (Ships tmpShip : Main.getShips().getNavy()) {
+//				
+//			}
 			currentBoxX = ((int) (currentX - gridX) / boxSide) * boxSide + gridX;
 			currentBoxY = ((int) (currentY - gridY) / boxSide) * boxSide + gridY;
-
 			event.getComponent().setLocation(currentBoxX, currentBoxY);
 		} else {
 			event.getComponent().setLocation(initialPostion);

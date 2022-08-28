@@ -19,25 +19,30 @@ public class Ships extends JLabel{
 	private List<Ships> navy = new ArrayList<>();
 	private Image image;
 	private int xPos = 200;
+	private int yPos = 650;
 	private String type;
+	private int shipW = 30;
+	private int shipH;
+
+
 
 	public Ships() {
 		for(int i = 0; i < 10; i++) {
 			switch (i) {
 				case 0:
-					navy.add(new Ships(xPos, "5_carrier"));
+					navy.add(new Ships(xPos, "5_carrier_up"));
 					break;
 				case 1:
-					navy.add(new Ships(xPos, "4_battleship"));
+					navy.add(new Ships(xPos, "4_battleship_up"));
 					break;
 				case 2, 3:
-					navy.add(new Ships(xPos, "3_cruiser"));
+					navy.add(new Ships(xPos, "3_cruiser_up"));
 					break;
 				case 4, 5, 6:
-					navy.add(new Ships(xPos, "3_submarine"));
+					navy.add(new Ships(xPos, "3_submarine_up"));
 					break;
 				case 7, 8, 9:
-					navy.add(new Ships(xPos, "2_assaultShip"));
+					navy.add(new Ships(xPos, "2_assaultShip_up"));
 					break;
 				default:
 					break;
@@ -52,30 +57,42 @@ public class Ships extends JLabel{
 		this.type = type;
 		
 		switch (type) {
-			case "5_carrier":
-				generateShip(xPos, 650, "5_carrier");
+			case "5_carrier_up":
+				generateShip();
 				break;
-			case "4_battleship":
-				generateShip(xPos, 650, "4_battleship");
+			case "4_battleship_up":
+				generateShip();
 				break;
-			case "3_cruiser":
-				generateShip(xPos, 650, "3_cruiser");
+			case "3_cruiser_up":
+				generateShip();
 				break;
-			case "3_submarine":
-				generateShip(xPos, 650, "3_submarine");
+			case "3_submarine_up":
+				generateShip();
 				break;
-			case "2_assaultShip":
-				generateShip(xPos, 650, "2_assaultShip");
+			case "2_assaultShip_up":
+				generateShip();
 				break;
 			default:
 				break;
 		}
 	}
 
-	private void generateShip(int x, int y, String type) {
-		int shipW = 30;
-		int shipH = Integer.parseInt(type.substring(0, 1)) * shipW;
-		
+	private void generateShip() {
+		shipH = Integer.parseInt(type.substring(0, 1)) * shipW;
+		setShipIcon();
+		setVisible(false);
+		new Movement(this, new Point(xPos, yPos));
+	}
+	
+	public List<Ships> getNavy() {
+		return navy;
+	}
+	
+	public String getType() {
+		return type;
+	}
+	
+	private void setShipIcon() {
 		BufferedImage img = null;
 		try {
 		    img = ImageIO.read(new File(imagesBundle.getString("image." + type)));
@@ -85,15 +102,36 @@ public class Ships extends JLabel{
 		image = img.getScaledInstance(shipW, shipH, Image.SCALE_SMOOTH);
 		ImageIcon imageIcon = new ImageIcon(image);
 		
-		this.setIcon(imageIcon);
-		this.setBounds(x, y, shipW, shipH);
-		this.setVisible(false);
-		Movement move = new Movement(this, new Point(x, y));
-		
+		setIcon(imageIcon);
+		setBounds(xPos, yPos, shipW, shipH);
 	}
 	
-	public List<Ships> getNavy() {
-		return navy;
+	
+	
+	public void rotateShip() {
+		int temp = shipW;
+		type = switch(type.charAt(type.length() - 2)) {
+			case 'u' -> {shipW = shipH; shipH = temp; yield type.substring(0, type.length() - 2) + "ri";}
+			case 'r' -> {shipW = shipH; shipH = temp; yield type.substring(0, type.length() - 2) + "do";}
+			case 'd' -> {shipW = shipH; shipH = temp; yield type.substring(0, type.length() - 2) + "le";}
+			case 'l' -> {shipW = shipH; shipH = temp; yield type.substring(0, type.length() - 2) + "up";}
+			default -> "";
+		};
+		
+		BufferedImage img = null;
+		
+		try {
+		    img = ImageIO.read(new File(imagesBundle.getString("image." + type)));
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+		image = img.getScaledInstance(shipW, shipH, Image.SCALE_SMOOTH);
+		ImageIcon imageIcon = new ImageIcon(image);
+		
+		setIcon(imageIcon);
+		setSize(shipW, shipH);
 	}
+	
+	
 	
 }

@@ -181,7 +181,7 @@ public class MenuButtons extends FrameProportion{
 		extYesBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SoundsManagement.clickMenuBtn();
-				Menu.closeFrame();
+				Main.closeFrame();
 			}
 		});
 		
@@ -287,11 +287,11 @@ public class MenuButtons extends FrameProportion{
 				ImagesManagement.getMenuBackground().setVisible(false);
 				ImagesManagement.hideTitle();
 				GameButtons.getGameOptionBtn().setVisible(true);
-				Menu.getPlayerGrid().setVisible(true);
-				Menu.getEnemyGrid().setVisible(true);
+				Main.getPlayerGrid().setVisible(true);
+				Main.getEnemyGrid().setVisible(true);
 				
 				for (int i = 0; i<10; i++) {
-					Menu.getShips().getNavy().get(i).setVisible(true);
+					Main.getShips().getNavy().get(i).setVisible(true);
 				}
 				
 				boxLabel.setVisible(true);
@@ -406,8 +406,8 @@ public class MenuButtons extends FrameProportion{
 		engBtn.setBounds(buttonX, 630, buttonW, buttonH);
 		boxBtn.setBounds(0, 0, avatarSide, avatarSide);
 		boxLabel.setBounds(avatarSide,10, extLabelW, buttonH);
-		boxCpuBtn.setBounds(Menu.WIDTH - avatarSide, 0, avatarSide, avatarSide);
-		boxCpuLabel.setBounds(Menu.WIDTH - avatarSide-extLabelW/2 + 50, 10, extLabelW, buttonH);
+		boxCpuBtn.setBounds(Main.WIDTH - avatarSide, 0, avatarSide, avatarSide);
+		boxCpuLabel.setBounds(Main.WIDTH - avatarSide-extLabelW/2 + 50, 10, extLabelW, buttonH);
 	}
 
 	private void setFont() {
