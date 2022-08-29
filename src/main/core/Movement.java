@@ -53,8 +53,8 @@ public class Movement implements MouseListener, MouseMotionListener{
 
 	@Override
 	public void mouseReleased(MouseEvent event) {
-		borderCheck(event);
 		ship.updateOccupiedBox();
+		borderCheck(event);
 	}
 
 	@Override
@@ -79,17 +79,36 @@ public class Movement implements MouseListener, MouseMotionListener{
 		int currentBoxY;
 		
 		if (gridX < currentX  + 20 && currentX + componentW - 20 < gridX + gridW && gridY < currentY + 20 && currentY + componentH - 20 < gridY + gridH) {
-			for (Ships tmpShip : Main.getShips().getNavy()) {
-				//	se la nave analizzata non è la nave passata a movement
-				//		per ogni cella occupata dalla nave
-				//			per ogni cella occupata dalle atre navi
-				//				se la cella della nava occupa la cella di un'altra nave
-				//					rimando la nave alla posizione iniziale
-				tmpShip.getCurrentPosition();
+			boolean occupied = false;
+			if (ship.getCurrentPosition().get(0)[0] != -1) {
+				boxOccupied:
+				for (Ships tmpShip : Main.getShips().getNavy()) {
+					//se la nave analizzata non è la nave passata a movement
+					if (ship.getShipIndex() != tmpShip.getShipIndex()) {
+					//	per ogni cella occupata dalla nave
+						for (int[] box : ship.getCurrentPosition()) {
+					//		per ogni cella occupata dalle atre navi
+							for (int[] box2 : tmpShip.getCurrentPosition()) {
+					//			se la cella della nava occupa la cella di un'altra nave
+								if (box[0] == box2[0] && box[1] == box2[1]) {
+					//				rimando la nave alla posizione iniziale
+									ship.setLocation(initialPostion);
+									occupied = true;
+									break boxOccupied;
+								}
+	
+							}
+	
+						}
+					}
+					
+				}
 			}
-			currentBoxX = ((int) (currentX - gridX) / boxSide) * boxSide + gridX;
-			currentBoxY = ((int) (currentY - gridY) / boxSide) * boxSide + gridY;
-			event.getComponent().setLocation(currentBoxX, currentBoxY);
+			if (!occupied) {
+				currentBoxX = ((int) (currentX - gridX) / boxSide) * boxSide + gridX;
+				currentBoxY = ((int) (currentY - gridY) / boxSide) * boxSide + gridY;
+				event.getComponent().setLocation(currentBoxX, currentBoxY);
+			}
 		} else {
 			event.getComponent().setLocation(initialPostion);
 		

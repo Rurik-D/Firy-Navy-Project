@@ -29,24 +29,25 @@ public class Ships extends JLabel{
 	private int gridY = Main.getPlayerGrid().getY() + Grid.getLblBorder();
 	private int gridH = Main.getPlayerGrid().getHeight();
 	private int shipH;
+	private int shipIndex;
 
 	public Ships() {
 		for(int i = 0; i < 10; i++) {
 			switch (i) {
 				case 0:
-					navy.add(new Ships(xPos, "5_carrier_up"));
+					navy.add(new Ships(xPos, "5_carrier_up", i));
 					break;
 				case 1:
-					navy.add(new Ships(xPos, "4_battleship_up"));
+					navy.add(new Ships(xPos, "4_battleship_up", i));
 					break;
 				case 2, 3:
-					navy.add(new Ships(xPos, "3_cruiser_up"));
+					navy.add(new Ships(xPos, "3_cruiser_up", i));
 					break;
 				case 4, 5, 6:
-					navy.add(new Ships(xPos, "3_submarine_up"));
+					navy.add(new Ships(xPos, "3_submarine_up", i));
 					break;
 				case 7, 8, 9:
-					navy.add(new Ships(xPos, "2_assaultShip_up"));
+					navy.add(new Ships(xPos, "2_assaultShip_up", i));
 					break;
 				default:
 					break;
@@ -56,9 +57,10 @@ public class Ships extends JLabel{
 		
 	}
 	
-	private Ships(int xPos, String type) {
+	private Ships(int xPos, String type, int shipIndex) {
 		this.xPos = xPos;
 		this.type = type;
+		this.shipIndex = shipIndex;
 		
 		switch (type) {
 			case "5_carrier_up":
@@ -80,14 +82,6 @@ public class Ships extends JLabel{
 				break;
 		}
 	}
-
-	private void generateShip() {
-		shipH = Integer.parseInt(type.substring(0, 1)) * boxSide;
-		setShipIcon();
-		setVisible(false);
-		updateOccupiedBox();
-		new Movement(this, new Point(xPos, yPos));
-	}
 	
 	public List<Ships> getNavy() {
 		return navy;
@@ -95,6 +89,22 @@ public class Ships extends JLabel{
 	
 	public String getType() {
 		return type;
+	}
+	
+	public List<int[]> getCurrentPosition(){
+		return currentPosition;
+	}
+	
+	public int getShipIndex() {
+		return shipIndex;
+	}
+	
+	private void generateShip() {
+		shipH = Integer.parseInt(type.substring(0, 1)) * boxSide;
+		setShipIcon();
+		setVisible(false);
+		updateOccupiedBox();
+		new Movement(this, new Point(xPos, yPos));
 	}
 	
 	private void setShipIcon() {
@@ -168,8 +178,5 @@ public class Ships extends JLabel{
 			System.out.println();
 		}
 	}
-	
-	public List<int[]> getCurrentPosition(){
-		return currentPosition;
-	}
+
 }
