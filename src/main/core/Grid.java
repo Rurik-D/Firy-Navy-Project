@@ -36,13 +36,14 @@ public class Grid extends JLabel{
 			box.setVisible(true);
 			box.setBorder(BorderFactory.createLineBorder(Color.GREEN.darker().darker().darker().darker(),1));
 			box.setBorderPainted(true);
-			box.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					System.out.print(box.getName() + " ");
-				}
-			});
-
+			if (interactable) {
+				box.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						System.out.print(box.getName() + " ");
+					}
+				});
+			}
 			box.setEnabled(interactable);
 			this.add(box);
 			
