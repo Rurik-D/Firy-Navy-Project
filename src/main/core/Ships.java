@@ -28,6 +28,7 @@ public class Ships extends JLabel{
 	private int gridX = Main.getPlayerGrid().getX() + Grid.getLblBorder();
 	private int gridY = Main.getPlayerGrid().getY() + Grid.getLblBorder();
 	private int gridH = Main.getPlayerGrid().getHeight();
+	private int shipW = Grid.getBoxSide();
 	private int shipH;
 	private int shipIndex;
 
@@ -100,7 +101,7 @@ public class Ships extends JLabel{
 	}
 	
 	private void generateShip() {
-		shipH = Integer.parseInt(type.substring(0, 1)) * boxSide;
+		shipH = Integer.parseInt(type.substring(0, 1)) * shipW;
 		setShipIcon();
 		setVisible(false);
 		updateOccupiedBox();
@@ -114,22 +115,46 @@ public class Ships extends JLabel{
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
+		image = img.getScaledInstance(shipW, shipH, Image.SCALE_SMOOTH);
+		ImageIcon imageIcon = new ImageIcon(image);
+		
+		setIcon(imageIcon);
+		setBounds(xPos, yPos, shipW, shipH);
+	}
+	
+	
+
+    public void resetLocation(Point p) {
+		if (shipW > shipH) {
+			int temp = shipW;
+			shipW = shipH;
+			shipH = temp;
+		}
+		setBounds(p.x, p.y, shipW, shipH);
+		type = type.substring(0, type.length() - 2) + "up";
+
+		BufferedImage img = null;
+		try {
+		    img = ImageIO.read(new File(imagesBundle.getString("image." + type)));
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
 		image = img.getScaledInstance(boxSide, shipH, Image.SCALE_SMOOTH);
 		ImageIcon imageIcon = new ImageIcon(image);
 		
 		setIcon(imageIcon);
-		setBounds(xPos, yPos, boxSide, shipH);
-	}
-	
-	
+		updateOccupiedBox();
+
+			
+    }
 	
 	public void rotateShip() {
-		int temp = boxSide;
+		int temp = shipW;
 		type = switch(type.charAt(type.length() - 2)) {
-			case 'u' -> {boxSide = shipH; shipH = temp; yield type.substring(0, type.length() - 2) + "ri";}
-			case 'r' -> {boxSide = shipH; shipH = temp; yield type.substring(0, type.length() - 2) + "do";}
-			case 'd' -> {boxSide = shipH; shipH = temp; yield type.substring(0, type.length() - 2) + "le";}
-			case 'l' -> {boxSide = shipH; shipH = temp; yield type.substring(0, type.length() - 2) + "up";}
+			case 'u' -> {shipW = shipH; shipH = temp; yield type.substring(0, type.length() - 2) + "ri";}
+			case 'r' -> {shipW = shipH; shipH = temp; yield type.substring(0, type.length() - 2) + "do";}
+			case 'd' -> {shipW = shipH; shipH = temp; yield type.substring(0, type.length() - 2) + "le";}
+			case 'l' -> {shipW = shipH; shipH = temp; yield type.substring(0, type.length() - 2) + "up";}
 			default -> "";
 		};
 		
@@ -140,11 +165,12 @@ public class Ships extends JLabel{
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
-		image = img.getScaledInstance(boxSide, shipH, Image.SCALE_SMOOTH);
+		image = img.getScaledInstance(shipW, shipH, Image.SCALE_SMOOTH);
 		ImageIcon imageIcon = new ImageIcon(image);
 		
 		setIcon(imageIcon);
-		setSize(boxSide, shipH);
+		setSize(shipW, shipH);
+		updateOccupiedBox();
 	}
 	
 	public void updateOccupiedBox() {

@@ -34,14 +34,13 @@ public class Movement implements MouseListener, MouseMotionListener{
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent event) {
 	  if (event.getClickCount() == 2 && event.getButton() == MouseEvent.BUTTON1) {
 		    ship.rotateShip();
-		    borderCheck(event);
+		    borderCheck();
 	  }
 	}
 
@@ -54,27 +53,25 @@ public class Movement implements MouseListener, MouseMotionListener{
 	@Override
 	public void mouseReleased(MouseEvent event) {
 		ship.updateOccupiedBox();
-		borderCheck(event);
+		borderCheck();
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 	
 	
-	private void borderCheck(MouseEvent event) {
-		int currentX = event.getComponent().getX();
-		int currentY = event.getComponent().getY();
-		int componentW = event.getComponent().getWidth();
-		int componentH = event.getComponent().getHeight();
+	private void borderCheck() {
+		int currentX = ship.getX();
+		int currentY = ship.getY();
+		int componentW = ship.getWidth();
+		int componentH = ship.getHeight();
 		int currentBoxX;
 		int currentBoxY;
 		
@@ -92,26 +89,22 @@ public class Movement implements MouseListener, MouseMotionListener{
 					//			se la cella della nava occupa la cella di un'altra nave
 								if (box[0] == box2[0] && box[1] == box2[1]) {
 					//				rimando la nave alla posizione iniziale
-									ship.setLocation(initialPostion);
+									ship.resetLocation(initialPostion);
 									occupied = true;
 									break boxOccupied;
 								}
-	
 							}
-	
 						}
 					}
-					
 				}
 			}
 			if (!occupied) {
 				currentBoxX = ((int) (currentX - gridX) / boxSide) * boxSide + gridX;
 				currentBoxY = ((int) (currentY - gridY) / boxSide) * boxSide + gridY;
-				event.getComponent().setLocation(currentBoxX, currentBoxY);
+				ship.setLocation(currentBoxX, currentBoxY);
 			}
 		} else {
-			event.getComponent().setLocation(initialPostion);
-		
+			ship.resetLocation(initialPostion);
 		}
 	}
 	
