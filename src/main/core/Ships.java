@@ -3,6 +3,7 @@ package main.core;
 import javax.swing.JLabel;
 
 import main.frame.Main;
+import resources.ImagesManagement;
 
 import java.awt.Image;
 import java.awt.Point;
@@ -18,7 +19,8 @@ import javax.swing.ImageIcon;
 
 public class Ships extends JLabel{
 	private ResourceBundle imagesBundle = ResourceBundle.getBundle("utils.file/images");
-	private List<int[]> currentPosition = new ArrayList<>();
+	private List<int[]> playerPosition = new ArrayList<>();
+	
 	private List<Ships> navy = new ArrayList<>();
 	private Image image;
 	private int xPos = 200;
@@ -92,8 +94,8 @@ public class Ships extends JLabel{
 		return type;
 	}
 	
-	public List<int[]> getCurrentPosition(){
-		return currentPosition;
+	public List<int[]> getPlayerPosition(){
+		return playerPosition;
 	}
 	
 	public int getShipIndex() {
@@ -104,26 +106,16 @@ public class Ships extends JLabel{
 		shipH = Integer.parseInt(type.substring(0, 1)) * shipW;
 		setShipIcon();
 		setVisible(false);
-		updateOccupiedBox();
+		updatePlayerPosition();
 		new Movement(this, new Point(xPos, yPos));
 	}
 	
 	private void setShipIcon() {
-		BufferedImage img = null;
-		try {
-		    img = ImageIO.read(new File(imagesBundle.getString("image." + type)));
-		} catch (IOException e) {
-		    e.printStackTrace();
-		}
-		image = img.getScaledInstance(shipW, shipH, Image.SCALE_SMOOTH);
-		ImageIcon imageIcon = new ImageIcon(image);
-		
-		setIcon(imageIcon);
+		setIcon(ImagesManagement.getImage(shipW, shipH, imagesBundle.getString("image." + type)));
 		setBounds(xPos, yPos, shipW, shipH);
 	}
 	
 	
-
     public void resetLocation(Point p) {
 		if (shipW > shipH) {
 			int temp = shipW;
@@ -132,18 +124,9 @@ public class Ships extends JLabel{
 		}
 		setBounds(p.x, p.y, shipW, shipH);
 		type = type.substring(0, type.length() - 2) + "up";
-
-		BufferedImage img = null;
-		try {
-		    img = ImageIO.read(new File(imagesBundle.getString("image." + type)));
-		} catch (IOException e) {
-		    e.printStackTrace();
-		}
-		image = img.getScaledInstance(boxSide, shipH, Image.SCALE_SMOOTH);
-		ImageIcon imageIcon = new ImageIcon(image);
 		
-		setIcon(imageIcon);
-		updateOccupiedBox();
+		setIcon(ImagesManagement.getImage(shipW, shipH, imagesBundle.getString("image." + type)));
+		updatePlayerPosition();
 
 			
     }
@@ -158,51 +141,41 @@ public class Ships extends JLabel{
 			default -> "";
 		};
 		
-		BufferedImage img = null;
 		
-		try {
-		    img = ImageIO.read(new File(imagesBundle.getString("image." + type)));
-		} catch (IOException e) {
-		    e.printStackTrace();
-		}
-		image = img.getScaledInstance(shipW, shipH, Image.SCALE_SMOOTH);
-		ImageIcon imageIcon = new ImageIcon(image);
-		
-		setIcon(imageIcon);
+		setIcon(ImagesManagement.getShipImage(shipW, shipH, type));
 		setSize(shipW, shipH);
-		updateOccupiedBox();
+		updatePlayerPosition();
 	}
 	
-	public void updateOccupiedBox() {
+	public void updatePlayerPosition() {
 		int currentBoxX = (int) (this.getX() - gridX) / Grid.getBoxSide();
 		int currentBoxY = (int) (this.getY() - gridY) / Grid.getBoxSide();
 
-		if (currentPosition.size() == 0) {
+		if (playerPosition.size() == 0) {
 			for (int i = 0; i < Integer.parseInt(type.substring(0, 1)); i++) {
 				int[] voidBox = {-1, -1};
-				currentPosition.add(voidBox);
+				playerPosition.add(voidBox);
 			}
 		} else if (this.getY() > gridY + gridH  || this.getX() < gridX) {
 			for (int i = 0; i < Integer.parseInt(type.substring(0, 1)); i++) {
-				currentPosition.get(i)[0] = -1;
-				currentPosition.get(i)[1] = -1;
+				playerPosition.get(i)[0] = -1;
+				playerPosition.get(i)[1] = -1;
 			}
 		} else {
 			for (int i = 0; i < Integer.parseInt(type.substring(0, 1)); i++) {
-				currentPosition.get(i)[0] = currentBoxX;
-				currentPosition.get(i)[1] = currentBoxY;
+				playerPosition.get(i)[0] = currentBoxX;
+				playerPosition.get(i)[1] = currentBoxY;
 				switch(type.charAt(type.length() - 2)) {
 					case 'u', 'd':
-						currentPosition.get(i)[1] += i;
+						playerPosition.get(i)[1] += i;
 						break;
 					case 'r', 'l':
-						currentPosition.get(i)[0] += i;
+						playerPosition.get(i)[0] += i;
 						break;
 				};
-				System.out.println(currentPosition.get(i)[0] + ", " + currentPosition.get(i)[1]);
+				System.out.println(playerPosition.get(i)[0] + ", " + playerPosition.get(i)[1]);
 			}
 			System.out.println();
 		}
 	}
-
 }

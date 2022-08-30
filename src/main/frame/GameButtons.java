@@ -122,6 +122,7 @@ public class GameButtons extends FrameProportion{
 					Main.getShips().getNavy().get(i).setLocation(Xpos, 650);
 					Xpos += 50;
 				}
+				Main.getOldScroll().setVisible(false);
 
 				ImagesManagement.getMenuBackground().setVisible(true);
 				ImagesManagement.showTitle();
@@ -146,6 +147,7 @@ public class GameButtons extends FrameProportion{
 					Main.getShips().getNavy().get(i).setLocation(Xpos, 650);
 					Xpos += 50;
 				}
+				Main.getOldScroll().setVisible(false);
 
 				yesSaveBtn.setVisible(false);
 				noSaveBtn.setVisible(false);

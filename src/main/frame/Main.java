@@ -4,23 +4,24 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import resources.*;
 import main.core.Grid;
 import main.core.Ships;
 
 public class Main{
-	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //1536 * 864
+	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 //	public static final int WIDTH = (int)screenSize.getWidth();
 //	public static final int HEIGHT = (int)screenSize.getHeight();
 	public static final int WIDTH = 1536;
 	public static final int HEIGHT = 864;
-	private static JFrame frame = new JFrame("Firy Navy Project");
-	private static Grid playerGrid = new Grid(300, 300, 300, 300, false);
-	private static Grid enemyGrid = new Grid(950, 300, 300, 300, true);
-	private static Ships ships = new Ships();
-
 	private static JPanel mainPanel = new JPanel();	
+	private static JFrame frame = new JFrame("Firy Navy Project");
+	private static JLabel oldScroll = ImagesManagement.getOldScroll(100, 550, 700, 300);
+	private static Grid playerGrid = new Grid(300, 250);
+	private static Ships ships = new Ships();
+	private static Grid enemyGrid = new Grid(950, 250, ships.getNavy());
 
 	/**
 	 * Launch the application.
@@ -71,7 +72,9 @@ public class Main{
 		
 		new GameButtons(mainPanel);
 		new MenuButtons(mainPanel);
-
+		
+		oldScroll.setVisible(false);
+		mainPanel.add(oldScroll);
 		mainPanel.add(ImagesManagement.getTitle());
 		mainPanel.add(ImagesManagement.getMenuBackground());
 		mainPanel.add(ImagesManagement.getGameBackground());
@@ -89,6 +92,10 @@ public class Main{
 	
 	public static JFrame getFrame() {
 		return frame;
+	}
+	
+	public static JLabel getOldScroll() {
+		return oldScroll;
 	}
 	
 	public static JPanel getMainPanel() {

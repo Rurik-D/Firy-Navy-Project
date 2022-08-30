@@ -52,7 +52,7 @@ public class Movement implements MouseListener, MouseMotionListener{
 
 	@Override
 	public void mouseReleased(MouseEvent event) {
-		ship.updateOccupiedBox();
+		ship.updatePlayerPosition();
 		borderCheck();
 	}
 
@@ -77,15 +77,15 @@ public class Movement implements MouseListener, MouseMotionListener{
 		
 		if (gridX < currentX  + 20 && currentX + componentW - 20 < gridX + gridW && gridY < currentY + 20 && currentY + componentH - 20 < gridY + gridH) {
 			boolean occupied = false;
-			if (ship.getCurrentPosition().get(0)[0] != -1) {
+			if (ship.getPlayerPosition().get(0)[0] != -1) {
 				boxOccupied:
 				for (Ships tmpShip : Main.getShips().getNavy()) {
 					//se la nave analizzata non è la nave passata a movement
 					if (ship.getShipIndex() != tmpShip.getShipIndex()) {
 					//	per ogni cella occupata dalla nave
-						for (int[] box : ship.getCurrentPosition()) {
+						for (int[] box : ship.getPlayerPosition()) {
 					//		per ogni cella occupata dalle atre navi
-							for (int[] box2 : tmpShip.getCurrentPosition()) {
+							for (int[] box2 : tmpShip.getPlayerPosition()) {
 					//			se la cella della nava occupa la cella di un'altra nave
 								if (box[0] == box2[0] && box[1] == box2[1]) {
 					//				rimando la nave alla posizione iniziale

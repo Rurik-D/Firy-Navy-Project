@@ -30,70 +30,21 @@ public class ImagesManagement extends FrameProportion {
 	private static JLabel background;
 	private static JLabel menuBackground = setBackground(imagesBundle.getString("image.yamato"));
 	private static JLabel gameBackground = setBackground(imagesBundle.getString("image.worldMap"));
-	private static JLabel gridBackground = setBackground(imagesBundle.getString("image.water"));
+	private static JLabel gridBackground;
+	private static JLabel oldScroll;
 	private static JLabel title = new JLabel("Firy");
 	private static JLabel title1 = new JLabel("Navy");
 	private static JLabel title2 = new JLabel("Project");
 	private static JPanel titlePanel = new JPanel();
 	private static Toolkit kit = Toolkit.getDefaultToolkit();
-	private static Image imageAvatar;	
 	
-	public static JLabel getMenuBackground() {
-		return menuBackground;
-	}
-	
-	public static JLabel getGameBackground() {
-		return gameBackground;
-	}
-	
-	public static JLabel getGridBackground(int x, int y, int width, int height) {
-		BufferedImage img = null;
-		try {
-		    img = ImageIO.read(new File(imagesBundle.getString("image.water")));
-		} catch (IOException e) {
-		    e.printStackTrace();
-		}
-		
-		image = img.getScaledInstance(width, height,Image.SCALE_SMOOTH);
-		ImageIcon imageIcon = new ImageIcon(image);
-		
-		gridBackground = new JLabel(imageIcon);
-		gridBackground.setBounds(x, y, width, height);
-		return gridBackground;
-	}
-	
-	
-	
-	public static JPanel getTitle() {
-		
-		setTitle(title, 0, titleFontDim);
-		setTitle(title1, titleSpacing, titleFontDim);
-		setTitle(title2, titleSpacing*2, titleFontDim);
-		
-		titlePanel.setBounds(titleX, titleY, titleW, titleH);
-		titlePanel.setLayout(null);
-		titlePanel.add(title);
-		titlePanel.add(title1);
-		titlePanel.add(title2);
-		titlePanel.setOpaque(false);
-		return titlePanel;
-	}
 	
 	private static JLabel setBackground(String file) {
-	BufferedImage img = null;
-	try {
-	    img = ImageIO.read(new File(file));
-	} catch (IOException e) {
-	    e.printStackTrace();
+		background = new JLabel(getImage(Main.WIDTH, Main.HEIGHT, file));
+		background.setBounds(0, 0, Main.WIDTH, Main.HEIGHT);
+		return background;
 	}
-	image = img.getScaledInstance(Main.WIDTH, Main.HEIGHT, Image.SCALE_SMOOTH);
-	ImageIcon imageIcon = new ImageIcon(image);
-	
-	background = new JLabel(imageIcon);
-	background.setBounds(0, 0, Main.WIDTH, Main.HEIGHT);
-	return background;
-}
-	
+
 	private static void setTitle(JLabel title, int y, int fontDim) {
 		title.setFont(new Font("Segoe Script", Font.BOLD, fontDim));
 		title.setBounds(0, y, titleLblW, titleLblH);
@@ -117,6 +68,55 @@ public class ImagesManagement extends FrameProportion {
 		});
 	}
 	
+	public static ImageIcon getImage(int w, int h, String file) {
+		BufferedImage img = null;
+		try {
+		    img = ImageIO.read(new File(file));
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+		image = img.getScaledInstance(w, h, Image.SCALE_SMOOTH);
+		return new ImageIcon(image);
+	}
+	
+	public static JLabel getOldScroll(int x, int y, int w, int h) {
+		oldScroll = new JLabel(getImage(w, h, imagesBundle.getString("image.scroll")));
+		oldScroll.setBounds(x, y, w, h);
+		return oldScroll;
+	}
+	
+	public static JLabel getMenuBackground() {
+		return menuBackground;
+	}
+	
+	public static JLabel getGameBackground() {
+		return gameBackground;
+	}
+	
+	public static JLabel getGridBackground(int x, int y, int width, int height) {
+		gridBackground = new JLabel(getImage(width, height, imagesBundle.getString("image.water")));
+		gridBackground.setBounds(x, y, width, height);
+		return gridBackground;
+	}
+	
+	public static JPanel getTitle() {
+		setTitle(title, 0, titleFontDim);
+		setTitle(title1, titleSpacing, titleFontDim);
+		setTitle(title2, titleSpacing*2, titleFontDim);
+		
+		titlePanel.setBounds(titleX, titleY, titleW, titleH);
+		titlePanel.setLayout(null);
+		titlePanel.add(title);
+		titlePanel.add(title1);
+		titlePanel.add(title2);
+		titlePanel.setOpaque(false);
+		return titlePanel;
+	}
+	
+	public static ImageIcon getShipImage(int shipW, int shipH, String type) {
+		return getImage(shipW, shipH, imagesBundle.getString("image." + type));	
+	}
+	
 	public static void showTitle() {
 		title.setVisible(true);
 		title1.setVisible(true);
@@ -131,17 +131,9 @@ public class ImagesManagement extends FrameProportion {
 		titlePanel.setVisible(false);
 	}
 	
-	public static void createAvatarPicture(String file_img, List<ImageIcon> avatarList) {
-		BufferedImage imgShip = null;
-		try {
-		    imgShip = ImageIO.read(new File(file_img));
-		} catch (IOException e) {
-		    e.printStackTrace();
-		}
-		imageAvatar = imgShip.getScaledInstance(avatarSide, avatarSide,Image.SCALE_SMOOTH);
-		ImageIcon iconAvatar = new ImageIcon(imageAvatar);
+	public static void createAvatarPicture(String file, List<ImageIcon> avatarList) {
 		
-		avatarList.add(iconAvatar);
+		avatarList.add(getImage(avatarSide, avatarSide, file));
 	}
 	
 }

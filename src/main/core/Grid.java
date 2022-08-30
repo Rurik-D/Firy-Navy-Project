@@ -3,6 +3,7 @@ package main.core;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -13,45 +14,80 @@ import resources.ImagesManagement;
 
 public class Grid extends JLabel{
 	private char[] letters = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
-	private static int boxSide;
 	private static int lblBorder = 5;
-	
-	public Grid (int x, int y, int w, int h, boolean interactable) {
-	
-	this.setLayout(null);
-	this.setBounds(x, y, w + lblBorder * 2, h + lblBorder * 2);
-	this.setBackground(Color.BLACK);
-	this.setOpaque(true);
-	this.boxSide = (int) w/10;
-	
-	for (int i = 0; i<10; i++) {
-		for (int j = 0; j<10; j++) {
-			JButton box;
+	private final int W = 300;
+	private final int H = 300;
+	private static int boxSide = (int) 300/10;
 
-			box = new JButton("");
-			box.setName("" + letters[j] + i);
-			box.setBounds(boxSide*i + lblBorder, boxSide*j + lblBorder, boxSide, boxSide);
-			box.setOpaque(false);
-			box.setContentAreaFilled(false);
-			box.setVisible(true);
-			box.setBorder(BorderFactory.createLineBorder(Color.GREEN.darker().darker().darker().darker(),1));
-			box.setBorderPainted(true);
-			if (interactable) {
+	
+	public Grid (int x, int y) {
+		setLayout(null);
+		setBounds(x, y, W + lblBorder * 2, H + lblBorder * 2);
+		setOpaque(true);
+		setBackground(Color.BLACK);
+		setVisible(false);
+		boxSide = (int) W/10;
+		
+		for (int i = 0; i<10; i++) {
+			for (int j = 0; j<10; j++) {
+				JButton box;
+				box = new JButton("");
+				box.setName( j + "" + i );
+				box.setBounds(boxSide*i + lblBorder, boxSide*j + lblBorder, boxSide, boxSide);
+				box.setOpaque(false);
+				box.setContentAreaFilled(false);
+				box.setVisible(true);
+				box.setBorder(BorderFactory.createLineBorder(Color.GREEN.darker().darker().darker().darker(),1));
+				box.setBorderPainted(true);
+				box.setEnabled(false);
+				this.add(box);
+			}
+		}
+		add(ImagesManagement.getGridBackground(lblBorder, lblBorder, W, H));
+	}
+	
+	public Grid (int x, int y, List<Ships> navy) {
+		setLayout(null);
+		setBounds(x, y, W + lblBorder * 2, H + lblBorder * 2);
+		setOpaque(true);
+		setBackground(Color.RED.darker().darker().darker());
+		setVisible(false);
+		boxSide = (int) W/10;
+		
+		for (int i = 0; i<10; i++) {
+			for (int j = 0; j<10; j++) {
+				JButton box;
+				box = new JButton("");
+				box.setName( i + "" + j );
+				box.setBounds(boxSide*i + lblBorder, boxSide*j + lblBorder, boxSide, boxSide);
+				box.setOpaque(false);
+				box.setContentAreaFilled(false);
+				box.setVisible(true);
+				box.setBorder(BorderFactory.createLineBorder(Color.GREEN.darker().darker().darker().darker(),1));
+				box.setBorderPainted(true);
 				box.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						System.out.print(box.getName() + " ");
+						boolean hit = false;
+						hit:
+						for (Ships ship : navy) {
+							for (int[] occupiedBox : ship.getPlayerPosition()) {								
+								if ( box.getName().equals(occupiedBox[0] + "" + occupiedBox[1])) {
+									hit = true;
+									break hit;
+								}
+							}
+						}
+						if (hit) {
+							System.out.println(box.getName() + ", colpito!");
+						} else { System.out.println(box.getName() + ", mancato!"); }
 					}
 				});
+				box.setEnabled(false);
+				add(box);
 			}
-			box.setEnabled(interactable);
-			this.add(box);
-			
 		}
-		
-	}
-	this.add(ImagesManagement.getGridBackground(lblBorder, lblBorder, w, h));
-	this.setVisible(false);
+		add(ImagesManagement.getGridBackground(lblBorder, lblBorder, W, H));
 	}
 	
 	public static int getLblBorder() {

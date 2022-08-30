@@ -293,7 +293,8 @@ public class MenuButtons extends FrameProportion{
 				for (int i = 0; i<10; i++) {
 					Main.getShips().getNavy().get(i).setVisible(true);
 				}
-				
+				Main.getOldScroll().setVisible(true);
+
 				boxLabel.setVisible(true);
 				String testo = selectNickname.getText();
 				boxLabel.setText(testo);
