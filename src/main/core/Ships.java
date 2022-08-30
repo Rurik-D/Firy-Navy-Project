@@ -5,24 +5,20 @@ import javax.swing.JLabel;
 import main.frame.Main;
 import resources.ImagesManagement;
 
-import java.awt.Image;
 import java.awt.Point;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.ResourceBundle;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 
 public class Ships extends JLabel{
 	private ResourceBundle imagesBundle = ResourceBundle.getBundle("utils.file/images");
+	private int[][] possiblePositions = new int[10][10];
 	private List<int[]> playerPosition = new ArrayList<>();
-	
+	private List<int[]> randomPosition = new ArrayList<>();
 	private List<Ships> navy = new ArrayList<>();
-	private Image image;
+	private List<List<int[]>> randomNavy = new ArrayList<>();
 	private int xPos = 200;
 	private int yPos = 650;
 	private String type;
@@ -33,8 +29,19 @@ public class Ships extends JLabel{
 	private int shipW = Grid.getBoxSide();
 	private int shipH;
 	private int shipIndex;
+	private Random random = new Random();
 
 	public Ships() {
+		setPossiblePositions();
+		generateRandomNavy();
+		
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++) {
+				System.out.print(possiblePositions[i][j] + " ");
+			}
+			System.out.println();
+		}
+		
 		for(int i = 0; i < 10; i++) {
 			switch (i) {
 				case 0:
@@ -102,6 +109,10 @@ public class Ships extends JLabel{
 		return shipIndex;
 	}
 	
+	public List<List<int[]>> getrandomNavy() {
+		return randomNavy;
+	}
+	
 	private void generateShip() {
 		shipH = Integer.parseInt(type.substring(0, 1)) * shipW;
 		setShipIcon();
@@ -115,6 +126,116 @@ public class Ships extends JLabel{
 		setBounds(xPos, yPos, shipW, shipH);
 	}
 	
+	private void setPossiblePositions() {
+		for(int i = 0; i < 10; i++) {
+			for(int j = 0; j < 10; j++) {
+				possiblePositions[i][j] = 0;		// 0 libero, 1 occupato
+			}
+		}
+	}
+	
+	private void generateRandomNavy() {
+		boolean vertical;
+		boolean occupied;
+		boolean found;
+		int shipSize;
+		int randX;
+		int randY;
+		
+		for (int positioned = 0; positioned < 10; positioned++) {
+			found = false;
+			vertical = random.nextBoolean();
+			// definisco il numero delle caselle della nave selezionata
+			shipSize = switch (positioned) {
+				case 0 				-> 5;
+				case 1 				-> 4;
+				case 2, 3, 4, 5, 6 	-> 3;
+				case 7, 8, 9 		-> 2;
+				default -> 0;
+			};
+			
+			// finché non trovo la posizione
+			positionFound:
+			while (!found) {
+				// genero randomicamente x e y
+				if (vertical) {
+					randX = random.nextInt(0, 9);
+					randY = random.nextInt(0, 9 - shipSize);
+				} else {
+					randX = random.nextInt(0, 9 - shipSize);
+					randY = random.nextInt(0, 9);
+				}
+
+				System.out.println(randX);
+				System.out.println(randY);
+
+				int[] randPoint = {randX, randY};
+				occupied = false;
+				// se il punto generato è libero (altrimenti ne seleziono un altro)
+				if (possiblePositions[randY][randX] == 0) {
+					// se la nave è in verticale
+					if(vertical) {
+						
+						occupiedPoint:
+						for (int i = randY; i < randY + shipSize; i++) {
+							// se il punto è libero aggiungo il punto alla lista e setto a 1 il punto su possiblePositions
+							if (possiblePositions[i][randX] == 0) {
+								possiblePositions[i][randX] = positioned+1;
+								randomPosition.add(randPoint);
+							// se il punto è occupato svuoto la lista e resetto i punti su possiblePositions
+							} else {
+								occupied = true;
+								randomPosition.clear();
+								for (int j = randY; i < randY + shipSize; j++) {
+									possiblePositions[j][randX] = 0;
+									break occupiedPoint;
+								}
+							}
+							// se la linea di punti non è occupata
+						}
+						if (!occupied) {
+							List<int[]> tmpRandPos = new ArrayList<>();
+							tmpRandPos = randomPosition;
+							randomNavy.add(tmpRandPos);
+							randomPosition.clear();
+							found = true;
+							break positionFound;
+						}
+						
+					// se la nave è in orizzontale
+					} else {
+						
+						occupiedPoint:
+						for (int i = randX; i < randX + shipSize; i++) {
+							// se il punto è libero aggiungo il punto alla lista e setto a 1 il punto su possiblePositions
+							if (possiblePositions[randY][i] == 0) {
+								possiblePositions[randY][i] = positioned+1;
+								randomPosition.add(randPoint);
+							// se il punto è occupato svuoto la lista e resetto i punti su possiblePositions
+							} else {
+								occupied = true;
+								randomPosition.clear();
+								for (int j = randX; j < randX + shipSize; j++) {
+									possiblePositions[randY][j] = 0;
+									break occupiedPoint;
+								}
+							}
+							// se la linea di punti non è occupata
+						}
+						if (!occupied) {
+							List<int[]> tmpRandPos = new ArrayList<>();
+							tmpRandPos = randomPosition;
+							randomNavy.add(tmpRandPos);
+							randomPosition.clear();
+							found = true;
+							break positionFound;
+						}
+						
+					}
+				}
+			}
+		}
+	}
 	
     public void resetLocation(Point p) {
 		if (shipW > shipH) {
@@ -127,7 +248,6 @@ public class Ships extends JLabel{
 		
 		setIcon(ImagesManagement.getImage(shipW, shipH, imagesBundle.getString("image." + type)));
 		updatePlayerPosition();
-
 			
     }
 	
@@ -148,8 +268,8 @@ public class Ships extends JLabel{
 	}
 	
 	public void updatePlayerPosition() {
-		int currentBoxX = (int) (this.getX() - gridX) / Grid.getBoxSide();
-		int currentBoxY = (int) (this.getY() - gridY) / Grid.getBoxSide();
+		int currentBoxX = (int) (this.getX() - gridX) / boxSide;
+		int currentBoxY = (int) (this.getY() - gridY) / boxSide;
 
 		if (playerPosition.size() == 0) {
 			for (int i = 0; i < Integer.parseInt(type.substring(0, 1)); i++) {
