@@ -203,15 +203,15 @@ public class GameButtons extends FrameProportion{
 		
 		confirmSetupBtn.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-//				if (enable)  {
+				if (enable)  {
 					confirmSetupBtn.setVisible(false);
 					Main.getOldScroll().setVisible(false);
 					SoundsManagement.clickMenuBtn();
 					Main.getEnemyGrid().setAttackGrid(Main.getShips().getrandomNavy());
-//				} else {
-//					// da implementare !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//					System.out.println("che cabbo fai?");
-//				}
+				} else {
+					// da implementare !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+					System.out.println("che cabbo fai?");
+				}
 
 			}
 		});
