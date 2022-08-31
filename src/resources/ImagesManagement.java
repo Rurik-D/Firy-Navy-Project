@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -115,6 +116,10 @@ public class ImagesManagement extends FrameProportion {
 	
 	public static ImageIcon getShipImage(int shipW, int shipH, String type) {
 		return getImage(shipW, shipH, imagesBundle.getString("image." + type));	
+	}
+	
+	public static Icon getHitLbl(int boxSide) {
+		return getImage(boxSide, boxSide, imagesBundle.getString("image.hit"));	
 	}
 	
 	public static void showTitle() {

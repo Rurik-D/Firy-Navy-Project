@@ -57,6 +57,14 @@ public class Grid extends JLabel{
 		for (int i = 0; i<10; i++) {
 			for (int j = 0; j<10; j++) {
 				JButton box;
+				JLabel hitLbl;
+				
+				hitLbl = new JLabel("");
+				hitLbl.setName( i + "" + j );
+				hitLbl.setBounds(boxSide*i + lblBorder, boxSide*j + lblBorder, boxSide, boxSide);
+				hitLbl.setVisible(false);
+				hitLbl.setIcon(ImagesManagement.getHitLbl(boxSide));
+				
 				box = new JButton("");
 				box.setName( i + "" + j );
 				box.setBounds(boxSide*i + lblBorder, boxSide*j + lblBorder, boxSide, boxSide);
@@ -74,6 +82,7 @@ public class Grid extends JLabel{
 							for (int[] occupiedBox : ship.getPlayerPosition()) {								
 								if ( box.getName().equals(occupiedBox[0] + "" + occupiedBox[1])) {
 									hit = true;
+									hitLbl.setVisible(true);
 									break hit;
 								}
 							}
@@ -81,9 +90,11 @@ public class Grid extends JLabel{
 						if (hit) {
 							System.out.println(box.getName() + ", colpito!");
 						} else { System.out.println(box.getName() + ", mancato!"); }
+						
+						box.setVisible(false);
 					}
 				});
-				box.setEnabled(false);
+				add(hitLbl);
 				add(box);
 			}
 		}

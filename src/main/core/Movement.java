@@ -52,8 +52,8 @@ public class Movement implements MouseListener, MouseMotionListener{
 
 	@Override
 	public void mouseReleased(MouseEvent event) {
-		ship.updatePlayerPosition();
 		borderCheck();
+		ship.updatePlayerPosition();
 	}
 
 	@Override

@@ -118,7 +118,8 @@ public class Ships extends JLabel{
 		setShipIcon();
 		setVisible(false);
 		updatePlayerPosition();
-		new Movement(this, new Point(xPos, yPos));
+		Movement move = new Movement(this, new Point(xPos, yPos));
+		move = null;
 	}
 	
 	private void setShipIcon() {
@@ -275,11 +276,13 @@ public class Ships extends JLabel{
 			for (int i = 0; i < Integer.parseInt(type.substring(0, 1)); i++) {
 				int[] voidBox = {-1, -1};
 				playerPosition.add(voidBox);
+				System.out.println(playerPosition.get(i)[0] + ", " + playerPosition.get(i)[1]);
 			}
 		} else if (this.getY() > gridY + gridH  || this.getX() < gridX) {
 			for (int i = 0; i < Integer.parseInt(type.substring(0, 1)); i++) {
 				playerPosition.get(i)[0] = -1;
 				playerPosition.get(i)[1] = -1;
+				System.out.println(playerPosition.get(i)[0] + ", " + playerPosition.get(i)[1]);
 			}
 		} else {
 			for (int i = 0; i < Integer.parseInt(type.substring(0, 1)); i++) {
