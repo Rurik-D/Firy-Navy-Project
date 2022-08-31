@@ -119,7 +119,6 @@ public class Ships extends JLabel{
 		setVisible(false);
 		updatePlayerPosition();
 		Movement move = new Movement(this, new Point(xPos, yPos));
-		move = null;
 	}
 	
 	private void setShipIcon() {
