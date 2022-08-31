@@ -4,8 +4,9 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.List;
 
-import main.frame.Main;
+import main.frame.GameButtons;
 
 public class Movement implements MouseListener, MouseMotionListener{
 	private int X, Y;
@@ -53,7 +54,18 @@ public class Movement implements MouseListener, MouseMotionListener{
 	@Override
 	public void mouseReleased(MouseEvent event) {
 		borderCheck();
-		ship.updatePlayerPosition();
+		ship.updateShipPosition();
+		borderCheck();
+		// controllo se ogni nave è stata posizionata, nel caso attivo il bottone per confermare il setup delle navi
+		boolean allPositioned = true;
+		for (Ships s : Main.getShips().getNavy()) {
+			if (s.getShipPosition().get(0)[0] == -1) {
+				allPositioned = false;
+				break;
+			}
+		}
+		GameButtons.setConfirmSetupEnabled(allPositioned);
+
 	}
 
 	@Override
@@ -77,15 +89,15 @@ public class Movement implements MouseListener, MouseMotionListener{
 		
 		if (gridX < currentX  + 20 && currentX + componentW - 20 < gridX + gridW && gridY < currentY + 20 && currentY + componentH - 20 < gridY + gridH) {
 			boolean occupied = false;
-			if (ship.getPlayerPosition().get(0)[0] != -1) {
+			if (ship.getShipPosition().get(0)[0] != -1) {
 				boxOccupied:
 				for (Ships tmpShip : Main.getShips().getNavy()) {
 					//se la nave analizzata non è la nave passata a movement
 					if (ship.getShipIndex() != tmpShip.getShipIndex()) {
 					//	per ogni cella occupata dalla nave
-						for (int[] box : ship.getPlayerPosition()) {
+						for (int[] box : ship.getShipPosition()) {
 					//		per ogni cella occupata dalle atre navi
-							for (int[] box2 : tmpShip.getPlayerPosition()) {
+							for (int[] box2 : tmpShip.getShipPosition()) {
 					//			se la cella della nava occupa la cella di un'altra nave
 								if (box[0] == box2[0] && box[1] == box2[1]) {
 					//				rimando la nave alla posizione iniziale

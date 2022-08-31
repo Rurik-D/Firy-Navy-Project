@@ -17,12 +17,11 @@ import java.util.ResourceBundle;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import main.frame.Main;
+import main.core.Main;
 import utils.FrameProportion;
 
 public class ImagesManagement extends FrameProportion {
@@ -38,6 +37,10 @@ public class ImagesManagement extends FrameProportion {
 	private static JLabel title2 = new JLabel("Project");
 	private static JPanel titlePanel = new JPanel();
 	private static Toolkit kit = Toolkit.getDefaultToolkit();
+	private static Font font = new Font("Segoe Script", Font.BOLD, fontDim);
+	private static Font textFont = new Font("Segoe Script", Font.BOLD, 20);
+
+
 	
 	
 	private static JLabel setBackground(String file) {
@@ -118,6 +121,10 @@ public class ImagesManagement extends FrameProportion {
 		return getImage(shipW, shipH, imagesBundle.getString("image." + type));	
 	}
 	
+	public static Font getTextFont() {
+		return textFont;	
+	}
+	
 	public static Icon getHitLbl(int boxSide) {
 		return getImage(boxSide, boxSide, imagesBundle.getString("image.hit"));	
 	}
@@ -140,5 +147,6 @@ public class ImagesManagement extends FrameProportion {
 		
 		avatarList.add(getImage(avatarSide, avatarSide, file));
 	}
+	
 	
 }

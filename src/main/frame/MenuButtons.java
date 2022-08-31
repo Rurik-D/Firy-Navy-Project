@@ -18,11 +18,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.Timer;
 
-import resources.*;
-import utils.*;
-
 import java.util.Locale;
 import java.util.ResourceBundle;
+
+import resources.*;
+import utils.*;
+import main.core.Main;
 
 public class MenuButtons extends FrameProportion{
 	
@@ -271,6 +272,7 @@ public class MenuButtons extends FrameProportion{
 				
 			}
 		});	
+		
 		startGameBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -287,6 +289,7 @@ public class MenuButtons extends FrameProportion{
 				ImagesManagement.getMenuBackground().setVisible(false);
 				ImagesManagement.hideTitle();
 				GameButtons.getGameOptionBtn().setVisible(true);
+				GameButtons.getConfirmSetupBtn().setVisible(true);
 				Main.getPlayerGrid().setVisible(true);
 				Main.getEnemyGrid().setVisible(true);
 				
@@ -294,6 +297,7 @@ public class MenuButtons extends FrameProportion{
 					Main.getShips().getNavy().get(i).setVisible(true);
 				}
 				Main.getOldScroll().setVisible(true);
+				Main.getScrollPnl().setVisible(true);
 
 				boxLabel.setVisible(true);
 				String testo = selectNickname.getText();

@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.border.Border;
@@ -17,8 +18,8 @@ public class Grid extends JLabel{
 	private static int lblBorder = 5;
 	private final int W = 300;
 	private final int H = 300;
+	private JLabel attackGridCover = ImagesManagement.getGridBackground(lblBorder, lblBorder, W, H);
 	private static int boxSide = (int) 300/10;
-
 	
 	public Grid (int x, int y) {
 		setLayout(null);
@@ -26,8 +27,34 @@ public class Grid extends JLabel{
 		setOpaque(true);
 		setBackground(Color.BLACK);
 		setVisible(false);
-		boxSide = (int) W/10;
+		setNavyGrid();
 		
+	}
+	
+	public Grid (int x, int y, List<List<int[]>> computerNavy) {
+		setLayout(null);
+		setBounds(x, y, W + lblBorder * 2, H + lblBorder * 2);
+		setOpaque(true);
+		setBackground(Color.RED.darker().darker().darker());
+		setVisible(false);
+		add(attackGridCover);
+
+	}
+	
+	public static int getLblBorder() {
+		return lblBorder;
+	}
+	
+	public static int getBoxSide() {
+		return boxSide;
+	}
+	
+	
+	public Grid getGrid() {
+		return this;
+	}
+	
+	private  void setNavyGrid() {
 		for (int i = 0; i<10; i++) {
 			for (int j = 0; j<10; j++) {
 				JButton box;
@@ -46,14 +73,8 @@ public class Grid extends JLabel{
 		add(ImagesManagement.getGridBackground(lblBorder, lblBorder, W, H));
 	}
 	
-	public Grid (int x, int y, List<Ships> navy) {
-		setLayout(null);
-		setBounds(x, y, W + lblBorder * 2, H + lblBorder * 2);
-		setOpaque(true);
-		setBackground(Color.RED.darker().darker().darker());
-		setVisible(false);
-		boxSide = (int) W/10;
-		
+	public void setAttackGrid(List<List<int[]>> computerNavy) {		
+		attackGridCover.setVisible(false);
 		for (int i = 0; i<10; i++) {
 			for (int j = 0; j<10; j++) {
 				JButton box;
@@ -78,8 +99,9 @@ public class Grid extends JLabel{
 					public void mouseClicked(MouseEvent e) {
 						boolean hit = false;
 						hit:
-						for (Ships ship : navy) {
-							for (int[] occupiedBox : ship.getPlayerPosition()) {								
+						for (List<int[]> ship: computerNavy) {
+							for (int[] occupiedBox : ship) {	
+
 								if ( box.getName().equals(occupiedBox[0] + "" + occupiedBox[1])) {
 									hit = true;
 									hitLbl.setVisible(true);
@@ -99,13 +121,5 @@ public class Grid extends JLabel{
 			}
 		}
 		add(ImagesManagement.getGridBackground(lblBorder, lblBorder, W, H));
-	}
-	
-	public static int getLblBorder() {
-		return lblBorder;
-	}
-	
-	public static int getBoxSide() {
-		return boxSide;
 	}
 }

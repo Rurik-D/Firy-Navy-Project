@@ -1,6 +1,6 @@
 package utils;
 
-import main.frame.Main;
+import main.core.Main;
 
 public abstract class FrameProportion{
 		
