@@ -247,12 +247,13 @@ public class MenuButtons extends FrameProportion{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				SoundsManagement.clickMenuBtn();
-				String testo = selectNickname.getText();
+				String text = selectNickname.getText();
 
-				if (testo.length() > 0) {
+				if (text.length() > 0) {
+					Main.getText().setPlayerName(1, text);
 					selectNickname.setEditable(false);
 				}
-				if (!testo.equals("")) {
+				if (!text.equals("")) {
 					for (int i = 0; i<6; i++) {
 						avatarBtns.get(i).setVisible(true);
 					}

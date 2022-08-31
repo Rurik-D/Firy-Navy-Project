@@ -38,7 +38,6 @@ public class ImagesManagement extends FrameProportion {
 	private static JPanel titlePanel = new JPanel();
 	private static Toolkit kit = Toolkit.getDefaultToolkit();
 	private static Font font = new Font("Segoe Script", Font.BOLD, fontDim);
-	private static Font textFont = new Font("Segoe Script", Font.BOLD, 20);
 
 
 	
@@ -119,10 +118,6 @@ public class ImagesManagement extends FrameProportion {
 	
 	public static ImageIcon getShipImage(int shipW, int shipH, String type) {
 		return getImage(shipW, shipH, imagesBundle.getString("image." + type));	
-	}
-	
-	public static Font getTextFont() {
-		return textFont;	
 	}
 	
 	public static Icon getHitLbl(int boxSide) {

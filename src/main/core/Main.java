@@ -3,7 +3,6 @@ package main.core;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.Font;
 import java.awt.Toolkit;
 
 import javax.swing.BorderFactory;
@@ -11,7 +10,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 
 import resources.*;
 import main.frame.*;
@@ -26,12 +24,11 @@ public class Main{
 	private static JPanel mainPanel = new JPanel();	
 	private static JFrame frame = new JFrame("Firy Navy Project");
 	private static JLabel oldScroll = ImagesManagement.getOldScroll(100, 550, 700, 300);
-	private static Grid playerGrid = new Grid(300, 230);
+	private static Grid playerGrid = new Grid(300, 200);
 	private static Ships ships = new Ships();
-	private static Grid enemyGrid = new Grid(950, 230, ships.getrandomNavy());
-	private static JTextArea textArea = new JTextArea(100, 100);
-	private static JScrollPane scrollPnl = new JScrollPane(textArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-	private Font font = ImagesManagement.getTextFont();
+	private static Grid enemyGrid = new Grid(950, 200, ships.getrandomNavy());
+	private static TextManagement text = new TextManagement();
+	private static JScrollPane scrollPnl = new JScrollPane(text.getTextArea(), JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
 	/**
 	 * Launch the application.
@@ -62,7 +59,6 @@ public class Main{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		
 		frame.getContentPane().add(mainPanel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(WIDTH, HEIGHT); 
@@ -82,13 +78,9 @@ public class Main{
 		
 		new GameButtons(mainPanel);
 		new MenuButtons(mainPanel);
-		
-		textArea.setLineWrap(true);
-		textArea.setWrapStyleWord(true);		
-		textArea.setBackground(new Color(209, 191, 138));
-		textArea.setFont(font);
+
+		text.setTextArea();
 		mainPanel.add(scrollPnl);
-		
 		scrollPnl.setBackground(Color.YELLOW.darker().darker());
 		scrollPnl.setBounds(860, 560, 500, 280);
 		scrollPnl.setBorder(BorderFactory.createLineBorder(new Color(209, 191, 138).darker().darker().darker(), 5));
@@ -137,5 +129,9 @@ public class Main{
 	
 	public static JScrollPane getScrollPnl() {
 		return scrollPnl;
+	}
+	
+	public static TextManagement getText() {
+		return text;
 	}
 }
