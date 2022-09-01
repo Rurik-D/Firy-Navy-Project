@@ -88,7 +88,7 @@ public class Movement implements MouseListener, MouseMotionListener{
 		int currentBoxX;
 		int currentBoxY;
 		
-		if (gridX - 20 < currentX && currentX + shipW - 20 < gridX + gridW && gridY - 20  < currentY && currentY + shipH - 20 < gridY + gridH) {
+		if (gridX - 20 < currentX && currentX + shipW + paramBorder - 20 < gridX + gridW && gridY - 20  < currentY && currentY + shipH + paramBorder  - 20 < gridY + gridH) {
 			boolean occupied = false;
 			if (ship.getShipPosition().get(0)[0] != -1) {
 				boxOccupied:

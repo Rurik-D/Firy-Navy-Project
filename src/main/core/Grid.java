@@ -29,6 +29,7 @@ public class Grid extends JLabel{
 	private Color backgroundColor = Color.orange.darker().darker().darker().darker().darker();
 	private List<JLabel> missList = new ArrayList<>();
 	private List<JLabel> hitList = new ArrayList<>();
+	private List<int[]> randAttacksMade = new ArrayList<>();
 	private Random random = new Random();
 	private Grid navyGrid;
 	
@@ -88,13 +89,13 @@ public class Grid extends JLabel{
 				JLabel missLbl;
 				
 				hitLbl = new JLabel("");
-				hitLbl.setName( i + "" + j );
+				hitLbl.setName( letters[j] +  "" + i );
 				hitLbl.setBounds(boxSide*i + parameterBorder, boxSide*j + parameterBorder, boxSide, boxSide);
 				hitLbl.setVisible(false);
 				hitLbl.setIcon(ImagesManagement.getHitLbl(boxSide));
 				
 				missLbl = new JLabel("");
-				missLbl.setName( i + "" + j );
+				missLbl.setName( letters[j] +  "" + i );
 				missLbl.setBounds(boxSide*i + parameterBorder, boxSide*j + parameterBorder, boxSide, boxSide);
 				missLbl.setVisible(false);
 				missLbl.setIcon(ImagesManagement.getMisLbl(boxSide));
@@ -129,12 +130,19 @@ public class Grid extends JLabel{
 			for (int j = 0; j<10; j++) {
 				JButton box;
 				JLabel hitLbl;
+				JLabel missLbl;
 				
 				hitLbl = new JLabel("");
 				hitLbl.setName( i + "" + j );
 				hitLbl.setBounds(boxSide*i + parameterBorder, boxSide*j + parameterBorder, boxSide, boxSide);
 				hitLbl.setVisible(false);
 				hitLbl.setIcon(ImagesManagement.getHitLbl(boxSide));
+				
+				missLbl = new JLabel("");
+				missLbl.setName( letters[j] +  "" + i );
+				missLbl.setBounds(boxSide*i + parameterBorder, boxSide*j + parameterBorder, boxSide, boxSide);
+				missLbl.setVisible(false);
+				missLbl.setIcon(ImagesManagement.getMisLbl(boxSide));
 				
 				box = new JButton("");
 				box.setName( letters[j] +  "" + i );
@@ -153,22 +161,39 @@ public class Grid extends JLabel{
 							for (int[] occupiedBox : ship) {	
 
 								if ( box.getName().equals(letters[occupiedBox[1]] + "" + occupiedBox[0])) {
-									String coordinates = box.getName();
 									hit = true;
-									text.hitMessage(1, coordinates);
-									hitLbl.setVisible(true);
 									break hit;
 								}
 							}
 						}
-						if (!hit) { text.missMessage(1, box.getName()); }
+						if (hit) { 
+							text.hitMessage(1, box.getName());
+							hitLbl.setVisible(true);
+						} else {
+							text.missMessage(1, box.getName()); 
+							missLbl.setVisible(true);
+						}
 						
 						box.setVisible(false);
 						
 						///// IMPLEMENTARE ATTACCO DEL COMPUTER
-						int [] randAttack = {random.nextInt(0, 9), random.nextInt(0, 9)};
+						int [] randAttack = new int[2];
 						boolean hitted = false;
+						boolean startAttack = false;
 						
+						while(!startAttack) {
+							startAttack = true;
+							randAttack[0] = random.nextInt(0, 9);
+							randAttack[1] = random.nextInt(0, 9);
+							for (int[] oldAttack : randAttacksMade) {
+								if ( randAttack[0] == oldAttack[0] && randAttack[1] == oldAttack[1] ) {
+									startAttack = false;
+									break;
+								}
+							}
+						}
+
+						randAttacksMade.add(randAttack);
 //						try {
 //							Clock clock = new Clock();
 //							clock.wait(2000);
@@ -176,21 +201,35 @@ public class Grid extends JLabel{
 //							e1.printStackTrace();
 //						}
 						
+						// per ogni nave nella flotta del giocatore
+						hit:
 						for (Ships ship : playerNavy) {
+							// per ogni casella occupata dalla nave
 							for (int[] shipPos : ship.getShipPosition()) {
-								if (randAttack == shipPos) {
-									navyGrid.getHitList().get(randAttack[0] * 10 + randAttack[1] - 1).setVisible(true);
-									text.hitMessage(2, coordinates);
+								System.out.println(randAttack[0] + ", " + randAttack[1] + " = " + shipPos[0] + ", " + shipPos[1] + " ?");
+								
+								// se la casella occupata dalla nave è uguale alla casella colpita dal computer
+								if (randAttack[0] == shipPos[0] && randAttack[1] == shipPos[1]) {
+									hitted = true;
+									break hit;
 								}
 							}
 
 						}
-						
+						System.out.println(randAttack[0] + ", " + randAttack[1]);
+						if (hitted) {
+							navyGrid.getHitList().get(randAttack[0] * 10 + randAttack[1]).setVisible(true);
+							text.hitMessage(2, letters[randAttack[1]] + "" + randAttack[0]);
+						} else { 
+							navyGrid.getMissList().get(randAttack[0] * 10 + randAttack[1]).setVisible(true);
+							text.missMessage(2, letters[randAttack[1]] + "" + randAttack[0]); 
+						}
 						
 						
 						
 					}
 				});
+				add(missLbl);
 				add(hitLbl);
 				add(box);
 			}
