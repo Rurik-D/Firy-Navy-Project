@@ -9,10 +9,8 @@ import java.util.List;
 import java.util.Random;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.border.Border;
 
 import resources.ImagesManagement;
 import resources.TextManagement;
