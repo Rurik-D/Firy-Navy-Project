@@ -181,8 +181,8 @@ public class Grid extends JLabel{
 						
 						while(!startAttack) {
 							startAttack = true;
-							randAttack[0] = random.nextInt(0, 9);
-							randAttack[1] = random.nextInt(0, 9);
+							randAttack[0] = random.nextInt(0, 10);
+							randAttack[1] = random.nextInt(0, 10);
 							for (int[] oldAttack : randAttacksMade) {
 								if ( randAttack[0] == oldAttack[0] && randAttack[1] == oldAttack[1] ) {
 									startAttack = false;
