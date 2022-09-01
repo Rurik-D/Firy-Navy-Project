@@ -26,7 +26,7 @@ public class Main{
 	private static JLabel oldScroll = ImagesManagement.getOldScroll(100, 550, 700, 300);
 	private static Grid playerGrid = new Grid(300, 200);
 	private static Ships ships = new Ships();
-	private static Grid enemyGrid = new Grid(950, 200, ships.getrandomNavy());
+	private static Grid enemyGrid = new Grid(950, 200, playerGrid);
 	private static TextManagement text = new TextManagement();
 	private static JScrollPane scrollPnl = new JScrollPane(text.getTextArea(), JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 

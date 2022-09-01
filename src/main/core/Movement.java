@@ -114,6 +114,7 @@ public class Movement implements MouseListener, MouseMotionListener{
 			if (!occupied) {
 				currentBoxX = ((int) (currentX - gridX) / boxSide) * boxSide + gridX;
 				currentBoxY = ((int) (currentY - gridY) / boxSide) * boxSide + gridY;
+
 				ship.setLocation(currentBoxX, currentBoxY);
 			}
 		} else {

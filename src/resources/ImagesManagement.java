@@ -37,9 +37,6 @@ public class ImagesManagement extends FrameProportion {
 	private static JLabel title2 = new JLabel("Project");
 	private static JPanel titlePanel = new JPanel();
 	private static Toolkit kit = Toolkit.getDefaultToolkit();
-	private static Font font = new Font("Segoe Script", Font.BOLD, fontDim);
-
-
 	
 	
 	private static JLabel setBackground(String file) {
@@ -124,6 +121,10 @@ public class ImagesManagement extends FrameProportion {
 		return getImage(boxSide, boxSide, imagesBundle.getString("image.hit"));	
 	}
 	
+	public static Icon getMisLbl(int boxSide) {
+		return getImage(boxSide, boxSide, imagesBundle.getString("image.miss"));	
+	}
+	
 	public static void showTitle() {
 		title.setVisible(true);
 		title1.setVisible(true);
@@ -142,6 +143,5 @@ public class ImagesManagement extends FrameProportion {
 		
 		avatarList.add(getImage(avatarSide, avatarSide, file));
 	}
-	
 	
 }

@@ -4,7 +4,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -14,17 +16,23 @@ import javax.swing.border.Border;
 
 import resources.ImagesManagement;
 import resources.TextManagement;
+import java.time.Clock;
 
 public class Grid extends JLabel{
 	private char[] letters = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
 	private static int lblBorder = 5;
 	private static int parameterBorder = 30;
+	private static int boxSide = (int) 300/10;
 	private final int W = 300;
 	private final int H = 300;
 	private JLabel attackGridCover = ImagesManagement.getGridBackground(parameterBorder, parameterBorder, W, H);
 	private Color backgroundColor = Color.orange.darker().darker().darker().darker().darker();
-	private static int boxSide = (int) 300/10;
+	private List<JLabel> missList = new ArrayList<>();
+	private List<JLabel> hitList = new ArrayList<>();
+	private Random random = new Random();
+	private Grid navyGrid;
 	
+	// player grid constructor
 	public Grid (int x, int y) {
 		addParameters();
 		setLayout(null);
@@ -33,10 +41,11 @@ public class Grid extends JLabel{
 		setBackground(backgroundColor);
 		setVisible(false);
 		setNavyGrid();
-		
 	}
 	
-	public Grid (int x, int y, List<List<int[]>> computerNavy) {
+	// attack grid constructor
+	public Grid (int x, int y, Grid navyGrid) {
+		this.navyGrid = navyGrid;
 		addParameters();
 		setLayout(null);
 		setBounds(x, y, W + parameterBorder + lblBorder, H + parameterBorder + lblBorder);
@@ -44,7 +53,6 @@ public class Grid extends JLabel{
 		setBackground(backgroundColor);
 		setVisible(false);
 		add(attackGridCover);
-
 	}
 	
 	public static int getLblBorder() {
@@ -55,7 +63,6 @@ public class Grid extends JLabel{
 		return boxSide;
 	}
 	
-	
 	public Grid getGrid() {
 		return this;
 	}
@@ -64,26 +71,57 @@ public class Grid extends JLabel{
 		return parameterBorder;
 	}
 	
+	public List<JLabel> getHitList() {
+		return hitList;
+	}
+	
+	public List<JLabel> getMissList() {
+		return missList;
+	}
+	
+	
 	private  void setNavyGrid() {
 		for (int i = 0; i<10; i++) {
 			for (int j = 0; j<10; j++) {
 				JButton box;
+				JLabel hitLbl;
+				JLabel missLbl;
+				
+				hitLbl = new JLabel("");
+				hitLbl.setName( i + "" + j );
+				hitLbl.setBounds(boxSide*i + parameterBorder, boxSide*j + parameterBorder, boxSide, boxSide);
+				hitLbl.setVisible(false);
+				hitLbl.setIcon(ImagesManagement.getHitLbl(boxSide));
+				
+				missLbl = new JLabel("");
+				missLbl.setName( i + "" + j );
+				missLbl.setBounds(boxSide*i + parameterBorder, boxSide*j + parameterBorder, boxSide, boxSide);
+				missLbl.setVisible(false);
+				missLbl.setIcon(ImagesManagement.getMisLbl(boxSide));
+				
 				box = new JButton("");
 				box.setName( letters[j] +  "" + i );
 				box.setBounds(boxSide*i + parameterBorder, boxSide*j + parameterBorder, boxSide, boxSide);
 				box.setOpaque(false);
 				box.setContentAreaFilled(false);
 				box.setVisible(true);
-				box.setBorder(BorderFactory.createLineBorder(Color.GREEN.darker().darker().darker().darker(),1));
+				box.setBorder(BorderFactory.createLineBorder(Color.GREEN.darker().darker().darker().darker(), 1));
 				box.setBorderPainted(true);
 				box.setEnabled(false);
-				this.add(box);
+				
+				add(missLbl);
+				add(hitLbl);
+				add(box);
+				
+				hitList.add(hitLbl);
+				missList.add(missLbl);
+				
 			}
 		}
 		add(ImagesManagement.getGridBackground(parameterBorder, parameterBorder, W, H));
 	}
 	
-	public void setAttackGrid(List<List<int[]>> computerNavy) {	
+	public void setAttackGrid(List<List<int[]>> computerNavy, List<Ships> playerNavy) {	
 		TextManagement text = Main.getText();
 		attackGridCover.setVisible(false);
 		
@@ -126,6 +164,31 @@ public class Grid extends JLabel{
 						if (!hit) { text.missMessage(1, box.getName()); }
 						
 						box.setVisible(false);
+						
+						///// IMPLEMENTARE ATTACCO DEL COMPUTER
+						int [] randAttack = {random.nextInt(0, 9), random.nextInt(0, 9)};
+						boolean hitted = false;
+						
+//						try {
+//							Clock clock = new Clock();
+//							clock.wait(2000);
+//						} catch (InterruptedException e1) {
+//							e1.printStackTrace();
+//						}
+						
+						for (Ships ship : playerNavy) {
+							for (int[] shipPos : ship.getShipPosition()) {
+								if (randAttack == shipPos) {
+									navyGrid.getHitList().get(randAttack[0] * 10 + randAttack[1] - 1).setVisible(true);
+									text.hitMessage(2, coordinates);
+								}
+							}
+
+						}
+						
+						
+						
+						
 					}
 				});
 				add(hitLbl);

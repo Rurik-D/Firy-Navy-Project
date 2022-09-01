@@ -207,7 +207,7 @@ public class GameButtons extends FrameProportion{
 					confirmSetupBtn.setVisible(false);
 					Main.getOldScroll().setVisible(false);
 					SoundsManagement.clickMenuBtn();
-					Main.getEnemyGrid().setAttackGrid(Main.getShips().getrandomNavy());
+					Main.getEnemyGrid().setAttackGrid(Main.getShips().getrandomNavy(), Main.getShips().getNavy());
 					Main.getText().confirmSetupMessage();;
 				} else {
 					Main.getText().notConfirmMessage();

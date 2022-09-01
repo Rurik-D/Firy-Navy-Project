@@ -114,6 +114,7 @@ public class MenuButtons extends FrameProportion{
 		pveBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SoundsManagement.clickMenuBtn();
+				Main.getText().setPlayerName(2, "Computer");
 				pvpBtn.setVisible(false);
 				pveBtn.setVisible(false);
 				backToMenuBtn.setVisible(false);
