@@ -205,9 +205,7 @@ public class Grid extends JLabel{
 						hit:
 						for (Ships ship : playerNavy) {
 							// per ogni casella occupata dalla nave
-							for (int[] shipPos : ship.getShipPosition()) {
-								System.out.println(randAttack[0] + ", " + randAttack[1] + " = " + shipPos[0] + ", " + shipPos[1] + " ?");
-								
+							for (int[] shipPos : ship.getShipPosition()) {								
 								// se la casella occupata dalla nave è uguale alla casella colpita dal computer
 								if (randAttack[0] == shipPos[0] && randAttack[1] == shipPos[1]) {
 									hitted = true;
