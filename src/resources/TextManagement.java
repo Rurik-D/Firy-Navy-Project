@@ -59,18 +59,33 @@ public class TextManagement{
 		textArea.setText(text);
 	}
 	
+	public void confirmSetupMessage() {
+		text += "\nSETUP CONFIRMED, prepare for war!\n";
+		textArea.setText(text);
+	}
+	
+	public void addText(String textToAdd) {
+		text += "\n"+ textToAdd +"\n";
+		textArea.setText(text);
+	}
+	
+	public void notConfirmMessage() {
+		text += "\nPlace the ships before pressing confirm.\n";
+		textArea.setText(text);
+	}
+	
 	public void hitMessage(int player, String coordinates) {
-		text = text + getPlayer(player) + " :  " + coordinates + " , hit!\n";
+		text += getPlayer(player) + " :  " + coordinates + " , hit!\n";
 		textArea.setText(text);
 	}
 	
 	public void missMessage(int player, String coordinates) {
-		text = text + getPlayer(player) + " :  " + coordinates + " , miss\n";
+		text += getPlayer(player) + " :  " + coordinates + " , miss\n";
 		textArea.setText(text);
 	}
 	
 	public void sunkMessage(int player) {
-		text = text + getPlayer(player) + " : " + "hit ad sunk!\n";
+		text += getPlayer(player) + " : " + "hit ad sunk!\n";
 		textArea.setText(text);
 	}
 	

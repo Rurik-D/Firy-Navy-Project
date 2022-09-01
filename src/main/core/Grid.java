@@ -60,6 +60,10 @@ public class Grid extends JLabel{
 		return this;
 	}
 	
+	public int getParameterBorder() {
+		return parameterBorder;
+	}
+	
 	private  void setNavyGrid() {
 		for (int i = 0; i<10; i++) {
 			for (int j = 0; j<10; j++) {

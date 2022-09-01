@@ -208,9 +208,9 @@ public class GameButtons extends FrameProportion{
 					Main.getOldScroll().setVisible(false);
 					SoundsManagement.clickMenuBtn();
 					Main.getEnemyGrid().setAttackGrid(Main.getShips().getrandomNavy());
+					Main.getText().confirmSetupMessage();;
 				} else {
-					// da implementare !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-					System.out.println("che cabbo fai?");
+					Main.getText().notConfirmMessage();
 				}
 
 			}

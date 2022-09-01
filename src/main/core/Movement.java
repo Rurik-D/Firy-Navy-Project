@@ -10,8 +10,8 @@ import main.frame.GameButtons;
 
 public class Movement implements MouseListener, MouseMotionListener{
 	private int X, Y;
-	private int gridX = Main.getPlayerGrid().getX() + Grid.getLblBorder();
-	private int gridY = Main.getPlayerGrid().getY() + Grid.getLblBorder();
+	private int gridX = Main.getPlayerGrid().getX() + 30;
+	private int gridY = Main.getPlayerGrid().getY() + 30;
 	private int gridW = Main.getPlayerGrid().getWidth();
 	private int gridH = Main.getPlayerGrid().getHeight();
 	private int boxSide = Grid.getBoxSide();
@@ -82,12 +82,13 @@ public class Movement implements MouseListener, MouseMotionListener{
 	private void borderCheck() {
 		int currentX = ship.getX();
 		int currentY = ship.getY();
-		int componentW = ship.getWidth();
-		int componentH = ship.getHeight();
+		int shipW = ship.getWidth();
+		int shipH = ship.getHeight();
+		int paramBorder = Main.getPlayerGrid().getParameterBorder();
 		int currentBoxX;
 		int currentBoxY;
 		
-		if (gridX < currentX  + 20 && currentX + componentW - 20 < gridX + gridW && gridY < currentY + 20 && currentY + componentH - 20 < gridY + gridH) {
+		if (gridX - 20 < currentX && currentX + shipW - 20 < gridX + gridW && gridY - 20  < currentY && currentY + shipH - 20 < gridY + gridH) {
 			boolean occupied = false;
 			if (ship.getShipPosition().get(0)[0] != -1) {
 				boxOccupied:
