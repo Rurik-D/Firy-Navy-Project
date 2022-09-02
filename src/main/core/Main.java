@@ -14,9 +14,21 @@ import javax.swing.JScrollPane;
 import resources.*;
 import main.frame.*;
 
-
+/**
+ * Firy Navy Project is a version of the classic pen-and-paper game Battleships (or Sea Battle).
+ * The aim is simple: destroy the enemy navy before the opponent destroy your navy.
+ * 
+ * This class starts the program esecution, creates the frame and the main panel and instantiates
+ * classes that do not use static methods.
+ * 
+ * @see main.core.Grid
+ * @see main.core.Ships
+ *
+ * @author Emanuele D'Agostino
+ * @author Leonardo Lavezzari
+ */
 public class Main{
-	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+//	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 //	public static final int WIDTH = (int)screenSize.getWidth();
 //	public static final int HEIGHT = (int)screenSize.getHeight();
 	public static final int WIDTH = 1536;
@@ -31,10 +43,12 @@ public class Main{
 	private static JScrollPane scrollPnl = new JScrollPane(text.getTextArea(), JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
 	/**
-	 * Launch the application.
+	 * The main method begins the project esecution by instantiating the constructor
+	 * of the class.
+	 * 
+	 * @param args eventual command line arguments
 	 */
 	public static void main(String[] args) {
-		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -48,7 +62,8 @@ public class Main{
 	}
 	
 	/**
-	 * Create the application.
+	 * This constructor creates the window and adds the main panel where all the 
+	 * graphics components will be implemented.
 	 */
 	public Main() {
 		setFrame();
