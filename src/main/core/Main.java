@@ -38,8 +38,7 @@ public class Main{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Main window = new Main();
-					window.frame.setVisible(true);
+					new Main();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -52,57 +51,10 @@ public class Main{
 	 * Create the application.
 	 */
 	public Main() {
-		initialize();
+		setFrame();
+		setMainPanel();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame.getContentPane().add(mainPanel);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(WIDTH, HEIGHT); 
-		frame.setResizable(false);
-		frame.setUndecorated(true);
-		frame.setVisible(true);
-		frame.getContentPane().setLayout(null);
-		
-		mainPanel.setLayout(null);
-		
-		for (int i = 0; i<10; i++) {
-			mainPanel.add(ships.getNavy().get(i));
-		}
-
-		mainPanel.add(playerGrid);
-		mainPanel.add(enemyGrid);
-		
-		new GameButtons(mainPanel);
-		new MenuButtons(mainPanel);
-
-		text.setTextArea();
-		mainPanel.add(scrollPnl);
-		scrollPnl.setBackground(Color.YELLOW.darker().darker());
-		scrollPnl.setBounds(860, 560, 500, 280);
-		scrollPnl.setBorder(BorderFactory.createLineBorder(new Color(209, 191, 138).darker().darker().darker(), 5));
-		
-		scrollPnl.setVisible(false);
-		oldScroll.setVisible(false);
-		mainPanel.add(oldScroll);
-		mainPanel.add(ImagesManagement.getTitle());
-		mainPanel.add(ImagesManagement.getMenuBackground());
-		mainPanel.add(ImagesManagement.getGameBackground());
-		ImagesManagement.setCursor(frame);
-		ImagesManagement.setFrameIcon(frame);
-		SoundsManagement.backgroundSong();
-		
-		mainPanel.setVisible(true);
-		
-	}
-	
-	public static void closeFrame() {
-		frame.dispose();
-	}
-	
 	public static JFrame getFrame() {
 		return frame;
 	}
@@ -133,5 +85,62 @@ public class Main{
 	
 	public static TextManagement getText() {
 		return text;
+	}
+	
+	private void setFrame() {
+		frame.getContentPane().add(mainPanel);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(WIDTH, HEIGHT); 
+		frame.setResizable(false);
+		frame.setUndecorated(true);
+		frame.setVisible(true);
+		frame.getContentPane().setLayout(null);
+		ImagesManagement.setCursor(frame);
+		ImagesManagement.setFrameIcon(frame);
+		SoundsManagement.backgroundSong();
+	}
+	
+	private void setMainPanel() {
+		mainPanel.setLayout(null);
+		mainPanel.setVisible(true);
+		
+		new GameButtons(mainPanel);
+		new MenuButtons(mainPanel);
+		
+		setScrollPnl();
+		addShipsLabels();
+		addGrids();
+		addImages();
+	}
+	
+	private void setScrollPnl() {
+		mainPanel.add(scrollPnl);
+		text.setTextArea();
+		scrollPnl.setBackground(Color.YELLOW.darker().darker());
+		scrollPnl.setBounds(860, 560, 500, 280);
+		scrollPnl.setBorder(BorderFactory.createLineBorder(new Color(209, 191, 138).darker().darker().darker(), 5));
+		scrollPnl.setVisible(false);
+	}
+	
+	private void addShipsLabels() {
+		for (int i = 0; i<10; i++) {
+			mainPanel.add(ships.getNavy().get(i));
+		}
+	}
+	
+	private void addGrids() {
+		mainPanel.add(playerGrid);
+		mainPanel.add(enemyGrid);
+	}
+	
+	private void addImages() {
+		mainPanel.add(oldScroll);
+		mainPanel.add(ImagesManagement.getTitle());
+		mainPanel.add(ImagesManagement.getMenuBackground());
+		mainPanel.add(ImagesManagement.getGameBackground());
+	}
+	
+	public static void closeFrame() {
+		frame.dispose();
 	}
 }

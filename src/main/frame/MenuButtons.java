@@ -68,14 +68,14 @@ public class MenuButtons extends FrameProportion{
 	static int minute;
 
 	
-	public MenuButtons(JPanel menu) {
+	public MenuButtons(JPanel mainPanel) {
 
 
 		initialButtonsState();
 		setProportion();
 		setGraphics();
-		addToPanels(menu);
-		createAvatarGrid(menu);
+		addToPanels(mainPanel);
+		createAvatarGrid(mainPanel);
 		
 		startBtn.addMouseListener(new MouseAdapter() {
 			@Override
@@ -279,9 +279,11 @@ public class MenuButtons extends FrameProportion{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				SoundsManagement.clickMenuBtn();
+				
 				for (int i = 0; i<6; i++) {
 					avatarBtns.get(i).setVisible(false);
 				}
+				
 				startGameBtn.setVisible(false);
 				selectNickname.setVisible(false);
 				nicknameBtn.setVisible(false);
@@ -298,6 +300,7 @@ public class MenuButtons extends FrameProportion{
 				for (int i = 0; i<10; i++) {
 					Main.getShips().getNavy().get(i).setVisible(true);
 				}
+				
 				Main.getOldScroll().setVisible(true);
 				Main.getScrollPnl().setVisible(true);
 
@@ -306,7 +309,6 @@ public class MenuButtons extends FrameProportion{
 				boxLabel.setText(testo);
 				
 				boxCpuLabel.setVisible(true);
-				
 				boxCpuBtn.setIcon(avatarList.get(6)); 
 				buttonsSetUp(boxCpuBtn);
 
@@ -338,8 +340,8 @@ public class MenuButtons extends FrameProportion{
 				GameButtons.setGameBtnsLanguage("en");
 			}
 		});
-		
 	}
+	
 
 	private void initialButtonsState() {
 		startBtn.setVisible(true);
@@ -370,8 +372,8 @@ public class MenuButtons extends FrameProportion{
 		boxCpuLabel.setVisible(false);
 	}
 	
+	
 	private void optionState() {
-		
 		startBtn.setVisible(false);
 		optionBtn.setVisible(false);
 		exitBtn.setVisible(false);
@@ -384,7 +386,6 @@ public class MenuButtons extends FrameProportion{
 		volumeBtn.setVisible(true);
 		engBtn.setVisible(false);
 		itaBtn.setVisible(false);
-		
 	}
 	
 	
@@ -417,6 +418,7 @@ public class MenuButtons extends FrameProportion{
 		boxCpuLabel.setBounds(Main.WIDTH - avatarSide-extLabelW/2 + 50, 10, extLabelW, buttonH);
 	}
 
+	
 	private void setFont() {
 		startBtn.setFont(font);		
 		optionBtn.setFont(font);
@@ -444,14 +446,12 @@ public class MenuButtons extends FrameProportion{
 		boxCpuLabel.setFont(font);
 	}
 	
+	
 	private void setGraphics() {
 		setFont();
-		
 		selectNickname.setOpaque(false);
 		selectNickname.setBorder(BorderFactory.createLineBorder(Color.BLACK,2));
-		
 		volumeLevel.setOpaque(false);
-		
 		setTrasparent(startBtn);
 		setTrasparent(optionBtn);
 		setTrasparent(exitBtn);
@@ -471,42 +471,40 @@ public class MenuButtons extends FrameProportion{
 		setTrasparent(nicknameBtn);
 		setTrasparent(engBtn);
 		setTrasparent(itaBtn);
-		
-		
 	}
 	
 	
-	
-	private void addToPanels(JPanel menu) {
-		menu.add(startBtn);
-		menu.add(optionBtn);
-		menu.add(exitBtn);
-		menu.add(pveBtn);
-		menu.add(pvpBtn);
-		menu.add(backToMenuBtn);
-		menu.add(backToOptBtn);
-		menu.add(backToStartBtn);
-		menu.add(volumeBtn);
-		menu.add(moreVolumeBtn);
-		menu.add(lessVolumeBtn);
-		menu.add(volumeLevel);
-		menu.add(langBtn);
-		menu.add(startGameBtn);
-		menu.add(confirmBtn);
-		menu.add(nicknameBtn);
-		menu.add(selectNickname);
-		menu.add(itaBtn);
-		menu.add(engBtn);
-		menu.add(extLabel);
-		menu.add(extNoBtn);
-		menu.add(extYesBtn);
-		menu.add(boxBtn);
-		menu.add(boxLabel);
-		menu.add(boxCpuBtn);
-		menu.add(boxCpuLabel);
+	private void addToPanels(JPanel mainPanel) {
+		mainPanel.add(startBtn);
+		mainPanel.add(optionBtn);
+		mainPanel.add(exitBtn);
+		mainPanel.add(pveBtn);
+		mainPanel.add(pvpBtn);
+		mainPanel.add(backToMenuBtn);
+		mainPanel.add(backToOptBtn);
+		mainPanel.add(backToStartBtn);
+		mainPanel.add(volumeBtn);
+		mainPanel.add(moreVolumeBtn);
+		mainPanel.add(lessVolumeBtn);
+		mainPanel.add(volumeLevel);
+		mainPanel.add(langBtn);
+		mainPanel.add(startGameBtn);
+		mainPanel.add(confirmBtn);
+		mainPanel.add(nicknameBtn);
+		mainPanel.add(selectNickname);
+		mainPanel.add(itaBtn);
+		mainPanel.add(engBtn);
+		mainPanel.add(extLabel);
+		mainPanel.add(extNoBtn);
+		mainPanel.add(extYesBtn);
+		mainPanel.add(boxBtn);
+		mainPanel.add(boxLabel);
+		mainPanel.add(boxCpuBtn);
+		mainPanel.add(boxCpuLabel);
 	}
 	
-	private void createAvatarGrid(JPanel menu) {
+	
+	private void createAvatarGrid(JPanel mainPanel) {
 		ImagesManagement.createAvatarPicture(imagesBundle.getString("image.blueShip"),avatarList);
 		ImagesManagement.createAvatarPicture(imagesBundle.getString("image.orangeShip"),avatarList);
 		ImagesManagement.createAvatarPicture(imagesBundle.getString("image.whiteShip"),avatarList);
@@ -515,8 +513,7 @@ public class MenuButtons extends FrameProportion{
 		ImagesManagement.createAvatarPicture(imagesBundle.getString("image.warShip"),avatarList);
 		ImagesManagement.createAvatarPicture(imagesBundle.getString("image.submarine"), avatarList);
 
-		
-		createAvatarBtnList(menu);
+		createAvatarBtnList(mainPanel);
 		setAvatarBtn(avatarBtns, 0);
 		setAvatarBtn(avatarBtns, 1);
 		setAvatarBtn(avatarBtns, 2);
@@ -526,7 +523,8 @@ public class MenuButtons extends FrameProportion{
 		
 	}
 	
-	private void createAvatarBtnList(JPanel menu) {
+	
+	private void createAvatarBtnList(JPanel mainPanel) {
 		for (int i = 0; i<2; i++) {
 			for (int j = 0; j<3; j++) {
 				JButton box;
@@ -545,13 +543,13 @@ public class MenuButtons extends FrameProportion{
 					}
 				});
 				avatarBtns.add(box);
-				menu.add(box);
+				mainPanel.add(box);
 			}
 		}
 	}
 	
+	
 	private void setAvatarBtn(List<JButton> avatarBtns, int btnNumb) {
-		
 		avatarBtns.get(btnNumb).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -580,15 +578,16 @@ public class MenuButtons extends FrameProportion{
 		});
 	}
 	
+	
 	private void setTrasparent(JButton button) {
 		button.setOpaque(false);
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
 	}
+	
 
 	public void setLanguageLocalBtns(String kLang) {
 		resourceBundle  = ResourceBundle.getBundle("utils.file/lang", Locale.forLanguageTag(kLang)) ;
-		
 		startBtn.setText(resourceBundle.getString("button.startBtn"));
 		optionBtn.setText(resourceBundle.getString("button.optionBtn"));
 		exitBtn.setText(resourceBundle.getString("button.exitBtn"));
@@ -607,37 +606,9 @@ public class MenuButtons extends FrameProportion{
 		engBtn.setText(resourceBundle.getString("button.engBtn"));
 		itaBtn.setText(resourceBundle.getString("button.itaBtn"));
 		extLabel.setText(resourceBundle.getString("label.extLabel"));
-
 	}
 	
-	public static void openMenu() {
-		startBtn.setVisible(true);
-		optionBtn.setVisible(true);
-		exitBtn.setVisible(true);
-		
-	}
 	
-	public static JButton getBoxBtn() {
-		return boxBtn;
-	}
-
-	public static JLabel getBoxLabel() {
-		return boxLabel;
-	}
-	public static JButton getBoxCpuBtn() {
-		return boxCpuBtn;
-	}
-	public static JLabel getBoxCpuLabel() {
-		return boxCpuLabel;
-	}
-	
-	public static void buttonsSetUp(JButton btn) {
-		btn.setFont(new Font("Arial", Font.BOLD, 12));
-		btn.setOpaque(false);
-		btn.setContentAreaFilled(false);
-		btn.setBorder(null);
-		btn.setVisible(true);
-	}
 	public void setTimer() {
 		GameButtons.getJlbTimer().setVisible(true);
 		timer = new Timer(1000,new ActionListener() {
@@ -651,9 +622,44 @@ public class MenuButtons extends FrameProportion{
 					minute = Integer.parseInt(minutes) + 1;
 					minutes = String.valueOf(minute);
 				}
-
 			}
 		});
 		timer.start();
+	}
+	
+	
+	public static JButton getBoxBtn() {
+		return boxBtn;
+	}
+	
+
+	public static JLabel getBoxLabel() {
+		return boxLabel;
+	}
+	
+	
+	public static JButton getBoxCpuBtn() {
+		return boxCpuBtn;
+	}
+	
+	
+	public static JLabel getBoxCpuLabel() {
+		return boxCpuLabel;
+	}
+	
+	
+	public static void buttonsSetUp(JButton btn) {
+		btn.setFont(new Font("Arial", Font.BOLD, 12));
+		btn.setOpaque(false);
+		btn.setContentAreaFilled(false);
+		btn.setBorder(null);
+		btn.setVisible(true);
+	}
+	
+	
+	public static void openMenu() {
+		startBtn.setVisible(true);
+		optionBtn.setVisible(true);
+		exitBtn.setVisible(true);
 	}
 }

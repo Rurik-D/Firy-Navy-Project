@@ -33,7 +33,7 @@ public class GameButtons extends FrameProportion{
 	private static boolean enable = false;
 	
 	
-	public GameButtons(JPanel menu) {
+	public GameButtons(JPanel mainPanel) {
 		
 		gameOptionBtn.setVisible(false);
 		mainMenuBtn.setVisible(false);
@@ -73,15 +73,15 @@ public class GameButtons extends FrameProportion{
 		setTrasparent(backToGameOptionBtn);
 		setTrasparent(confirmSetupBtn);
 		
-		menu.add(mainMenuBtn);
-		menu.add(gameOptionBtn);
-		menu.add(backToGameBtn);
-		menu.add(noSaveBtn);
-		menu.add(yesSaveBtn);
-		menu.add(backToGameOptionBtn);
-		menu.add(saveLabel);
-		menu.add(jlbTimer);
-		menu.add(confirmSetupBtn);
+		mainPanel.add(mainMenuBtn);
+		mainPanel.add(gameOptionBtn);
+		mainPanel.add(backToGameBtn);
+		mainPanel.add(noSaveBtn);
+		mainPanel.add(yesSaveBtn);
+		mainPanel.add(backToGameOptionBtn);
+		mainPanel.add(saveLabel);
+		mainPanel.add(jlbTimer);
+		mainPanel.add(confirmSetupBtn);
 
 		
 		gameOptionBtn.addMouseListener(new MouseAdapter() {

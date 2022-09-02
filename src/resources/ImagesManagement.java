@@ -82,6 +82,7 @@ public class ImagesManagement extends FrameProportion {
 	public static JLabel getOldScroll(int x, int y, int w, int h) {
 		oldScroll = new JLabel(getImage(w, h, imagesBundle.getString("image.scroll")));
 		oldScroll.setBounds(x, y, w, h);
+		oldScroll.setVisible(false);
 		return oldScroll;
 	}
 	
