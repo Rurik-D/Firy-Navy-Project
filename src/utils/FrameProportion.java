@@ -2,6 +2,12 @@ package utils;
 
 import main.core.Main;
 
+
+/**
+ * 
+ * @author Emanuele D'Agostino
+ * @author Leonardo Lavezzari
+ */
 public abstract class FrameProportion{
 		
 		protected static int buttonX = (int)Math.round(Main.WIDTH * 4.427 / 100);

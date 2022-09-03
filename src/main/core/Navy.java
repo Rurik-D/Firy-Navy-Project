@@ -11,25 +11,30 @@ import java.util.ResourceBundle;
 import resources.ImagesManagement;
 
 
-public class Ships extends JLabel{
+/**
+ * 
+ * @author Emanuele D'Agostino
+ * @author Leonardo Lavezzari
+ */
+public class Navy extends JLabel{
 	private ResourceBundle imagesBundle = ResourceBundle.getBundle("utils.file/images");
 	private int[][] possiblePositions = new int[10][10];
 	private List<int[]> shipPosition = new ArrayList<>();
-	private List<Ships> navy = new ArrayList<>();
+	private List<Navy> playerNavy = new ArrayList<>();
 	private List<List<int[]>> randomNavy = new ArrayList<>();
 	private int xPos = 200;
 	private int yPos = 650;
 	private String type;
 	private int boxSide = Grid.getBoxSide();
-	private int gridX = Main.getPlayerGrid().getX() + Grid.getLblBorder();
-	private int gridY = Main.getPlayerGrid().getY() + Grid.getLblBorder();
-	private int gridH = Main.getPlayerGrid().getHeight();
+	private int gridX = Pve.getPositionGrid().getX() + Grid.getLblBorder();
+	private int gridY = Pve.getPositionGrid().getY() + Grid.getLblBorder();
+	private int gridH = Pve.getPositionGrid().getHeight();
 	private int shipW = Grid.getBoxSide();
 	private int shipH;
 	private int shipIndex;
 	private Random random = new Random();
 
-	public Ships() {
+	public Navy() {
 		setPossiblePositions();
 		generateRandomNavy();
 		
@@ -51,19 +56,19 @@ public class Ships extends JLabel{
 		for(int i = 0; i < 10; i++) {
 			switch (i) {
 				case 0:
-					navy.add(new Ships(xPos, "5_carrier_up", i));
+					playerNavy.add(new Navy(xPos, "5_carrier_up", i));
 					break;
 				case 1:
-					navy.add(new Ships(xPos, "4_battleship_up", i));
+					playerNavy.add(new Navy(xPos, "4_battleship_up", i));
 					break;
 				case 2, 3:
-					navy.add(new Ships(xPos, "3_cruiser_up", i));
+					playerNavy.add(new Navy(xPos, "3_cruiser_up", i));
 					break;
 				case 4, 5, 6:
-					navy.add(new Ships(xPos, "3_submarine_up", i));
+					playerNavy.add(new Navy(xPos, "3_submarine_up", i));
 					break;
 				case 7, 8, 9:
-					navy.add(new Ships(xPos, "2_assaultShip_up", i));
+					playerNavy.add(new Navy(xPos, "2_assaultShip_up", i));
 					break;
 				default:
 					break;
@@ -73,7 +78,7 @@ public class Ships extends JLabel{
 		
 	}
 	
-	private Ships(int xPos, String type, int shipIndex) {
+	private Navy(int xPos, String type, int shipIndex) {
 		this.xPos = xPos;
 		this.type = type;
 		this.shipIndex = shipIndex;
@@ -99,8 +104,8 @@ public class Ships extends JLabel{
 		}
 	}
 	
-	public List<Ships> getNavy() {
-		return navy;
+	public List<Navy> getPlayerNavy() {
+		return playerNavy;
 	}
 	
 	public String getType() {
@@ -115,7 +120,7 @@ public class Ships extends JLabel{
 		return shipIndex;
 	}
 	
-	public List<List<int[]>> getrandomNavy() {
+	public List<List<int[]>> getRandomNavy() {
 		return randomNavy;
 	}
 	

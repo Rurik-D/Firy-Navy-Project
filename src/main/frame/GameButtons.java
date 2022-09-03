@@ -15,7 +15,14 @@ import java.util.ResourceBundle;
 import resources.*;
 import utils.FrameProportion;
 import main.core.Main;
+import main.core.Pve;
 
+
+/**
+ * 
+ * @author Emanuele D'Agostino
+ * @author Leonardo Lavezzari
+ */
 public class GameButtons extends FrameProportion{
 	
 	
@@ -119,12 +126,12 @@ public class GameButtons extends FrameProportion{
 				noSaveBtn.setVisible(false);
 				saveLabel.setVisible(false);
 				Main.getScrollPnl().setVisible(false);
-				Main.getPlayerGrid().setVisible(false);
-				Main.getEnemyGrid().setVisible(false);
+				Pve.getPositionGrid().setVisible(false);
+				Pve.getAttackGrid().setVisible(false);
 				int Xpos = 200;
 				for (int i = 0; i<10; i++) {
-					Main.getShips().getNavy().get(i).setVisible(false);
-					Main.getShips().getNavy().get(i).setLocation(Xpos, 650);
+					Pve.getNavy().getPlayerNavy().get(i).setVisible(false);
+					Pve.getNavy().getPlayerNavy().get(i).setLocation(Xpos, 650);
 					Xpos += 50;
 				}
 				Main.getOldScroll().setVisible(false);
@@ -145,12 +152,12 @@ public class GameButtons extends FrameProportion{
 				SoundsManagement.clickMenuBtn();
 				backToGameOptionBtn.setVisible(false);
 				Main.getScrollPnl().setVisible(false);
-				Main.getPlayerGrid().setVisible(false);
-				Main.getEnemyGrid().setVisible(false);
+				Pve.getPositionGrid().setVisible(false);
+				Pve.getAttackGrid().setVisible(false);
 				int Xpos = 200;
 				for (int i = 0; i<10; i++) {
-					Main.getShips().getNavy().get(i).setVisible(false);
-					Main.getShips().getNavy().get(i).setLocation(Xpos, 650);
+					Pve.getNavy().getPlayerNavy().get(i).setVisible(false);
+					Pve.getNavy().getPlayerNavy().get(i).setLocation(Xpos, 650);
 					Xpos += 50;
 				}
 				Main.getOldScroll().setVisible(false);
@@ -207,7 +214,7 @@ public class GameButtons extends FrameProportion{
 					confirmSetupBtn.setVisible(false);
 					Main.getOldScroll().setVisible(false);
 					SoundsManagement.clickMenuBtn();
-					Main.getEnemyGrid().setAttackGrid(Main.getShips().getrandomNavy(), Main.getShips().getNavy());
+					Pve.getAttackGrid().setAttackGrid(Pve.getNavy().getRandomNavy(), Pve.getNavy().getPlayerNavy());
 					Main.getText().confirmSetupMessage();;
 				} else {
 					Main.getText().notConfirmMessage();

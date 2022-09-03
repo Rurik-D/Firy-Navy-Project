@@ -24,6 +24,12 @@ import javax.swing.JPanel;
 import main.core.Main;
 import utils.FrameProportion;
 
+
+/**
+ * 
+ * @author Emanuele D'Agostino
+ * @author Leonardo Lavezzari
+ */
 public class ImagesManagement extends FrameProportion {
 	private static ResourceBundle imagesBundle = ResourceBundle.getBundle("utils.file/images");
 	private static Image image;

@@ -5,6 +5,12 @@ import java.awt.Font;
 
 import javax.swing.JTextArea;
 
+
+/**
+ * 
+ * @author Emanuele D'Agostino
+ * @author Leonardo Lavezzari
+ */
 public class TextManagement{
 	private JTextArea textArea = new JTextArea(100, 100);
 	private Font font = new Font("Segoe Script", Font.BOLD, 21);

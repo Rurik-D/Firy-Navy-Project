@@ -16,6 +16,12 @@ import resources.ImagesManagement;
 import resources.TextManagement;
 import java.time.Clock;
 
+
+/**
+ * 
+ * @author Emanuele D'Agostino
+ * @author Leonardo Lavezzari
+ */
 public class Grid extends JLabel{
 	private char[] letters = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
 	private static int lblBorder = 5;
@@ -120,7 +126,7 @@ public class Grid extends JLabel{
 		add(ImagesManagement.getGridBackground(parameterBorder, parameterBorder, W, H));
 	}
 	
-	public void setAttackGrid(List<List<int[]>> computerNavy, List<Ships> playerNavy) {	
+	public void setAttackGrid(List<List<int[]>> computerNavy, List<Navy> playerNavy) {	
 		TextManagement text = Main.getText();
 		attackGridCover.setVisible(false);
 		
@@ -201,7 +207,7 @@ public class Grid extends JLabel{
 						
 						// per ogni nave nella flotta del giocatore
 						hit:
-						for (Ships ship : playerNavy) {
+						for (Navy ship : playerNavy) {
 							// per ogni casella occupata dalla nave
 							for (int[] shipPos : ship.getShipPosition()) {								
 								// se la casella occupata dalla nave è uguale alla casella colpita dal computer

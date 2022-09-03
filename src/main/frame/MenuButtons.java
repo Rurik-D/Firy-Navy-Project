@@ -24,7 +24,14 @@ import java.util.ResourceBundle;
 import resources.*;
 import utils.*;
 import main.core.Main;
+import main.core.Pve;
 
+
+/**
+ * 
+ * @author Emanuele D'Agostino
+ * @author Leonardo Lavezzari
+ */
 public class MenuButtons extends FrameProportion{
 	
 	private static ResourceBundle resourceBundle = ResourceBundle.getBundle("utils.file/lang", Locale.forLanguageTag("en"));
@@ -294,11 +301,10 @@ public class MenuButtons extends FrameProportion{
 				ImagesManagement.hideTitle();
 				GameButtons.getGameOptionBtn().setVisible(true);
 				GameButtons.getConfirmSetupBtn().setVisible(true);
-				Main.getPlayerGrid().setVisible(true);
-				Main.getEnemyGrid().setVisible(true);
-				
+				Pve.getPositionGrid().setVisible(true);
+				Pve.getAttackGrid().setVisible(true);
 				for (int i = 0; i<10; i++) {
-					Main.getShips().getNavy().get(i).setVisible(true);
+					Pve.getNavy().getPlayerNavy().get(i).setVisible(true);
 				}
 				
 				Main.getOldScroll().setVisible(true);

@@ -8,18 +8,24 @@ import java.util.List;
 
 import main.frame.GameButtons;
 
+
+/**
+ * 
+ * @author Emanuele D'Agostino
+ * @author Leonardo Lavezzari
+ */
 public class Movement implements MouseListener, MouseMotionListener{
 	private int X, Y;
-	private int gridX = Main.getPlayerGrid().getX() + 30;
-	private int gridY = Main.getPlayerGrid().getY() + 30;
-	private int gridW = Main.getPlayerGrid().getWidth();
-	private int gridH = Main.getPlayerGrid().getHeight();
+	private int gridX = Pve.getPositionGrid().getX() + 30;
+	private int gridY = Pve.getPositionGrid().getY() + 30;
+	private int gridW = Pve.getPositionGrid().getWidth();
+	private int gridH = Pve.getPositionGrid().getHeight();
 	private int boxSide = Grid.getBoxSide();
-	private Ships ship;
+	private Navy ship;
 
 	private Point initialPostion;
 	
-	public Movement(Ships ship, Point initialPostion) {
+	public Movement(Navy ship, Point initialPostion) {
 		this.ship = ship;
 		this.initialPostion = initialPostion;
 		ship.addMouseListener(this);
@@ -41,7 +47,7 @@ public class Movement implements MouseListener, MouseMotionListener{
 	public void mouseClicked(MouseEvent event) {
 	  if (event.getClickCount() == 2 && event.getButton() == MouseEvent.BUTTON1) {
 		    ship.rotateShip();
-		    borderCheck();
+		    collisionCheck();
 	  }
 	}
 
@@ -53,12 +59,12 @@ public class Movement implements MouseListener, MouseMotionListener{
 
 	@Override
 	public void mouseReleased(MouseEvent event) {
-		borderCheck();
+		collisionCheck();
 		ship.updateShipPosition();
-		borderCheck();
+		collisionCheck();
 		// controllo se ogni nave è stata posizionata, nel caso attivo il bottone per confermare il setup delle navi
 		boolean allPositioned = true;
-		for (Ships s : Main.getShips().getNavy()) {
+		for (Navy s : Pve.getNavy().getPlayerNavy()) {
 			if (s.getShipPosition().get(0)[0] == -1) {
 				allPositioned = false;
 				break;
@@ -79,12 +85,12 @@ public class Movement implements MouseListener, MouseMotionListener{
 	}
 	
 	
-	private void borderCheck() {
+	private void collisionCheck() {
 		int currentX = ship.getX();
 		int currentY = ship.getY();
 		int shipW = ship.getWidth();
 		int shipH = ship.getHeight();
-		int paramBorder = Main.getPlayerGrid().getParameterBorder();
+		int paramBorder = Pve.getPositionGrid().getParameterBorder();
 		int currentBoxX;
 		int currentBoxY;
 		
@@ -92,7 +98,7 @@ public class Movement implements MouseListener, MouseMotionListener{
 			boolean occupied = false;
 			if (ship.getShipPosition().get(0)[0] != -1) {
 				boxOccupied:
-				for (Ships tmpShip : Main.getShips().getNavy()) {
+				for (Navy tmpShip : Pve.getNavy().getPlayerNavy()) {
 					//se la nave analizzata non è la nave passata a movement
 					if (ship.getShipIndex() != tmpShip.getShipIndex()) {
 					//	per ogni cella occupata dalla nave

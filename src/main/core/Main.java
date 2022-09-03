@@ -23,7 +23,7 @@ import main.frame.*;
  * classes that do not use static methods.
  * 
  * @see main.core.Grid
- * @see main.core.Ships
+ * @see main.core.Navy
  * @see utils.FrameProportion
  *
  * @author Emanuele D'Agostino
@@ -37,7 +37,7 @@ public class Main{
 	 * With these first three lines the program obtains the screen size and saves it in two final 
 	 * variables (width and height), on which all the proportions of the window will be based.
 	 */
-//	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 //	public static final int WIDTH = (int)screenSize.getWidth();
 //	public static final int HEIGHT = (int)screenSize.getHeight();
 	public static final int WIDTH = 1536;
@@ -46,9 +46,6 @@ public class Main{
 	private static JPanel mainPanel = new JPanel();	
 	private static JFrame frame = new JFrame("Firy Navy Project");
 	private static JLabel oldScroll = ImagesManagement.getOldScroll(100, 550, 700, 300);
-	private static Grid playerGrid = new Grid(300, 200);
-	private static Ships ships = new Ships();
-	private static Grid enemyGrid = new Grid(950, 200, playerGrid);
 	private static TextManagement text = new TextManagement();
 	private static JScrollPane scrollPnl = new JScrollPane(text.getTextArea(), JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
@@ -90,33 +87,6 @@ public class Main{
 	 * 
 	 * 
 	 */
-	public static Grid getPlayerGrid() {
-		return playerGrid;
-	}
-	
-	
-	/**
-	 * 
-	 * 
-	 */
-	public static Grid getEnemyGrid() {
-		return enemyGrid;
-	}
-	
-	
-	/**
-	 * 
-	 * 
-	 */
-	public static Ships getShips() {
-		return ships;
-	}
-	
-	
-	/**
-	 * 
-	 * 
-	 */
 	public static JScrollPane getScrollPnl() {
 		return scrollPnl;
 	}
@@ -137,7 +107,7 @@ public class Main{
 	 * will be spawned.
 	 * 
 	 * @see resources.ImagesManagement
-	 * @see main.core.Ships
+	 * @see main.core.Navy
 	 * 
 	 * @return JLabel with the image of an old scroll 
 	 * 
@@ -203,7 +173,7 @@ public class Main{
 	 */
 	private void addShipsLabels() {
 		for (int i = 0; i<10; i++) {
-			mainPanel.add(ships.getNavy().get(i));
+			mainPanel.add(Pve.getNavy().getPlayerNavy().get(i));
 		}
 	}
 	
@@ -213,8 +183,8 @@ public class Main{
 	 * 
 	 */
 	private void addGrids() {
-		mainPanel.add(playerGrid);
-		mainPanel.add(enemyGrid);
+		mainPanel.add(Pve.getPositionGrid());
+		mainPanel.add(Pve.getAttackGrid());
 	}
 	
 	

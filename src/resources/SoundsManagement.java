@@ -7,6 +7,12 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
+
+/**
+ * 
+ * @author Emanuele D'Agostino
+ * @author Leonardo Lavezzari
+ */
 public class SoundsManagement {
 	private static ResourceBundle soundBundle =  ResourceBundle.getBundle("utils.file/sounds");
 	private static Clip menuSong = getClip(new File(soundBundle.getString("sound.background")));
