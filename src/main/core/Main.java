@@ -14,6 +14,7 @@ import javax.swing.JScrollPane;
 import resources.*;
 import main.frame.*;
 
+
 /**
  * Firy Navy Project is a version of the classic pen-and-paper game Battleships (or Sea Battle).
  * The aim is simple: destroy the enemy navy before the opponent destroy your navy.
@@ -23,16 +24,25 @@ import main.frame.*;
  * 
  * @see main.core.Grid
  * @see main.core.Ships
+ * @see utils.FrameProportion
  *
  * @author Emanuele D'Agostino
  * @author Leonardo Lavezzari
+ * 
+ * @version 1.0
  */
 public class Main{
+	
+	/*
+	 * With these first three lines the program obtains the screen size and saves it in two final 
+	 * variables (width and height), on which all the proportions of the window will be based.
+	 */
 //	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 //	public static final int WIDTH = (int)screenSize.getWidth();
 //	public static final int HEIGHT = (int)screenSize.getHeight();
 	public static final int WIDTH = 1536;
 	public static final int HEIGHT = 864;
+	
 	private static JPanel mainPanel = new JPanel();	
 	private static JFrame frame = new JFrame("Firy Navy Project");
 	private static JLabel oldScroll = ImagesManagement.getOldScroll(100, 550, 700, 300);
@@ -42,6 +52,7 @@ public class Main{
 	private static TextManagement text = new TextManagement();
 	private static JScrollPane scrollPnl = new JScrollPane(text.getTextArea(), JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
+	
 	/**
 	 * The main method begins the project esecution by instantiating the constructor
 	 * of the class.
@@ -58,50 +69,88 @@ public class Main{
 				}
 			}
 		});
-
 	}
+	
 	
 	/**
 	 * This constructor creates the window and adds the main panel where all the 
 	 * graphics components will be implemented.
+	 * 
+	 * @see main.frame.GameButtons
+	 * @see main.frame.MenuButtons
+	 * 
 	 */
 	public Main() {
 		setFrame();
 		setMainPanel();
 	}
-
-	public static JFrame getFrame() {
-		return frame;
-	}
 	
-	public static JLabel getOldScroll() {
-		return oldScroll;
-	}
 	
-	public static JPanel getMainPanel() {
-		return mainPanel;
-	}
-	
+	/**
+	 * 
+	 * 
+	 */
 	public static Grid getPlayerGrid() {
 		return playerGrid;
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public static Grid getEnemyGrid() {
 		return enemyGrid;
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public static Ships getShips() {
 		return ships;
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public static JScrollPane getScrollPnl() {
 		return scrollPnl;
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public static TextManagement getText() {
 		return text;
 	}
 	
+	
+	
+	/**
+	 * Returns a label containing the image of an old scroll, on which ships 
+	 * will be spawned.
+	 * 
+	 * @see resources.ImagesManagement
+	 * @see main.core.Ships
+	 * 
+	 * @return JLabel with the image of an old scroll 
+	 * 
+	 */
+	public static JLabel getOldScroll() {
+		return oldScroll;
+	}
+	
+	
+	/**
+	 * 
+	 * 
+	 */
 	private void setFrame() {
 		frame.getContentPane().add(mainPanel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -115,6 +164,11 @@ public class Main{
 		SoundsManagement.backgroundSong();
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	private void setMainPanel() {
 		mainPanel.setLayout(null);
 		mainPanel.setVisible(true);
@@ -128,6 +182,11 @@ public class Main{
 		addImages();
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	private void setScrollPnl() {
 		mainPanel.add(scrollPnl);
 		text.setTextArea();
@@ -137,17 +196,32 @@ public class Main{
 		scrollPnl.setVisible(false);
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	private void addShipsLabels() {
 		for (int i = 0; i<10; i++) {
 			mainPanel.add(ships.getNavy().get(i));
 		}
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	private void addGrids() {
 		mainPanel.add(playerGrid);
 		mainPanel.add(enemyGrid);
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	private void addImages() {
 		mainPanel.add(oldScroll);
 		mainPanel.add(ImagesManagement.getTitle());
@@ -155,6 +229,11 @@ public class Main{
 		mainPanel.add(ImagesManagement.getGameBackground());
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public static void closeFrame() {
 		frame.dispose();
 	}
