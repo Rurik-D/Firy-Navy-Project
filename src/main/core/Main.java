@@ -75,7 +75,6 @@ public class Main{
 	 * 
 	 * @see main.frame.GameButtons
 	 * @see main.frame.MenuButtons
-	 * 
 	 */
 	public Main() {
 		setFrame();
