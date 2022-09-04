@@ -108,6 +108,11 @@ public class Navy extends JLabel{
 		return playerNavy;
 	}
 	
+	
+	public int getShipSize() {
+		return Integer.parseInt(type.substring(0, 1));
+	}
+	
 	public String getType() {
 		return type;
 	}
@@ -172,17 +177,18 @@ public class Navy extends JLabel{
 			while (!found) {
 				// genero randomicamente x e y
 				if (vertical) {
-					randX = random.nextInt(0, 9);
-					randY = random.nextInt(0, 9 - shipSize);
+					randX = random.nextInt(0, 10);
+					randY = random.nextInt(0, 10 - shipSize);
 				} else {
-					randX = random.nextInt(0, 9 - shipSize);
-					randY = random.nextInt(0, 9);
+					randX = random.nextInt(0, 10 - shipSize);
+					randY = random.nextInt(0, 10);
 				}
 
 				occupied = false;
 				// se il punto generato è libero (altrimenti ne seleziono un altro)
 				if (possiblePositions[randY][randX] == 0) {
 					
+					// controllo ai lati per evitare di avere tutte le navi appiccicate
 					if (randX > 0) {
 						if (possiblePositions[randY][randX - 1] != 0) { continue; }
 					}
@@ -228,7 +234,6 @@ public class Navy extends JLabel{
 										break;
 									}
 								}
-
 								possiblePositions[i][randX] = positioned+1;
 								randomPosition.add(randPoint);
 								
@@ -278,7 +283,6 @@ public class Navy extends JLabel{
 										break;
 									}
 								}
-
 								possiblePositions[randY][i] = positioned+1;
 								randomPosition.add(randPoint);
 
@@ -365,4 +369,6 @@ public class Navy extends JLabel{
 			}
 		}
 	}
+
+
 }
