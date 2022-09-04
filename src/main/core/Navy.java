@@ -182,14 +182,53 @@ public class Navy extends JLabel{
 				occupied = false;
 				// se il punto generato è libero (altrimenti ne seleziono un altro)
 				if (possiblePositions[randY][randX] == 0) {
+					
+					if (randX > 0) {
+						if (possiblePositions[randY][randX - 1] != 0) { continue; }
+					}
+					if (randX < 9) {
+						if (possiblePositions[randY][randX + 1] != 0) { continue; }
+
+					}
+					if (randY > 0) {
+						if (possiblePositions[randY - 1][randX] != 0) { continue; }
+
+					}
+					if (randY < 9) {
+						if (possiblePositions[randY + 1][randX] != 0) { continue; }
+
+					}
+					
 					// se la nave è in verticale
 					if(vertical) {
 						
-						for (int i = randY; i < randY + shipSize; i++) {
-							
+						for (int i = randY; i < randY + shipSize; i++) {							
 							int[] randPoint = {randX, i};
+							
 							// se il punto è libero aggiungo il punto alla lista e setto a 1 il punto su possiblePositions
 							if (possiblePositions[i][randX] == 0) {
+								
+								if (randX > 0) {
+									if ( possiblePositions[i][randX - 1] != 0 ) {
+										occupied = true;
+										randomPosition.clear();
+										for (int j = randY; j < i; j++) {
+											possiblePositions[j][randX] = 0;
+										}
+										break;
+									}
+								}	
+								if (randX < 9) {
+									if ( possiblePositions[i][randX + 1] != 0 ) {
+										occupied = true;
+										randomPosition.clear();
+										for (int j = randY; j < i; j++) {
+											possiblePositions[j][randX] = 0;
+										}
+										break;
+									}
+								}
+
 								possiblePositions[i][randX] = positioned+1;
 								randomPosition.add(randPoint);
 								
@@ -217,10 +256,32 @@ public class Navy extends JLabel{
 							
 							int[] randPoint = {i, randY};
 							// se il punto è libero aggiungo il punto alla lista e setto a 1 il punto su possiblePositions
-							if (possiblePositions[randY][i] == 0) {
+							if (possiblePositions[randY][i] == 0) {	
+								if (randY > 0) {
+									if (possiblePositions[randY - 1][i] != 0) {
+										occupied = true;
+										randomPosition.clear();
+										for (int j = randX; j < i; j++) {
+											possiblePositions[randY][j] = 0;
+										}
+										break;
+									}
+									
+								}
+								if (randY < 9) {
+									if (possiblePositions[randY + 1][i] != 0) {
+										occupied = true;
+										randomPosition.clear();
+										for (int j = randX; j < i; j++) {
+											possiblePositions[randY][j] = 0;
+										}
+										break;
+									}
+								}
+
 								possiblePositions[randY][i] = positioned+1;
 								randomPosition.add(randPoint);
-								
+
 							// se il punto è occupato svuoto la lista e resetto i punti su possiblePositions
 							} else {
 								occupied = true;

@@ -6,7 +6,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -14,7 +13,6 @@ import javax.swing.JLabel;
 
 import resources.ImagesManagement;
 import resources.TextManagement;
-import java.time.Clock;
 
 
 /**
@@ -33,8 +31,6 @@ public class Grid extends JLabel{
 	private Color backgroundColor = Color.orange.darker().darker().darker().darker().darker();
 	private List<JLabel> missList = new ArrayList<>();
 	private List<JLabel> hitList = new ArrayList<>();
-	private List<int[]> randAttacksMade = new ArrayList<>();
-	private Random random = new Random();
 	private Grid navyGrid;
 	
 	// player grid constructor
@@ -127,7 +123,7 @@ public class Grid extends JLabel{
 	}
 	
 	public void setAttackGrid(List<List<int[]>> computerNavy, List<Navy> playerNavy) {	
-		TextManagement text = Main.getText();
+		TextManagement textManage = Main.getTextManage();
 		attackGridCover.setVisible(false);
 		
 		for (int i = 0; i<10; i++) {
@@ -171,63 +167,16 @@ public class Grid extends JLabel{
 							}
 						}
 						if (hit) { 
-							text.hitMessage(1, box.getName());
+							textManage.hitMessage(1, box.getName());
 							hitLbl.setVisible(true);
 						} else {
-							text.missMessage(1, box.getName()); 
+							textManage.missMessage(1, box.getName()); 
 							missLbl.setVisible(true);
 						}
 						
 						box.setVisible(false);
 						
-						///// IMPLEMENTARE ATTACCO DEL COMPUTER
-						int [] randAttack = new int[2];
-						boolean hitted = false;
-						boolean startAttack = false;
-						
-						while(!startAttack) {
-							startAttack = true;
-							randAttack[0] = random.nextInt(0, 10);
-							randAttack[1] = random.nextInt(0, 10);
-							for (int[] oldAttack : randAttacksMade) {
-								if ( randAttack[0] == oldAttack[0] && randAttack[1] == oldAttack[1] ) {
-									startAttack = false;
-									break;
-								}
-							}
-						}
-
-						randAttacksMade.add(randAttack);
-//						try {
-//							Clock clock = new Clock();
-//							clock.wait(2000);
-//						} catch (InterruptedException e1) {
-//							e1.printStackTrace();
-//						}
-						
-						// per ogni nave nella flotta del giocatore
-						hit:
-						for (Navy ship : playerNavy) {
-							// per ogni casella occupata dalla nave
-							for (int[] shipPos : ship.getShipPosition()) {								
-								// se la casella occupata dalla nave è uguale alla casella colpita dal computer
-								if (randAttack[0] == shipPos[0] && randAttack[1] == shipPos[1]) {
-									hitted = true;
-									break hit;
-								}
-							}
-
-						}
-						System.out.println(randAttack[0] + ", " + randAttack[1]);
-						if (hitted) {
-							navyGrid.getHitList().get(randAttack[0] * 10 + randAttack[1]).setVisible(true);
-							text.hitMessage(2, letters[randAttack[1]] + "" + randAttack[0]);
-						} else { 
-							navyGrid.getMissList().get(randAttack[0] * 10 + randAttack[1]).setVisible(true);
-							text.missMessage(2, letters[randAttack[1]] + "" + randAttack[0]); 
-						}
-						
-						
+						Pve.makeRandomAttack(playerNavy, navyGrid);
 						
 					}
 				});

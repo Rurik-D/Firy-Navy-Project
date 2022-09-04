@@ -13,7 +13,7 @@ import javax.swing.JTextArea;
  */
 public class TextManagement{
 	private JTextArea textArea = new JTextArea(100, 100);
-	private Font font = new Font("Segoe Script", Font.BOLD, 21);
+	private static Font font = new Font("Segoe Script", Font.BOLD, 21);
 	private static Font parameterFont = new Font("Segoe Script", Font.BOLD, 15);
 	private String text;
 	private String player1Name;

@@ -121,7 +121,7 @@ public class MenuButtons extends FrameProportion{
 		pveBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SoundsManagement.clickMenuBtn();
-				Main.getText().setPlayerName(2, "Computer");
+				Main.getTextManage().setPlayerName(2, "Computer");
 				pvpBtn.setVisible(false);
 				pveBtn.setVisible(false);
 				backToMenuBtn.setVisible(false);
@@ -258,7 +258,7 @@ public class MenuButtons extends FrameProportion{
 				String text = selectNickname.getText();
 
 				if (text.length() > 0) {
-					Main.getText().setPlayerName(1, text);
+					Main.getTextManage().setPlayerName(1, text);
 					selectNickname.setEditable(false);
 				}
 				if (!text.equals("")) {

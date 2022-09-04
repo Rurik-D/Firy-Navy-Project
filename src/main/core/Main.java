@@ -46,8 +46,8 @@ public class Main{
 	private static JPanel mainPanel = new JPanel();	
 	private static JFrame frame = new JFrame("Firy Navy Project");
 	private static JLabel oldScroll = ImagesManagement.getOldScroll(100, 550, 700, 300);
-	private static TextManagement text = new TextManagement();
-	private static JScrollPane scrollPnl = new JScrollPane(text.getTextArea(), JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+	private static TextManagement textManage = new TextManagement();
+	private static JScrollPane scrollPnl = new JScrollPane(textManage.getTextArea(), JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
 	
 	/**
@@ -95,8 +95,8 @@ public class Main{
 	 * 
 	 * 
 	 */
-	public static TextManagement getText() {
-		return text;
+	public static TextManagement getTextManage() {
+		return textManage;
 	}
 	
 	
@@ -158,7 +158,7 @@ public class Main{
 	 */
 	private void setScrollPnl() {
 		mainPanel.add(scrollPnl);
-		text.setTextArea();
+		textManage.setTextArea();
 		scrollPnl.setBackground(Color.YELLOW.darker().darker());
 		scrollPnl.setBounds(860, 560, 500, 280);
 		scrollPnl.setBorder(BorderFactory.createLineBorder(new Color(209, 191, 138).darker().darker().darker(), 5));
