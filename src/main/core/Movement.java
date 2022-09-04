@@ -35,7 +35,9 @@ public class Movement implements MouseListener, MouseMotionListener{
 	
 	@Override
 	public void mouseDragged(MouseEvent event) {
-		event.getComponent().setLocation((event.getX() + event.getComponent().getX() - X), (event.getY() + event.getComponent().getY() - Y));
+		if (GameButtons.getConfirmSetupVisible()) {
+			event.getComponent().setLocation((event.getX() + event.getComponent().getX() - X), (event.getY() + event.getComponent().getY() - Y));
+		}
 	}
 
 	@Override
@@ -45,7 +47,7 @@ public class Movement implements MouseListener, MouseMotionListener{
 
 	@Override
 	public void mouseClicked(MouseEvent event) {
-	  if (event.getClickCount() == 2 && event.getButton() == MouseEvent.BUTTON1) {
+	  if (event.getClickCount() == 2 && event.getButton() == MouseEvent.BUTTON1 && GameButtons.getConfirmSetupVisible()) {
 		    ship.rotateShip();
 		    collisionCheck();
 	  }
@@ -53,24 +55,28 @@ public class Movement implements MouseListener, MouseMotionListener{
 
 	@Override
 	public void mousePressed(MouseEvent event) {
-		X = event.getX();
-		Y = event.getY();
+		if (GameButtons.getConfirmSetupVisible()) {
+			X = event.getX();
+			Y = event.getY();
+		}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent event) {
-		collisionCheck();
-		ship.updateShipPosition();
-		collisionCheck();
-		// controllo se ogni nave è stata posizionata, nel caso attivo il bottone per confermare il setup delle navi
-		boolean allPositioned = true;
-		for (Navy s : Pve.getNavy().getPlayerNavy()) {
-			if (s.getShipPosition().get(0)[0] == -1) {
-				allPositioned = false;
-				break;
+		if (GameButtons.getConfirmSetupVisible()) {
+			collisionCheck();
+			ship.updateShipPosition();
+			collisionCheck();
+			// controllo se ogni nave è stata posizionata, nel caso attivo il bottone per confermare il setup delle navi
+			boolean allPositioned = true;
+			for (Navy s : Pve.getNavy().getPlayerNavy()) {
+				if (s.getShipPosition().get(0)[0] == -1) {
+					allPositioned = false;
+					break;
+				}
 			}
+			GameButtons.setConfirmSetupEnabled(allPositioned);
 		}
-		GameButtons.setConfirmSetupEnabled(allPositioned);
 
 	}
 

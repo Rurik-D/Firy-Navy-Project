@@ -37,7 +37,10 @@ public class GameButtons extends FrameProportion{
 	private static JButton confirmSetupBtn = new JButton(resourceBundle.getString("button.confirmSetup"));
 	private static JLabel saveLabel = new JLabel(resourceBundle.getString("button.saveLabel"));
 	private static JLabel jlbTimer = new JLabel("");
-	private static boolean enable = false;
+	private static boolean confirmSetupVisible = true;
+	private static boolean confirmSetupEnabled = false;
+	private static boolean pause = false;
+
 	
 	
 	public GameButtons(JPanel mainPanel) {
@@ -97,10 +100,10 @@ public class GameButtons extends FrameProportion{
 				gameOptionBtn.setVisible(false);
 				confirmSetupBtn.setVisible(false);
 				jlbTimer.setVisible(false);
-				MenuButtons.timer.stop();
 				mainMenuBtn.setVisible(true);
 				backToGameBtn.setVisible(true);
-				
+				MenuButtons.timer.stop();
+				pause = true;
 			}
 		});
 		
@@ -128,6 +131,8 @@ public class GameButtons extends FrameProportion{
 				Main.getScrollPnl().setVisible(false);
 				Pve.getPositionGrid().setVisible(false);
 				Pve.getAttackGrid().setVisible(false);
+				pause = false;
+				
 				int Xpos = 200;
 				for (int i = 0; i<10; i++) {
 					Pve.getNavy().getPlayerNavy().get(i).setVisible(false);
@@ -154,6 +159,8 @@ public class GameButtons extends FrameProportion{
 				Main.getScrollPnl().setVisible(false);
 				Pve.getPositionGrid().setVisible(false);
 				Pve.getAttackGrid().setVisible(false);
+				pause = false;
+				
 				int Xpos = 200;
 				for (int i = 0; i<10; i++) {
 					Pve.getNavy().getPlayerNavy().get(i).setVisible(false);
@@ -180,28 +187,28 @@ public class GameButtons extends FrameProportion{
 		backToGameBtn.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				SoundsManagement.clickMenuBtn();
+				if (confirmSetupVisible) {confirmSetupBtn.setVisible(true);}
 				gameOptionBtn.setVisible(true);
-				confirmSetupBtn.setVisible(true);
+				jlbTimer.setVisible(true);
 				mainMenuBtn.setVisible(false);
 				backToGameBtn.setVisible(false);
-				jlbTimer.setVisible(true);
+				pause = false;
 				MenuButtons.timer.start();
-
 
 			}
 		});
 		backToGameOptionBtn.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				SoundsManagement.clickMenuBtn();
+				if (confirmSetupVisible) {confirmSetupBtn.setVisible(true);}
 				gameOptionBtn.setVisible(true);
-				confirmSetupBtn.setVisible(true);
+				jlbTimer.setVisible(true);
 				mainMenuBtn.setVisible(false);
 				backToGameBtn.setVisible(false);
 				yesSaveBtn.setVisible(false);
 				noSaveBtn.setVisible(false);
 				saveLabel.setVisible(false);
 				backToGameOptionBtn.setVisible(false);
-				jlbTimer.setVisible(true);
 				MenuButtons.timer.start();
 
 
@@ -210,7 +217,9 @@ public class GameButtons extends FrameProportion{
 		
 		confirmSetupBtn.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				if (enable)  {
+				if (confirmSetupEnabled)  {
+					confirmSetupVisible = false;
+					confirmSetupEnabled = false;
 					confirmSetupBtn.setVisible(false);
 					Main.getOldScroll().setVisible(false);
 					SoundsManagement.clickMenuBtn();
@@ -236,8 +245,17 @@ public class GameButtons extends FrameProportion{
 	}
 	
 	public static void setConfirmSetupEnabled(boolean en) {
-		enable = en;
+		confirmSetupEnabled = en;
 	}
+	
+	public static boolean getPause() {
+		return pause;
+	}
+	
+	public static boolean getConfirmSetupVisible() {
+		return confirmSetupVisible;
+	}
+	
 	
 	
 	private void setTrasparent(JButton button) {
