@@ -69,11 +69,6 @@ public class MenuButtons extends FrameProportion{
 	private static JButton boxCpuBtn = new JButton("");
 	private static JLabel boxLabel = new JLabel();
 	private static JLabel boxCpuLabel = new JLabel(resourceBundle.getString("label.boxCpuLabel"));
-	public static Timer timer;
-	static int k = 0;
-	static String minutes ="0"; 
-	static int minute;
-
 	
 	public MenuButtons(JPanel mainPanel) {
 
@@ -321,7 +316,7 @@ public class MenuButtons extends FrameProportion{
 				boxBtn.setIcon(avatarList.get(chooseBtn)); 
 				buttonsSetUp(boxBtn);
 				selectNickname.setText(null);
-				setTimer();
+				GameTimer.setTimer();
 			}
 		});	
 		
@@ -612,25 +607,6 @@ public class MenuButtons extends FrameProportion{
 		engBtn.setText(resourceBundle.getString("button.engBtn"));
 		itaBtn.setText(resourceBundle.getString("button.itaBtn"));
 		extLabel.setText(resourceBundle.getString("label.extLabel"));
-	}
-	
-	
-	public void setTimer() {
-		GameButtons.getJlbTimer().setVisible(true);
-		timer = new Timer(1000,new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				GameButtons.getJlbTimer().setText( minutes + ":" + String.valueOf(k));
-				k++;
-				
-				if (k == 60) {
-					k = 0;
-					minute = Integer.parseInt(minutes) + 1;
-					minutes = String.valueOf(minute);
-				}
-			}
-		});
-		timer.start();
 	}
 	
 	

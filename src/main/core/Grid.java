@@ -98,7 +98,7 @@ public class Grid extends JLabel{
 				missLbl.setName( letters[j] +  "" + i );
 				missLbl.setBounds(boxSide*i + parameterBorder, boxSide*j + parameterBorder, boxSide, boxSide);
 				missLbl.setVisible(false);
-				missLbl.setIcon(ImagesManagement.getMisLbl(boxSide));
+				missLbl.setIcon(ImagesManagement.getMissLbl(boxSide));
 				
 				box = new JButton("");
 				box.setName( letters[j] +  "" + i );
@@ -142,7 +142,7 @@ public class Grid extends JLabel{
 				missLbl.setName( letters[j] +  "" + i );
 				missLbl.setBounds(boxSide*i + parameterBorder, boxSide*j + parameterBorder, boxSide, boxSide);
 				missLbl.setVisible(false);
-				missLbl.setIcon(ImagesManagement.getMisLbl(boxSide));
+				missLbl.setIcon(ImagesManagement.getMissLbl(boxSide));
 				
 				box = new JButton("");
 				box.setName( letters[j] +  "" + i );

@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 
 import resources.*;
 import utils.FrameProportion;
+import utils.GameTimer;
 import main.core.Main;
 import main.core.Pve;
 
@@ -36,7 +37,7 @@ public class GameButtons extends FrameProportion{
 	private static JButton backToGameOptionBtn = new JButton(resourceBundle.getString("button.backToGameOptionBtn"));
 	private static JButton confirmSetupBtn = new JButton(resourceBundle.getString("button.confirmSetup"));
 	private static JLabel saveLabel = new JLabel(resourceBundle.getString("button.saveLabel"));
-	private static JLabel jlbTimer = new JLabel("");
+	private static JLabel timerLbl = GameTimer.getTimerLbl();
 	private static boolean confirmSetupVisible = true;
 	private static boolean confirmSetupEnabled = false;
 	private static boolean pause = false;
@@ -52,7 +53,7 @@ public class GameButtons extends FrameProportion{
 		noSaveBtn.setVisible(false);
 		saveLabel.setVisible(false);
 		backToGameOptionBtn.setVisible(false);
-		jlbTimer.setVisible(false);
+		timerLbl.setVisible(false);
 		confirmSetupBtn.setVisible(false);
 		
 		gameOptionBtn.setBounds((Main.WIDTH/2) - 100, 10, 200, 40);
@@ -62,7 +63,7 @@ public class GameButtons extends FrameProportion{
 		noSaveBtn.setBounds((Main.WIDTH/2) - 85, 60, yesBtnW, buttonH);
 		backToGameOptionBtn.setBounds((Main.WIDTH/2) - 30, 60, buttonW, buttonH);
 		saveLabel.setBounds((Main.WIDTH/2) - extLabelW/2, 10, extLabelW, buttonH);
-		jlbTimer.setBounds((Main.WIDTH/2) - 40, 60, 150, 40);
+		timerLbl.setBounds((Main.WIDTH/2) - 40, 60, 150, 40);
 		confirmSetupBtn.setBounds(300, 760, 300, 40);
 		
 		gameOptionBtn.setFont(font);
@@ -72,7 +73,7 @@ public class GameButtons extends FrameProportion{
 		noSaveBtn.setFont(font);
 		backToGameOptionBtn.setFont(font);
 		saveLabel.setFont(font);
-		jlbTimer.setFont(font);
+		timerLbl.setFont(font);
 		confirmSetupBtn.setFont(font);
 		
 		setTrasparent(gameOptionBtn);
@@ -90,7 +91,7 @@ public class GameButtons extends FrameProportion{
 		mainPanel.add(yesSaveBtn);
 		mainPanel.add(backToGameOptionBtn);
 		mainPanel.add(saveLabel);
-		mainPanel.add(jlbTimer);
+		mainPanel.add(timerLbl);
 		mainPanel.add(confirmSetupBtn);
 
 		
@@ -99,10 +100,10 @@ public class GameButtons extends FrameProportion{
 				SoundsManagement.clickMenuBtn();
 				gameOptionBtn.setVisible(false);
 				confirmSetupBtn.setVisible(false);
-				jlbTimer.setVisible(false);
+				timerLbl.setVisible(false);
 				mainMenuBtn.setVisible(true);
 				backToGameBtn.setVisible(true);
-				MenuButtons.timer.stop();
+				GameTimer.stopTimer();
 				pause = true;
 			}
 		});
@@ -148,7 +149,9 @@ public class GameButtons extends FrameProportion{
 				MenuButtons.getBoxLabel().setVisible(false);
 				MenuButtons.getBoxCpuBtn().setVisible(false);
 				MenuButtons.getBoxCpuLabel().setVisible(false);
-				jlbTimer.setVisible(false);
+				timerLbl.setVisible(false);
+				GameTimer.resetTimer();
+
 			}
 		});
 	
@@ -179,7 +182,9 @@ public class GameButtons extends FrameProportion{
 				MenuButtons.getBoxLabel().setVisible(false);
 				MenuButtons.getBoxCpuBtn().setVisible(false);
 				MenuButtons.getBoxCpuLabel().setVisible(false);
-				jlbTimer.setVisible(false);
+				timerLbl.setVisible(false);
+				GameTimer.resetTimer();
+
 
 			}
 		});
@@ -189,11 +194,11 @@ public class GameButtons extends FrameProportion{
 				SoundsManagement.clickMenuBtn();
 				if (confirmSetupVisible) {confirmSetupBtn.setVisible(true);}
 				gameOptionBtn.setVisible(true);
-				jlbTimer.setVisible(true);
+				timerLbl.setVisible(true);
 				mainMenuBtn.setVisible(false);
 				backToGameBtn.setVisible(false);
 				pause = false;
-				MenuButtons.timer.start();
+				GameTimer.startTimer();
 
 			}
 		});
@@ -202,14 +207,14 @@ public class GameButtons extends FrameProportion{
 				SoundsManagement.clickMenuBtn();
 				if (confirmSetupVisible) {confirmSetupBtn.setVisible(true);}
 				gameOptionBtn.setVisible(true);
-				jlbTimer.setVisible(true);
+				timerLbl.setVisible(true);
 				mainMenuBtn.setVisible(false);
 				backToGameBtn.setVisible(false);
 				yesSaveBtn.setVisible(false);
 				noSaveBtn.setVisible(false);
 				saveLabel.setVisible(false);
 				backToGameOptionBtn.setVisible(false);
-				MenuButtons.timer.start();
+				GameTimer.startTimer();
 
 
 			}
@@ -234,10 +239,6 @@ public class GameButtons extends FrameProportion{
 	}
 	public static JButton getGameOptionBtn() {
 		return gameOptionBtn;
-	}
-	
-	public static JLabel getJlbTimer() {
-		return jlbTimer;
 	}
 	
 	public static JButton getConfirmSetupBtn() {

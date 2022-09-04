@@ -128,7 +128,7 @@ public class ImagesManagement extends FrameProportion {
 		return getImage(boxSide, boxSide, imagesBundle.getString("image.hit"));	
 	}
 	
-	public static Icon getMisLbl(int boxSide) {
+	public static Icon getMissLbl(int boxSide) {
 		return getImage(boxSide, boxSide, imagesBundle.getString("image.miss"));	
 	}
 	
