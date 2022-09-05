@@ -284,6 +284,4 @@ public class GameButtons extends FrameProportion{
 		saveLabel.setText(resourceBundle.getString("button.saveLabel"));
 	}
 	
-	
-
 }
