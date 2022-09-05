@@ -224,7 +224,7 @@ public class MenuButtons extends FrameProportion{
 				
 				if (volume > 0) {
 					volume -= 1;
-					SoundsManagement.setVolume((float)volume/100);
+					SoundsManagement.setVolume((float)volume/100, "menuSong");
 					volumeLevel.setText(String.valueOf(volume));
 				}
 				
@@ -238,7 +238,7 @@ public class MenuButtons extends FrameProportion{
 				volume = Integer.parseInt(volumeLevel.getText());
 				if (volume < 99) {
 					volume += 1;
-					SoundsManagement.setVolume((float)volume/100);
+					SoundsManagement.setVolume((float)volume/100, "menuSong");
 					volumeLevel.setText(String.valueOf(volume));
 				}
 				
@@ -281,6 +281,8 @@ public class MenuButtons extends FrameProportion{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				SoundsManagement.clickMenuBtn();
+				SoundsManagement.stop("menuSong");
+				SoundsManagement.start("gameSong");
 				
 				for (int i = 0; i<6; i++) {
 					avatarBtns.get(i).setVisible(false);
@@ -292,10 +294,12 @@ public class MenuButtons extends FrameProportion{
 				confirmBtn.setVisible(false);
 				confirmBtn.setVisible(false);
 				backToStartBtn.setVisible(false);
+				
 				ImagesManagement.getMenuBackground().setVisible(false);
 				ImagesManagement.hideTitle();
 				GameButtons.getGameOptionBtn().setVisible(true);
 				GameButtons.getConfirmSetupBtn().setVisible(true);
+				
 				Pve.getPositionGrid().setVisible(true);
 				Pve.getAttackGrid().setVisible(true);
 				for (int i = 0; i<10; i++) {

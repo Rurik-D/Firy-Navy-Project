@@ -125,6 +125,9 @@ public class GameButtons extends FrameProportion{
 		yesSaveBtn.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				SoundsManagement.clickMenuBtn();
+				SoundsManagement.stop("gameSong");
+				SoundsManagement.start("menuSong");
+
 				backToGameOptionBtn.setVisible(false);
 				yesSaveBtn.setVisible(false);
 				noSaveBtn.setVisible(false);
@@ -158,6 +161,9 @@ public class GameButtons extends FrameProportion{
 		noSaveBtn.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				SoundsManagement.clickMenuBtn();
+				SoundsManagement.stop("gameSong");
+				SoundsManagement.start("menuSong");
+				
 				backToGameOptionBtn.setVisible(false);
 				Main.getScrollPnl().setVisible(false);
 				Pve.getPositionGrid().setVisible(false);

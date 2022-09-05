@@ -130,7 +130,7 @@ public class Main{
 		frame.getContentPane().setLayout(null);
 		ImagesManagement.setCursor(frame);
 		ImagesManagement.setFrameIcon(frame);
-		SoundsManagement.backgroundSong();
+		SoundsManagement.start("menuSong");
 	}
 	
 	
