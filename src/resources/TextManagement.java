@@ -71,7 +71,7 @@ public class TextManagement{
 	}
 	
 	public void addText(String textToAdd) {
-		text += "\n"+ textToAdd +"\n";
+		text += textToAdd +"\n";
 		textArea.setText(text);
 	}
 	
@@ -87,6 +87,16 @@ public class TextManagement{
 	
 	public void missMessage(int player, String coordinates) {
 		text += getPlayer(player) + " :  " + coordinates + " , miss\n";
+		textArea.setText(text);
+	}
+	
+	public void pauseMessage() {
+		text += "Pause\n";
+		textArea.setText(text);
+	}
+	
+	public void resumeMessage() {
+		text += "Resume\n";
 		textArea.setText(text);
 	}
 	

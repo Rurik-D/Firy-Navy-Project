@@ -41,6 +41,8 @@ public class GameButtons extends FrameProportion{
 	private static boolean confirmSetupVisible = true;
 	private static boolean confirmSetupEnabled = false;
 	private static boolean pause = false;
+	private static TextManagement textManage = Main.getTextManage();
+	
 
 	
 	
@@ -105,6 +107,7 @@ public class GameButtons extends FrameProportion{
 				backToGameBtn.setVisible(true);
 				GameTimer.stopTimer();
 				pause = true;
+				textManage.pauseMessage();
 			}
 		});
 		
@@ -204,8 +207,8 @@ public class GameButtons extends FrameProportion{
 				mainMenuBtn.setVisible(false);
 				backToGameBtn.setVisible(false);
 				pause = false;
+				textManage.resumeMessage();
 				GameTimer.startTimer();
-
 			}
 		});
 		backToGameOptionBtn.addMouseListener(new MouseAdapter() {
@@ -220,9 +223,9 @@ public class GameButtons extends FrameProportion{
 				noSaveBtn.setVisible(false);
 				saveLabel.setVisible(false);
 				backToGameOptionBtn.setVisible(false);
+				pause = false;
+				textManage.resumeMessage();
 				GameTimer.startTimer();
-
-
 			}
 		});
 		

@@ -35,7 +35,7 @@ public class Movement implements MouseListener, MouseMotionListener{
 	
 	@Override
 	public void mouseDragged(MouseEvent event) {
-		if (GameButtons.getConfirmSetupVisible()) {
+		if (GameButtons.getConfirmSetupVisible() && !GameButtons.getPause()) {
 			event.getComponent().setLocation((event.getX() + event.getComponent().getX() - X), (event.getY() + event.getComponent().getY() - Y));
 		}
 	}
@@ -47,7 +47,7 @@ public class Movement implements MouseListener, MouseMotionListener{
 
 	@Override
 	public void mouseClicked(MouseEvent event) {
-	  if (event.getClickCount() == 2 && event.getButton() == MouseEvent.BUTTON1 && GameButtons.getConfirmSetupVisible()) {
+	  if (event.getClickCount() == 2 && event.getButton() == MouseEvent.BUTTON1 && GameButtons.getConfirmSetupVisible() && !GameButtons.getPause()) {
 		    ship.rotateShip();
 		    collisionCheck();
 	  }
@@ -63,7 +63,7 @@ public class Movement implements MouseListener, MouseMotionListener{
 
 	@Override
 	public void mouseReleased(MouseEvent event) {
-		if (GameButtons.getConfirmSetupVisible()) {
+		if (GameButtons.getConfirmSetupVisible() && !GameButtons.getPause()) {
 			collisionCheck();
 			ship.updateShipPosition();
 			collisionCheck();
