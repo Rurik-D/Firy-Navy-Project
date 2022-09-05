@@ -63,7 +63,7 @@ public class GameButtons extends FrameProportion{
 		noSaveBtn.setBounds((Main.WIDTH/2) - 85, 60, yesBtnW, buttonH);
 		backToGameOptionBtn.setBounds((Main.WIDTH/2) - 30, 60, buttonW, buttonH);
 		saveLabel.setBounds((Main.WIDTH/2) - extLabelW/2, 10, extLabelW, buttonH);
-		timerLbl.setBounds((Main.WIDTH/2) - 40, 60, 150, 40);
+		timerLbl.setBounds((Main.WIDTH/2) - 60, 60, 150, 40);
 		confirmSetupBtn.setBounds(300, 760, 300, 40);
 		
 		gameOptionBtn.setFont(font);

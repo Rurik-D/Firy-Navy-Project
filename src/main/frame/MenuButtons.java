@@ -53,17 +53,17 @@ public class MenuButtons extends FrameProportion{
 	private JButton nicknameBtn = new JButton(resourceBundle.getString("button.nicknameBtn"));
 	private JButton itaBtn = new JButton(resourceBundle.getString("button.itaBtn"));
 	private JButton engBtn = new JButton(resourceBundle.getString("button.engBtn"));
-	private JLabel extLabel = new JLabel(resourceBundle.getString("label.extLabel"));
 	private JButton moreVolumeBtn = new JButton("+");
 	private JButton lessVolumeBtn = new JButton("-");
-	private JTextField selectNickname = new JTextField();
+	private JLabel extLabel = new JLabel(resourceBundle.getString("label.extLabel"));
 	private JLabel volumeLevel = new JLabel("50");
+	private JTextField selectNickname = new JTextField();
 	
 	private List<JButton> avatarBtns = new ArrayList<>();
 	private Font font = new Font("Segoe Script", Font.BOLD, fontDim);
 	private boolean obstacle = true;
 	private int volume;
-	private static List<ImageIcon> avatarList = new ArrayList();
+	private static List<ImageIcon> avatarList = new ArrayList<>();
 	private static int chooseBtn;
 	private static JButton boxBtn = new JButton("");
 	private static JButton boxCpuBtn = new JButton("");
