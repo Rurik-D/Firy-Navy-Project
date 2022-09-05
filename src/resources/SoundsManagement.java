@@ -25,8 +25,8 @@ public class SoundsManagement {
 	private static float gameVolume = 0f;
 	private static Timer menuSongFadeTimer;
 	private static Timer gameSongFadeTimer;
-
-
+	private static boolean menuFadeRunning = false;
+	private static boolean gameFadeRunning = false;
 	
 	
 	public static void clickMenuBtn() {
@@ -139,6 +139,10 @@ public class SoundsManagement {
 	
 	// on_off == -1 or 1
 	private static void menuFade(int on_off) {
+		// se sto già dissolvendo la canzone, fermati e inverti il processo
+		if (menuFadeRunning) { menuSongFadeTimer.stop(); }
+		menuFadeRunning = true;
+
 		menuSongFadeTimer = new Timer(500, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -148,9 +152,8 @@ public class SoundsManagement {
 				if (menuVolume <= 0.00f || menuVolume >= 0.50f) {
 					if (on_off == -1) {
 						menuSong.close();
-						menuSongFadeTimer.stop();
-						
 					}
+					menuFadeRunning = false;
 					menuSongFadeTimer.stop();
 				}
 				setVolume("menuSong");
@@ -160,16 +163,20 @@ public class SoundsManagement {
 	}
 	
 	public static void gameFade(int on_off) {
+		// se sto già dissolvendo la canzone, fermati e inverti il processo
+		if (gameFadeRunning) { gameSongFadeTimer.stop(); }
+		gameFadeRunning = true;
 		gameSongFadeTimer = new Timer(500, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				gameVolume += 0.05f * on_off;
 				gameVolume = (float)Math.round(gameVolume * 100f) / 100f;
-				
+				System.out.println(gameVolume);
 				if (gameVolume <= 0.00f || gameVolume >= 0.25f) {
 					if (on_off == -1) {
 						gameSong.close();
 					}
+					gameFadeRunning = false;
 					gameSongFadeTimer.stop();
 				}
 				setVolume("gameSong");

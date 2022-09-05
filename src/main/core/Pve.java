@@ -16,6 +16,8 @@ public class Pve {
 	private static char[] letters = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
 	private static Grid positionGrid = new Grid(300, 200);
 	private static Navy navy = new Navy();
+	private static int[][] possiblePositions = new int[10][10];
+	private static List<List<int[]>> randomNavy = new ArrayList<>();
 	private static Grid attackGrid = new Grid(950, 200, positionGrid);
 	private static Random random = new Random();
 	private static List<int[]> randAttacksMade = new ArrayList<>();
@@ -45,6 +47,21 @@ public class Pve {
 	 */
 	public static Navy getNavy() {
 		return navy;
+	}
+	
+	public static List<List<int[]>> getRandomNavy() {
+		setPossiblePositions();
+		generateRandomNavy();
+		
+		return randomNavy;
+	}
+	
+	private static void setPossiblePositions() {
+		for(int i = 0; i < 10; i++) {
+			for(int j = 0; j < 10; j++) {
+				possiblePositions[i][j] = 0;		// 0 libero, 1 occupato
+			}
+		}
 	}
 	
 	private static int[] checkLastHits() {
@@ -199,6 +216,165 @@ public class Pve {
 		
 		randAttacksMade.add(0, randAttack);
 		randAttacksHit.add(0, hitted);
+	}
+	
+	private static void generateRandomNavy() {
+		boolean vertical;
+		boolean occupied;
+		boolean found;
+		int shipSize;
+		int randX;
+		int randY;
+		
+		for (int positioned = 0; positioned < 10; positioned++) {
+			List<int[]> randomPosition = new ArrayList<>();
+
+			found = false;
+			vertical = random.nextBoolean();
+			// definisco il numero delle caselle della nave selezionata
+			shipSize = switch (positioned) {
+				case 0 				-> 5;
+				case 1 				-> 4;
+				case 2, 3, 4, 5, 6 	-> 3;
+				case 7, 8, 9 		-> 2;
+				default -> 0;
+			};
+			
+			// finché non trovo la posizione
+			positionFound:
+			while (!found) {
+				// genero randomicamente x e y
+				if (vertical) {
+					randX = random.nextInt(0, 10);
+					randY = random.nextInt(0, 10 - shipSize);
+				} else {
+					randX = random.nextInt(0, 10 - shipSize);
+					randY = random.nextInt(0, 10);
+				}
+
+				occupied = false;
+				// se il punto generato è libero (altrimenti ne seleziono un altro)
+				if (possiblePositions[randY][randX] == 0) {
+					
+					// controllo ai lati per evitare di avere tutte le navi appiccicate
+					if (randX > 0) {
+						if (possiblePositions[randY][randX - 1] != 0) { continue; }
+					}
+					if (randX < 9) {
+						if (possiblePositions[randY][randX + 1] != 0) { continue; }
+
+					}
+					if (randY > 0) {
+						if (possiblePositions[randY - 1][randX] != 0) { continue; }
+
+					}
+					if (randY < 9) {
+						if (possiblePositions[randY + 1][randX] != 0) { continue; }
+
+					}
+					
+					// se la nave è in verticale
+					if(vertical) {
+						
+						for (int i = randY; i < randY + shipSize; i++) {							
+							int[] randPoint = {randX, i};
+							
+							// se il punto è libero aggiungo il punto alla lista e setto a 1 il punto su possiblePositions
+							if (possiblePositions[i][randX] == 0) {
+								
+								if (randX > 0) {
+									if ( possiblePositions[i][randX - 1] != 0 ) {
+										occupied = true;
+										randomPosition.clear();
+										for (int j = randY; j < i; j++) {
+											possiblePositions[j][randX] = 0;
+										}
+										break;
+									}
+								}	
+								if (randX < 9) {
+									if ( possiblePositions[i][randX + 1] != 0 ) {
+										occupied = true;
+										randomPosition.clear();
+										for (int j = randY; j < i; j++) {
+											possiblePositions[j][randX] = 0;
+										}
+										break;
+									}
+								}
+								possiblePositions[i][randX] = positioned+1;
+								randomPosition.add(randPoint);
+								
+							// se il punto è occupato svuoto la lista e resetto i punti su possiblePositions
+							} else {
+								occupied = true;
+								randomPosition.clear();
+								for (int j = randY; j < i; j++) {
+									possiblePositions[j][randX] = 0;
+								}
+								break;
+							}
+							// se la linea di punti non è occupata
+						}
+						if (!occupied) {
+							randomNavy.add(randomPosition);
+							found = true;
+							break positionFound;
+						}
+						
+					// se la nave è in orizzontale
+					} else {
+						
+						for (int i = randX; i < randX + shipSize; i++) {
+							
+							int[] randPoint = {i, randY};
+							// se il punto è libero aggiungo il punto alla lista e setto a 1 il punto su possiblePositions
+							if (possiblePositions[randY][i] == 0) {	
+								if (randY > 0) {
+									if (possiblePositions[randY - 1][i] != 0) {
+										occupied = true;
+										randomPosition.clear();
+										for (int j = randX; j < i; j++) {
+											possiblePositions[randY][j] = 0;
+										}
+										break;
+									}
+									
+								}
+								if (randY < 9) {
+									if (possiblePositions[randY + 1][i] != 0) {
+										occupied = true;
+										randomPosition.clear();
+										for (int j = randX; j < i; j++) {
+											possiblePositions[randY][j] = 0;
+										}
+										break;
+									}
+								}
+								possiblePositions[randY][i] = positioned+1;
+								randomPosition.add(randPoint);
+
+							// se il punto è occupato svuoto la lista e resetto i punti su possiblePositions
+							} else {
+								occupied = true;
+								randomPosition.clear();
+								for (int j = randX; j < i; j++) {
+									possiblePositions[randY][j] = 0;
+								}
+								break;
+							}
+							// se la linea di punti non è occupata
+						}
+						if (!occupied) {
+							randomNavy.add(randomPosition);
+							found = true;
+							break positionFound;
+						}
+						
+					}
+				}
+			}
+		}
 	}
 	
 }

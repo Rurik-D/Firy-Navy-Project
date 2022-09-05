@@ -69,6 +69,7 @@ public class MenuButtons extends FrameProportion{
 	private static JButton boxCpuBtn = new JButton("");
 	private static JLabel boxLabel = new JLabel();
 	private static JLabel boxCpuLabel = new JLabel(resourceBundle.getString("label.boxCpuLabel"));
+	private static TextManagement textManage = Main.getTextManage();
 	
 	public MenuButtons(JPanel mainPanel) {
 
@@ -299,6 +300,7 @@ public class MenuButtons extends FrameProportion{
 				ImagesManagement.hideTitle();
 				GameButtons.getGameOptionBtn().setVisible(true);
 				GameButtons.getConfirmSetupBtn().setVisible(true);
+				textManage.resetText();
 				
 				Pve.getPositionGrid().setVisible(true);
 				Pve.getAttackGrid().setVisible(true);

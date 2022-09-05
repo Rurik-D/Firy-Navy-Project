@@ -18,10 +18,8 @@ import resources.ImagesManagement;
  */
 public class Navy extends JLabel{
 	private ResourceBundle imagesBundle = ResourceBundle.getBundle("utils.file/images");
-	private int[][] possiblePositions = new int[10][10];
 	private List<int[]> shipPosition = new ArrayList<>();
 	private List<Navy> playerNavy = new ArrayList<>();
-	private List<List<int[]>> randomNavy = new ArrayList<>();
 	private int xPos = 200;
 	private int yPos = 650;
 	private String type;
@@ -35,23 +33,22 @@ public class Navy extends JLabel{
 	private Random random = new Random();
 
 	public Navy() {
-		setPossiblePositions();
-		generateRandomNavy();
+
 		
-		for (int i = 0; i < 10; i++) {
-			for (int j = 0; j < 10; j++) {
-				System.out.print(possiblePositions[i][j] + " ");
-			}
-			System.out.println();
-		}
-		
-		for (int i = 0; i < 10; i++) {
-			System.out.print(randomNavy.get(i).size() + " = ");
-			for (int j = 0; j < randomNavy.get(i).size(); j++) {
-				System.out.print("[" + randomNavy.get(i).get(j)[0] + ", " + randomNavy.get(i).get(j)[1] + "]");
-			}
-			System.out.println();
-		}
+//		for (int i = 0; i < 10; i++) {
+//			for (int j = 0; j < 10; j++) {
+//				System.out.print(possiblePositions[i][j] + " ");
+//			}
+//			System.out.println();
+//		}
+//		
+//		for (int i = 0; i < 10; i++) {
+//			System.out.print(randomNavy.get(i).size() + " = ");
+//			for (int j = 0; j < randomNavy.get(i).size(); j++) {
+//				System.out.print("[" + randomNavy.get(i).get(j)[0] + ", " + randomNavy.get(i).get(j)[1] + "]");
+//			}
+//			System.out.println();
+//		}
 		
 		for(int i = 0; i < 10; i++) {
 			switch (i) {
@@ -125,9 +122,7 @@ public class Navy extends JLabel{
 		return shipIndex;
 	}
 	
-	public List<List<int[]>> getRandomNavy() {
-		return randomNavy;
-	}
+
 	
 	private void generateShip() {
 		shipH = Integer.parseInt(type.substring(0, 1)) * shipW;
@@ -141,173 +136,7 @@ public class Navy extends JLabel{
 		setIcon(ImagesManagement.getImage(shipW, shipH, imagesBundle.getString("image." + type)));
 		setBounds(xPos, yPos, shipW, shipH);
 	}
-	
-	private void setPossiblePositions() {
-		for(int i = 0; i < 10; i++) {
-			for(int j = 0; j < 10; j++) {
-				possiblePositions[i][j] = 0;		// 0 libero, 1 occupato
-			}
-		}
-	}
-	
-	private void generateRandomNavy() {
-		boolean vertical;
-		boolean occupied;
-		boolean found;
-		int shipSize;
-		int randX;
-		int randY;
-		
-		for (int positioned = 0; positioned < 10; positioned++) {
-			List<int[]> randomPosition = new ArrayList<>();
 
-			found = false;
-			vertical = random.nextBoolean();
-			// definisco il numero delle caselle della nave selezionata
-			shipSize = switch (positioned) {
-				case 0 				-> 5;
-				case 1 				-> 4;
-				case 2, 3, 4, 5, 6 	-> 3;
-				case 7, 8, 9 		-> 2;
-				default -> 0;
-			};
-			
-			// finché non trovo la posizione
-			positionFound:
-			while (!found) {
-				// genero randomicamente x e y
-				if (vertical) {
-					randX = random.nextInt(0, 10);
-					randY = random.nextInt(0, 10 - shipSize);
-				} else {
-					randX = random.nextInt(0, 10 - shipSize);
-					randY = random.nextInt(0, 10);
-				}
-
-				occupied = false;
-				// se il punto generato è libero (altrimenti ne seleziono un altro)
-				if (possiblePositions[randY][randX] == 0) {
-					
-					// controllo ai lati per evitare di avere tutte le navi appiccicate
-					if (randX > 0) {
-						if (possiblePositions[randY][randX - 1] != 0) { continue; }
-					}
-					if (randX < 9) {
-						if (possiblePositions[randY][randX + 1] != 0) { continue; }
-
-					}
-					if (randY > 0) {
-						if (possiblePositions[randY - 1][randX] != 0) { continue; }
-
-					}
-					if (randY < 9) {
-						if (possiblePositions[randY + 1][randX] != 0) { continue; }
-
-					}
-					
-					// se la nave è in verticale
-					if(vertical) {
-						
-						for (int i = randY; i < randY + shipSize; i++) {							
-							int[] randPoint = {randX, i};
-							
-							// se il punto è libero aggiungo il punto alla lista e setto a 1 il punto su possiblePositions
-							if (possiblePositions[i][randX] == 0) {
-								
-								if (randX > 0) {
-									if ( possiblePositions[i][randX - 1] != 0 ) {
-										occupied = true;
-										randomPosition.clear();
-										for (int j = randY; j < i; j++) {
-											possiblePositions[j][randX] = 0;
-										}
-										break;
-									}
-								}	
-								if (randX < 9) {
-									if ( possiblePositions[i][randX + 1] != 0 ) {
-										occupied = true;
-										randomPosition.clear();
-										for (int j = randY; j < i; j++) {
-											possiblePositions[j][randX] = 0;
-										}
-										break;
-									}
-								}
-								possiblePositions[i][randX] = positioned+1;
-								randomPosition.add(randPoint);
-								
-							// se il punto è occupato svuoto la lista e resetto i punti su possiblePositions
-							} else {
-								occupied = true;
-								randomPosition.clear();
-								for (int j = randY; j < i; j++) {
-									possiblePositions[j][randX] = 0;
-								}
-								break;
-							}
-							// se la linea di punti non è occupata
-						}
-						if (!occupied) {
-							randomNavy.add(randomPosition);
-							found = true;
-							break positionFound;
-						}
-						
-					// se la nave è in orizzontale
-					} else {
-						
-						for (int i = randX; i < randX + shipSize; i++) {
-							
-							int[] randPoint = {i, randY};
-							// se il punto è libero aggiungo il punto alla lista e setto a 1 il punto su possiblePositions
-							if (possiblePositions[randY][i] == 0) {	
-								if (randY > 0) {
-									if (possiblePositions[randY - 1][i] != 0) {
-										occupied = true;
-										randomPosition.clear();
-										for (int j = randX; j < i; j++) {
-											possiblePositions[randY][j] = 0;
-										}
-										break;
-									}
-									
-								}
-								if (randY < 9) {
-									if (possiblePositions[randY + 1][i] != 0) {
-										occupied = true;
-										randomPosition.clear();
-										for (int j = randX; j < i; j++) {
-											possiblePositions[randY][j] = 0;
-										}
-										break;
-									}
-								}
-								possiblePositions[randY][i] = positioned+1;
-								randomPosition.add(randPoint);
-
-							// se il punto è occupato svuoto la lista e resetto i punti su possiblePositions
-							} else {
-								occupied = true;
-								randomPosition.clear();
-								for (int j = randX; j < i; j++) {
-									possiblePositions[randY][j] = 0;
-								}
-								break;
-							}
-							// se la linea di punti non è occupata
-						}
-						if (!occupied) {
-							randomNavy.add(randomPosition);
-							found = true;
-							break positionFound;
-						}
-						
-					}
-				}
-			}
-		}
-	}
 	
     public void resetLocation(Point p) {
 		if (shipW > shipH) {

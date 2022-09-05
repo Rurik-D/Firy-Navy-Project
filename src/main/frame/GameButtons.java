@@ -237,7 +237,7 @@ public class GameButtons extends FrameProportion{
 					confirmSetupBtn.setVisible(false);
 					Main.getOldScroll().setVisible(false);
 					SoundsManagement.clickMenuBtn();
-					Pve.getAttackGrid().setAttackGrid(Pve.getNavy().getRandomNavy(), Pve.getNavy().getPlayerNavy());
+					Pve.getAttackGrid().setAttackGrid(Pve.getRandomNavy(), Pve.getNavy().getPlayerNavy());
 					Main.getTextManage().confirmSetupMessage();;
 				} else {
 					Main.getTextManage().notConfirmMessage();
