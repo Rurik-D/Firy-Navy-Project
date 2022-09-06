@@ -21,11 +21,11 @@ public class Movement implements MouseListener, MouseMotionListener{
 	private int gridW = Pve.getPositionGrid().getWidth();
 	private int gridH = Pve.getPositionGrid().getHeight();
 	private int boxSide = Grid.getBoxSide();
-	private Navy ship;
+	private Ship ship;
 
 	private Point initialPostion;
 	
-	public Movement(Navy ship, Point initialPostion) {
+	public Movement(Ship ship, Point initialPostion) {
 		this.ship = ship;
 		this.initialPostion = initialPostion;
 		ship.addMouseListener(this);
@@ -69,7 +69,7 @@ public class Movement implements MouseListener, MouseMotionListener{
 			collisionCheck();
 			// controllo se ogni nave è stata posizionata, nel caso attivo il bottone per confermare il setup delle navi
 			boolean allPositioned = true;
-			for (Navy s : Pve.getNavy().getPlayerNavy()) {
+			for (Ship s : Pve.getNavy().getPlayerNavy()) {
 				if (s.getShipPosition().get(0)[0] == -1) {
 					allPositioned = false;
 					break;
@@ -104,7 +104,7 @@ public class Movement implements MouseListener, MouseMotionListener{
 			boolean occupied = false;
 			if (ship.getShipPosition().get(0)[0] != -1) {
 				boxOccupied:
-				for (Navy tmpShip : Pve.getNavy().getPlayerNavy()) {
+				for (Ship tmpShip : Pve.getNavy().getPlayerNavy()) {
 					//se la nave analizzata non è la nave passata a movement
 					if (ship.getShipIndex() != tmpShip.getShipIndex()) {
 					//	per ogni cella occupata dalla nave

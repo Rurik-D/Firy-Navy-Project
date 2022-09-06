@@ -23,6 +23,9 @@ public class Pve {
 	private static List<int[]> randAttacksMade = new ArrayList<>();
 	private static List<Boolean> randAttacksHit = new ArrayList<>();
 	private static int consecutiveMissedAttacks = random.nextInt(0, 2);
+	
+	private List<int[]> enemyHits = new ArrayList<>();
+	private boolean sunk = false;
 
 	
 	
@@ -64,6 +67,22 @@ public class Pve {
 		}
 	}
 	
+	
+	
+	public void addEnemyHit(int[] hit) {
+		// scorro tutte le navi
+		// trovo la nave che è stata colpita
+		// all'enemyHits di quella nave aggiungo il punto che è stato colpito
+		// controllo se la nave è stata affondata
+	}
+	
+	
+	private void check(Navy ship) {
+		// se per ogni cella occupata dalla nave ho una cella equivalente in enemyHits avviso l'avvenuto affondamento
+		//
+	}
+	
+	
 	private static int[] checkLastHits() {
 		int range = 8;
 		int[] missAttack = {-1,-1};
@@ -83,7 +102,7 @@ public class Pve {
 	
 	
 
-	private static int[] makeBonusAttack(List<Navy> playerNavy, Grid navyGrid) {
+	private static int[] makeBonusAttack(List<Ship> playerNavy, Grid navyGrid) {
 		boolean startAttack = false;
 		int[] bonusAttack = null;
 
@@ -109,7 +128,7 @@ public class Pve {
 	/**
 	 * @return the grid (JLabel) to place the ships
 	 */
-	public static void makeRandomAttack(List<Navy> playerNavy, Grid navyGrid) {
+	public static void makeRandomAttack(List<Ship> playerNavy, Grid navyGrid) {
 		TextManagement textManage = Main.getTextManage();
 		List<Integer> triedDirections= new ArrayList<>();
 		int [] randAttack = new int[2];
@@ -193,7 +212,7 @@ public class Pve {
 		
 		// per ogni nave nella flotta del giocatore
 		hit:
-		for (Navy ship : playerNavy) {
+		for (Ship ship : playerNavy) {
 			// per ogni casella occupata dalla nave
 			for (int[] shipPos : ship.getShipPosition()) {								
 				// se la casella occupata dalla nave è uguale alla casella colpita dal computer
@@ -378,3 +397,20 @@ public class Pve {
 	}
 	
 }
+
+
+
+//for (int i = 0; i < 10; i++) {
+//for (int j = 0; j < 10; j++) {
+//	System.out.print(possiblePositions[i][j] + " ");
+//}
+//System.out.println();
+//}
+//
+//for (int i = 0; i < 10; i++) {
+//System.out.print(randomNavy.get(i).size() + " = ");
+//for (int j = 0; j < randomNavy.get(i).size(); j++) {
+//	System.out.print("[" + randomNavy.get(i).get(j)[0] + ", " + randomNavy.get(i).get(j)[1] + "]");
+//}
+//System.out.println();
+//}

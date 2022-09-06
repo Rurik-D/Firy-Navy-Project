@@ -15,8 +15,10 @@ import java.util.ResourceBundle;
 import resources.*;
 import utils.FrameProportion;
 import utils.GameTimer;
+import main.core.Grid;
 import main.core.Main;
 import main.core.Pve;
+import main.core.Ship;
 
 
 /**
@@ -42,7 +44,6 @@ public class GameButtons extends FrameProportion{
 	private static boolean confirmSetupEnabled = false;
 	private static boolean pause = false;
 	private static TextManagement textManage = Main.getTextManage();
-	
 
 	
 	
@@ -140,12 +141,29 @@ public class GameButtons extends FrameProportion{
 				Pve.getAttackGrid().setVisible(false);
 				pause = false;
 				
-				int Xpos = 200;
-				for (int i = 0; i<10; i++) {
-					Pve.getNavy().getPlayerNavy().get(i).setVisible(false);
-					Pve.getNavy().getPlayerNavy().get(i).setLocation(Xpos, 650);
+				int Xpos = 200;				
+				for (Ship ship: Pve.getNavy().getPlayerNavy()) {
+					
+					// se ho confermato il setup rimuovo le navi dalla griglia e le aggiungo al main panel
+					if (!confirmSetupVisible) {
+						Pve.getPositionGrid().remove(ship);;
+						Main.getMainPanel().add(ship);
+					}
+					ship.setLocation(Xpos, 650);
+					ship.setVisible(false);
 					Xpos += 50;
 				}
+				
+				// se ho confermato il setup rimuovo le navi dalla griglia e le aggiungo al main panel
+				if (!confirmSetupVisible) {
+					Main.getMainPanel().remove(ImagesManagement.getGameBackground());
+					Main.getMainPanel().remove(Main.getOldScroll());
+					Main.getMainPanel().remove(Pve.getPositionGrid());
+					Main.getMainPanel().add(Pve.getPositionGrid());
+					Main.getMainPanel().add(Main.getOldScroll());
+					Main.getMainPanel().add(ImagesManagement.getGameBackground());
+				}
+				
 				Main.getOldScroll().setVisible(false);
 
 				ImagesManagement.getMenuBackground().setVisible(true);
@@ -156,6 +174,7 @@ public class GameButtons extends FrameProportion{
 				MenuButtons.getBoxCpuBtn().setVisible(false);
 				MenuButtons.getBoxCpuLabel().setVisible(false);
 				timerLbl.setVisible(false);
+				confirmSetupVisible = true;
 				GameTimer.resetTimer();
 
 			}
@@ -192,6 +211,7 @@ public class GameButtons extends FrameProportion{
 				MenuButtons.getBoxCpuBtn().setVisible(false);
 				MenuButtons.getBoxCpuLabel().setVisible(false);
 				timerLbl.setVisible(false);
+				confirmSetupVisible = true;
 				GameTimer.resetTimer();
 
 
@@ -235,6 +255,22 @@ public class GameButtons extends FrameProportion{
 					confirmSetupVisible = false;
 					confirmSetupEnabled = false;
 					confirmSetupBtn.setVisible(false);
+					
+					// rimuovo le barche dal MainPanel e le aggiungo alla griglia
+					
+					Pve.getPositionGrid().remove(Pve.getPositionGrid().getGridBackground());
+					
+					for (Ship ship: Pve.getNavy().getPlayerNavy()) {
+						int shipX = ship.getX() - Pve.getPositionGrid().getX();
+						int shipY = ship.getY() - Pve.getPositionGrid().getY();;
+						
+						Main.getMainPanel().remove(ship);
+						ship.setLocation(shipX, shipY);
+						Pve.getPositionGrid().add(ship);
+
+					}
+					Pve.getPositionGrid().add(Pve.getPositionGrid().getGridBackground());
+					
 					Main.getOldScroll().setVisible(false);
 					SoundsManagement.clickMenuBtn();
 					Pve.getAttackGrid().setAttackGrid(Pve.getRandomNavy(), Pve.getNavy().getPlayerNavy());
@@ -246,26 +282,31 @@ public class GameButtons extends FrameProportion{
 			}
 		});
 	}
+	
+	
 	public static JButton getGameOptionBtn() {
 		return gameOptionBtn;
 	}
+	
 	
 	public static JButton getConfirmSetupBtn() {
 		return confirmSetupBtn;
 	}
 	
+	
 	public static void setConfirmSetupEnabled(boolean en) {
 		confirmSetupEnabled = en;
 	}
+	
 	
 	public static boolean getPause() {
 		return pause;
 	}
 	
+	
 	public static boolean getConfirmSetupVisible() {
 		return confirmSetupVisible;
 	}
-	
 	
 	
 	private void setTrasparent(JButton button) {

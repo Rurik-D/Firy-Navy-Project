@@ -32,6 +32,8 @@ public class Grid extends JLabel{
 	private List<JLabel> missList = new ArrayList<>();
 	private List<JLabel> hitList = new ArrayList<>();
 	private Grid navyGrid;
+	private JLabel gridBackground = ImagesManagement.getGridBackground(parameterBorder, parameterBorder, W, H);
+	
 	
 	// player grid constructor
 	public Grid (int x, int y) {
@@ -71,6 +73,12 @@ public class Grid extends JLabel{
 	public int getParameterBorder() {
 		return parameterBorder;
 	}
+	
+	
+	public JLabel getGridBackground() {
+		return gridBackground;
+	}
+	
 	
 	public List<JLabel> getHitList() {
 		return hitList;
@@ -119,10 +127,10 @@ public class Grid extends JLabel{
 				
 			}
 		}
-		add(ImagesManagement.getGridBackground(parameterBorder, parameterBorder, W, H));
+		add(gridBackground);
 	}
 	
-	public void setAttackGrid(List<List<int[]>> computerNavy, List<Navy> playerNavy) {	
+	public void setAttackGrid(List<List<int[]>> computerNavy, List<Ship> playerNavy) {	
 		TextManagement textManage = Main.getTextManage();
 		attackGridCover.setVisible(false);
 		
@@ -185,7 +193,7 @@ public class Grid extends JLabel{
 				add(box);
 			}
 		}
-		add(ImagesManagement.getGridBackground(parameterBorder, parameterBorder, W, H));
+		add(gridBackground);
 	}
 	
 	private void addParameters() {
