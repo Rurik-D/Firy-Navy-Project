@@ -31,7 +31,7 @@ public class Grid extends JLabel{
 	private Color backgroundColor = Color.orange.darker().darker().darker().darker().darker();
 	private List<JLabel> missList = new ArrayList<>();
 	private List<JLabel> hitList = new ArrayList<>();
-	private Grid navyGrid;
+	private Grid postionGrid;
 	private JLabel gridBackground = ImagesManagement.getGridBackground(parameterBorder, parameterBorder, W, H);
 	
 	
@@ -53,8 +53,8 @@ public class Grid extends JLabel{
 	 * Attack grid constructor
 	 * 
 	 */
-	public Grid (int x, int y, Grid navyGrid) {
-		this.navyGrid = navyGrid;
+	public Grid (int x, int y, Grid postionGrid) {
+		this.postionGrid = postionGrid;
 		addParameters();
 		setLayout(null);
 		setBounds(x, y, W + parameterBorder + lblBorder, H + parameterBorder + lblBorder);
@@ -232,7 +232,7 @@ public class Grid extends JLabel{
 						
 						box.setVisible(false);
 						
-						Pve.makeRandomAttack(playerNavy, navyGrid);
+						Pve.makeRandomAttack(playerNavy, postionGrid);
 						
 					}
 				});

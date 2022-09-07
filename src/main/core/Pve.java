@@ -15,16 +15,15 @@ import resources.TextManagement;
 public class Pve {
 	private static char[] letters = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
 	private static Grid positionGrid = new Grid(300, 200);
+	private static Grid attackGrid = new Grid(950, 200, positionGrid);
 	private static Navy navy = new Navy();
 	private static int[][] possiblePositions = new int[10][10];
 	private static List<List<int[]>> randomNavy = new ArrayList<>();
-	private static Grid attackGrid = new Grid(950, 200, positionGrid);
-	private static Random random = new Random();
+	private static List<int[]> enemyHits = new ArrayList<>();
 	private static List<int[]> randAttacksMade = new ArrayList<>();
 	private static List<Boolean> randAttacksHit = new ArrayList<>();
-	private static int consecutiveMissedAttacks = random.nextInt(0, 2);
-	
-	private List<int[]> enemyHits = new ArrayList<>();
+	private static Random random = new Random();
+	private static int consecutiveMissForBonus = random.nextInt(0, 2);
 	private boolean sunk = false;
 
 	
@@ -69,13 +68,18 @@ public class Pve {
 	
 	
 	
-	public void addEnemyHit(int[] hit) {
+	public void addComputerHit(int[] hit) {
 		// scorro tutte le navi
 		// trovo la nave che è stata colpita
 		// all'enemyHits di quella nave aggiungo il punto che è stato colpito
 		// controllo se la nave è stata affondata
 	}
 	
+	
+	private void checkComputerSunk(Navy ship) {
+		// se la lista di int[] è vuota la nave è affondata
+		//
+	}
 	
 	private void checkSunk(Navy ship) {
 		// se per ogni cella occupata dalla nave ho una cella equivalente in enemyHits avviso l'avvenuto affondamento
@@ -141,7 +145,7 @@ public class Pve {
 		while(!startAttack) {
 			startAttack = true;
 
-			if (consecutiveMissedAttacks > 0) {
+			if (consecutiveMissForBonus > 0) {
 				randAttack = makeBonusAttack(playerNavy, navyGrid);
 				break;
 				
@@ -198,7 +202,7 @@ public class Pve {
 			} else {
 				randAttack[0] = random.nextInt(0, 10);
 				randAttack[1] = random.nextInt(0, 10);
-				consecutiveMissedAttacks += 1;
+				consecutiveMissForBonus += 1;
 			}
 
 			for (int[] oldAttack : randAttacksMade) {
@@ -225,7 +229,7 @@ public class Pve {
 		}
 
 		if (hitted) {
-			consecutiveMissedAttacks = 0;
+			consecutiveMissForBonus = 0;
 			navyGrid.getHitList().get(randAttack[0] * 10 + randAttack[1]).setVisible(true);
 			textManage.hitMessage(2, letters[randAttack[1]] + "" + randAttack[0]);
 		} else { 
@@ -237,6 +241,11 @@ public class Pve {
 		randAttacksHit.add(0, hitted);
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	private static void generateRandomNavy() {
 		boolean vertical;
 		boolean occupied;
