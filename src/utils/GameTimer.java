@@ -15,11 +15,19 @@ public class GameTimer {
 	private static int tenMinutes = 0; 
 
 	
+	/**
+	 * 
+	 * 
+	 */
 	public static JLabel getTimerLbl() {
 		return timerLbl;
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	public static void setTimer() {
 		timerLbl.setVisible(true);
 		timer = new Timer(1000, new ActionListener() {
@@ -48,16 +56,28 @@ public class GameTimer {
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	public static void startTimer() {
 		timer.start();
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	public static void stopTimer() {
 		timer.stop();
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	public static void resetTimer() {
 		seconds = 0;
 		tenSeconds = 0;
@@ -66,6 +86,5 @@ public class GameTimer {
 		timerLbl.setText( tenMinutes + "" + minutes + ":" + tenSeconds + "" + seconds );
 		timer.stop();
 	}
-	
 	
 }

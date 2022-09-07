@@ -47,7 +47,10 @@ public class GameButtons extends FrameProportion{
 	private static TextManagement textManage = Main.getTextManage();
 
 	
-	
+	/**
+	 * 
+	 * 
+	 */
 	public GameButtons(JPanel mainPanel) {
 		
 		gameOptionBtn.setVisible(false);
@@ -285,31 +288,55 @@ public class GameButtons extends FrameProportion{
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	public static JButton getGameOptionBtn() {
 		return gameOptionBtn;
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	public static JButton getConfirmSetupBtn() {
 		return confirmSetupBtn;
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	public static void setConfirmSetupEnabled(boolean en) {
 		confirmSetupEnabled = en;
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	public static boolean getPause() {
 		return pause;
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	public static boolean getConfirmSetupVisible() {
 		return confirmSetupVisible;
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	private void setTrasparent(JButton button) {
 		button.setOpaque(false);
 		button.setContentAreaFilled(false);
@@ -317,6 +344,10 @@ public class GameButtons extends FrameProportion{
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	public static void setGameBtnsLanguage(String kLang) {
 		resourceBundle  = ResourceBundle.getBundle("utils.file/lang", Locale.forLanguageTag(kLang)) ;
 

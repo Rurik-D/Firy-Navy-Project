@@ -12,8 +12,12 @@ import java.util.List;
 public class Navy{
 	private List<Ship> playerNavy = new ArrayList<>();
 	private int xPos = 200;
-
-
+	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public Navy() {
 		
 		for(int i = 0; i < 10; i++) {
@@ -42,6 +46,10 @@ public class Navy{
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	public List<Ship> getPlayerNavy() {
 		return playerNavy;
 	}

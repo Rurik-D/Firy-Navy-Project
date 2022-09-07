@@ -19,14 +19,29 @@ public class TextManagement{
 	private String player1Name;
 	private String player2Name;
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public JTextArea getTextArea() {
 		return textArea;
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public static Font getParameterFont() {
 		return parameterFont;
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	private String getPlayer(int player) {
 		return switch (player) {
 		case 1 -> player1Name;
@@ -35,6 +50,11 @@ public class TextManagement{
 		};
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public void setPlayerName(int player, String name) {
 		switch (player) {
 		case 1:
@@ -47,6 +67,11 @@ public class TextManagement{
 		
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public void setTextArea() {
 		resetText();
 		textArea.setLineWrap(true);
@@ -57,6 +82,11 @@ public class TextManagement{
 		textArea.setText(text);
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public void resetText() {
 		text = "WELCOME TO FIRY NAVY PROJECT!\n\n"
 			 + "Let's start by dragging the ships onto the grid.\n"
@@ -65,41 +95,81 @@ public class TextManagement{
 		textArea.setText(text);
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public void confirmSetupMessage() {
 		text += "\nSETUP CONFIRMED, prepare for war!\n";
 		textArea.setText(text);
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public void addText(String textToAdd) {
 		text += textToAdd +"\n";
 		textArea.setText(text);
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public void notConfirmMessage() {
 		text += "\nPlace the ships before pressing confirm.\n";
 		textArea.setText(text);
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public void hitMessage(int player, String coordinates) {
 		text += getPlayer(player) + " :  " + coordinates + " , hit!\n";
 		textArea.setText(text);
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public void missMessage(int player, String coordinates) {
 		text += getPlayer(player) + " :  " + coordinates + " , miss\n";
 		textArea.setText(text);
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public void pauseMessage() {
 		text += "Pause\n";
 		textArea.setText(text);
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public void resumeMessage() {
 		text += "Resume\n";
 		textArea.setText(text);
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public void sunkMessage(int player) {
 		text += getPlayer(player) + " : " + "hit ad sunk!\n";
 		textArea.setText(text);

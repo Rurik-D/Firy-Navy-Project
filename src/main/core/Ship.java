@@ -24,7 +24,10 @@ public class Ship extends JLabel{
 	private int shipIndex;
 
 
-	
+	/**
+	 * 
+	 * 
+	 */
 	public Ship(int xPos, String type, int shipIndex) {
 		this.xPos = xPos;
 		this.type = type;
@@ -51,27 +54,57 @@ public class Ship extends JLabel{
 		}
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public int getShipSize() {
 		return Integer.parseInt(type.substring(0, 1));
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public String getType() {
 		return type;
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public List<int[]> getShipPosition(){
 		return shipPosition;
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public int getShipIndex() {
 		return shipIndex;
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	private void setShipIcon() {
 		setIcon(ImagesManagement.getImage(shipW, shipH, imagesBundle.getString("image." + type)));
 		setBounds(xPos, yPos, shipW, shipH);
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	private void generateShip() {
 		shipH = Integer.parseInt(type.substring(0, 1)) * shipW;
 		setShipIcon();
@@ -80,6 +113,11 @@ public class Ship extends JLabel{
 		Movement move = new Movement(this, new Point(xPos, yPos));
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
     public void resetLocation(Point p) {
 		if (shipW > shipH) {
 			int temp = shipW;
@@ -95,6 +133,11 @@ public class Ship extends JLabel{
 			
     }
 	
+    
+	/**
+	 * 
+	 * 
+	 */
 	public void rotateShip() {
 		int temp = shipW;
 		type = switch(type.charAt(type.length() - 2)) {
@@ -111,6 +154,11 @@ public class Ship extends JLabel{
 		updateShipPosition();
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public void updateShipPosition() {
 		int currentBoxX = (int) (this.getX() - gridX) / boxSide;
 		int currentBoxY = (int) (this.getY() - gridY) / boxSide;

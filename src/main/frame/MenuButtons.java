@@ -72,9 +72,12 @@ public class MenuButtons extends FrameProportion{
 	private static JLabel boxCpuLabel = new JLabel(resourceBundle.getString("label.boxCpuLabel"));
 	private static TextManagement textManage = Main.getTextManage();
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public MenuButtons(JPanel mainPanel) {
-
-
 		initialButtonsState();
 		setProportion();
 		setGraphics();
@@ -350,7 +353,11 @@ public class MenuButtons extends FrameProportion{
 		});
 	}
 	
-
+	
+	/**
+	 * 
+	 * 
+	 */
 	private void initialButtonsState() {
 		startBtn.setVisible(true);
 		optionBtn.setVisible(true);
@@ -381,6 +388,10 @@ public class MenuButtons extends FrameProportion{
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	private void optionState() {
 		startBtn.setVisible(false);
 		optionBtn.setVisible(false);
@@ -397,6 +408,10 @@ public class MenuButtons extends FrameProportion{
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	private void setProportion() {
 		startBtn.setBounds(buttonX, buttonY - buttonH * 2, buttonW, buttonH);
 		optionBtn.setBounds(buttonX, buttonY - buttonH, buttonW, buttonH);
@@ -427,6 +442,10 @@ public class MenuButtons extends FrameProportion{
 	}
 
 	
+	/**
+	 * 
+	 * 
+	 */
 	private void setFont() {
 		startBtn.setFont(font);		
 		optionBtn.setFont(font);
@@ -455,6 +474,10 @@ public class MenuButtons extends FrameProportion{
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	private void setGraphics() {
 		setFont();
 		selectNickname.setOpaque(false);
@@ -482,6 +505,10 @@ public class MenuButtons extends FrameProportion{
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	private void addToPanels(JPanel mainPanel) {
 		mainPanel.add(startBtn);
 		mainPanel.add(optionBtn);
@@ -512,6 +539,10 @@ public class MenuButtons extends FrameProportion{
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	private void createAvatarGrid(JPanel mainPanel) {
 		ImagesManagement.createAvatarPicture(imagesBundle.getString("image.blueShip"),avatarList);
 		ImagesManagement.createAvatarPicture(imagesBundle.getString("image.orangeShip"),avatarList);
@@ -532,6 +563,10 @@ public class MenuButtons extends FrameProportion{
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	private void createAvatarBtnList(JPanel mainPanel) {
 		for (int i = 0; i<2; i++) {
 			for (int j = 0; j<3; j++) {
@@ -557,6 +592,10 @@ public class MenuButtons extends FrameProportion{
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	private void setAvatarBtn(List<JButton> avatarBtns, int btnNumb) {
 		avatarBtns.get(btnNumb).addMouseListener(new MouseAdapter() {
 			@Override
@@ -587,13 +626,21 @@ public class MenuButtons extends FrameProportion{
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	private void setTrasparent(JButton button) {
 		button.setOpaque(false);
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
 	}
 	
-
+	
+	/**
+	 * 
+	 * 
+	 */
 	public void setLanguageLocalBtns(String kLang) {
 		resourceBundle  = ResourceBundle.getBundle("utils.file/lang", Locale.forLanguageTag(kLang)) ;
 		startBtn.setText(resourceBundle.getString("button.startBtn"));
@@ -617,26 +664,46 @@ public class MenuButtons extends FrameProportion{
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	public static JButton getBoxBtn() {
 		return boxBtn;
 	}
 	
-
+	
+	/**
+	 * 
+	 * 
+	 */
 	public static JLabel getBoxLabel() {
 		return boxLabel;
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	public static JButton getBoxCpuBtn() {
 		return boxCpuBtn;
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	public static JLabel getBoxCpuLabel() {
 		return boxCpuLabel;
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	public static void buttonsSetUp(JButton btn) {
 		btn.setFont(new Font("Arial", Font.BOLD, 12));
 		btn.setOpaque(false);
@@ -646,6 +713,10 @@ public class MenuButtons extends FrameProportion{
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	public static void openMenu() {
 		startBtn.setVisible(true);
 		optionBtn.setVisible(true);

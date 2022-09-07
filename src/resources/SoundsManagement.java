@@ -29,6 +29,10 @@ public class SoundsManagement {
 	private static boolean gameFadeRunning = false;
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	public static void clickMenuBtn() {
 		Clip click = getClip(new File(soundBundle.getString("sound.button")));
 		
@@ -37,6 +41,11 @@ public class SoundsManagement {
 		click.start();
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public static void start(String clip) {
 		Clip song = switch(clip) {
 			case "menuSong" -> { menuSong = getClip(new File(soundBundle.getString("sound.menu"))); yield menuSong; }
@@ -61,24 +70,34 @@ public class SoundsManagement {
 		song.loop(Clip.LOOP_CONTINUOUSLY);
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public static void stop(String clip) {
 		Clip song = switch(clip) {
 			case "menuSong" -> menuSong;
 			case "gameSong" -> gameSong;
 			default -> null;
 		};
+		
 		switch(clip) {
-		case "menuSong": 
-			menuFade(-1);
-			break;
-			
-		case "gameSong": 
-			gameFade(-1);
-
-			break;
-	}
+			case "menuSong": 
+				menuFade(-1);
+				break;
+				
+			case "gameSong": 
+				gameFade(-1);
+				break;
+		}
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public static Clip getClip(File wavFile) {
 		try {
 		    Clip clip = AudioSystem.getClip();
@@ -90,6 +109,11 @@ public class SoundsManagement {
 		return null;
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public static float getVolume(String clip) {
 	    FloatControl volumeControl = switch(clip) {
 			case "menuSong" -> (FloatControl) menuSong.getControl(FloatControl.Type.MASTER_GAIN);      
@@ -99,6 +123,11 @@ public class SoundsManagement {
 	    return (float) Math.pow(10f, volumeControl.getValue() / 20f);
 	};
 
+	
+	/**
+	 * 
+	 * 
+	 */
 	public static void setVolume(float newVolume, String clip) {
 		FloatControl volumeControl;
 		
@@ -121,6 +150,11 @@ public class SoundsManagement {
 		}
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public static void setVolume(String clip) {
 		FloatControl volumeControl;
 		
@@ -137,7 +171,11 @@ public class SoundsManagement {
 		}
 	}
 	
-	// on_off == -1 or 1
+	
+	/**
+	 * @param on_off == 1 or -1
+	 * 
+	 */
 	private static void menuFade(int on_off) {
 		// se sto già dissolvendo la canzone, fermati e inverti il processo
 		if (menuFadeRunning) { menuSongFadeTimer.stop(); }
@@ -162,6 +200,11 @@ public class SoundsManagement {
 		menuSongFadeTimer.start();
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public static void gameFade(int on_off) {
 		// se sto già dissolvendo la canzone, fermati e inverti il processo
 		if (gameFadeRunning) { gameSongFadeTimer.stop(); }
@@ -185,6 +228,11 @@ public class SoundsManagement {
 		gameSongFadeTimer.start();
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public static void shutOffVolume(Clip clip) {
 		FloatControl volumeControl;
 		volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);        

@@ -35,7 +35,10 @@ public class Grid extends JLabel{
 	private JLabel gridBackground = ImagesManagement.getGridBackground(parameterBorder, parameterBorder, W, H);
 	
 	
-	// player grid constructor
+	/**
+	 * Player grid constructor
+	 * 
+	 */
 	public Grid (int x, int y) {
 		addParameters();
 		setLayout(null);
@@ -46,7 +49,10 @@ public class Grid extends JLabel{
 		setNavyGrid();
 	}
 	
-	// attack grid constructor
+	/**
+	 * Attack grid constructor
+	 * 
+	 */
 	public Grid (int x, int y, Grid navyGrid) {
 		this.navyGrid = navyGrid;
 		addParameters();
@@ -58,37 +64,74 @@ public class Grid extends JLabel{
 		add(attackGridCover);
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public static int getLblBorder() {
 		return lblBorder;
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public static int getBoxSide() {
 		return boxSide;
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public Grid getGrid() {
 		return this;
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public int getParameterBorder() {
 		return parameterBorder;
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	public JLabel getGridBackground() {
 		return gridBackground;
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	public List<JLabel> getHitList() {
 		return hitList;
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public List<JLabel> getMissList() {
 		return missList;
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	private  void setNavyGrid() {
 		for (int i = 0; i<10; i++) {
 			for (int j = 0; j<10; j++) {
@@ -130,6 +173,11 @@ public class Grid extends JLabel{
 		add(gridBackground);
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public void setAttackGrid(List<List<int[]>> computerNavy, List<Ship> playerNavy) {	
 		TextManagement textManage = Main.getTextManage();
 		attackGridCover.setVisible(false);
@@ -196,6 +244,11 @@ public class Grid extends JLabel{
 		add(gridBackground);
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	private void addParameters() {
 		Font paramFont = TextManagement.getParameterFont();
 		for (int i = 0; i < 10; i++) {

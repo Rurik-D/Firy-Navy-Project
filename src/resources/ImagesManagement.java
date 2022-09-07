@@ -45,6 +45,10 @@ public class ImagesManagement extends FrameProportion {
 	private static Toolkit kit = Toolkit.getDefaultToolkit();
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	public static ImageIcon getImage(int w, int h, String file) {
 		BufferedImage img = null;
 		try {
@@ -70,16 +74,28 @@ public class ImagesManagement extends FrameProportion {
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	public static JLabel getMenuBackground() {
 		return menuBackground;
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	public static JLabel getGameBackground() {
 		return gameBackground;
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	public static JLabel getGridBackground(int x, int y, int width, int height) {
 		gridBackground = new JLabel(getImage(width, height, imagesBundle.getString("image.water")));
 		gridBackground.setBounds(x, y, width, height);
@@ -87,6 +103,10 @@ public class ImagesManagement extends FrameProportion {
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	public static JPanel getTitle() {
 		setTitle(title, 0, titleFontDim);
 		setTitle(title1, titleSpacing, titleFontDim);
@@ -102,28 +122,48 @@ public class ImagesManagement extends FrameProportion {
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	public static ImageIcon getShipImage(int shipW, int shipH, String type) {
 		return getImage(shipW, shipH, imagesBundle.getString("image." + type));	
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	public static Icon getHitLbl(int boxSide) {
 		return getImage(boxSide, boxSide, imagesBundle.getString("image.hit"));	
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	public static Icon getMissLbl(int boxSide) {
 		return getImage(boxSide, boxSide, imagesBundle.getString("image.miss"));	
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	private static JLabel setBackground(String file) {
 		background = new JLabel(getImage(Main.WIDTH, Main.HEIGHT, file));
 		background.setBounds(0, 0, Main.WIDTH, Main.HEIGHT);
 		return background;
 	}
 	
-
+	
+	/**
+	 * 
+	 * 
+	 */
 	private static void setTitle(JLabel title, int y, int fontDim) {
 		title.setFont(new Font("Segoe Script", Font.BOLD, fontDim));
 		title.setBounds(0, y, titleLblW, titleLblH);
@@ -131,12 +171,21 @@ public class ImagesManagement extends FrameProportion {
 		title.setForeground(Color.RED.darker().darker());
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 */
 	public static void setFrameIcon(JFrame frame) {
 		Image img = kit.getImage(imagesBundle.getString("image.orangeShip"));
 		frame.setIconImage(img);
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	public static void setCursor(JFrame frame) {
 		frame.addMouseListener(new MouseAdapter() {
 			@Override
@@ -149,6 +198,10 @@ public class ImagesManagement extends FrameProportion {
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	private static JLabel setOldScroll(int x, int y, int w, int h) {
 		oldScroll = new JLabel(getImage(w, h, imagesBundle.getString("image.scroll")));
 		oldScroll.setBounds(x, y, w, h);
@@ -157,6 +210,10 @@ public class ImagesManagement extends FrameProportion {
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	public static void showTitle() {
 		title.setVisible(true);
 		title1.setVisible(true);
@@ -165,6 +222,10 @@ public class ImagesManagement extends FrameProportion {
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	public static void hideTitle() {
 		title.setVisible(false);
 		title1.setVisible(false);
@@ -173,6 +234,10 @@ public class ImagesManagement extends FrameProportion {
 	}
 	
 	
+	/**
+	 * 
+	 * 
+	 */
 	public static void createAvatarPicture(String file, List<ImageIcon> avatarList) {
 		
 		avatarList.add(getImage(avatarSide, avatarSide, file));
