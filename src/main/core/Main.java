@@ -93,7 +93,7 @@ public class Main{
 	
 	/**
 	 * 
-	 * 
+	 * @return scrollPnl
 	 */
 	public static JScrollPane getScrollPnl() {
 		return scrollPnl;
@@ -102,7 +102,7 @@ public class Main{
 	
 	/**
 	 * 
-	 * 
+	 * @return textManage
 	 */
 	public static TextManagement getTextManage() {
 		return textManage;
@@ -110,8 +110,8 @@ public class Main{
 	
 	
 	/**
-	 * 
-	 * 
+	 * Sets frame parameters, program and cursor icons and starts menu
+	 * background track.
 	 */
 	private void setFrame() {
 		frame.getContentPane().add(mainPanel);

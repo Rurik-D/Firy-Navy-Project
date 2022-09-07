@@ -77,7 +77,7 @@ public class Pve {
 	}
 	
 	
-	private void check(Navy ship) {
+	private void checkSunk(Navy ship) {
 		// se per ogni cella occupata dalla nave ho una cella equivalente in enemyHits avviso l'avvenuto affondamento
 		//
 	}
