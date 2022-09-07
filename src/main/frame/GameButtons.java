@@ -40,6 +40,7 @@ public class GameButtons extends FrameProportion{
 	private static JButton confirmSetupBtn = new JButton(resourceBundle.getString("button.confirmSetup"));
 	private static JLabel saveLabel = new JLabel(resourceBundle.getString("button.saveLabel"));
 	private static JLabel timerLbl = GameTimer.getTimerLbl();
+	private static JLabel oldScroll = ImagesManagement.getOldScroll();
 	private static boolean confirmSetupVisible = true;
 	private static boolean confirmSetupEnabled = false;
 	private static boolean pause = false;
@@ -157,14 +158,14 @@ public class GameButtons extends FrameProportion{
 				// se ho confermato il setup rimuovo le navi dalla griglia e le aggiungo al main panel
 				if (!confirmSetupVisible) {
 					Main.getMainPanel().remove(ImagesManagement.getGameBackground());
-					Main.getMainPanel().remove(Main.getOldScroll());
+					Main.getMainPanel().remove(oldScroll);
 					Main.getMainPanel().remove(Pve.getPositionGrid());
 					Main.getMainPanel().add(Pve.getPositionGrid());
-					Main.getMainPanel().add(Main.getOldScroll());
+					Main.getMainPanel().add(oldScroll);
 					Main.getMainPanel().add(ImagesManagement.getGameBackground());
 				}
 				
-				Main.getOldScroll().setVisible(false);
+				oldScroll.setVisible(false);
 
 				ImagesManagement.getMenuBackground().setVisible(true);
 				ImagesManagement.showTitle();
@@ -198,7 +199,7 @@ public class GameButtons extends FrameProportion{
 					Pve.getNavy().getPlayerNavy().get(i).setLocation(Xpos, 650);
 					Xpos += 50;
 				}
-				Main.getOldScroll().setVisible(false);
+				oldScroll.setVisible(false);
 
 				yesSaveBtn.setVisible(false);
 				noSaveBtn.setVisible(false);
@@ -271,7 +272,7 @@ public class GameButtons extends FrameProportion{
 					}
 					Pve.getPositionGrid().add(Pve.getPositionGrid().getGridBackground());
 					
-					Main.getOldScroll().setVisible(false);
+					oldScroll.setVisible(false);
 					SoundsManagement.clickMenuBtn();
 					Pve.getAttackGrid().setAttackGrid(Pve.getRandomNavy(), Pve.getNavy().getPlayerNavy());
 					Main.getTextManage().confirmSetupMessage();;

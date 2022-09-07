@@ -57,6 +57,7 @@ public class MenuButtons extends FrameProportion{
 	private JButton lessVolumeBtn = new JButton("-");
 	private JLabel extLabel = new JLabel(resourceBundle.getString("label.extLabel"));
 	private JLabel volumeLevel = new JLabel("50");
+	private JLabel oldScroll = ImagesManagement.getOldScroll();
 	private JTextField selectNickname = new JTextField();
 	
 	private List<JButton> avatarBtns = new ArrayList<>();
@@ -308,7 +309,7 @@ public class MenuButtons extends FrameProportion{
 					Pve.getNavy().getPlayerNavy().get(i).setVisible(true);
 				}
 				
-				Main.getOldScroll().setVisible(true);
+				oldScroll.setVisible(true);
 				Main.getScrollPnl().setVisible(true);
 
 				boxLabel.setVisible(true);

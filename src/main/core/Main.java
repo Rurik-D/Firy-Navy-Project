@@ -45,7 +45,6 @@ public class Main{
 	
 	private static JPanel mainPanel = new JPanel();	
 	private static JFrame frame = new JFrame("Firy Navy Project");
-	private static JLabel oldScroll = ImagesManagement.getOldScroll(100, 550, 700, 300);
 	private static TextManagement textManage = new TextManagement();
 	private static JScrollPane scrollPnl = new JScrollPane(textManage.getTextArea(), JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
@@ -107,22 +106,6 @@ public class Main{
 	 */
 	public static TextManagement getTextManage() {
 		return textManage;
-	}
-	
-
-	
-	/**
-	 * Returns a label containing the image of an old scroll, on which ships 
-	 * will be spawned.
-	 * 
-	 * @see resources.ImagesManagement
-	 * @see main.core.Navy
-	 * 
-	 * @return JLabel with the image of an old scroll 
-	 * 
-	 */
-	public static JLabel getOldScroll() {
-		return oldScroll;
 	}
 	
 	
@@ -202,7 +185,7 @@ public class Main{
 	 * 
 	 */
 	private void addImages() {
-		mainPanel.add(oldScroll);
+		mainPanel.add(ImagesManagement.getOldScroll());
 		mainPanel.add(ImagesManagement.getTitle());
 		mainPanel.add(ImagesManagement.getMenuBackground());
 		mainPanel.add(ImagesManagement.getGameBackground());
