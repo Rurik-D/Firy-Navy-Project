@@ -51,6 +51,19 @@ public class Main{
 
 	
 	/**
+	 * This constructor creates the window and adds the main panel where all the 
+	 * graphics components will be implemented.
+	 * 
+	 * @see main.frame.GameButtons
+	 * @see main.frame.MenuButtons
+	 */
+	public Main() {
+		setFrame();
+		setMainPanel();
+	}
+	
+	
+	/**
 	 * The main method begins the project esecution by instantiating the constructor
 	 * of the class.
 	 * 
@@ -70,17 +83,9 @@ public class Main{
 	
 	
 	/**
-	 * This constructor creates the window and adds the main panel where all the 
-	 * graphics components will be implemented.
 	 * 
-	 * @see main.frame.GameButtons
-	 * @see main.frame.MenuButtons
+	 * @return mainPanel
 	 */
-	public Main() {
-		setFrame();
-		setMainPanel();
-	}
-	
 	public static  JPanel getMainPanel() {
 		return mainPanel;
 		
@@ -151,7 +156,6 @@ public class Main{
 		new MenuButtons(mainPanel);
 		
 		setScrollPnl();
-//		addHitMissLbls();
 		addShipsLabels();
 		addGrids();
 		addImages();
@@ -170,11 +174,6 @@ public class Main{
 		scrollPnl.setBorder(BorderFactory.createLineBorder(new Color(209, 191, 138).darker().darker().darker(), 5));
 		scrollPnl.setVisible(false);
 	}
-	
-//	private void addHitMissLbls() {
-//		// TODO Auto-generated method stub
-//		
-//	}
 	
 	
 	/**
