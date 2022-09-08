@@ -1,5 +1,8 @@
 package main.core;
 
+import main.gui.Grid;
+import main.navy.Navy;
+
 /**
  * This class manage the PVP (player vs player) mode.
  * 

@@ -1,4 +1,4 @@
-package main.core;
+package main.gui;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -13,6 +13,9 @@ import javax.swing.JLabel;
 
 import resources.ImagesManagement;
 import resources.TextManagement;
+import main.core.*;
+import main.navy.Ship;
+
 
 
 /**
@@ -24,7 +27,7 @@ public class Grid extends JLabel{
 	private char[] letters = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
 	private static int lblBorder = 5;
 	private static int parameterBorder = 30;
-	private static int boxSide = (int) 300/10;
+	private static int squareSide = (int) 300/10;
 	private final int W = 300;
 	private final int H = 300;
 	private JLabel attackGridCover = ImagesManagement.getGridBackground(parameterBorder, parameterBorder, W, H);
@@ -78,8 +81,8 @@ public class Grid extends JLabel{
 	 * 
 	 * 
 	 */
-	public static int getBoxSide() {
-		return boxSide;
+	public static int getSquareSide() {
+		return squareSide;
 	}
 	
 	
@@ -135,35 +138,35 @@ public class Grid extends JLabel{
 	private  void setNavyGrid() {
 		for (int i = 0; i<10; i++) {
 			for (int j = 0; j<10; j++) {
-				JButton box;
+				JButton square;
 				JLabel hitLbl;
 				JLabel missLbl;
 				
 				hitLbl = new JLabel("");
 				hitLbl.setName( letters[j] +  "" + i );
-				hitLbl.setBounds(boxSide*i + parameterBorder, boxSide*j + parameterBorder, boxSide, boxSide);
+				hitLbl.setBounds(squareSide*i + parameterBorder, squareSide*j + parameterBorder, squareSide, squareSide);
 				hitLbl.setVisible(false);
-				hitLbl.setIcon(ImagesManagement.getHitLbl(boxSide));
+				hitLbl.setIcon(ImagesManagement.getHitLbl(squareSide));
 				
 				missLbl = new JLabel("");
 				missLbl.setName( letters[j] +  "" + i );
-				missLbl.setBounds(boxSide*i + parameterBorder, boxSide*j + parameterBorder, boxSide, boxSide);
+				missLbl.setBounds(squareSide*i + parameterBorder, squareSide*j + parameterBorder, squareSide, squareSide);
 				missLbl.setVisible(false);
-				missLbl.setIcon(ImagesManagement.getMissLbl(boxSide));
+				missLbl.setIcon(ImagesManagement.getMissLbl(squareSide));
 				
-				box = new JButton("");
-				box.setName( letters[j] +  "" + i );
-				box.setBounds(boxSide*i + parameterBorder, boxSide*j + parameterBorder, boxSide, boxSide);
-				box.setOpaque(false);
-				box.setContentAreaFilled(false);
-				box.setVisible(true);
-				box.setBorder(BorderFactory.createLineBorder(Color.GREEN.darker().darker().darker().darker(), 1));
-				box.setBorderPainted(true);
-				box.setEnabled(false);
+				square = new JButton("");
+				square.setName( letters[j] +  "" + i );
+				square.setBounds(squareSide*i + parameterBorder, squareSide*j + parameterBorder, squareSide, squareSide);
+				square.setOpaque(false);
+				square.setContentAreaFilled(false);
+				square.setVisible(true);
+				square.setBorder(BorderFactory.createLineBorder(Color.GREEN.darker().darker().darker().darker(), 1));
+				square.setBorderPainted(true);
+				square.setEnabled(false);
 				
 				add(missLbl);
 				add(hitLbl);
-				add(box);
+				add(square);
 				
 				hitList.add(hitLbl);
 				missList.add(missLbl);
@@ -184,53 +187,53 @@ public class Grid extends JLabel{
 		
 		for (int i = 0; i<10; i++) {
 			for (int j = 0; j<10; j++) {
-				JButton box;
+				JButton square;
 				JLabel hitLbl;
 				JLabel missLbl;
 				
 				hitLbl = new JLabel("");
 				hitLbl.setName( i + "" + j );
-				hitLbl.setBounds(boxSide*i + parameterBorder, boxSide*j + parameterBorder, boxSide, boxSide);
+				hitLbl.setBounds(squareSide*i + parameterBorder, squareSide*j + parameterBorder, squareSide, squareSide);
 				hitLbl.setVisible(false);
-				hitLbl.setIcon(ImagesManagement.getHitLbl(boxSide));
+				hitLbl.setIcon(ImagesManagement.getHitLbl(squareSide));
 				
 				missLbl = new JLabel("");
 				missLbl.setName( letters[j] +  "" + i );
-				missLbl.setBounds(boxSide*i + parameterBorder, boxSide*j + parameterBorder, boxSide, boxSide);
+				missLbl.setBounds(squareSide*i + parameterBorder, squareSide*j + parameterBorder, squareSide, squareSide);
 				missLbl.setVisible(false);
-				missLbl.setIcon(ImagesManagement.getMissLbl(boxSide));
+				missLbl.setIcon(ImagesManagement.getMissLbl(squareSide));
 				
-				box = new JButton("");
-				box.setName( letters[j] +  "" + i );
-				box.setBounds(boxSide*i + parameterBorder, boxSide*j + parameterBorder, boxSide, boxSide);
-				box.setOpaque(false);
-				box.setContentAreaFilled(false);
-				box.setVisible(true);
-				box.setBorder(BorderFactory.createLineBorder(Color.GREEN.darker().darker().darker().darker(),1));
-				box.setBorderPainted(true);
-				box.addMouseListener(new MouseAdapter() {
+				square = new JButton("");
+				square.setName( letters[j] +  "" + i );
+				square.setBounds(squareSide*i + parameterBorder, squareSide*j + parameterBorder, squareSide, squareSide);
+				square.setOpaque(false);
+				square.setContentAreaFilled(false);
+				square.setVisible(true);
+				square.setBorder(BorderFactory.createLineBorder(Color.GREEN.darker().darker().darker().darker(),1));
+				square.setBorderPainted(true);
+				square.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
 						boolean hit = false;
 						hit:
 						for (List<int[]> ship: computerNavy) {
-							for (int[] occupiedBox : ship) {	
+							for (int[] occupiedSquare : ship) {	
 
-								if ( box.getName().equals(letters[occupiedBox[1]] + "" + occupiedBox[0])) {
+								if ( square.getName().equals(letters[occupiedSquare[1]] + "" + occupiedSquare[0])) {
 									hit = true;
 									break hit;
 								}
 							}
 						}
 						if (hit) { 
-							textManage.hitMessage(1, box.getName());
+							textManage.hitMessage(1, square.getName());
 							hitLbl.setVisible(true);
 						} else {
-							textManage.missMessage(1, box.getName()); 
+							textManage.missMessage(1, square.getName()); 
 							missLbl.setVisible(true);
 						}
 						
-						box.setVisible(false);
+						square.setVisible(false);
 						
 						Pve.makeRandomAttack(playerNavy, postionGrid);
 						
@@ -238,7 +241,7 @@ public class Grid extends JLabel{
 				});
 				add(missLbl);
 				add(hitLbl);
-				add(box);
+				add(square);
 			}
 		}
 		add(gridBackground);
@@ -261,8 +264,8 @@ public class Grid extends JLabel{
 			number.setForeground(Color.white);
 			letter.setForeground(Color.white);
 			
-			number.setBounds(boxSide*i + parameterBorder + (int) boxSide/3, 1, 30, 30);
-			letter.setBounds(10, boxSide*i + parameterBorder, 30, 30);
+			number.setBounds(squareSide*i + parameterBorder + (int) squareSide/3, 1, 30, 30);
+			letter.setBounds(10, squareSide*i + parameterBorder, 30, 30);
 			
 			add(number);
 			add(letter);

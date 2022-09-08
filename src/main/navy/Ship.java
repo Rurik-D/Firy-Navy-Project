@@ -1,4 +1,4 @@
-package main.core;
+package main.navy;
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -7,16 +7,19 @@ import java.util.ResourceBundle;
 
 import javax.swing.JLabel;
 
+import main.core.Movement;
+import main.core.Pve;
+import main.gui.Grid;
 import resources.ImagesManagement;
 
 public class Ship extends JLabel{
 	private ResourceBundle imagesBundle = ResourceBundle.getBundle("utils.file/images");
 	private List<int[]> shipPosition = new ArrayList<>();
-	private int boxSide = Grid.getBoxSide();
+	private int squareSide = Grid.getSquareSide();
 	private int gridX = Pve.getPositionGrid().getX() + Grid.getLblBorder();
 	private int gridY = Pve.getPositionGrid().getY() + Grid.getLblBorder();
 	private int gridH = Pve.getPositionGrid().getHeight();
-	private int shipW = Grid.getBoxSide();
+	private int shipW = Grid.getSquareSide();
 	private int shipH;
 	private int xPos = 200;
 	private int yPos = 650;
@@ -160,13 +163,13 @@ public class Ship extends JLabel{
 	 * 
 	 */
 	public void updateShipPosition() {
-		int currentBoxX = (int) (this.getX() - gridX) / boxSide;
-		int currentBoxY = (int) (this.getY() - gridY) / boxSide;
+		int currentSquareX = (int) (this.getX() - gridX) / squareSide;
+		int currentSquareY = (int) (this.getY() - gridY) / squareSide;
 
 		if (shipPosition.size() == 0) {
 			for (int i = 0; i < Integer.parseInt(type.substring(0, 1)); i++) {
-				int[] voidBox = {-1, -1};
-				shipPosition.add(voidBox);
+				int[] voidSquare = {-1, -1};
+				shipPosition.add(voidSquare);
 			}
 		} else if (this.getY() > gridY + gridH  || this.getX() < gridX) {
 			for (int i = 0; i < Integer.parseInt(type.substring(0, 1)); i++) {
@@ -175,8 +178,8 @@ public class Ship extends JLabel{
 			}
 		} else {
 			for (int i = 0; i < Integer.parseInt(type.substring(0, 1)); i++) {
-				shipPosition.get(i)[0] = currentBoxX;
-				shipPosition.get(i)[1] = currentBoxY;
+				shipPosition.get(i)[0] = currentSquareX;
+				shipPosition.get(i)[1] = currentSquareY;
 				switch(type.charAt(type.length() - 2)) {
 					case 'u', 'd':
 						shipPosition.get(i)[1] += i;

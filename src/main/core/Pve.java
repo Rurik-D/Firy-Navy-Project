@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import main.gui.Grid;
+import main.navy.*;
 import resources.TextManagement;
 
 /**
@@ -115,8 +117,8 @@ public class Pve {
 			startAttack = true;
 			int randShip = random.nextInt(0, 10);
 			int shipSize = playerNavy.get(randShip).getShipSize();
-			int randShipBox = random.nextInt(0, shipSize);
-			bonusAttack = playerNavy.get(randShip).getShipPosition().get(randShipBox);
+			int randShipSquare = random.nextInt(0, shipSize);
+			bonusAttack = playerNavy.get(randShip).getShipPosition().get(randShipSquare);
 			
 			for (int[] oldAttack : randAttacksMade) {
 				if (bonusAttack[0] == oldAttack[0] && bonusAttack[1] == oldAttack[1]) {

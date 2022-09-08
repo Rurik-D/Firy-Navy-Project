@@ -1,4 +1,4 @@
-package main.frame;
+package main.gui;
 
 import java.awt.Color;
 
@@ -66,10 +66,10 @@ public class MenuButtons extends FrameProportion{
 	private int volume;
 	private static List<ImageIcon> avatarList = new ArrayList<>();
 	private static int chooseBtn;
-	private static JButton boxBtn = new JButton("");
-	private static JButton boxCpuBtn = new JButton("");
-	private static JLabel boxLabel = new JLabel();
-	private static JLabel boxCpuLabel = new JLabel(resourceBundle.getString("label.boxCpuLabel"));
+	private static JButton squareBtn = new JButton("");
+	private static JButton squareCpuBtn = new JButton("");
+	private static JLabel squareLabel = new JLabel();
+	private static JLabel squareCpuLabel = new JLabel(resourceBundle.getString("label.squareCpuLabel"));
 	private static TextManagement textManage = Main.getTextManage();
 	
 	
@@ -315,16 +315,16 @@ public class MenuButtons extends FrameProportion{
 				oldScroll.setVisible(true);
 				Main.getScrollPnl().setVisible(true);
 
-				boxLabel.setVisible(true);
+				squareLabel.setVisible(true);
 				String testo = selectNickname.getText();
-				boxLabel.setText(testo);
+				squareLabel.setText(testo);
 				
-				boxCpuLabel.setVisible(true);
-				boxCpuBtn.setIcon(avatarList.get(6)); 
-				buttonsSetUp(boxCpuBtn);
+				squareCpuLabel.setVisible(true);
+				squareCpuBtn.setIcon(avatarList.get(6)); 
+				buttonsSetUp(squareCpuBtn);
 
-				boxBtn.setIcon(avatarList.get(chooseBtn)); 
-				buttonsSetUp(boxBtn);
+				squareBtn.setIcon(avatarList.get(chooseBtn)); 
+				buttonsSetUp(squareBtn);
 				selectNickname.setText(null);
 				GameTimer.setTimer();
 			}
@@ -381,10 +381,10 @@ public class MenuButtons extends FrameProportion{
 		selectNickname.setVisible(false);
 		itaBtn.setVisible(false);
 		engBtn.setVisible(false);
-		boxBtn.setVisible(false);
-		boxLabel.setVisible(false);
-		boxCpuBtn.setVisible(false);
-		boxCpuLabel.setVisible(false);
+		squareBtn.setVisible(false);
+		squareLabel.setVisible(false);
+		squareCpuBtn.setVisible(false);
+		squareCpuLabel.setVisible(false);
 	}
 	
 	
@@ -435,10 +435,10 @@ public class MenuButtons extends FrameProportion{
 		moreVolumeBtn.setBounds(moreVolumeBtnX, volumeBtnsY, lessVolumeBtnW, buttonH);
 		itaBtn.setBounds(buttonX, 590, buttonW, buttonH);
 		engBtn.setBounds(buttonX, 630, buttonW, buttonH);
-		boxBtn.setBounds(0, 0, avatarSide, avatarSide);
-		boxLabel.setBounds(avatarSide,10, extLabelW, buttonH);
-		boxCpuBtn.setBounds(Main.WIDTH - avatarSide, 0, avatarSide, avatarSide);
-		boxCpuLabel.setBounds(Main.WIDTH - avatarSide-extLabelW/2 + 50, 10, extLabelW, buttonH);
+		squareBtn.setBounds(0, 0, avatarSide, avatarSide);
+		squareLabel.setBounds(avatarSide,10, extLabelW, buttonH);
+		squareCpuBtn.setBounds(Main.WIDTH - avatarSide, 0, avatarSide, avatarSide);
+		squareCpuLabel.setBounds(Main.WIDTH - avatarSide-extLabelW/2 + 50, 10, extLabelW, buttonH);
 	}
 
 	
@@ -469,8 +469,8 @@ public class MenuButtons extends FrameProportion{
 		selectNickname.setFont(font);
 		itaBtn.setFont(font);
 		engBtn.setFont(font);
-		boxLabel.setFont(font);
-		boxCpuLabel.setFont(font);
+		squareLabel.setFont(font);
+		squareCpuLabel.setFont(font);
 	}
 	
 	
@@ -532,10 +532,10 @@ public class MenuButtons extends FrameProportion{
 		mainPanel.add(extLabel);
 		mainPanel.add(extNoBtn);
 		mainPanel.add(extYesBtn);
-		mainPanel.add(boxBtn);
-		mainPanel.add(boxLabel);
-		mainPanel.add(boxCpuBtn);
-		mainPanel.add(boxCpuLabel);
+		mainPanel.add(squareBtn);
+		mainPanel.add(squareLabel);
+		mainPanel.add(squareCpuBtn);
+		mainPanel.add(squareCpuLabel);
 	}
 	
 	
@@ -570,23 +570,23 @@ public class MenuButtons extends FrameProportion{
 	private void createAvatarBtnList(JPanel mainPanel) {
 		for (int i = 0; i<2; i++) {
 			for (int j = 0; j<3; j++) {
-				JButton box;
-				box = new JButton("");
-				box.setBounds(avatarX + avatarSpacing*j, avatarY + avatarSpacing*i, avatarSide, avatarSide);
-				box.setFont(new Font("Arial", Font.BOLD, 12));
-				box.setIcon(avatarList.get(j+i*3)); 
-				box.setOpaque(false);
-				box.setContentAreaFilled(false);
-				box.setBorder(null);
-				box.setVisible(false);
-				box.addMouseListener(new MouseAdapter() {
+				JButton square;
+				square = new JButton("");
+				square.setBounds(avatarX + avatarSpacing*j, avatarY + avatarSpacing*i, avatarSide, avatarSide);
+				square.setFont(new Font("Arial", Font.BOLD, 12));
+				square.setIcon(avatarList.get(j+i*3)); 
+				square.setOpaque(false);
+				square.setContentAreaFilled(false);
+				square.setBorder(null);
+				square.setVisible(false);
+				square.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
 						SoundsManagement.clickMenuBtn();
 					}
 				});
-				avatarBtns.add(box);
-				mainPanel.add(box);
+				avatarBtns.add(square);
+				mainPanel.add(square);
 			}
 		}
 	}
@@ -668,8 +668,8 @@ public class MenuButtons extends FrameProportion{
 	 * 
 	 * 
 	 */
-	public static JButton getBoxBtn() {
-		return boxBtn;
+	public static JButton getSquareBtn() {
+		return squareBtn;
 	}
 	
 	
@@ -677,8 +677,8 @@ public class MenuButtons extends FrameProportion{
 	 * 
 	 * 
 	 */
-	public static JLabel getBoxLabel() {
-		return boxLabel;
+	public static JLabel getSquareLabel() {
+		return squareLabel;
 	}
 	
 	
@@ -686,8 +686,8 @@ public class MenuButtons extends FrameProportion{
 	 * 
 	 * 
 	 */
-	public static JButton getBoxCpuBtn() {
-		return boxCpuBtn;
+	public static JButton getSquareCpuBtn() {
+		return squareCpuBtn;
 	}
 	
 	
@@ -695,8 +695,8 @@ public class MenuButtons extends FrameProportion{
 	 * 
 	 * 
 	 */
-	public static JLabel getBoxCpuLabel() {
-		return boxCpuLabel;
+	public static JLabel getSquareCpuLabel() {
+		return squareCpuLabel;
 	}
 	
 	

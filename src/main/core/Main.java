@@ -7,12 +7,11 @@ import java.awt.Toolkit;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import resources.*;
-import main.frame.*;
+import main.gui.*;
 
 
 /**
@@ -22,8 +21,8 @@ import main.frame.*;
  * This class starts the program esecution, creates the frame and the main panel and instantiates
  * classes that do not use static methods.
  * 
- * @see main.core.Grid
- * @see main.core.Navy
+ * @see main.gui.Grid
+ * @see main.navy.Navy
  * @see utils.FrameProportion
  *
  * @author Emanuele D'Agostino

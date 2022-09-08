@@ -1,4 +1,4 @@
-package main.frame;
+package main.gui;
 
 import java.awt.Font;
 
@@ -15,10 +15,9 @@ import java.util.ResourceBundle;
 import resources.*;
 import utils.FrameProportion;
 import utils.GameTimer;
-import main.core.Grid;
 import main.core.Main;
 import main.core.Pve;
-import main.core.Ship;
+import main.navy.Ship;
 
 
 /**
@@ -173,10 +172,10 @@ public class GameButtons extends FrameProportion{
 				ImagesManagement.getMenuBackground().setVisible(true);
 				ImagesManagement.showTitle();
 				MenuButtons.openMenu();
-				MenuButtons.getBoxBtn().setVisible(false);
-				MenuButtons.getBoxLabel().setVisible(false);
-				MenuButtons.getBoxCpuBtn().setVisible(false);
-				MenuButtons.getBoxCpuLabel().setVisible(false);
+				MenuButtons.getSquareBtn().setVisible(false);
+				MenuButtons.getSquareLabel().setVisible(false);
+				MenuButtons.getSquareCpuBtn().setVisible(false);
+				MenuButtons.getSquareCpuLabel().setVisible(false);
 				timerLbl.setVisible(false);
 				confirmSetupVisible = true;
 				GameTimer.resetTimer();
@@ -210,10 +209,10 @@ public class GameButtons extends FrameProportion{
 				ImagesManagement.getMenuBackground().setVisible(true);
 				ImagesManagement.showTitle();
 				MenuButtons.openMenu();
-				MenuButtons.getBoxBtn().setVisible(false);
-				MenuButtons.getBoxLabel().setVisible(false);
-				MenuButtons.getBoxCpuBtn().setVisible(false);
-				MenuButtons.getBoxCpuLabel().setVisible(false);
+				MenuButtons.getSquareBtn().setVisible(false);
+				MenuButtons.getSquareLabel().setVisible(false);
+				MenuButtons.getSquareCpuBtn().setVisible(false);
+				MenuButtons.getSquareCpuLabel().setVisible(false);
 				timerLbl.setVisible(false);
 				confirmSetupVisible = true;
 				GameTimer.resetTimer();
