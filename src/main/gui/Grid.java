@@ -14,6 +14,8 @@ import javax.swing.JLabel;
 import resources.ImagesManagement;
 import resources.TextManagement;
 import main.core.*;
+import main.navy.ComputerShip;
+import main.navy.PlayerShip;
 import main.navy.Ship;
 
 
@@ -181,7 +183,7 @@ public class Grid extends JLabel{
 	 * 
 	 * 
 	 */
-	public void setAttackGrid(List<List<int[]>> computerNavy, List<Ship> playerNavy) {	
+	public void setAttackGrid(List<ComputerShip> computerNavy, List<PlayerShip> playerNavy) {	
 		TextManagement textManage = Main.getTextManage();
 		attackGridCover.setVisible(false);
 		
@@ -216,8 +218,8 @@ public class Grid extends JLabel{
 					public void mouseClicked(MouseEvent e) {
 						boolean hit = false;
 						hit:
-						for (List<int[]> ship: computerNavy) {
-							for (int[] occupiedSquare : ship) {	
+						for (Ship ship: computerNavy) {
+							for (int[] occupiedSquare : ship.getShipPosition()) {	
 
 								if ( square.getName().equals(letters[occupiedSquare[1]] + "" + occupiedSquare[0])) {
 									hit = true;

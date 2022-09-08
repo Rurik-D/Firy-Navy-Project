@@ -7,6 +7,7 @@ import java.awt.event.MouseMotionListener;
 
 import main.gui.GameButtons;
 import main.gui.Grid;
+import main.navy.PlayerShip;
 import main.navy.Ship;
 
 
@@ -22,11 +23,11 @@ public class Movement implements MouseListener, MouseMotionListener{
 	private int gridW = Pve.getPositionGrid().getWidth();
 	private int gridH = Pve.getPositionGrid().getHeight();
 	private int squareSide = Grid.getSquareSide();
-	private Ship ship;
+	private PlayerShip ship;
 
 	private Point initialPostion;
 	
-	public Movement(Ship ship, Point initialPostion) {
+	public Movement(PlayerShip ship, Point initialPostion) {
 		this.ship = ship;
 		this.initialPostion = initialPostion;
 		ship.addMouseListener(this);

@@ -199,6 +199,7 @@ public class GameButtons extends FrameProportion{
 				for (int i = 0; i<10; i++) {
 					Pve.getNavy().getPlayerNavy().get(i).setVisible(false);
 					Pve.getNavy().getPlayerNavy().get(i).setLocation(Xpos, 650);
+					Pve.getNavy().getComputerNavy().get(i).resetLocation();
 					Xpos += 50;
 				}
 				oldScroll.setVisible(false);

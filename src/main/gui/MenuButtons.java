@@ -111,7 +111,6 @@ public class MenuButtons extends FrameProportion{
 				startBtn.setVisible(false);
 				optionBtn.setVisible(false);
 				exitBtn.setVisible(false);
-				//exitPanel.setVisible(true);
 				extLabel.setVisible(true);
 				extNoBtn.setVisible(true);
 				extYesBtn.setVisible(true);

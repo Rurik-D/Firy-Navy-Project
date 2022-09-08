@@ -19,6 +19,7 @@ public class Pve {
 	private static Grid positionGrid = new Grid(300, 200);
 	private static Grid attackGrid = new Grid(950, 200, positionGrid);
 	private static Navy navy = new Navy();
+	private static List<ComputerShip> computerNavy = navy.getComputerNavy();
 	private static int[][] possiblePositions = new int[10][10];
 	private static List<List<int[]>> randomNavy = new ArrayList<>();
 	private static List<int[]> enemyHits = new ArrayList<>();
@@ -53,11 +54,11 @@ public class Pve {
 		return navy;
 	}
 	
-	public static List<List<int[]>> getRandomNavy() {
+	public static List<ComputerShip> getRandomNavy() {
 		setPossiblePositions();
 		generateRandomNavy();
 		
-		return randomNavy;
+		return computerNavy;
 	}
 	
 	private static void setPossiblePositions() {
@@ -108,7 +109,7 @@ public class Pve {
 	
 	
 
-	private static int[] makeBonusAttack(List<Ship> playerNavy, Grid navyGrid) {
+	private static int[] makeBonusAttack(List<PlayerShip> playerNavy, Grid navyGrid) {
 		boolean startAttack = false;
 		int[] bonusAttack = null;
 
@@ -134,7 +135,7 @@ public class Pve {
 	/**
 	 * @return the grid (JLabel) to place the ships
 	 */
-	public static void makeRandomAttack(List<Ship> playerNavy, Grid navyGrid) {
+	public static void makeRandomAttack(List<PlayerShip> playerNavy, Grid navyGrid) {
 		TextManagement textManage = Main.getTextManage();
 		List<Integer> triedDirections= new ArrayList<>();
 		int [] randAttack = new int[2];
@@ -256,13 +257,13 @@ public class Pve {
 		int randX;
 		int randY;
 		
-		for (int positioned = 0; positioned < 10; positioned++) {
+		for (int shipIndex = 0; shipIndex < 10; shipIndex++) {
 			List<int[]> randomPosition = new ArrayList<>();
 
 			found = false;
 			vertical = random.nextBoolean();
 			// definisco il numero delle caselle della nave selezionata
-			shipSize = switch (positioned) {
+			shipSize = switch (shipIndex) {
 				case 0 				-> 5;
 				case 1 				-> 4;
 				case 2, 3, 4, 5, 6 	-> 3;
@@ -332,7 +333,7 @@ public class Pve {
 										break;
 									}
 								}
-								possiblePositions[i][randX] = positioned+1;
+								possiblePositions[i][randX] = shipIndex + 1;
 								randomPosition.add(randPoint);
 								
 							// se il punto è occupato svuoto la lista e resetto i punti su possiblePositions
@@ -347,7 +348,10 @@ public class Pve {
 							// se la linea di punti non è occupata
 						}
 						if (!occupied) {
-							randomNavy.add(randomPosition);
+							
+							for(int[] pos : randomPosition) {
+								computerNavy.get(shipIndex).getShipPosition().add(pos);
+							}
 							found = true;
 							break positionFound;
 						}
@@ -381,7 +385,7 @@ public class Pve {
 										break;
 									}
 								}
-								possiblePositions[randY][i] = positioned+1;
+								possiblePositions[randY][i] = shipIndex + 1;
 								randomPosition.add(randPoint);
 
 							// se il punto è occupato svuoto la lista e resetto i punti su possiblePositions
@@ -396,7 +400,9 @@ public class Pve {
 							// se la linea di punti non è occupata
 						}
 						if (!occupied) {
-							randomNavy.add(randomPosition);
+							for(int[] pos : randomPosition) {
+								computerNavy.get(shipIndex).getShipPosition().add(pos);
+							}
 							found = true;
 							break positionFound;
 						}
