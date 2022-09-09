@@ -4,4 +4,5 @@
 4) implementare ritardo colpi player-pc
 5) implementare suono dei colpi e dei mancati
 6) implementare reset totale per iniziare una nuova partita
-7) sviluppare JavaDoc e UML
+7) refactory
+8) sviluppare JavaDoc e UML
