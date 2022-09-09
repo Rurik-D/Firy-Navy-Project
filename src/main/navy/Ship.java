@@ -15,6 +15,7 @@ public class Ship extends JLabel{
 	protected int squareSide = Grid.getSquareSide();
 	protected int shipW = Grid.getSquareSide();
 	protected int shipH;
+	protected int shipSize;
 	protected int xPos;
 	protected int yPos = 650;
 	protected String type;
@@ -24,6 +25,7 @@ public class Ship extends JLabel{
 		this.xPos = xPos;
 		this.type = type;
 		this.shipIndex = shipIndex;
+		this.shipSize = Integer.parseInt(type.substring(0, 1));
 		
 	}
 	
@@ -49,8 +51,8 @@ public class Ship extends JLabel{
 	 * 
 	 * 
 	 */
-	public List<int[]> getShipPos_Hit(){
-		return shipPosition;
+	public Map<int[], Boolean> getShipPos_Hit(){
+		return shipPos_Hit;
 	}
 	
 	

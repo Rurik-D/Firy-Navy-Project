@@ -14,7 +14,6 @@ public class PlayerShip extends Ship{
 	private int gridX = Pve.getPositionGrid().getX() + Grid.getLblBorder();
 	private int gridY = Pve.getPositionGrid().getY() + Grid.getLblBorder();
 	private int gridH = Pve.getPositionGrid().getHeight();
-	private List<int[]> shipPosition = super.shipPosition;
 	private int squareSide = super.squareSide;
 	private int shipW = super.shipW;
 	private int shipH = super.shipH;
@@ -63,12 +62,17 @@ public class PlayerShip extends Ship{
 		type = type.substring(0, type.length() - 2) + "up";
 		
 		setIcon(ImagesManagement.getImage(shipW, shipH, imagesBundle.getString("image." + type)));
+		
+		
 		shipPosition.clear();
+		
+		shipPos_Hit.clear();
+		
 		updateShipPosition();
 			
     }
     
-	
+    
 	/**
 	 * 
 	 * 
@@ -94,27 +98,33 @@ public class PlayerShip extends Ship{
 		int currentSquareY = (int) (this.getY() - gridY) / squareSide;
 		
 		if (shipPosition.size() == 0) {
-			for (int i = 0; i < Integer.parseInt(type.substring(0, 1)); i++) {
+			for (int i = 0; i < shipSize; i++) {
 				int[] voidSquare = {-1, -1};
 				shipPosition.add(voidSquare);
+				shipPos_Hit.put(voidSquare, false);
 			}
 		} else if (this.getY() > gridY + gridH  || this.getX() < gridX) {
-			for (int i = 0; i < Integer.parseInt(type.substring(0, 1)); i++) {
-				shipPosition.get(i)[0] = -1;
-				shipPosition.get(i)[1] = -1;
-			}
+			shipPosition.clear();
+			shipPos_Hit.clear();
+			updateShipPosition();
+
 		} else {
-			for (int i = 0; i < Integer.parseInt(type.substring(0, 1)); i++) {
-				shipPosition.get(i)[0] = currentSquareX;
-				shipPosition.get(i)[1] = currentSquareY;
+			shipPosition.clear();
+			shipPos_Hit.clear();
+			for (int i = 0; i < shipSize; i++) {
+				int[] currentSquare = {currentSquareX, currentSquareY};
+
 				switch(type.charAt(type.length() - 2)) {
 					case 'u', 'd':
-						shipPosition.get(i)[1] += i;
+						currentSquare[1] += i;
 						break;
 					case 'r', 'l':
-						shipPosition.get(i)[0] += i;
+						currentSquare[0] += i;
 						break;
 				};
+				
+				shipPosition.add(currentSquare);
+				shipPos_Hit.put(currentSquare, false);
 			}
 		}
 	}

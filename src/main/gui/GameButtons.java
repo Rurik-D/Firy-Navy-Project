@@ -139,6 +139,7 @@ public class GameButtons extends FrameProportion{
 				yesSaveBtn.setVisible(false);
 				noSaveBtn.setVisible(false);
 				saveLabel.setVisible(false);
+				MainFrame.getScrollPnl().setVisible(false);
 				Pve.getPositionGrid().setVisible(false);
 				Pve.getAttackGrid().setVisible(false);
 				pause = false;
