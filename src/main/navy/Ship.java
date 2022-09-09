@@ -1,7 +1,9 @@
 package main.navy;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JLabel;
 
@@ -9,6 +11,7 @@ import main.gui.Grid;
 
 public class Ship extends JLabel{
 	protected List<int[]> shipPosition = new ArrayList<>();
+	protected Map<int[], Boolean> shipPos_Hit = new HashMap<>();
 	protected int squareSide = Grid.getSquareSide();
 	protected int shipW = Grid.getSquareSide();
 	protected int shipH;
@@ -39,6 +42,15 @@ public class Ship extends JLabel{
 	 */
 	public String getType() {
 		return type;
+	}
+	
+	
+	/**
+	 * 
+	 * 
+	 */
+	public List<int[]> getShipPos_Hit(){
+		return shipPosition;
 	}
 	
 	

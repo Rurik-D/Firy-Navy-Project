@@ -22,6 +22,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import main.core.Main;
+import main.gui.MainFrame;
 import utils.FrameProportion;
 
 
@@ -154,8 +155,8 @@ public class ImagesManagement extends FrameProportion {
 	 * 
 	 */
 	private static JLabel setBackground(String file) {
-		background = new JLabel(getImage(Main.WIDTH, Main.HEIGHT, file));
-		background.setBounds(0, 0, Main.WIDTH, Main.HEIGHT);
+		background = new JLabel(getImage(MainFrame.WIDTH, MainFrame.HEIGHT, file));
+		background.setBounds(0, 0, MainFrame.WIDTH, MainFrame.HEIGHT);
 		return background;
 	}
 	

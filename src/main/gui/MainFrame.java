@@ -16,6 +16,18 @@ import resources.ImagesManagement;
 import resources.SoundsManagement;
 import resources.TextManagement;
 
+
+/**
+ * 
+ * @see main.gui.Grid
+ * @see main.navy.Navy
+ * @see utils.FrameProportion
+ *
+ * @author Emanuele D'Agostino
+ * @author Leonardo Lavezzari
+ * 
+ * @version 1.0
+ */
 public class MainFrame {
 	
 	/*

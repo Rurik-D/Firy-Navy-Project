@@ -1,0 +1,7 @@
+1) implementare HashMap per controllo affondati (PlayerShip e ComputerShip)
+2) implementare controllo affondati
+3) implementare fine partita e assegnazione vittoria
+4) implementare ritardo colpi player-pc
+5) implementare suono dei colpi e dei mancati
+6) implementare reset totale per iniziare una nuova partita
+7) sviluppare JavaDoc e UML

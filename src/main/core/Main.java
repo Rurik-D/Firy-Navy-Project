@@ -29,30 +29,8 @@ import main.gui.*;
  * @version 1.0
  */
 public class Main{
-	
-	/*
-	 * With these first three lines the program obtains the screen size and saves it in two final 
-	 * variables (width and height), on which all the proportions of the window will be based.
-	 */
-	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-//	public static final int WIDTH = (int)screenSize.getWidth();
-//	public static final int HEIGHT = (int)screenSize.getHeight();
-	public static final int WIDTH = 1536;
-	public static final int HEIGHT = 864;
-	
-	private static JPanel mainPanel = new JPanel();	
-	private static JFrame frame = new JFrame("Firy Navy Project");
-	private static TextManagement textManage = new TextManagement();
-	private static JScrollPane scrollPnl = new JScrollPane(textManage.getTextArea(), JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-
-	
-
-	
-	
-	
 	/**
-	 * The main method begins the project esecution by instantiating the constructor
-	 * of the class.
+	 * The main method begins the project esecution by instantiating the MainFrame class.
 	 * 
 	 * @param args eventual command line arguments
 	 */

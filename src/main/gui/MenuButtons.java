@@ -436,8 +436,8 @@ public class MenuButtons extends FrameProportion{
 		engBtn.setBounds(buttonX, 630, buttonW, buttonH);
 		squareBtn.setBounds(0, 0, avatarSide, avatarSide);
 		squareLabel.setBounds(avatarSide,10, extLabelW, buttonH);
-		squareCpuBtn.setBounds(Main.WIDTH - avatarSide, 0, avatarSide, avatarSide);
-		squareCpuLabel.setBounds(Main.WIDTH - avatarSide-extLabelW/2 + 50, 10, extLabelW, buttonH);
+		squareCpuBtn.setBounds(MainFrame.WIDTH - avatarSide, 0, avatarSide, avatarSide);
+		squareCpuLabel.setBounds(MainFrame.WIDTH - avatarSide-extLabelW/2 + 50, 10, extLabelW, buttonH);
 	}
 
 	
