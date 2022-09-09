@@ -70,7 +70,7 @@ public class MenuButtons extends FrameProportion{
 	private static JButton squareCpuBtn = new JButton("");
 	private static JLabel squareLabel = new JLabel();
 	private static JLabel squareCpuLabel = new JLabel(resourceBundle.getString("label.squareCpuLabel"));
-	private static TextManagement textManage = Main.getTextManage();
+	private static TextManagement textManage = MainFrame.getTextManage();
 	
 	
 	/**
@@ -120,7 +120,7 @@ public class MenuButtons extends FrameProportion{
 		pveBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SoundsManagement.clickMenuBtn();
-				Main.getTextManage().setPlayerName(2, "Computer");
+				MainFrame.getTextManage().setPlayerName(2, "Computer");
 				pvpBtn.setVisible(false);
 				pveBtn.setVisible(false);
 				backToMenuBtn.setVisible(false);
@@ -189,7 +189,7 @@ public class MenuButtons extends FrameProportion{
 		extYesBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SoundsManagement.clickMenuBtn();
-				Main.closeFrame();
+				MainFrame.closeFrame();
 			}
 		});
 		
@@ -257,7 +257,7 @@ public class MenuButtons extends FrameProportion{
 				String text = selectNickname.getText();
 
 				if (text.length() > 0) {
-					Main.getTextManage().setPlayerName(1, text);
+					MainFrame.getTextManage().setPlayerName(1, text);
 					selectNickname.setEditable(false);
 				}
 				if (!text.equals("")) {
@@ -312,7 +312,7 @@ public class MenuButtons extends FrameProportion{
 				}
 				
 				oldScroll.setVisible(true);
-				Main.getScrollPnl().setVisible(true);
+				MainFrame.getScrollPnl().setVisible(true);
 
 				squareLabel.setVisible(true);
 				String testo = selectNickname.getText();

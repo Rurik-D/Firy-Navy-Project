@@ -184,7 +184,7 @@ public class Grid extends JLabel{
 	 * 
 	 */
 	public void setAttackGrid(List<ComputerShip> computerNavy, List<PlayerShip> playerNavy) {	
-		TextManagement textManage = Main.getTextManage();
+		TextManagement textManage = MainFrame.getTextManage();
 		attackGridCover.setVisible(false);
 		
 		for (int i = 0; i<10; i++) {

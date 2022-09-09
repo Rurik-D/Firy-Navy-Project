@@ -1,8 +1,5 @@
 package main.navy;
 
-import java.awt.Point;
-
-
 public class ComputerShip extends Ship{
 	private int shipW = super.shipW;
 	private String type = super.type;

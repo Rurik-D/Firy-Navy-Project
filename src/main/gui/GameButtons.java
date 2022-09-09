@@ -43,7 +43,7 @@ public class GameButtons extends FrameProportion{
 	private static boolean confirmSetupVisible = true;
 	private static boolean confirmSetupEnabled = false;
 	private static boolean pause = false;
-	private static TextManagement textManage = Main.getTextManage();
+	private static TextManagement textManage = MainFrame.getTextManage();
 
 	
 	/**
@@ -139,7 +139,6 @@ public class GameButtons extends FrameProportion{
 				yesSaveBtn.setVisible(false);
 				noSaveBtn.setVisible(false);
 				saveLabel.setVisible(false);
-				Main.getScrollPnl().setVisible(false);
 				Pve.getPositionGrid().setVisible(false);
 				Pve.getAttackGrid().setVisible(false);
 				pause = false;
@@ -150,7 +149,7 @@ public class GameButtons extends FrameProportion{
 					// se ho confermato il setup rimuovo le navi dalla griglia e le aggiungo al main panel
 					if (!confirmSetupVisible) {
 						Pve.getPositionGrid().remove(ship);;
-						Main.getMainPanel().add(ship);
+						MainFrame.getMainPanel().add(ship);
 					}
 					ship.setLocation(Xpos, 650);
 					ship.setVisible(false);
@@ -159,12 +158,12 @@ public class GameButtons extends FrameProportion{
 				
 				// se ho confermato il setup rimuovo le navi dalla griglia e le aggiungo al main panel
 				if (!confirmSetupVisible) {
-					Main.getMainPanel().remove(ImagesManagement.getGameBackground());
-					Main.getMainPanel().remove(oldScroll);
-					Main.getMainPanel().remove(Pve.getPositionGrid());
-					Main.getMainPanel().add(Pve.getPositionGrid());
-					Main.getMainPanel().add(oldScroll);
-					Main.getMainPanel().add(ImagesManagement.getGameBackground());
+					MainFrame.getMainPanel().remove(ImagesManagement.getGameBackground());
+					MainFrame.getMainPanel().remove(oldScroll);
+					MainFrame.getMainPanel().remove(Pve.getPositionGrid());
+					MainFrame.getMainPanel().add(Pve.getPositionGrid());
+					MainFrame.getMainPanel().add(oldScroll);
+					MainFrame.getMainPanel().add(ImagesManagement.getGameBackground());
 				}
 				
 				oldScroll.setVisible(false);
@@ -190,7 +189,7 @@ public class GameButtons extends FrameProportion{
 				SoundsManagement.start("menuSong");
 				
 				backToGameOptionBtn.setVisible(false);
-				Main.getScrollPnl().setVisible(false);
+				MainFrame.getScrollPnl().setVisible(false);
 				Pve.getPositionGrid().setVisible(false);
 				Pve.getAttackGrid().setVisible(false);
 				pause = false;
@@ -268,7 +267,7 @@ public class GameButtons extends FrameProportion{
 						int shipX = ship.getX() - Pve.getPositionGrid().getX();
 						int shipY = ship.getY() - Pve.getPositionGrid().getY();;
 						
-						Main.getMainPanel().remove(ship);
+						MainFrame.getMainPanel().remove(ship);
 						ship.setLocation(shipX, shipY);
 						Pve.getPositionGrid().add(ship);
 
@@ -278,9 +277,9 @@ public class GameButtons extends FrameProportion{
 					oldScroll.setVisible(false);
 					SoundsManagement.clickMenuBtn();
 					Pve.getAttackGrid().setAttackGrid(Pve.getRandomNavy(), Pve.getNavy().getPlayerNavy());
-					Main.getTextManage().confirmSetupMessage();;
+					MainFrame.getTextManage().confirmSetupMessage();;
 				} else {
-					Main.getTextManage().notConfirmMessage();
+					MainFrame.getTextManage().notConfirmMessage();
 				}
 
 			}

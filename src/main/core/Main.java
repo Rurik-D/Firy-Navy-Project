@@ -1,11 +1,9 @@
 package main.core;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
 
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -48,17 +46,8 @@ public class Main{
 	private static JScrollPane scrollPnl = new JScrollPane(textManage.getTextArea(), JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
 	
-	/**
-	 * This constructor creates the window and adds the main panel where all the 
-	 * graphics components will be implemented.
-	 * 
-	 * @see main.frame.GameButtons
-	 * @see main.frame.MenuButtons
-	 */
-	public Main() {
-		setFrame();
-		setMainPanel();
-	}
+
+	
 	
 	
 	/**
@@ -71,7 +60,7 @@ public class Main{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					new Main();
+					new MainFrame();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -79,124 +68,5 @@ public class Main{
 		});
 	}
 	
-	
-	/**
-	 * 
-	 * @return mainPanel
-	 */
-	public static  JPanel getMainPanel() {
-		return mainPanel;
-		
-	}
-	
-	
-	/**
-	 * 
-	 * @return scrollPnl
-	 */
-	public static JScrollPane getScrollPnl() {
-		return scrollPnl;
-	}
-	
-	
-	/**
-	 * 
-	 * @return textManage
-	 */
-	public static TextManagement getTextManage() {
-		return textManage;
-	}
-	
-	
-	/**
-	 * Sets frame parameters, program and cursor icons and starts menu
-	 * background track.
-	 */
-	private void setFrame() {
-		frame.getContentPane().add(mainPanel);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(WIDTH, HEIGHT); 
-		frame.setResizable(false);
-		frame.setUndecorated(true);
-		frame.setVisible(true);
-		frame.getContentPane().setLayout(null);
-		ImagesManagement.setCursor(frame);
-		ImagesManagement.setFrameIcon(frame);
-		SoundsManagement.start("menuSong");
-	}
-	
-	
-	/**
-	 * 
-	 * 
-	 */
-	private void setMainPanel() {
-		mainPanel.setLayout(null);
-		mainPanel.setVisible(true);
-		
-		new GameButtons(mainPanel);
-		new MenuButtons(mainPanel);
-		
-		setScrollPnl();
-		addShipsLabels();
-		addGrids();
-		addImages();
-	}
-
-
-	/**
-	 * 
-	 * 
-	 */
-	private void setScrollPnl() {
-		mainPanel.add(scrollPnl);
-		textManage.setTextArea();
-		scrollPnl.setBackground(Color.YELLOW.darker().darker());
-		scrollPnl.setBounds(860, 560, 500, 280);
-		scrollPnl.setBorder(BorderFactory.createLineBorder(new Color(209, 191, 138).darker().darker().darker(), 5));
-		scrollPnl.setVisible(false);
-	}
-	
-	
-	/**
-	 * 
-	 * 
-	 */
-	private void addShipsLabels() {
-		for (int i = 0; i<10; i++) {
-			mainPanel.add(Pve.getNavy().getPlayerNavy().get(i));
-		}
-	}
-	
-	
-	/**
-	 * 
-	 * 
-	 */
-	private void addGrids() {
-		mainPanel.add(Pve.getPositionGrid());
-		mainPanel.add(Pve.getAttackGrid());
-	}
-	
-	
-	/**
-	 * 
-	 * 
-	 */
-	private void addImages() {
-		mainPanel.add(ImagesManagement.getOldScroll());
-		mainPanel.add(ImagesManagement.getTitle());
-		mainPanel.add(ImagesManagement.getMenuBackground());
-		mainPanel.add(ImagesManagement.getGameBackground());
-	}
-	
-	
-	/**
-	 * 
-	 * 
-	 */
-	public static void closeFrame() {
-		frame.dispose();
-	}
 
 }

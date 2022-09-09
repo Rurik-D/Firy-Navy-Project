@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import main.gui.Grid;
+import main.gui.MainFrame;
 import main.navy.*;
 import resources.TextManagement;
 
@@ -136,7 +137,7 @@ public class Pve {
 	 * @return the grid (JLabel) to place the ships
 	 */
 	public static void makeRandomAttack(List<PlayerShip> playerNavy, Grid navyGrid) {
-		TextManagement textManage = Main.getTextManage();
+		TextManagement textManage = MainFrame.getTextManage();
 		List<Integer> triedDirections= new ArrayList<>();
 		int [] randAttack = new int[2];
 		int [] lastHit = checkLastHits();
