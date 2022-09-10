@@ -20,10 +20,9 @@ public class Pve {
 	private static Grid positionGrid = new Grid(300, 200);
 	private static Grid attackGrid = new Grid(950, 200, positionGrid);
 	private static Navy navy = new Navy();
+	private static List<PlayerShip> playerNavy = navy.getPlayerNavy();
 	private static List<ComputerShip> computerNavy = navy.getComputerNavy();
 	private static int[][] possiblePositions = new int[10][10];
-	private static List<List<int[]>> randomNavy = new ArrayList<>();
-	private static List<int[]> enemyHits = new ArrayList<>();
 	private static List<int[]> randAttacksMade = new ArrayList<>();
 	private static List<Boolean> randAttacksHit = new ArrayList<>();
 	private static Random random = new Random();
@@ -72,22 +71,10 @@ public class Pve {
 	
 	
 	
-	public void addComputerHit(int[] hit) {
-		// scorro tutte le navi
-		// trovo la nave che è stata colpita
-		// all'enemyHits di quella nave aggiungo il punto che è stato colpito
-		// controllo se la nave è stata affondata
-	}
+
 	
-	
-	private void checkComputerSunk(Navy ship) {
-		// se la lista di int[] è vuota la nave è affondata
-		//
-	}
-	
-	private void checkSunk(Navy ship) {
-		// se per ogni cella occupata dalla nave ho una cella equivalente in enemyHits avviso l'avvenuto affondamento
-		//
+	private void checkSunk(String navyType) {
+		
 	}
 	
 	

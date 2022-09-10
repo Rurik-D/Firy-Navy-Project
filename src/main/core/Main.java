@@ -1,15 +1,7 @@
 package main.core;
 
-import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.Toolkit;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-
-import resources.*;
-import main.gui.*;
+import main.gui.MainFrame;
 
 
 /**

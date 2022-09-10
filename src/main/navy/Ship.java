@@ -11,7 +11,7 @@ import main.gui.Grid;
 
 public class Ship extends JLabel{
 	protected List<int[]> shipPosition = new ArrayList<>();
-	protected Map<int[], Boolean> shipPos_Hit = new HashMap<>();
+//	protected Map<int[], Boolean> shipPos_Hit = new HashMap<>();
 	protected int squareSide = Grid.getSquareSide();
 	protected int shipW = Grid.getSquareSide();
 	protected int shipH;
@@ -47,13 +47,13 @@ public class Ship extends JLabel{
 	}
 	
 	
-	/**
-	 * 
-	 * 
-	 */
-	public Map<int[], Boolean> getShipPos_Hit(){
-		return shipPos_Hit;
-	}
+//	/**
+//	 * 
+//	 * 
+//	 */
+//	public Map<int[], Boolean> getShipPos_Hit(){
+//		return shipPos_Hit;
+//	}
 	
 	
 	/**
@@ -73,4 +73,15 @@ public class Ship extends JLabel{
 		return shipIndex;
 	}
 	
+	
+//	/**
+//	 * 
+//	 * 
+//	 */
+//	public void setShipPos_Hit() {
+//		for(int[] pos : shipPosition) {
+//			shipPos_Hit.put(pos, false);
+//		}
+//	}
+//	
 }

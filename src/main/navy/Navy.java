@@ -1,7 +1,9 @@
 package main.navy;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -12,6 +14,9 @@ import java.util.List;
 public class Navy{
 	private List<PlayerShip> playerNavy = new ArrayList<>();
 	private List<ComputerShip> computerNavy = new ArrayList<>();
+	protected Map<int[], Boolean> playerNavyDamages = new HashMap<>();
+	protected Map<int[], Boolean> computerNavyDamages = new HashMap<>();
+
 
 	private int xPos;
 	
@@ -54,6 +59,17 @@ public class Navy{
 	}
 	
 	
+	public Map<int[], Boolean> getNavyDamages(String navyType) {
+		if (navyType.equals("player")) {
+			return playerNavyDamages;
+			
+		} else if (navyType.equals("computer")) {
+			return computerNavyDamages;
+		}
+		return null;
+	}
+	
+	
 	/**
 	 * 
 	 * 
@@ -82,6 +98,7 @@ public class Navy{
 		}
 			xPos += 50;
 		}
+		setComputerNavyDamages();
 	}
 	
 	
@@ -114,7 +131,38 @@ public class Navy{
 		}
 			xPos += 50;
 		}
+		setPlayerNavyDamages();
 	}
+	
+	
+	public void setPlayerNavyDamages() {
+		playerNavyDamages.clear();
+		for(Ship ship : playerNavy) {
+			for(int[] pos : ship.getShipPosition()) {
+				playerNavyDamages.put(pos, false);
+			}
+		}
+	}
+	
+	public void setComputerNavyDamages() {
+		computerNavyDamages.clear();
+		for(Ship ship : computerNavy) {
+			for(int[] pos : ship.getShipPosition()) {
+				computerNavyDamages.put(pos, false);
+			}
+		}
+	}
+	
+	
+	public void addNavyDamage(String navyType, int[] damage){
+		if (navyType.equals("player")) {
+			playerNavyDamages.replace(damage, true);
+			
+		} else if (navyType.equals("computer")) {
+			computerNavyDamages.replace(damage, true);
+		}
+	}
+	
 	
 
 }
