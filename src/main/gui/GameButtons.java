@@ -25,7 +25,7 @@ import main.navy.Ship;
  * @author Emanuele D'Agostino
  * @author Leonardo Lavezzari
  */
-public class GameButtons extends FrameProportion{
+public class GameButtons implements FrameProportion{
 	
 	
 	private static ResourceBundle resourceBundle = ResourceBundle.getBundle("utils.file/lang", Locale.forLanguageTag("en"));
@@ -170,7 +170,7 @@ public class GameButtons extends FrameProportion{
 				oldScroll.setVisible(false);
 
 				ImagesManagement.getMenuBackground().setVisible(true);
-				ImagesManagement.showTitle();
+				TextManagement.showTitle();
 				MenuButtons.openMenu();
 				MenuButtons.getPlayerAvatarLbl().setVisible(false);
 				MenuButtons.getSquareLabel().setVisible(false);
@@ -208,7 +208,7 @@ public class GameButtons extends FrameProportion{
 				noSaveBtn.setVisible(false);
 				saveLabel.setVisible(false);
 				ImagesManagement.getMenuBackground().setVisible(true);
-				ImagesManagement.showTitle();
+				TextManagement.showTitle();
 				MenuButtons.openMenu();
 				MenuButtons.getPlayerAvatarLbl().setVisible(false);
 				MenuButtons.getSquareLabel().setVisible(false);

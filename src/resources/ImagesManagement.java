@@ -27,11 +27,12 @@ import utils.FrameProportion;
 
 
 /**
+ * This class manage all the images of the program.
  * 
  * @author Emanuele D'Agostino
  * @author Leonardo Lavezzari
  */
-public class ImagesManagement extends FrameProportion {
+public class ImagesManagement implements FrameProportion{
 	private static ResourceBundle imagesBundle = ResourceBundle.getBundle("utils.file/images");
 	private static Image image;
 	private static JLabel background;
@@ -39,10 +40,6 @@ public class ImagesManagement extends FrameProportion {
 	private static JLabel gameBackground = setBackground(imagesBundle.getString("image.worldMap"));
 	private static JLabel gridBackground;
 	private static JLabel oldScroll = setOldScroll(100, 550, 700, 300);;
-	private static JLabel title = new JLabel("Firy");
-	private static JLabel title1 = new JLabel("Navy");
-	private static JLabel title2 = new JLabel("Project");
-	private static JPanel titlePanel = new JPanel();
 	private static Toolkit kit = Toolkit.getDefaultToolkit();
 	
 	
@@ -104,24 +101,6 @@ public class ImagesManagement extends FrameProportion {
 	}
 	
 	
-	/**
-	 * 
-	 * 
-	 */
-	public static JPanel getTitle() {
-		setTitle(title, 0, titleFontDim);
-		setTitle(title1, titleSpacing, titleFontDim);
-		setTitle(title2, titleSpacing*2, titleFontDim);
-		
-		titlePanel.setBounds(titleX, titleY, titleW, titleH);
-		titlePanel.setLayout(null);
-		titlePanel.add(title);
-		titlePanel.add(title1);
-		titlePanel.add(title2);
-		titlePanel.setOpaque(false);
-		return titlePanel;
-	}
-	
 	
 	/**
 	 * 
@@ -161,16 +140,7 @@ public class ImagesManagement extends FrameProportion {
 	}
 	
 	
-	/**
-	 * 
-	 * 
-	 */
-	private static void setTitle(JLabel title, int y, int fontDim) {
-		title.setFont(new Font("Segoe Script", Font.BOLD, fontDim));
-		title.setBounds(0, y, titleLblW, titleLblH);
-		title.setVisible(true);
-		title.setForeground(Color.RED.darker().darker());
-	}
+
 	
 	
 	/**
@@ -208,30 +178,6 @@ public class ImagesManagement extends FrameProportion {
 		oldScroll.setBounds(x, y, w, h);
 		oldScroll.setVisible(false);
 		return oldScroll;
-	}
-	
-	
-	/**
-	 * 
-	 * 
-	 */
-	public static void showTitle() {
-		title.setVisible(true);
-		title1.setVisible(true);
-		title2.setVisible(true);
-		titlePanel.setVisible(true);
-	}
-	
-	
-	/**
-	 * 
-	 * 
-	 */
-	public static void hideTitle() {
-		title.setVisible(false);
-		title1.setVisible(false);
-		title2.setVisible(false);
-		titlePanel.setVisible(false);
 	}
 	
 	

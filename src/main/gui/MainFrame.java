@@ -11,6 +11,7 @@ import javax.swing.JScrollPane;
 
 import main.core.Pve;
 import resources.*;
+import utils.FrameProportion;
 
 
 /**
@@ -22,18 +23,9 @@ import resources.*;
  * 
  * @version 1.0
  */
-public class MainFrame {
+public class MainFrame implements FrameProportion{
 	
-	/*
-	 * With these first three lines the program obtains the screen size and 
-	 * saves it in two final variables (width and height), on which all the 
-	 * proportions of the window will be based.
-	 */
-	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-//	public static final int WIDTH = (int)screenSize.getWidth();
-//	public static final int HEIGHT = (int)screenSize.getHeight();
-	public static final int WIDTH = 1536;
-	public static final int HEIGHT = 864;
+
 	
 	private static JPanel mainPanel = new JPanel();	
 	private static JFrame frame = new JFrame("Firy Navy Project");
@@ -172,8 +164,8 @@ public class MainFrame {
 	 * Adds background images and elements.
 	 */
 	private void addBackground() {
+		mainPanel.add(TextManagement.getTitle());
 		mainPanel.add(ImagesManagement.getOldScroll());
-		mainPanel.add(ImagesManagement.getTitle());
 		mainPanel.add(ImagesManagement.getMenuBackground());
 		mainPanel.add(ImagesManagement.getGameBackground());
 	}

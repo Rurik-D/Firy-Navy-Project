@@ -3,7 +3,11 @@ package resources;
 import java.awt.Color;
 import java.awt.Font;
 
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
+
+import utils.FrameProportion;
 
 
 /**
@@ -11,15 +15,19 @@ import javax.swing.JTextArea;
  * @author Emanuele D'Agostino
  * @author Leonardo Lavezzari
  */
-public class TextManagement{
+public class TextManagement implements FrameProportion{
 	private JTextArea textArea = new JTextArea(100, 100);
 	private static Font font = new Font("Segoe Script", Font.BOLD, 21);
 	private static Font parameterFont = new Font("Segoe Script", Font.BOLD, 15);
+	private static JLabel title = new JLabel("Firy");
+	private static JLabel title1 = new JLabel("Navy");
+	private static JLabel title2 = new JLabel("Project");
+	private static JPanel titlePanel = new JPanel();
 	private String text;
 	private String player1Name;
 	private String player2Name;
 	private String computerName = "computer";
-
+	
 	
 	
 	/**
@@ -37,6 +45,26 @@ public class TextManagement{
 	 */
 	public static Font getParameterFont() {
 		return parameterFont;
+	}
+	
+	
+	
+	/**
+	 * 
+	 * 
+	 */
+	public static JPanel getTitle() {
+		setTitle(title, 0, titleFontDim);
+		setTitle(title1, titleSpacing, titleFontDim);
+		setTitle(title2, titleSpacing*2, titleFontDim);
+		
+		titlePanel.setBounds(titleX, titleY, titleW, titleH);
+		titlePanel.setLayout(null);
+		titlePanel.add(title);
+		titlePanel.add(title1);
+		titlePanel.add(title2);
+		titlePanel.setOpaque(false);
+		return titlePanel;
 	}
 	
 	
@@ -93,6 +121,42 @@ public class TextManagement{
 		textArea.setFont(font);
 		textArea.setEditable(false);
 		textArea.setText(text);
+	}
+	
+	
+	/**
+	 * 
+	 * 
+	 */
+	private static void setTitle(JLabel title, int y, int fontDim) {
+		title.setFont(new Font("Segoe Script", Font.BOLD, fontDim));
+		title.setBounds(0, y, titleLblW, titleLblH);
+		title.setVisible(true);
+		title.setForeground(Color.RED.darker().darker());
+	}
+	
+	
+	/**
+	 * 
+	 * 
+	 */
+	public static void showTitle() {
+		title.setVisible(true);
+		title1.setVisible(true);
+		title2.setVisible(true);
+		titlePanel.setVisible(true);
+	}
+	
+	
+	/**
+	 * 
+	 * 
+	 */
+	public static void hideTitle() {
+		title.setVisible(false);
+		title1.setVisible(false);
+		title2.setVisible(false);
+		titlePanel.setVisible(false);
 	}
 	
 	

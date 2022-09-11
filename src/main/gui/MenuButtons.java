@@ -16,14 +16,12 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.Timer;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 import resources.*;
 import utils.*;
-import main.core.Main;
 import main.core.Pve;
 
 
@@ -32,7 +30,7 @@ import main.core.Pve;
  * @author Emanuele D'Agostino
  * @author Leonardo Lavezzari
  */
-public class MenuButtons extends FrameProportion{
+public class MenuButtons implements FrameProportion{
 	
 	private static ResourceBundle languageBundle = ResourceBundle.getBundle("utils.file/lang", Locale.forLanguageTag("en"));
 	private static ResourceBundle imagesBundle = ResourceBundle.getBundle("utils.file/images");
@@ -69,8 +67,8 @@ public class MenuButtons extends FrameProportion{
 	private static int chosenAvatar;
 	private static JLabel playerAvatarLbl = new JLabel();
 	private static JLabel computerAvatarLbl = new JLabel();
-	private static JLabel squareLabel = new JLabel();
-	private static JLabel squareCpuLabel = new JLabel(textManage.getPlayerName(3));
+	private static JLabel playerNameLbl = new JLabel();
+	private static JLabel computerNameLbl = new JLabel(textManage.getPlayerName(3));
 	
 	
 	/**
@@ -298,8 +296,8 @@ public class MenuButtons extends FrameProportion{
 				confirmBtn.setVisible(false);
 				backToStartBtn.setVisible(false);
 				
+				TextManagement.hideTitle();
 				ImagesManagement.getMenuBackground().setVisible(false);
-				ImagesManagement.hideTitle();
 				GameButtons.getGameOptionBtn().setVisible(true);
 				GameButtons.getConfirmSetupBtn().setVisible(true);
 				textManage.resetText();
@@ -313,11 +311,10 @@ public class MenuButtons extends FrameProportion{
 				oldScroll.setVisible(true);
 				MainFrame.getScrollPnl().setVisible(true);
 
-				squareLabel.setVisible(true);
-				String testo = selectNickname.getText();
-				squareLabel.setText(testo);
+				playerNameLbl.setVisible(true);
+				playerNameLbl.setText(selectNickname.getText());
 				
-				squareCpuLabel.setVisible(true);
+				computerNameLbl.setVisible(true);
 				computerAvatarLbl.setIcon(avatarList.get(6)); 
 				computerAvatarLbl.setVisible(true);
 
@@ -380,9 +377,9 @@ public class MenuButtons extends FrameProportion{
 		itaBtn.setVisible(false);
 		engBtn.setVisible(false);
 		playerAvatarLbl.setVisible(false);
-		squareLabel.setVisible(false);
+		playerNameLbl.setVisible(false);
 		computerAvatarLbl.setVisible(false);
-		squareCpuLabel.setVisible(false);
+		computerNameLbl.setVisible(false);
 	}
 	
 	
@@ -434,9 +431,9 @@ public class MenuButtons extends FrameProportion{
 		itaBtn.setBounds(buttonX, 590, buttonW, buttonH);
 		engBtn.setBounds(buttonX, 630, buttonW, buttonH);
 		playerAvatarLbl.setBounds(0, 0, avatarSide, avatarSide);
-		squareLabel.setBounds(avatarSide,10, extLabelW, buttonH);
+		playerNameLbl.setBounds(avatarSide,10, extLabelW, buttonH);
 		computerAvatarLbl.setBounds(MainFrame.WIDTH - avatarSide, 0, avatarSide, avatarSide);
-		squareCpuLabel.setBounds(MainFrame.WIDTH - avatarSide - extLabelW/2 + 50, 10, extLabelW, buttonH);
+		computerNameLbl.setBounds(MainFrame.WIDTH - avatarSide - extLabelW/2 + 50, 10, extLabelW, buttonH);
 	}
 
 	
@@ -467,8 +464,8 @@ public class MenuButtons extends FrameProportion{
 		selectNickname.setFont(font);
 		itaBtn.setFont(font);
 		engBtn.setFont(font);
-		squareLabel.setFont(font);
-		squareCpuLabel.setFont(font);
+		playerNameLbl.setFont(font);
+		computerNameLbl.setFont(font);
 	}
 	
 	
@@ -531,9 +528,9 @@ public class MenuButtons extends FrameProportion{
 		mainPanel.add(extNoBtn);
 		mainPanel.add(extYesBtn);
 		mainPanel.add(playerAvatarLbl);
-		mainPanel.add(squareLabel);
+		mainPanel.add(playerNameLbl);
 		mainPanel.add(computerAvatarLbl);
-		mainPanel.add(squareCpuLabel);
+		mainPanel.add(computerNameLbl);
 	}
 	
 	
@@ -674,7 +671,7 @@ public class MenuButtons extends FrameProportion{
 	 *  @see main.gui.GameButtons
 	 */
 	public static JLabel getSquareLabel() {
-		return squareLabel;
+		return playerNameLbl;
 	}
 	
 	
@@ -692,7 +689,7 @@ public class MenuButtons extends FrameProportion{
 	 *  @see main.gui.GameButtons
 	 */
 	public static JLabel getSquareCpuLabel() {
-		return squareCpuLabel;
+		return computerNameLbl;
 	}
 	
 	
