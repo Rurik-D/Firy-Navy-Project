@@ -59,9 +59,9 @@ public class MainFrame {
 	
 	
 	/**
-	 * @see main.gui.GameButtons
-	 * 
 	 * @return mainPanel
+	 * 
+	 * @see main.gui.GameButtons
 	 */
 	public static  JPanel getMainPanel() {
 		return mainPanel;
@@ -71,10 +71,10 @@ public class MainFrame {
 	
 	
 	/**
+	 * @return scrollPnl
+	 * 
 	 * @see main.gui.GameButtons
 	 * @see main.gui.MenuButtons
-	 * 
-	 * @return scrollPnl
 	 */
 	public static JScrollPane getScrollPnl() {
 		return scrollPnl;
@@ -83,11 +83,11 @@ public class MainFrame {
 	
 	
 	/**
+	 * @return textManage
+	 * 
 	 * @see main.core.Pve
 	 * @see main.gui.GameButtons
 	 * @see main.gui.MenuButtons
-	 * 
-	 * @return textManage
 	 */
 	public static TextManagement getTextManage() {
 		return textManage;

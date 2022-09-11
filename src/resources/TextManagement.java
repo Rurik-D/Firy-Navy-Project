@@ -18,6 +18,8 @@ public class TextManagement{
 	private String text;
 	private String player1Name;
 	private String player2Name;
+	private String computerName = "computer";
+
 	
 	
 	/**
@@ -39,21 +41,32 @@ public class TextManagement{
 	
 	
 	/**
+	 * @param player refears to player type
+	 * 		1 -> player 1;
+	 * 		2 -> player 2;
+	 * 		3 -> computer;
 	 * 
-	 * 
+	 * @see main.gui.MenuButtons
 	 */
-	private String getPlayer(int player) {
+	public String getPlayerName(int player) {
 		return switch (player) {
 		case 1 -> player1Name;
 		case 2 -> player2Name;
+		case 3 -> computerName;
 		default -> "";
 		};
 	}
 	
 	
 	/**
+	 * @param player refears to player type
+	 * 		1 -> player 1;
+	 * 		2 -> player 2;
+	 * 		3 -> computer;
 	 * 
+	 * @param name is the name to be assigned to the player
 	 * 
+	 * @see main.gui.MenuButtons
 	 */
 	public void setPlayerName(int player, String name) {
 		switch (player) {
@@ -131,7 +144,7 @@ public class TextManagement{
 	 * 
 	 */
 	public void hitMessage(int player, String coordinates) {
-		text += getPlayer(player) + " :  " + coordinates + " , hit!\n";
+		text += getPlayerName(player) + " :  " + coordinates + " , hit!\n";
 		textArea.setText(text);
 	}
 	
@@ -141,7 +154,7 @@ public class TextManagement{
 	 * 
 	 */
 	public void missMessage(int player, String coordinates) {
-		text += getPlayer(player) + " :  " + coordinates + " , miss\n";
+		text += getPlayerName(player) + " :  " + coordinates + " , miss\n";
 		textArea.setText(text);
 	}
 	
@@ -171,7 +184,7 @@ public class TextManagement{
 	 * 
 	 */
 	public void sunkMessage(int player, String coordinates) {
-		text += getPlayer(player) + " : " + coordinates +  ", hit and sunk!\n";
+		text += getPlayerName(player) + " : " + coordinates +  ", hit and sunk!\n";
 		textArea.setText(text);
 	}
 	

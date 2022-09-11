@@ -34,43 +34,43 @@ import main.core.Pve;
  */
 public class MenuButtons extends FrameProportion{
 	
-	private static ResourceBundle resourceBundle = ResourceBundle.getBundle("utils.file/lang", Locale.forLanguageTag("en"));
+	private static ResourceBundle languageBundle = ResourceBundle.getBundle("utils.file/lang", Locale.forLanguageTag("en"));
 	private static ResourceBundle imagesBundle = ResourceBundle.getBundle("utils.file/images");
-	private static JButton startBtn = new JButton(resourceBundle.getString("button.startBtn"));
-	private static JButton optionBtn = new JButton(resourceBundle.getString("button.optionBtn"));
-	private static JButton exitBtn = new JButton(resourceBundle.getString("button.exitBtn"));
-	private JButton pveBtn = new JButton(resourceBundle.getString("button.pveBtn"));
-	private JButton pvpBtn = new JButton(resourceBundle.getString("button.pvpBtn"));
-	private JButton backToMenuBtn = new JButton(resourceBundle.getString("button.backToMenuBtn"));
-	private JButton backToOptBtn = new JButton(resourceBundle.getString("button.backToOptBtn"));
-	private JButton backToStartBtn = new JButton(resourceBundle.getString("button.backToStartBtn"));
-	private JButton langBtn = new JButton(resourceBundle.getString("button.langBtn"));
-	private JButton volumeBtn = new JButton(resourceBundle.getString("button.volumeBtn"));
-	private JButton extYesBtn = new JButton(resourceBundle.getString("button.extYesBtn"));
-	private JButton extNoBtn = new JButton(resourceBundle.getString("button.extNoBtn"));
-	private JButton startGameBtn = new JButton(resourceBundle.getString("button.startGameBtn"));
-	private JButton confirmBtn = new JButton(resourceBundle.getString("button.confirmBtn"));
-	private JButton nicknameBtn = new JButton(resourceBundle.getString("button.nicknameBtn"));
-	private JButton itaBtn = new JButton(resourceBundle.getString("button.itaBtn"));
-	private JButton engBtn = new JButton(resourceBundle.getString("button.engBtn"));
+	private static JButton startBtn = new JButton(languageBundle.getString("button.startBtn"));
+	private static JButton optionBtn = new JButton(languageBundle.getString("button.optionBtn"));
+	private static JButton exitBtn = new JButton(languageBundle.getString("button.exitBtn"));
+	private JButton pveBtn = new JButton(languageBundle.getString("button.pveBtn"));
+	private JButton pvpBtn = new JButton(languageBundle.getString("button.pvpBtn"));
+	private JButton backToMenuBtn = new JButton(languageBundle.getString("button.backToMenuBtn"));
+	private JButton backToOptBtn = new JButton(languageBundle.getString("button.backToOptBtn"));
+	private JButton backToStartBtn = new JButton(languageBundle.getString("button.backToStartBtn"));
+	private JButton langBtn = new JButton(languageBundle.getString("button.langBtn"));
+	private JButton volumeBtn = new JButton(languageBundle.getString("button.volumeBtn"));
+	private JButton extYesBtn = new JButton(languageBundle.getString("button.extYesBtn"));
+	private JButton extNoBtn = new JButton(languageBundle.getString("button.extNoBtn"));
+	private JButton startGameBtn = new JButton(languageBundle.getString("button.startGameBtn"));
+	private JButton confirmBtn = new JButton(languageBundle.getString("button.confirmBtn"));
+	private JButton nicknameBtn = new JButton(languageBundle.getString("button.nicknameBtn"));
+	private JButton itaBtn = new JButton(languageBundle.getString("button.itaBtn"));
+	private JButton engBtn = new JButton(languageBundle.getString("button.engBtn"));
 	private JButton moreVolumeBtn = new JButton("+");
 	private JButton lessVolumeBtn = new JButton("-");
-	private JLabel extLabel = new JLabel(resourceBundle.getString("label.extLabel"));
+	private JLabel extLabel = new JLabel(languageBundle.getString("label.extLabel"));
 	private JLabel volumeLevel = new JLabel("50");
 	private JLabel oldScroll = ImagesManagement.getOldScroll();
 	private JTextField selectNickname = new JTextField();
-	
+	private static TextManagement textManage = MainFrame.getTextManage();
+
 	private List<JButton> avatarBtns = new ArrayList<>();
 	private Font font = new Font("Segoe Script", Font.BOLD, fontDim);
 	private boolean obstacle = true;
 	private int volume;
 	private static List<ImageIcon> avatarList = new ArrayList<>();
-	private static int chooseBtn;
-	private static JButton squareBtn = new JButton("");
-	private static JButton squareCpuBtn = new JButton("");
+	private static int chosenAvatar;
+	private static JLabel playerAvatarLbl = new JLabel();
+	private static JLabel computerAvatarLbl = new JLabel();
 	private static JLabel squareLabel = new JLabel();
-	private static JLabel squareCpuLabel = new JLabel(resourceBundle.getString("label.squareCpuLabel"));
-	private static TextManagement textManage = MainFrame.getTextManage();
+	private static JLabel squareCpuLabel = new JLabel(textManage.getPlayerName(3));
 	
 	
 	/**
@@ -120,7 +120,6 @@ public class MenuButtons extends FrameProportion{
 		pveBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SoundsManagement.clickMenuBtn();
-				MainFrame.getTextManage().setPlayerName(2, "Computer");
 				pvpBtn.setVisible(false);
 				pveBtn.setVisible(false);
 				backToMenuBtn.setVisible(false);
@@ -254,13 +253,13 @@ public class MenuButtons extends FrameProportion{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				SoundsManagement.clickMenuBtn();
-				String text = selectNickname.getText();
+				String playerName = selectNickname.getText();
 
-				if (text.length() > 0) {
-					MainFrame.getTextManage().setPlayerName(1, text);
+				if (playerName.length() > 0) {
+					MainFrame.getTextManage().setPlayerName(1, playerName);
 					selectNickname.setEditable(false);
 				}
-				if (!text.equals("")) {
+				if (!playerName.equals("")) {
 					for (int i = 0; i<6; i++) {
 						avatarBtns.get(i).setVisible(true);
 					}
@@ -319,11 +318,11 @@ public class MenuButtons extends FrameProportion{
 				squareLabel.setText(testo);
 				
 				squareCpuLabel.setVisible(true);
-				squareCpuBtn.setIcon(avatarList.get(6)); 
-				buttonsSetUp(squareCpuBtn);
+				computerAvatarLbl.setIcon(avatarList.get(6)); 
+				computerAvatarLbl.setVisible(true);
 
-				squareBtn.setIcon(avatarList.get(chooseBtn)); 
-				buttonsSetUp(squareBtn);
+				playerAvatarLbl.setIcon(avatarList.get(chosenAvatar)); 
+				playerAvatarLbl.setVisible(true);
 				selectNickname.setText(null);
 				GameTimer.setTimer();
 			}
@@ -380,9 +379,9 @@ public class MenuButtons extends FrameProportion{
 		selectNickname.setVisible(false);
 		itaBtn.setVisible(false);
 		engBtn.setVisible(false);
-		squareBtn.setVisible(false);
+		playerAvatarLbl.setVisible(false);
 		squareLabel.setVisible(false);
-		squareCpuBtn.setVisible(false);
+		computerAvatarLbl.setVisible(false);
 		squareCpuLabel.setVisible(false);
 	}
 	
@@ -434,10 +433,10 @@ public class MenuButtons extends FrameProportion{
 		moreVolumeBtn.setBounds(moreVolumeBtnX, volumeBtnsY, lessVolumeBtnW, buttonH);
 		itaBtn.setBounds(buttonX, 590, buttonW, buttonH);
 		engBtn.setBounds(buttonX, 630, buttonW, buttonH);
-		squareBtn.setBounds(0, 0, avatarSide, avatarSide);
+		playerAvatarLbl.setBounds(0, 0, avatarSide, avatarSide);
 		squareLabel.setBounds(avatarSide,10, extLabelW, buttonH);
-		squareCpuBtn.setBounds(MainFrame.WIDTH - avatarSide, 0, avatarSide, avatarSide);
-		squareCpuLabel.setBounds(MainFrame.WIDTH - avatarSide-extLabelW/2 + 50, 10, extLabelW, buttonH);
+		computerAvatarLbl.setBounds(MainFrame.WIDTH - avatarSide, 0, avatarSide, avatarSide);
+		squareCpuLabel.setBounds(MainFrame.WIDTH - avatarSide - extLabelW/2 + 50, 10, extLabelW, buttonH);
 	}
 
 	
@@ -531,9 +530,9 @@ public class MenuButtons extends FrameProportion{
 		mainPanel.add(extLabel);
 		mainPanel.add(extNoBtn);
 		mainPanel.add(extYesBtn);
-		mainPanel.add(squareBtn);
+		mainPanel.add(playerAvatarLbl);
 		mainPanel.add(squareLabel);
-		mainPanel.add(squareCpuBtn);
+		mainPanel.add(computerAvatarLbl);
 		mainPanel.add(squareCpuLabel);
 	}
 	
@@ -552,12 +551,10 @@ public class MenuButtons extends FrameProportion{
 		ImagesManagement.createAvatarPicture(imagesBundle.getString("image.submarine"), avatarList);
 
 		createAvatarBtnList(mainPanel);
-		setAvatarBtn(avatarBtns, 0);
-		setAvatarBtn(avatarBtns, 1);
-		setAvatarBtn(avatarBtns, 2);
-		setAvatarBtn(avatarBtns, 3);
-		setAvatarBtn(avatarBtns, 4);
-		setAvatarBtn(avatarBtns, 5);
+		
+		for(int i = 0; i < 6; i++) {
+			setAvatarBtn(avatarBtns, i);
+		}
 		
 	}
 	
@@ -608,7 +605,7 @@ public class MenuButtons extends FrameProportion{
 						if (i != btnNumb) { avatarBtns.get(i).setVisible(false); }
 					}
 					obstacle = false;
-					chooseBtn = btnNumb;
+					chosenAvatar = btnNumb;
 					
 				}
 				else {
@@ -640,41 +637,41 @@ public class MenuButtons extends FrameProportion{
 	 * 
 	 * 
 	 */
-	public void setLanguageLocalBtns(String kLang) {
-		resourceBundle  = ResourceBundle.getBundle("utils.file/lang", Locale.forLanguageTag(kLang)) ;
-		startBtn.setText(resourceBundle.getString("button.startBtn"));
-		optionBtn.setText(resourceBundle.getString("button.optionBtn"));
-		exitBtn.setText(resourceBundle.getString("button.exitBtn"));
-		pveBtn.setText(resourceBundle.getString("button.pveBtn"));
-		pvpBtn.setText(resourceBundle.getString("button.pvpBtn"));
-		backToMenuBtn.setText(resourceBundle.getString("button.backToMenuBtn"));
-		backToOptBtn.setText(resourceBundle.getString("button.backToOptBtn"));
-		backToStartBtn.setText(resourceBundle.getString("button.backToStartBtn"));
-		langBtn.setText(resourceBundle.getString("button.langBtn"));
-		volumeBtn.setText(resourceBundle.getString("button.volumeBtn"));
-		extYesBtn.setText(resourceBundle.getString("button.extYesBtn"));
-		extNoBtn.setText(resourceBundle.getString("button.extNoBtn"));
-		startGameBtn.setText(resourceBundle.getString("button.startGameBtn"));
-		confirmBtn.setText(resourceBundle.getString("button.confirmBtn"));
-		nicknameBtn.setText(resourceBundle.getString("button.nicknameBtn"));
-		engBtn.setText(resourceBundle.getString("button.engBtn"));
-		itaBtn.setText(resourceBundle.getString("button.itaBtn"));
-		extLabel.setText(resourceBundle.getString("label.extLabel"));
+	private void setLanguageLocalBtns(String kLang) {
+		languageBundle  = ResourceBundle.getBundle("utils.file/lang", Locale.forLanguageTag(kLang)) ;
+		startBtn.setText(languageBundle.getString("button.startBtn"));
+		optionBtn.setText(languageBundle.getString("button.optionBtn"));
+		exitBtn.setText(languageBundle.getString("button.exitBtn"));
+		pveBtn.setText(languageBundle.getString("button.pveBtn"));
+		pvpBtn.setText(languageBundle.getString("button.pvpBtn"));
+		backToMenuBtn.setText(languageBundle.getString("button.backToMenuBtn"));
+		backToOptBtn.setText(languageBundle.getString("button.backToOptBtn"));
+		backToStartBtn.setText(languageBundle.getString("button.backToStartBtn"));
+		langBtn.setText(languageBundle.getString("button.langBtn"));
+		volumeBtn.setText(languageBundle.getString("button.volumeBtn"));
+		extYesBtn.setText(languageBundle.getString("button.extYesBtn"));
+		extNoBtn.setText(languageBundle.getString("button.extNoBtn"));
+		startGameBtn.setText(languageBundle.getString("button.startGameBtn"));
+		confirmBtn.setText(languageBundle.getString("button.confirmBtn"));
+		nicknameBtn.setText(languageBundle.getString("button.nicknameBtn"));
+		engBtn.setText(languageBundle.getString("button.engBtn"));
+		itaBtn.setText(languageBundle.getString("button.itaBtn"));
+		extLabel.setText(languageBundle.getString("label.extLabel"));
 	}
 	
 	
 	/**
 	 * 
-	 * 
+	 *  @see main.gui.GameButtons
 	 */
-	public static JButton getSquareBtn() {
-		return squareBtn;
+	public static JLabel getPlayerAvatarLbl() {
+		return playerAvatarLbl;
 	}
 	
 	
 	/**
 	 * 
-	 * 
+	 *  @see main.gui.GameButtons
 	 */
 	public static JLabel getSquareLabel() {
 		return squareLabel;
@@ -683,32 +680,19 @@ public class MenuButtons extends FrameProportion{
 	
 	/**
 	 * 
-	 * 
+	 *  @see main.gui.GameButtons
 	 */
-	public static JButton getSquareCpuBtn() {
-		return squareCpuBtn;
+	public static JLabel getComputerAvatarLbl() {
+		return computerAvatarLbl;
 	}
 	
 	
 	/**
 	 * 
-	 * 
+	 *  @see main.gui.GameButtons
 	 */
 	public static JLabel getSquareCpuLabel() {
 		return squareCpuLabel;
-	}
-	
-	
-	/**
-	 * 
-	 * 
-	 */
-	public static void buttonsSetUp(JButton btn) {
-		btn.setFont(new Font("Arial", Font.BOLD, 12));
-		btn.setOpaque(false);
-		btn.setContentAreaFilled(false);
-		btn.setBorder(null);
-		btn.setVisible(true);
 	}
 	
 	

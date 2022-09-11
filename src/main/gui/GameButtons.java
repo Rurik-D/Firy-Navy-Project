@@ -172,9 +172,9 @@ public class GameButtons extends FrameProportion{
 				ImagesManagement.getMenuBackground().setVisible(true);
 				ImagesManagement.showTitle();
 				MenuButtons.openMenu();
-				MenuButtons.getSquareBtn().setVisible(false);
+				MenuButtons.getPlayerAvatarLbl().setVisible(false);
 				MenuButtons.getSquareLabel().setVisible(false);
-				MenuButtons.getSquareCpuBtn().setVisible(false);
+				MenuButtons.getComputerAvatarLbl().setVisible(false);
 				MenuButtons.getSquareCpuLabel().setVisible(false);
 				timerLbl.setVisible(false);
 				confirmSetupVisible = true;
@@ -210,9 +210,9 @@ public class GameButtons extends FrameProportion{
 				ImagesManagement.getMenuBackground().setVisible(true);
 				ImagesManagement.showTitle();
 				MenuButtons.openMenu();
-				MenuButtons.getSquareBtn().setVisible(false);
+				MenuButtons.getPlayerAvatarLbl().setVisible(false);
 				MenuButtons.getSquareLabel().setVisible(false);
-				MenuButtons.getSquareCpuBtn().setVisible(false);
+				MenuButtons.getComputerAvatarLbl().setVisible(false);
 				MenuButtons.getSquareCpuLabel().setVisible(false);
 				timerLbl.setVisible(false);
 				confirmSetupVisible = true;
