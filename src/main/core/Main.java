@@ -11,9 +11,7 @@ import main.gui.MainFrame;
  * This class starts the program esecution, creates the frame and the main panel and instantiates
  * classes that do not use static methods.
  * 
- * @see main.gui.Grid
- * @see main.navy.Navy
- * @see utils.FrameProportion
+ * @see main.gui.MainFrame
  *
  * @author Emanuele D'Agostino
  * @author Leonardo Lavezzari

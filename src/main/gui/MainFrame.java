@@ -2,7 +2,6 @@ package main.gui;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Toolkit;
 
 import javax.swing.BorderFactory;
@@ -10,18 +9,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import main.core.Main;
 import main.core.Pve;
-import resources.ImagesManagement;
-import resources.SoundsManagement;
-import resources.TextManagement;
+import resources.*;
 
 
 /**
- * 
- * @see main.gui.Grid
- * @see main.navy.Navy
- * @see utils.FrameProportion
+ * The purpose of this class is to create and manage the main frame and all
+ * the graphics components associated with it.
  *
  * @author Emanuele D'Agostino
  * @author Leonardo Lavezzari
@@ -31,8 +25,9 @@ import resources.TextManagement;
 public class MainFrame {
 	
 	/*
-	 * With these first three lines the program obtains the screen size and saves it in two final 
-	 * variables (width and height), on which all the proportions of the window will be based.
+	 * With these first three lines the program obtains the screen size and 
+	 * saves it in two final variables (width and height), on which all the 
+	 * proportions of the window will be based.
 	 */
 	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 //	public static final int WIDTH = (int)screenSize.getWidth();
@@ -47,20 +42,24 @@ public class MainFrame {
 
 	
 	/**
-	 * This constructor creates the window and adds the main panel where all the 
-	 * graphics components will be implemented.
+	 * This constructor creates the window and adds the main panel where 
+	 * all the graphics components will be implemented.
 	 * 
-	 * @see main.frame.GameButtons
-	 * @see main.frame.MenuButtons
 	 */
 	public MainFrame() {
 		setFrame();
 		setMainPanel();
+		setButtons();
+		setScrollPnl();
+		addShipsLabels();
+		addGrids();
+		addBackground();
 	}
 	
 	
 	
 	/**
+	 * @see main.gui.GameButtons
 	 * 
 	 * @return mainPanel
 	 */
@@ -70,7 +69,10 @@ public class MainFrame {
 	}
 	
 	
+	
 	/**
+	 * @see main.gui.GameButtons
+	 * @see main.gui.MenuButtons
 	 * 
 	 * @return scrollPnl
 	 */
@@ -79,7 +81,11 @@ public class MainFrame {
 	}
 	
 	
+	
 	/**
+	 * @see main.core.Pve
+	 * @see main.gui.GameButtons
+	 * @see main.gui.MenuButtons
 	 * 
 	 * @return textManage
 	 */
@@ -88,12 +94,13 @@ public class MainFrame {
 	}
 	
 	
+	
 	/**
 	 * Sets frame parameters, program and cursor icons and starts menu
 	 * background track.
 	 */
 	private void setFrame() {
-		frame.getContentPane().add(mainPanel);
+		frame.add(mainPanel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(WIDTH, HEIGHT); 
 		frame.setResizable(false);
@@ -106,27 +113,27 @@ public class MainFrame {
 	}
 	
 	
-	/**
-	 * 
-	 * 
-	 */
+	
 	private void setMainPanel() {
 		mainPanel.setLayout(null);
 		mainPanel.setVisible(true);
-		
+	}
+	
+	
+	
+	/**
+	 * Instantiate button classes, which create all the buttons needed for 
+	 * the GUI.
+	 */
+	private void setButtons() {
 		new GameButtons(mainPanel);
 		new MenuButtons(mainPanel);
-		
-		setScrollPnl();
-		addShipsLabels();
-		addGrids();
-		addImages();
 	}
+	
 
 
 	/**
-	 * 
-	 * 
+	 * Create the scroll panel which will show all the in-game activities.
 	 */
 	private void setScrollPnl() {
 		mainPanel.add(scrollPnl);
@@ -138,9 +145,9 @@ public class MainFrame {
 	}
 	
 	
+	
 	/**
-	 * 
-	 * 
+	 * Adds all labels used for the ships to the main panel.
 	 */
 	private void addShipsLabels() {
 		for (int i = 0; i<10; i++) {
@@ -149,9 +156,10 @@ public class MainFrame {
 	}
 	
 	
+	
 	/**
-	 * 
-	 * 
+	 * Adds the position-grid, for the positioning of the user's ships, and
+	 * the attack-grid, used by the user to attack the computer.
 	 */
 	private void addGrids() {
 		mainPanel.add(Pve.getPositionGrid());
@@ -159,11 +167,11 @@ public class MainFrame {
 	}
 	
 	
+	
 	/**
-	 * 
-	 * 
+	 * Adds background images and elements.
 	 */
-	private void addImages() {
+	private void addBackground() {
 		mainPanel.add(ImagesManagement.getOldScroll());
 		mainPanel.add(ImagesManagement.getTitle());
 		mainPanel.add(ImagesManagement.getMenuBackground());
@@ -171,9 +179,10 @@ public class MainFrame {
 	}
 	
 	
+	
 	/**
-	 * 
-	 * 
+	 * This method closes the frame (the program is in full-screen, so the 
+	 * upper bar is hidden, and the program cannot be closed normally). 
 	 */
 	public static void closeFrame() {
 		frame.dispose();
