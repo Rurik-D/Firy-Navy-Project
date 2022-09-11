@@ -171,7 +171,7 @@ public class TextManagement{
 	 * 
 	 */
 	public void sunkMessage(int player, String coordinates) {
-		text += getPlayer(player) + " : " + coordinates +  "hit ad sunk!\n";
+		text += getPlayer(player) + " : " + coordinates +  ", hit and sunk!\n";
 		textArea.setText(text);
 	}
 	

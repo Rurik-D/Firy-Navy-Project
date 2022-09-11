@@ -59,16 +59,6 @@ public class Ship extends JLabel{
 	}
 	
 	
-	
-//	/**
-//	 * 
-//	 * 
-//	 */
-//	public Map<int[], Boolean> getShipPos_Hit(){
-//		return shipPos_Hit;
-//	}
-	
-	
 	/**
 	 * 
 	 * 
@@ -86,15 +76,4 @@ public class Ship extends JLabel{
 		return shipIndex;
 	}
 	
-	
-//	/**
-//	 * 
-//	 * 
-//	 */
-//	public void setShipPos_Hit() {
-//		for(int[] pos : shipPosition) {
-//			shipPos_Hit.put(pos, false);
-//		}
-//	}
-//	
 }

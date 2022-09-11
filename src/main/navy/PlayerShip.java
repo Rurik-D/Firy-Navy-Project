@@ -25,7 +25,6 @@ public class PlayerShip extends Ship{
 	
 	public PlayerShip(int xPos, String type, int shipIndex) {
 		super(xPos, type, shipIndex);
-		
 		generateShip();
 	}
 	
@@ -65,9 +64,7 @@ public class PlayerShip extends Ship{
 		
 		
 		shipPosition.clear();
-		
-//		shipPos_Hit.clear();
-		
+				
 		updateShipPosition();
 			
     }
@@ -101,16 +98,13 @@ public class PlayerShip extends Ship{
 			for (int i = 0; i < shipSize; i++) {
 				int[] voidSquare = {-1, -1};
 				shipPosition.add(voidSquare);
-//				shipPos_Hit.put(voidSquare, false);
 			}
 		} else if (this.getY() > gridY + gridH  || this.getX() < gridX) {
 			shipPosition.clear();
-//			shipPos_Hit.clear();
 			updateShipPosition();
 
 		} else {
 			shipPosition.clear();
-//			shipPos_Hit.clear();
 			for (int i = 0; i < shipSize; i++) {
 				int[] currentSquare = {currentSquareX, currentSquareY};
 
@@ -124,7 +118,6 @@ public class PlayerShip extends Ship{
 				};
 				
 				shipPosition.add(currentSquare);
-//				shipPos_Hit.put(currentSquare, false);
 			}
 		}
 	}

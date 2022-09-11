@@ -36,7 +36,7 @@ public class Pve {
 	private static int consecutiveMissForBonus = random.nextInt(0, 2);
 	
 	private static TextManagement text = MainFrame.getTextManage();
-	private static boolean sunk = false;
+	private static boolean sunk;
 
 	
 	
@@ -63,12 +63,20 @@ public class Pve {
 		return navy;
 	}
 	
+//	
+//	public static void setComputerNavy() {
+//		setComputerPossiblePositions();
+//		generateComputerNavy();
+//		
+//	}
+	
+	
 	public static List<ComputerShip> getComputerNavy() {
 		setComputerPossiblePositions();
 		generateComputerNavy();
-		
 		return computerNavy;
 	}
+	
 	
 	private static void setComputerPossiblePositions() {
 		for(int i = 0; i < 10; i++) {
@@ -79,50 +87,43 @@ public class Pve {
 	}
 	
 	
-	
-	private static void checkComputerSunk() {
+	private static void checkComputerSunk(Ship ship, String squareName) {
 		Map<int[], Boolean> damages = navy.getNavyDamages("computer");
 		sunk = false;
 		
-		sunk:
-		for (Ship ship : computerNavy) {
-			int squareNumber = 0;
-			
-			for (int[] pos : ship.getShipPosition()) {
-				if (!damages.get(pos)) {
-					break;
-				}
-				if (squareNumber == ship.getShipPosition().size() - 1) {
-					text.sunkMessage(2, "-1-1");
-					sunk = true;
-					break sunk;
-				}
-				squareNumber += 1;
+		int squareNumber = 0;
+		
+		for (int[] pos : ship.getShipPosition()) {
+			if (!damages.get(pos)) {
+				break;
 			}
+			if (squareNumber == ship.getShipSize() - 1) {
+				sunk = true;
+				text.sunkMessage(1, squareName);
+				break;
+			}
+			squareNumber += 1;
 		}
 	}
 		
 
 	
-	private static void checkPlayerSunk(String squareName) {
+	private static void checkPlayerSunk(Ship ship, String squareName) {
 		Map<int[], Boolean> damages = navy.getNavyDamages("player");
 		sunk = false;
 		
-		sunk:
-		for (Ship ship : playerNavy) {
-			int squareNumber = 0;
-			
-			for (int[] pos : ship.getShipPosition()) {
-				if (!damages.get(pos)) {
-					text.sunkMessage(1, squareName);
-					break;
-				}
-				if (squareNumber == ship.getShipPosition().size() - 1) {
-					sunk = true;
-					break sunk;
-				}
-				squareNumber += 1;
+		int squareNumber = 0;
+		
+		for (int[] pos : ship.getShipPosition()) {
+			if (!damages.get(pos)) {
+				break;
 			}
+			if (squareNumber == ship.getShipSize() - 1) {
+				sunk = true;
+				text.sunkMessage(2, squareName);
+				break;
+			}
+			squareNumber += 1;
 		}
 	}
 	
@@ -140,16 +141,16 @@ public class Pve {
 			for (int[] occupiedSquare : ship.getShipPosition()) {	
 
 				if ( square.getName().equals(letters[occupiedSquare[1]] + "" + occupiedSquare[0])) {
-					checkPlayerSunk(square.getName());
-					if(!sunk) { hit = true; }
-					sunk = false;
-
+					hit = true; 
+					navy.addNavyDamage("computer", occupiedSquare);
+					checkComputerSunk(ship, square.getName());
 					break hit;
 				}
 			}
 		}
 		if (hit) { 
-			text.hitMessage(1, square.getName());
+			if(!sunk) { text.hitMessage(1, square.getName()); }
+			sunk = false;
 			hitLbl.setVisible(true);
 		} else {
 			text.missMessage(1, square.getName()); 
@@ -164,7 +165,6 @@ public class Pve {
 	private static int[] makeComputerBonusAttack(List<PlayerShip> playerNavy, Grid navyGrid) {
 		boolean startAttack = false;
 		int[] bonusAttack = null;
-
 
 		while (!startAttack) {
 			startAttack = true;
@@ -219,10 +219,12 @@ public class Pve {
 		while(!startAttack) {
 			startAttack = true;
 
+			// colpo sicuro
 			if (consecutiveMissForBonus > 0) {
 				randAttack = makeComputerBonusAttack(playerNavy, navyGrid);
 				break;
 				
+			// colpo ragionato
 			} else if (lastHit[0] != -1 && attacksTriedNearLastHit < 8) {
 				int direction = random.nextInt(0, 8);
 				
@@ -272,13 +274,15 @@ public class Pve {
 					continue;
 				}
 				attacksTriedNearLastHit += 1;
-				
+			
+			// colpo casuale
 			} else {
 				randAttack[0] = random.nextInt(0, 10);
 				randAttack[1] = random.nextInt(0, 10);
 				consecutiveMissForBonus += 1;
 			}
-
+			
+			// controllo se sto ripetendo un vecchio colpo
 			for (int[] oldAttack : randAttacksMade) {
 				if ( randAttack[0] == oldAttack[0] && randAttack[1] == oldAttack[1] ) {
 					startAttack = false;
@@ -292,9 +296,12 @@ public class Pve {
 		hit:
 		for (Ship ship : playerNavy) {
 			// per ogni casella occupata dalla nave
-			for (int[] shipPos : ship.getShipPosition()) {								
+			for (int[] pos : ship.getShipPosition()) {								
 				// se la casella occupata dalla nave è uguale alla casella colpita dal computer
-				if (randAttack[0] == shipPos[0] && randAttack[1] == shipPos[1]) {
+				if (randAttack[0] == pos[0] && randAttack[1] == pos[1]) {
+					navy.addNavyDamage("player", pos);
+					checkPlayerSunk(ship, letters[pos[1]] + "" + pos[0]);
+										
 					hitted = true;
 					break hit;
 				}
@@ -304,8 +311,9 @@ public class Pve {
 
 		if (hitted) {
 			consecutiveMissForBonus = 0;
+			if (!sunk) { textManage.hitMessage(2, letters[randAttack[1]] + "" + randAttack[0]); }
+			sunk = false;
 			navyGrid.getHitList().get(randAttack[0] * 10 + randAttack[1]).setVisible(true);
-			textManage.hitMessage(2, letters[randAttack[1]] + "" + randAttack[0]);
 		} else { 
 			navyGrid.getMissList().get(randAttack[0] * 10 + randAttack[1]).setVisible(true);
 			textManage.missMessage(2, letters[randAttack[1]] + "" + randAttack[0]); 
@@ -423,6 +431,8 @@ public class Pve {
 							for(int[] pos : randomPosition) {
 								computerNavy.get(shipIndex).getShipPosition().add(pos);
 							}
+							System.out.println(computerNavy.get(shipIndex).getShipPosition());
+
 							found = true;
 							break positionFound;
 						}

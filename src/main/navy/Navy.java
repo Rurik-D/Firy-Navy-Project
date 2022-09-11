@@ -17,7 +17,6 @@ public class Navy{
 	private Map<int[], Boolean> playerNavyDamages = new HashMap<>();
 	private Map<int[], Boolean> computerNavyDamages = new HashMap<>();
 
-
 	private int xPos;
 	
 	
@@ -27,7 +26,8 @@ public class Navy{
 	 */
 	public Navy() {
 		setComputerNavy();
-		setPlayerNavy();
+		setPlayerNavy();		
+
 		
 //		System.out.println("");
 //		for (Ship ship : computerNavy) {
@@ -37,6 +37,7 @@ public class Navy{
 //			System.out.println("");
 //		}
 //		System.out.println("");
+		
 	}
 	
 	
@@ -55,6 +56,7 @@ public class Navy{
 	 * 
 	 */
 	public List<PlayerShip> getPlayerNavy() {
+		
 		return playerNavy;
 	}
 	
@@ -63,11 +65,11 @@ public class Navy{
 	public Map<int[], Boolean> getNavyDamages(String navyType) {
 		if (navyType.equals("player")) {
 			
-			for(Ship ship : playerNavy) {
-				for(int[] pos : ship.getShipPosition()) {
-					System.out.println(playerNavyDamages.get(pos));
-				}
-			}
+//			for(Ship ship : playerNavy) {
+//				for(int[] pos : ship.getShipPosition()) {
+//					System.out.println(playerNavyDamages.get(pos));
+//				}
+//			}
 			
 
 			return playerNavyDamages;
@@ -107,9 +109,11 @@ public class Navy{
 				default:
 					break;
 		}
+
 			xPos += 50;
 		}
 		setComputerNavyDamages();
+
 	}
 	
 	
@@ -143,6 +147,7 @@ public class Navy{
 			xPos += 50;
 		}
 		setPlayerNavyDamages();
+
 	}
 	
 	
@@ -171,9 +176,8 @@ public class Navy{
 			
 		} else if (navyType.equals("computer")) {
 			computerNavyDamages.replace(damage, true);
+
 		}
 	}
 	
-	
-
 }
