@@ -63,17 +63,15 @@ public class Pve {
 		return navy;
 	}
 	
-//	
-//	public static void setComputerNavy() {
-//		setComputerPossiblePositions();
-//		generateComputerNavy();
-//		
-//	}
+	
+	public static void setComputerNavy() {
+		setComputerPossiblePositions();
+		generateComputerNavy();
+		
+	}
 	
 	
 	public static List<ComputerShip> getComputerNavy() {
-		setComputerPossiblePositions();
-		generateComputerNavy();
 		return computerNavy;
 	}
 	

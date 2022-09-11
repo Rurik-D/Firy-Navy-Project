@@ -277,7 +277,7 @@ public class GameButtons extends FrameProportion{
 					
 					oldScroll.setVisible(false);
 					SoundsManagement.clickMenuBtn();
-//					Pve.setComputerNavy();
+					Pve.setComputerNavy();
 					Pve.getAttackGrid().setAttackGrid(Pve.getComputerNavy(), Pve.getNavy().getPlayerNavy());
 					Pve.getNavy().setPlayerNavyDamages();
 					Pve.getNavy().setComputerNavyDamages();
