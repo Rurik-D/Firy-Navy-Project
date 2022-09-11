@@ -2,6 +2,7 @@ package main.core;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import main.gui.Grid;
@@ -17,16 +18,21 @@ import resources.TextManagement;
  */
 public class Pve {
 	private static char[] letters = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
+	
 	private static Grid positionGrid = new Grid(300, 200);
 	private static Grid attackGrid = new Grid(950, 200, positionGrid);
+	
 	private static Navy navy = new Navy();
 	private static List<PlayerShip> playerNavy = navy.getPlayerNavy();
 	private static List<ComputerShip> computerNavy = navy.getComputerNavy();
+	
 	private static int[][] possiblePositions = new int[10][10];
 	private static List<int[]> randAttacksMade = new ArrayList<>();
 	private static List<Boolean> randAttacksHit = new ArrayList<>();
 	private static Random random = new Random();
 	private static int consecutiveMissForBonus = random.nextInt(0, 2);
+	
+	private static TextManagement text = MainFrame.getTextManage();
 	private boolean sunk = false;
 
 	
@@ -71,10 +77,52 @@ public class Pve {
 	
 	
 	
+	private boolean checkComputerSunk() {
+		Map<int[], Boolean> damages = navy.getNavyDamages("computer");
+		sunk = false;
+		
+		sunk:
+		for (Ship ship : computerNavy) {
+			int squareNumber = 0;
+			
+			for (int[] pos : ship.getShipPosition()) {
+				if (!damages.get(pos)) {
+					break;
+				}
+				if (squareNumber == ship.getShipPosition().size() - 1) {
+					text.sunkMessage(2, "-1-1");
+					sunk = true;
+					break sunk;
+				}
+				squareNumber += 1;
+			}
+		}
+		return sunk;
+	}
+		
 
 	
-	private void checkSunk(String navyType) {
+	private boolean checkPlayerSunk() {
+		Map<int[], Boolean> damages = navy.getNavyDamages("player");
+		sunk = false;
 		
+		sunk:
+		for (Ship ship : playerNavy) {
+			int squareNumber = 0;
+			
+			for (int[] pos : ship.getShipPosition()) {
+				if (!damages.get(pos)) {
+					text.sunkMessage(1, "-1-1");
+					break;
+				}
+				if (squareNumber == ship.getShipPosition().size() - 1) {
+					sunk = true;
+					break sunk;
+				}
+				squareNumber += 1;
+			}
+		}
+		return sunk;
 	}
 	
 	

@@ -59,6 +59,7 @@ public class Navy{
 	}
 	
 	
+	
 	public Map<int[], Boolean> getNavyDamages(String navyType) {
 		if (navyType.equals("player")) {
 			return playerNavyDamages;

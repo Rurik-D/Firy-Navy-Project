@@ -11,23 +11,25 @@ import main.gui.Grid;
 
 public class Ship extends JLabel{
 	protected List<int[]> shipPosition = new ArrayList<>();
-//	protected Map<int[], Boolean> shipPos_Hit = new HashMap<>();
 	protected int squareSide = Grid.getSquareSide();
 	protected int shipW = Grid.getSquareSide();
 	protected int shipH;
 	protected int shipSize;
 	protected int xPos;
 	protected int yPos = 650;
-	protected String type;
 	protected int shipIndex;
+	protected String type;
+	protected String name;
+
 
 	public Ship(int xPos, String type, int shipIndex) {
 		this.xPos = xPos;
 		this.type = type;
 		this.shipIndex = shipIndex;
+		this.name = type.substring(2, type.length() - 3);
 		this.shipSize = Integer.parseInt(type.substring(0, 1));
-		
 	}
+	
 	
 	/**
 	 * 
@@ -45,6 +47,17 @@ public class Ship extends JLabel{
 	public String getType() {
 		return type;
 	}
+	
+	
+	
+	/**
+	 * 
+	 * 
+	 */
+	public String getName() {
+		return name;
+	}
+	
 	
 	
 //	/**
