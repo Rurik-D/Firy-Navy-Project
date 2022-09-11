@@ -36,7 +36,7 @@ public class Grid extends JLabel{
 	private Color backgroundColor = Color.orange.darker().darker().darker().darker().darker();
 	private List<JLabel> missList = new ArrayList<>();
 	private List<JLabel> hitList = new ArrayList<>();
-	private Grid postionGrid;
+	private Grid positionGrid;
 	private JLabel gridBackground = ImagesManagement.getGridBackground(parameterBorder, parameterBorder, W, H);
 	
 	
@@ -59,7 +59,7 @@ public class Grid extends JLabel{
 	 * 
 	 */
 	public Grid (int x, int y, Grid postionGrid) {
-		this.postionGrid = postionGrid;
+		this.positionGrid = postionGrid;
 		addParameters();
 		setLayout(null);
 		setBounds(x, y, W + parameterBorder + lblBorder, H + parameterBorder + lblBorder);
@@ -216,29 +216,7 @@ public class Grid extends JLabel{
 				square.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						boolean hit = false;
-						hit:
-						for (Ship ship: computerNavy) {
-							for (int[] occupiedSquare : ship.getShipPosition()) {	
-
-								if ( square.getName().equals(letters[occupiedSquare[1]] + "" + occupiedSquare[0])) {
-									hit = true;
-									break hit;
-								}
-							}
-						}
-						if (hit) { 
-							textManage.hitMessage(1, square.getName());
-							hitLbl.setVisible(true);
-						} else {
-							textManage.missMessage(1, square.getName()); 
-							missLbl.setVisible(true);
-						}
-						
-						square.setVisible(false);
-						
-						Pve.makeRandomAttack(playerNavy, postionGrid);
-						
+						Pve.makeAttack(hitLbl, missLbl, square);
 					}
 				});
 				add(missLbl);

@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
+
 import main.gui.Grid;
 import main.gui.MainFrame;
 import main.navy.*;
@@ -33,7 +36,7 @@ public class Pve {
 	private static int consecutiveMissForBonus = random.nextInt(0, 2);
 	
 	private static TextManagement text = MainFrame.getTextManage();
-	private boolean sunk = false;
+	private static boolean sunk = false;
 
 	
 	
@@ -60,14 +63,14 @@ public class Pve {
 		return navy;
 	}
 	
-	public static List<ComputerShip> getRandomNavy() {
-		setPossiblePositions();
-		generateRandomNavy();
+	public static List<ComputerShip> getComputerNavy() {
+		setComputerPossiblePositions();
+		generateComputerNavy();
 		
 		return computerNavy;
 	}
 	
-	private static void setPossiblePositions() {
+	private static void setComputerPossiblePositions() {
 		for(int i = 0; i < 10; i++) {
 			for(int j = 0; j < 10; j++) {
 				possiblePositions[i][j] = 0;		// 0 libero, 1 occupato
@@ -77,7 +80,7 @@ public class Pve {
 	
 	
 	
-	private boolean checkComputerSunk() {
+	private static void checkComputerSunk() {
 		Map<int[], Boolean> damages = navy.getNavyDamages("computer");
 		sunk = false;
 		
@@ -97,12 +100,11 @@ public class Pve {
 				squareNumber += 1;
 			}
 		}
-		return sunk;
 	}
 		
 
 	
-	private boolean checkPlayerSunk() {
+	private static void checkPlayerSunk(String squareName) {
 		Map<int[], Boolean> damages = navy.getNavyDamages("player");
 		sunk = false;
 		
@@ -112,7 +114,7 @@ public class Pve {
 			
 			for (int[] pos : ship.getShipPosition()) {
 				if (!damages.get(pos)) {
-					text.sunkMessage(1, "-1-1");
+					text.sunkMessage(1, squareName);
 					break;
 				}
 				if (squareNumber == ship.getShipPosition().size() - 1) {
@@ -122,30 +124,44 @@ public class Pve {
 				squareNumber += 1;
 			}
 		}
-		return sunk;
 	}
 	
 	
-	private static int[] checkLastHits() {
-		int range = 8;
-		int[] missAttack = {-1,-1};
-		
-		if (randAttacksMade.size() < 8) {
-			range = randAttacksMade.size();
-		}
-		
-		for (int i = 0; i < range; i++) {
-			if(randAttacksHit.get(i)) {
-				return randAttacksMade.get(i);
+	public static void makeAttack(JLabel hitLbl, JLabel missLbl, JButton square) {
+		playerAttack(hitLbl, missLbl, square);
+		computerAttack(playerNavy, positionGrid);
+	}
+	
+	
+	private static void playerAttack(JLabel hitLbl, JLabel missLbl, JButton square) {
+		boolean hit = false;
+		hit:
+		for (Ship ship: computerNavy) {
+			for (int[] occupiedSquare : ship.getShipPosition()) {	
+
+				if ( square.getName().equals(letters[occupiedSquare[1]] + "" + occupiedSquare[0])) {
+					checkPlayerSunk(square.getName());
+					if(!sunk) { hit = true; }
+					sunk = false;
+
+					break hit;
+				}
 			}
 		}
+		if (hit) { 
+			text.hitMessage(1, square.getName());
+			hitLbl.setVisible(true);
+		} else {
+			text.missMessage(1, square.getName()); 
+			missLbl.setVisible(true);
+		}
 		
-		return missAttack;
+		square.setVisible(false);
 	}
 	
 	
 
-	private static int[] makeBonusAttack(List<PlayerShip> playerNavy, Grid navyGrid) {
+	private static int[] makeComputerBonusAttack(List<PlayerShip> playerNavy, Grid navyGrid) {
 		boolean startAttack = false;
 		int[] bonusAttack = null;
 
@@ -168,14 +184,33 @@ public class Pve {
 		
 	}
 	
+	
+	private static int[] checkLastComputerHits() {
+		int range = 8;
+		int[] missAttack = {-1,-1};
+		
+		if (randAttacksMade.size() < 8) {
+			range = randAttacksMade.size();
+		}
+		
+		for (int i = 0; i < range; i++) {
+			if(randAttacksHit.get(i)) {
+				return randAttacksMade.get(i);
+			}
+		}
+		
+		return missAttack;
+	}
+	
+	
 	/**
 	 * @return the grid (JLabel) to place the ships
 	 */
-	public static void makeRandomAttack(List<PlayerShip> playerNavy, Grid navyGrid) {
+	public static void computerAttack(List<PlayerShip> playerNavy, Grid navyGrid) {
 		TextManagement textManage = MainFrame.getTextManage();
 		List<Integer> triedDirections= new ArrayList<>();
 		int [] randAttack = new int[2];
-		int [] lastHit = checkLastHits();
+		int [] lastHit = checkLastComputerHits();
 		int attacksTriedNearLastHit = 0;
 		boolean hitted = false;
 		boolean startAttack = false;
@@ -185,7 +220,7 @@ public class Pve {
 			startAttack = true;
 
 			if (consecutiveMissForBonus > 0) {
-				randAttack = makeBonusAttack(playerNavy, navyGrid);
+				randAttack = makeComputerBonusAttack(playerNavy, navyGrid);
 				break;
 				
 			} else if (lastHit[0] != -1 && attacksTriedNearLastHit < 8) {
@@ -285,7 +320,7 @@ public class Pve {
 	 * 
 	 * 
 	 */
-	private static void generateRandomNavy() {
+	private static void generateComputerNavy() {
 		boolean vertical;
 		boolean occupied;
 		boolean found;

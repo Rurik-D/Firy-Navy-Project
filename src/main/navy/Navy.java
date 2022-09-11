@@ -14,8 +14,8 @@ import java.util.Map;
 public class Navy{
 	private List<PlayerShip> playerNavy = new ArrayList<>();
 	private List<ComputerShip> computerNavy = new ArrayList<>();
-	protected Map<int[], Boolean> playerNavyDamages = new HashMap<>();
-	protected Map<int[], Boolean> computerNavyDamages = new HashMap<>();
+	private Map<int[], Boolean> playerNavyDamages = new HashMap<>();
+	private Map<int[], Boolean> computerNavyDamages = new HashMap<>();
 
 
 	private int xPos;
@@ -62,11 +62,21 @@ public class Navy{
 	
 	public Map<int[], Boolean> getNavyDamages(String navyType) {
 		if (navyType.equals("player")) {
+			
+			for(Ship ship : playerNavy) {
+				for(int[] pos : ship.getShipPosition()) {
+					System.out.println(playerNavyDamages.get(pos));
+				}
+			}
+			
+
 			return playerNavyDamages;
 			
 		} else if (navyType.equals("computer")) {
+
 			return computerNavyDamages;
 		}
+
 		return null;
 	}
 	
