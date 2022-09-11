@@ -26,7 +26,6 @@ public class ComputerShip extends Ship{
 	 */
     public void resetLocation() {
     	super.shipPosition.clear();
-//		super.shipPos_Hit.clear();
     }
     
 }
