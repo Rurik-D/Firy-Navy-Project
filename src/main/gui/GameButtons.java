@@ -62,15 +62,15 @@ public class GameButtons implements FrameProportion{
 		timerLbl.setVisible(false);
 		confirmSetupBtn.setVisible(false);
 		
-		gameOptionBtn.setBounds((MainFrame.WIDTH/2) - 100, 10, 200, 40);
-		mainMenuBtn.setBounds((MainFrame.WIDTH/2) - 150, 60, 300, 40);
-		backToGameBtn.setBounds((MainFrame.WIDTH/2) - 200, 100, 400, 40);
+		gameOptionBtn.setBounds(gameOptionX, gameOptionY, gameOptionW, buttonH);
+		backToGameBtn.setBounds((MainFrame.WIDTH/2) - 200, 60, 400, buttonH);
+		mainMenuBtn.setBounds((MainFrame.WIDTH/2) - 150, 100, 300, buttonH);
 		yesSaveBtn.setBounds((MainFrame.WIDTH/2) - extLabelW/2 +20 , 60, yesBtnW, buttonH);
 		noSaveBtn.setBounds((MainFrame.WIDTH/2) - 85, 60, yesBtnW, buttonH);
 		backToGameOptionBtn.setBounds((MainFrame.WIDTH/2) - 30, 60, buttonW, buttonH);
 		saveLabel.setBounds((MainFrame.WIDTH/2) - extLabelW/2, 10, extLabelW, buttonH);
-		timerLbl.setBounds((MainFrame.WIDTH/2) - 60, 60, 150, 40);
-		confirmSetupBtn.setBounds(300, 760, 300, 40);
+		timerLbl.setBounds((MainFrame.WIDTH/2) - 60, 60, 150, buttonH);
+		confirmSetupBtn.setBounds(300, 760, 300, buttonH);
 		
 		gameOptionBtn.setFont(font);
 		mainMenuBtn.setFont(font);

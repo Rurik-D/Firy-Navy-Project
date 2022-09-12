@@ -428,12 +428,12 @@ public class MenuButtons implements FrameProportion{
 		lessVolumeBtn.setBounds(lessVolumeBtnX, volumeBtnsY, lessVolumeBtnW, buttonH);
 		volumeLevel.setBounds(volumeLevelX, volumeBtnsY, volumeLevelW, buttonH);
 		moreVolumeBtn.setBounds(moreVolumeBtnX, volumeBtnsY, lessVolumeBtnW, buttonH);
-		itaBtn.setBounds(buttonX, 590, buttonW, buttonH);
-		engBtn.setBounds(buttonX, 630, buttonW, buttonH);
+		itaBtn.setBounds(buttonX, itaBtnY, buttonW, buttonH);
+		engBtn.setBounds(buttonX, engBtnY, buttonW, buttonH);
 		playerAvatarLbl.setBounds(0, 0, avatarSide, avatarSide);
-		playerNameLbl.setBounds(avatarSide,10, extLabelW, buttonH);
+		playerNameLbl.setBounds(avatarSide, inGameNameY, extLabelW, buttonH);
 		computerAvatarLbl.setBounds(MainFrame.WIDTH - avatarSide, 0, avatarSide, avatarSide);
-		computerNameLbl.setBounds(MainFrame.WIDTH - avatarSide - extLabelW/2 + 50, 10, extLabelW, buttonH);
+		computerNameLbl.setBounds(MainFrame.WIDTH - avatarSide - extLabelW/2 + 50, inGameNameY, extLabelW, buttonH);
 	}
 
 	

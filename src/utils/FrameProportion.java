@@ -3,6 +3,8 @@ package utils;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
+import main.gui.MainFrame;
+
 /**
  * 
  * @author Emanuele D'Agostino
@@ -55,11 +57,6 @@ public interface FrameProportion{
 	final int pveMenuW = (int)Math.round(WIDTH * 16.276 / 100);
 	final int nicknameBtnW = (int)Math.round(WIDTH * 13.02 / 100);
 	final int nicknameBtnH = (int)Math.round(HEIGHT * 11.57 / 100);
-	
-	final int avatarX= (int)Math.round(WIDTH * 7.291 / 100);
-	final int avatarY = (int)Math.round(HEIGHT * 33.333 / 100);
-	final int avatarSide = (int)Math.round(WIDTH * 3.906 / 100);
-	final int avatarSpacing = (int)Math.round(WIDTH * 4.101 / 100);
 
 	final int lessVolumeBtnX = (int)Math.round(WIDTH * 7.161 / 100);
 	final int volumeLevelX = (int)Math.round(WIDTH * 11.718 / 100);
@@ -71,12 +68,33 @@ public interface FrameProportion{
 	final int itaBtnY = (int)Math.round(HEIGHT * 68.287 / 100);
 	final int engBtnY = (int)Math.round(HEIGHT * 72.916 / 100);
 	
-	final int gridBorder = 5;
+	final int avatarX = (int)Math.round(WIDTH * 7.291 / 100);
+	final int avatarY = (int)Math.round(HEIGHT * 33.333 / 100);
+	final int avatarSide = (int)Math.round(WIDTH * 3.906 / 100);
+	final int avatarSpacing = (int)Math.round(WIDTH * 4.101 / 100);
+	final int inGameNameY = (int)Math.round(HEIGHT * 1.157 / 100);
+	
+	final int gameOptionY = inGameNameY;
+	final int gameOptionW = 200;
+	final int gameOptionX = (int) WIDTH/2 - gameOptionW/2;
+	
+	final int backToGameW = 400;
+	final int backToGameX = (int) WIDTH/2 - backToGameW/2;
+	final int backToGameY = 60;
+	
+	final int mainMenuBtnW = 300;
+	final int mainMenuBtnX = (int) WIDTH/2 - mainMenuBtnW/2;
+	final int mainMenuBtnY = 100;
+
+	
 	final int gridSide = 300;
 	final int gridY = 200;
 	final int posGridX = 300;
 	final int attGridX = 950;
-	final int paramBorder = 30;
-	final int squareSide = (int) 300/10;
+	final int squareSide = (int) gridSide/10;
+	final int paramBorder = squareSide;
+	final int gridBorder = 5;
+	final int posErrTolerance = 20;
+
 	
 }
