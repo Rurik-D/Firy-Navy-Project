@@ -48,12 +48,12 @@ public interface FrameProportion{
 	final int titleLblW = (int)Math.round(WIDTH * 13.02 / 100);
 	final int titleLblH = (int)Math.round(HEIGHT * 11.57 / 100);
 	
-	final int pveMenuX= (int)Math.round(WIDTH * 5.078 / 100);
-	final int selectNickX= (int)Math.round(WIDTH * 5.859 / 100);
+	final int pveMenuX = (int)Math.round(WIDTH * 5.078 / 100);
+	final int selectNickX = (int)Math.round(WIDTH * 5.859 / 100);
 	final int nicknameBtnY = (int)Math.round(HEIGHT * 21.99 / 100);
-	final int confirmBtnY= (int)Math.round(HEIGHT * 27.199 / 100);
+	final int confirmBtnY = (int)Math.round(HEIGHT * 27.199 / 100);
 	final int startGameBtnY = (int)Math.round(HEIGHT * 50.347 / 100);
-	final int selectNickW= (int)Math.round(WIDTH * 15.299 / 100);
+	final int selectNickW = (int)Math.round(WIDTH * 15.299 / 100);
 	final int pveMenuW = (int)Math.round(WIDTH * 16.276 / 100);
 	final int nicknameBtnW = (int)Math.round(WIDTH * 13.02 / 100);
 	final int nicknameBtnH = (int)Math.round(HEIGHT * 11.57 / 100);
