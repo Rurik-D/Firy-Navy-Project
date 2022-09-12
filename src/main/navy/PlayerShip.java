@@ -11,8 +11,8 @@ import resources.ImagesManagement;
 
 public class PlayerShip extends Ship{
 	private ResourceBundle imagesBundle = ResourceBundle.getBundle("utils.file/images");
-	private int gridX = Pve.getPositionGrid().getX() + Grid.getLblBorder();
-	private int gridY = Pve.getPositionGrid().getY() + Grid.getLblBorder();
+	private int gridX = Pve.getPositionGrid().getX() + Grid.getGridBorder();
+	private int gridY = Pve.getPositionGrid().getY() + Grid.getGridBorder();
 	private int gridH = Pve.getPositionGrid().getHeight();
 	private int squareSide = super.squareSide;
 	private int shipW = super.shipW;

@@ -9,6 +9,7 @@ import main.gui.GameButtons;
 import main.gui.Grid;
 import main.navy.PlayerShip;
 import main.navy.Ship;
+import utils.FrameProportion;
 
 
 /**
@@ -16,15 +17,10 @@ import main.navy.Ship;
  * @author Emanuele D'Agostino
  * @author Leonardo Lavezzari
  */
-public class Movement implements MouseListener, MouseMotionListener{
+public class Movement implements MouseListener, MouseMotionListener, FrameProportion{
 	private int X, Y;
-	private int gridX = Pve.getPositionGrid().getX() + 30;
-	private int gridY = Pve.getPositionGrid().getY() + 30;
-	private int gridW = Pve.getPositionGrid().getWidth();
-	private int gridH = Pve.getPositionGrid().getHeight();
 	private int squareSide = Grid.getSquareSide();
 	private PlayerShip ship;
-
 	private Point initialPostion;
 	
 	public Movement(PlayerShip ship, Point initialPostion) {
@@ -98,11 +94,14 @@ public class Movement implements MouseListener, MouseMotionListener{
 		int currentY = ship.getY();
 		int shipW = ship.getWidth();
 		int shipH = ship.getHeight();
-		int paramBorder = Pve.getPositionGrid().getParameterBorder();
 		int currentSquareX;
 		int currentSquareY;
 		
-		if (gridX - 20 < currentX && currentX + shipW + paramBorder - 20 < gridX + gridW && gridY - 20  < currentY && currentY + shipH + paramBorder  - 20 < gridY + gridH) {
+		if (posGridX - 20 < currentX && 
+				gridY - 20  < currentY && 
+				currentX + shipW + paramBorder - 20 < posGridX + gridSide && 
+				currentY + shipH + paramBorder  - 20 < gridY + gridSide) {
+			
 			boolean occupied = false;
 			if (ship.getShipPosition().get(0)[0] != -1) {
 				squareOccupied:
@@ -126,7 +125,7 @@ public class Movement implements MouseListener, MouseMotionListener{
 				}
 			}
 			if (!occupied) {
-				currentSquareX = ((int) (currentX - gridX) / squareSide) * squareSide + gridX;
+				currentSquareX = ((int) (currentX - posGridX) / squareSide) * squareSide + posGridX;
 				currentSquareY = ((int) (currentY - gridY) / squareSide) * squareSide + gridY;
 
 				ship.setLocation(currentSquareX, currentSquareY);

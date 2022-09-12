@@ -15,10 +15,10 @@ public interface FrameProportion{
 	 * proportions of the window will be based.
 	 */
 	final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-//	final int WIDTH = (int)screenSize.getWidth();
-//	final int HEIGHT = (int)screenSize.getHeight();
-	final int WIDTH = 1536;
-	final int HEIGHT = 864;
+	final int WIDTH = (int)screenSize.getWidth();
+	final int HEIGHT = (int)screenSize.getHeight();
+//	final int WIDTH = 1536;
+//	final int HEIGHT = 864;
 
 	final int buttonX = (int)Math.round(WIDTH * 4.427 / 100);
 	final int buttonY = (int)Math.round(HEIGHT * 78.587 / 100);
@@ -70,5 +70,13 @@ public interface FrameProportion{
 	
 	final int itaBtnY = (int)Math.round(HEIGHT * 68.287 / 100);
 	final int engBtnY = (int)Math.round(HEIGHT * 72.916 / 100);
-		
+	
+	final int gridBorder = 5;
+	final int gridSide = 300;
+	final int gridY = 200;
+	final int posGridX = 300;
+	final int attGridX = 950;
+	final int paramBorder = 30;
+	final int squareSide = (int) 300/10;
+	
 }

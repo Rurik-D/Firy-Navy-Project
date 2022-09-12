@@ -12,6 +12,7 @@ import main.gui.Grid;
 import main.gui.MainFrame;
 import main.navy.*;
 import resources.TextManagement;
+import utils.FrameProportion;
 
 /**
  * This class manage the PVE (player vs enviorment) mode.
@@ -19,11 +20,11 @@ import resources.TextManagement;
  * @author Emanuele D'Agostino
  * @author Leonardo Lavezzari
  */
-public class Pve {
+public class Pve implements FrameProportion{
 	private static char[] letters = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
 	
-	private static Grid positionGrid = new Grid(300, 200);
-	private static Grid attackGrid = new Grid(950, 200, positionGrid);
+	private static Grid positionGrid = new Grid(posGridX, gridY);
+	private static Grid attackGrid = new Grid(attGridX, gridY, positionGrid);
 	
 	private static Navy navy = new Navy();
 	private static List<PlayerShip> playerNavy = navy.getPlayerNavy();
