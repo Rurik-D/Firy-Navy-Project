@@ -39,9 +39,9 @@ public class MenuButtons implements FrameProportion{
 	private static JButton exitBtn = new JButton(languageBundle.getString("button.exitBtn"));
 	private JButton pveBtn = new JButton(languageBundle.getString("button.pveBtn"));
 	private JButton pvpBtn = new JButton(languageBundle.getString("button.pvpBtn"));
-	private JButton backToMenuBtn = new JButton(languageBundle.getString("button.backToMenuBtn"));
-	private JButton backToOptBtn = new JButton(languageBundle.getString("button.backToOptBtn"));
-	private JButton backToStartBtn = new JButton(languageBundle.getString("button.backToStartBtn"));
+	private JButton backToMenuBtn = new JButton(languageBundle.getString("button.back"));
+	private JButton backToOptBtn = new JButton(languageBundle.getString("button.back"));
+	private JButton backToStartBtn = new JButton(languageBundle.getString("button.back"));
 	private JButton langBtn = new JButton(languageBundle.getString("button.langBtn"));
 	private JButton volumeBtn = new JButton(languageBundle.getString("button.volumeBtn"));
 	private JButton extYesBtn = new JButton(languageBundle.getString("button.extYesBtn"));
@@ -641,9 +641,9 @@ public class MenuButtons implements FrameProportion{
 		exitBtn.setText(languageBundle.getString("button.exitBtn"));
 		pveBtn.setText(languageBundle.getString("button.pveBtn"));
 		pvpBtn.setText(languageBundle.getString("button.pvpBtn"));
-		backToMenuBtn.setText(languageBundle.getString("button.backToMenuBtn"));
-		backToOptBtn.setText(languageBundle.getString("button.backToOptBtn"));
-		backToStartBtn.setText(languageBundle.getString("button.backToStartBtn"));
+		backToMenuBtn.setText(languageBundle.getString("button.back"));
+		backToOptBtn.setText(languageBundle.getString("button.back"));
+		backToStartBtn.setText(languageBundle.getString("button.back"));
 		langBtn.setText(languageBundle.getString("button.langBtn"));
 		volumeBtn.setText(languageBundle.getString("button.volumeBtn"));
 		extYesBtn.setText(languageBundle.getString("button.extYesBtn"));

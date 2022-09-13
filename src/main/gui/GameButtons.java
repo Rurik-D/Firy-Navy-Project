@@ -15,7 +15,6 @@ import java.util.ResourceBundle;
 import resources.*;
 import utils.FrameProportion;
 import utils.GameTimer;
-import main.core.Main;
 import main.core.Pve;
 import main.navy.Ship;
 
@@ -32,10 +31,10 @@ public class GameButtons implements FrameProportion{
 	private Font font = new Font("Segoe Script", Font.BOLD, fontDim);
 	private static JButton gameOptionBtn = new JButton(resourceBundle.getString("button.gameOptionBtn"));
 	private static JButton mainMenuBtn = new JButton(resourceBundle.getString("button.mainMenuBtn"));
-	private static JButton backToGameBtn = new JButton(resourceBundle.getString("button.backToGameBtn")); 
+	private static JButton backToGameBtn = new JButton(resourceBundle.getString("button.back")); 
 	private static JButton yesSaveBtn = new JButton(resourceBundle.getString("button.yesSaveBtn"));
 	private static JButton noSaveBtn = new JButton(resourceBundle.getString("button.noSaveBtn"));
-	private static JButton backToGameOptionBtn = new JButton(resourceBundle.getString("button.backToGameOptionBtn"));
+	private static JButton backToGameOption = new JButton(resourceBundle.getString("button.back"));
 	private static JButton confirmSetupBtn = new JButton(resourceBundle.getString("button.confirmSetup"));
 	private static JLabel saveLabel = new JLabel(resourceBundle.getString("button.saveLabel"));
 	private static JLabel timerLbl = GameTimer.getTimerLbl();
@@ -58,26 +57,26 @@ public class GameButtons implements FrameProportion{
 		yesSaveBtn.setVisible(false);
 		noSaveBtn.setVisible(false);
 		saveLabel.setVisible(false);
-		backToGameOptionBtn.setVisible(false);
+		backToGameOption.setVisible(false);
 		timerLbl.setVisible(false);
 		confirmSetupBtn.setVisible(false);
 		
 		gameOptionBtn.setBounds(gameOptionX, gameOptionY, gameOptionW, buttonH);
-		backToGameBtn.setBounds((MainFrame.WIDTH/2) - 200, 60, 400, buttonH);
-		mainMenuBtn.setBounds((MainFrame.WIDTH/2) - 150, 100, 300, buttonH);
-		yesSaveBtn.setBounds((MainFrame.WIDTH/2) - extLabelW/2 +20 , 60, yesBtnW, buttonH);
-		noSaveBtn.setBounds((MainFrame.WIDTH/2) - 85, 60, yesBtnW, buttonH);
-		backToGameOptionBtn.setBounds((MainFrame.WIDTH/2) - 30, 60, buttonW, buttonH);
-		saveLabel.setBounds((MainFrame.WIDTH/2) - extLabelW/2, 10, extLabelW, buttonH);
-		timerLbl.setBounds((MainFrame.WIDTH/2) - 60, 60, 150, buttonH);
-		confirmSetupBtn.setBounds(300, 760, 300, buttonH);
+		backToGameBtn.setBounds(backToGameX, gameTopBtnsY, backToGameW, buttonH);
+		mainMenuBtn.setBounds(mainMenuBtnX, gameOptionY, mainMenuBtnW, buttonH);
+		yesSaveBtn.setBounds(yesSaveBtnX, gameTopBtnsY, yesBtnW, buttonH);
+		noSaveBtn.setBounds(noSaveBtnX, gameTopBtnsY, yesBtnW, buttonH);
+		backToGameOption.setBounds(backGameOptX, gameTopBtnsY, buttonW, buttonH);
+		saveLabel.setBounds(saveLabelX, gameOptionY, extLabelW, buttonH);
+		timerLbl.setBounds(timerLblX, gameTopBtnsY, timerLblW, buttonH);
+		confirmSetupBtn.setBounds(confirmSetupX, confirmSetupY, confirmSetupW, buttonH);
 		
 		gameOptionBtn.setFont(font);
 		mainMenuBtn.setFont(font);
 		backToGameBtn.setFont(font);
 		yesSaveBtn.setFont(font);
 		noSaveBtn.setFont(font);
-		backToGameOptionBtn.setFont(font);
+		backToGameOption.setFont(font);
 		saveLabel.setFont(font);
 		timerLbl.setFont(font);
 		confirmSetupBtn.setFont(font);
@@ -87,7 +86,7 @@ public class GameButtons implements FrameProportion{
 		setTrasparent(backToGameBtn);
 		setTrasparent(yesSaveBtn);
 		setTrasparent(noSaveBtn);
-		setTrasparent(backToGameOptionBtn);
+		setTrasparent(backToGameOption);
 		setTrasparent(confirmSetupBtn);
 		
 		mainPanel.add(mainMenuBtn);
@@ -95,7 +94,7 @@ public class GameButtons implements FrameProportion{
 		mainPanel.add(backToGameBtn);
 		mainPanel.add(noSaveBtn);
 		mainPanel.add(yesSaveBtn);
-		mainPanel.add(backToGameOptionBtn);
+		mainPanel.add(backToGameOption);
 		mainPanel.add(saveLabel);
 		mainPanel.add(timerLbl);
 		mainPanel.add(confirmSetupBtn);
@@ -125,7 +124,7 @@ public class GameButtons implements FrameProportion{
 				yesSaveBtn.setVisible(true);
 				noSaveBtn.setVisible(true);
 				saveLabel.setVisible(true);
-				backToGameOptionBtn.setVisible(true);
+				backToGameOption.setVisible(true);
 
 			}
 		});
@@ -135,7 +134,7 @@ public class GameButtons implements FrameProportion{
 				SoundsManagement.stop("gameSong");
 				SoundsManagement.start("menuSong");
 
-				backToGameOptionBtn.setVisible(false);
+				backToGameOption.setVisible(false);
 				yesSaveBtn.setVisible(false);
 				noSaveBtn.setVisible(false);
 				saveLabel.setVisible(false);
@@ -189,7 +188,7 @@ public class GameButtons implements FrameProportion{
 				SoundsManagement.stop("gameSong");
 				SoundsManagement.start("menuSong");
 				
-				backToGameOptionBtn.setVisible(false);
+				backToGameOption.setVisible(false);
 				MainFrame.getScrollPnl().setVisible(false);
 				Pve.getPositionGrid().setVisible(false);
 				Pve.getAttackGrid().setVisible(false);
@@ -235,7 +234,7 @@ public class GameButtons implements FrameProportion{
 				GameTimer.startTimer();
 			}
 		});
-		backToGameOptionBtn.addMouseListener(new MouseAdapter() {
+		backToGameOption.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				SoundsManagement.clickMenuBtn();
 				if (confirmSetupVisible) {confirmSetupBtn.setVisible(true);}
@@ -246,7 +245,7 @@ public class GameButtons implements FrameProportion{
 				yesSaveBtn.setVisible(false);
 				noSaveBtn.setVisible(false);
 				saveLabel.setVisible(false);
-				backToGameOptionBtn.setVisible(false);
+				backToGameOption.setVisible(false);
 				pause = false;
 				textManage.resumeMessage();
 				GameTimer.startTimer();
@@ -356,10 +355,10 @@ public class GameButtons implements FrameProportion{
 
 		gameOptionBtn.setText(resourceBundle.getString("button.gameOptionBtn"));
 		mainMenuBtn.setText(resourceBundle.getString("button.mainMenuBtn"));
-		backToGameBtn.setText(resourceBundle.getString("button.backToGameBtn")); 
+		backToGameBtn.setText(resourceBundle.getString("button.back")); 
 		yesSaveBtn.setText(resourceBundle.getString("button.yesSaveBtn"));
 		noSaveBtn.setText(resourceBundle.getString("button.noSaveBtn"));
-		backToGameOptionBtn.setText(resourceBundle.getString("button.backToGameOptionBtn"));
+		backToGameOption.setText(resourceBundle.getString("button.back"));
 		saveLabel.setText(resourceBundle.getString("button.saveLabel"));
 	}
 	

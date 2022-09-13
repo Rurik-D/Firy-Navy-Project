@@ -1,8 +1,6 @@
 package resources;
 
-import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.Font;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Toolkit;
@@ -19,9 +17,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
-import main.core.Main;
 import main.gui.MainFrame;
 import utils.FrameProportion;
 
@@ -39,7 +35,7 @@ public class ImagesManagement implements FrameProportion{
 	private static JLabel menuBackground = setBackground(imagesBundle.getString("image.yamato"));
 	private static JLabel gameBackground = setBackground(imagesBundle.getString("image.worldMap"));
 	private static JLabel gridBackground;
-	private static JLabel oldScroll = setOldScroll(100, 550, 700, 300);;
+	private static JLabel oldScroll = setOldScroll(oldScrollX, oldScrollY, oldScrollW, oldScrollH);;
 	private static Toolkit kit = Toolkit.getDefaultToolkit();
 	
 	

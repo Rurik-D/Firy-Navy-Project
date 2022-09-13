@@ -11,7 +11,6 @@ import main.gui.MainFrame;
  * This class starts the program esecution, creates the frame and the main panel and instantiates
  * classes that do not use static methods.
  * 
- * @see main.gui.MainFrame
  *
  * @author Emanuele D'Agostino
  * @author Leonardo Lavezzari
@@ -23,6 +22,8 @@ public class Main{
 	 * The main method begins the project esecution by instantiating the MainFrame class.
 	 * 
 	 * @param args eventual command line arguments
+	 * 
+	 * @see main.gui.MainFrame
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
