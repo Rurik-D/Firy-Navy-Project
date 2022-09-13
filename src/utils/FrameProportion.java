@@ -100,6 +100,11 @@ public interface FrameProportion{
 	final int confirmSetupY = 760;
 	final int confirmSetupW = 300;
 	
+	final int oldScrollX 	= 100;
+	final int oldScrollY 	= 550;
+	final int oldScrollW 	= 700;
+	final int oldScrollH 	= 300;
+	
 	final int gridSide 		= 300;
 	final int gridY 		= 200;
 	final int posGridX 		= 300;
