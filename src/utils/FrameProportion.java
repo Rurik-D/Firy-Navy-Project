@@ -6,6 +6,8 @@ import java.awt.Toolkit;
 import main.gui.MainFrame;
 
 /**
+ * This class manages all the proportions of the frame and allows to use the 
+ * full screen mode without problems of position or size.
  * 
  * @author Emanuele D'Agostino
  * @author Leonardo Lavezzari

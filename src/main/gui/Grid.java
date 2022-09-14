@@ -21,6 +21,7 @@ import utils.FrameProportion;
 
 
 /**
+ * This class generates attack and position grids.
  * 
  * @author Emanuele D'Agostino
  * @author Leonardo Lavezzari
