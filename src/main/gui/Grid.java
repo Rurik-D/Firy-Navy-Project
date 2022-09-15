@@ -32,43 +32,37 @@ public class Grid extends JLabel implements FrameProportion{
 	private Color backgroundColor = Color.orange.darker().darker().darker().darker().darker();
 	private List<JLabel> missList = new ArrayList<>();
 	private List<JLabel> hitList = new ArrayList<>();
-	private Grid positionGrid;
 	private JLabel gridBackground = ImagesManagement.getGridBackground(paramBorder, paramBorder, gridSide, gridSide);
+	private int x;
+	private int y;
 	
 	
 	/**
-	 * Player grid constructor
+	 * Grid constructor can creates a position-grid
+	 * 
+	 * @param int x is the x position from which to create the grid
+	 * @param int y is the y position from which to create the grid
+	 * @param int type is the type of the grid: 1 position grid, 2 attack grid
+	 * 
+	 * @see main.core.Pve
+	 * @see main.core.Pvp
 	 * 
 	 */
-	public Grid (int x, int y) {
-		addParameters();
-		setLayout(null);
-		setBounds(x, y, gridSide + paramBorder + gridBorder, gridSide + paramBorder + gridBorder);
-		setOpaque(true);
-		setBackground(backgroundColor);
-		setVisible(false);
-		setNavyGrid();
-	}
-	
-	/**
-	 * Attack grid constructor
-	 * 
-	 */
-	public Grid (int x, int y, Grid postionGrid) {
-		this.positionGrid = postionGrid;
-		addParameters();
-		setLayout(null);
-		setBounds(x, y, gridSide + paramBorder + gridBorder, gridSide + paramBorder + gridBorder);
-		setOpaque(true);
-		setBackground(backgroundColor);
-		setVisible(false);
-		add(attackGridCover);
+	public Grid (int x, int y, int type) {
+		this.x = x;
+		this.y = y;
+		setGrid();
+		
+		if (type == 1) {
+			setPosGridButtons();
+		} else {
+			add(attackGridCover);
+		}
 	}
 	
 	
 	/**
-	 * 
-	 * 
+	 * @see main.navy.PlayerShip
 	 */
 	public static int getGridBorder() {
 		return gridBorder;
@@ -76,8 +70,7 @@ public class Grid extends JLabel implements FrameProportion{
 	
 	
 	/**
-	 * 
-	 * 
+	 * @see main.navy.Ship
 	 */
 	public static int getSquareSide() {
 		return squareSide;
@@ -85,17 +78,7 @@ public class Grid extends JLabel implements FrameProportion{
 	
 	
 	/**
-	 * 
-	 * 
-	 */
-	public Grid getGrid() {
-		return this;
-	}
-	
-	
-	/**
-	 * 
-	 * 
+	 * @see main.gui.GameButtons
 	 */
 	public JLabel getGridBackground() {
 		return gridBackground;
@@ -103,8 +86,7 @@ public class Grid extends JLabel implements FrameProportion{
 	
 	
 	/**
-	 * 
-	 * 
+	 * @see main.core.Pve
 	 */
 	public List<JLabel> getHitList() {
 		return hitList;
@@ -112,8 +94,7 @@ public class Grid extends JLabel implements FrameProportion{
 	
 	
 	/**
-	 * 
-	 * 
+	 * @see main.core.Pve
 	 */
 	public List<JLabel> getMissList() {
 		return missList;
@@ -121,10 +102,23 @@ public class Grid extends JLabel implements FrameProportion{
 	
 	
 	/**
+	 * Sets grid parameters
+	 */
+	private void setGrid() {
+		addParameters();
+		setLayout(null);
+		setBounds(x, y, gridSide + paramBorder + gridBorder, gridSide + paramBorder + gridBorder);
+		setOpaque(true);
+		setBackground(backgroundColor);
+		setVisible(false);
+	}
+	
+	
+	/**
 	 * 
 	 * 
 	 */
-	private  void setNavyGrid() {
+	private  void setPosGridButtons() {
 		for (int i = 0; i<10; i++) {
 			for (int j = 0; j<10; j++) {
 				JButton square;
@@ -170,7 +164,7 @@ public class Grid extends JLabel implements FrameProportion{
 	 * 
 	 * 
 	 */
-	public void setAttackGrid(List<ComputerShip> computerNavy, List<PlayerShip> playerNavy) {	
+	public void setAttGridButtons(List<ComputerShip> computerNavy, List<PlayerShip> playerNavy) {	
 		attackGridCover.setVisible(false);
 		
 		for (int i = 0; i<10; i++) {

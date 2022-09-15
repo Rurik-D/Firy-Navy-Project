@@ -10,12 +10,12 @@ import main.navy.Navy;
  * @author Leonardo Lavezzari
  */
 public class Pvp {
-	private static Grid positionGridP1 = new Grid(300, 200);
-	private static Grid positionGridP2 = new Grid(300, 200);
+	private static Grid positionGridP1 = new Grid(300, 200, 1);
+	private static Grid positionGridP2 = new Grid(300, 200, 1);
 	private static Navy navyP1 = new Navy();
 	private static Navy navyP2 = new Navy();
-	private static Grid attackGridP1 = new Grid(950, 200, positionGridP1);
-	private static Grid attackGridP2 = new Grid(950, 200, positionGridP2);
+	private static Grid attackGridP1 = new Grid(950, 200, 2);
+	private static Grid attackGridP2 = new Grid(950, 200, 2);
 
 	
 	

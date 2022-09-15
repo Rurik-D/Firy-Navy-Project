@@ -39,10 +39,10 @@ public class GameButtons implements FrameProportion{
 	private static JLabel saveLabel = new JLabel(resourceBundle.getString("button.saveLabel"));
 	private static JLabel timerLbl = GameTimer.getTimerLbl();
 	private static JLabel oldScroll = ImagesManagement.getOldScroll();
+	private static TextManagement textManage = MainFrame.getTextManage();
 	private static boolean confirmSetupVisible = true;
 	private static boolean confirmSetupEnabled = false;
 	private static boolean pause = false;
-	private static TextManagement textManage = MainFrame.getTextManage();
 
 	
 	/**
@@ -277,7 +277,7 @@ public class GameButtons implements FrameProportion{
 					oldScroll.setVisible(false);
 					SoundsManagement.clickMenuBtn();
 					Pve.setComputerNavy();
-					Pve.getAttackGrid().setAttackGrid(Pve.getComputerNavy(), Pve.getNavy().getPlayerNavy());
+					Pve.getAttackGrid().setAttGridButtons(Pve.getComputerNavy(), Pve.getNavy().getPlayerNavy());
 					Pve.getNavy().setPlayerNavyDamages();
 					Pve.getNavy().setComputerNavyDamages();
 					MainFrame.getTextManage().confirmSetupMessage();;

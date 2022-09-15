@@ -97,10 +97,10 @@ public class Movement implements MouseListener, MouseMotionListener, FramePropor
 		int currentSquareX;
 		int currentSquareY;
 		
-		if (posGridX - posErrTolerance < currentX && 
-				gridY - posErrTolerance  < currentY && 
-				currentX + shipW + paramBorder - posErrTolerance < posGridX + gridSide && 
-				currentY + shipH + paramBorder  - posErrTolerance < gridY + gridSide) {
+		if (posGridX < currentX && 
+				gridY < currentY && 
+				currentX + shipW - paramBorder - posErrTolerance < posGridX + gridSide && 
+				currentY + shipH - paramBorder - posErrTolerance < gridY + gridSide) {
 			
 			boolean occupied = false;
 			if (ship.getShipPosition().get(0)[0] != -1) {
