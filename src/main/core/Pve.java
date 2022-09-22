@@ -65,6 +65,9 @@ public class Pve implements FrameProportion{
 	}
 	
 	
+	/**
+	 * 
+	 */
 	public static void setComputerNavy() {
 		setComputerPossiblePositions();
 		generateComputerNavy();
@@ -72,11 +75,17 @@ public class Pve implements FrameProportion{
 	}
 	
 	
+	/**
+	 * 
+	 */
 	public static List<ComputerShip> getComputerNavy() {
 		return computerNavy;
 	}
 	
 	
+	/**
+	 * 
+	 */
 	private static void setComputerPossiblePositions() {
 		for(int i = 0; i < 10; i++) {
 			for(int j = 0; j < 10; j++) {
@@ -86,6 +95,9 @@ public class Pve implements FrameProportion{
 	}
 	
 	
+	/**
+	 * 
+	 */
 	private static void checkComputerSunk(Ship ship, String squareName) {
 		Map<int[], Boolean> damages = navy.getNavyDamages("computer");
 		sunk = false;
@@ -106,7 +118,9 @@ public class Pve implements FrameProportion{
 	}
 		
 
-	
+	/**
+	 * 
+	 */
 	private static void checkPlayerSunk(Ship ship, String squareName) {
 		Map<int[], Boolean> damages = navy.getNavyDamages("player");
 		sunk = false;
@@ -127,12 +141,18 @@ public class Pve implements FrameProportion{
 	}
 	
 	
+	/**
+	 * 
+	 */
 	public static void makeAttack(JLabel hitLbl, JLabel missLbl, JButton square) {
 		playerAttack(hitLbl, missLbl, square);
 		computerAttack(playerNavy, positionGrid);
 	}
 	
 	
+	/**
+	 * 
+	 */
 	private static void playerAttack(JLabel hitLbl, JLabel missLbl, JButton square) {
 		boolean hit = false;
 		hit:
@@ -160,7 +180,9 @@ public class Pve implements FrameProportion{
 	}
 	
 	
-
+	/**
+	 * 
+	 */
 	private static int[] makeComputerBonusAttack(List<PlayerShip> playerNavy, Grid navyGrid) {
 		boolean startAttack = false;
 		int[] bonusAttack = null;
@@ -184,6 +206,9 @@ public class Pve implements FrameProportion{
 	}
 	
 	
+	/**
+	 * 
+	 */
 	private static int[] checkLastComputerHits() {
 		int range = 8;
 		int[] missAttack = {-1,-1};
@@ -324,8 +349,7 @@ public class Pve implements FrameProportion{
 	
 	
 	/**
-	 * 
-	 * 
+	 * Generate reandom positions for computer navy.
 	 */
 	private static void generateComputerNavy() {
 		boolean vertical;
@@ -335,8 +359,9 @@ public class Pve implements FrameProportion{
 		int randX;
 		int randY;
 		
+		
 		for (int shipIndex = 0; shipIndex < 10; shipIndex++) {
-			List<int[]> randomPosition = new ArrayList<>();
+			List<int[]> randShipPosition = new ArrayList<>();
 
 			found = false;
 			vertical = random.nextBoolean();
@@ -352,7 +377,7 @@ public class Pve implements FrameProportion{
 			// finché non trovo la posizione
 			positionFound:
 			while (!found) {
-				// genero randomicamente x e y
+				// genero randomicamente x e y evitando di posizionare la nave fuori dalla griglia
 				if (vertical) {
 					randX = random.nextInt(0, 10);
 					randY = random.nextInt(0, 10 - shipSize);
@@ -394,7 +419,7 @@ public class Pve implements FrameProportion{
 								if (randX > 0) {
 									if ( possiblePositions[i][randX - 1] != 0 ) {
 										occupied = true;
-										randomPosition.clear();
+										randShipPosition.clear();
 										for (int j = randY; j < i; j++) {
 											possiblePositions[j][randX] = 0;
 										}
@@ -404,7 +429,7 @@ public class Pve implements FrameProportion{
 								if (randX < 9) {
 									if ( possiblePositions[i][randX + 1] != 0 ) {
 										occupied = true;
-										randomPosition.clear();
+										randShipPosition.clear();
 										for (int j = randY; j < i; j++) {
 											possiblePositions[j][randX] = 0;
 										}
@@ -412,12 +437,12 @@ public class Pve implements FrameProportion{
 									}
 								}
 								possiblePositions[i][randX] = shipIndex + 1;
-								randomPosition.add(randPoint);
+								randShipPosition.add(randPoint);
 								
 							// se il punto è occupato svuoto la lista e resetto i punti su possiblePositions
 							} else {
 								occupied = true;
-								randomPosition.clear();
+								randShipPosition.clear();
 								for (int j = randY; j < i; j++) {
 									possiblePositions[j][randX] = 0;
 								}
@@ -427,7 +452,7 @@ public class Pve implements FrameProportion{
 						}
 						if (!occupied) {
 							
-							for(int[] pos : randomPosition) {
+							for(int[] pos : randShipPosition) {
 								computerNavy.get(shipIndex).getShipPosition().add(pos);
 							}
 							System.out.println(computerNavy.get(shipIndex).getShipPosition());
@@ -447,7 +472,7 @@ public class Pve implements FrameProportion{
 								if (randY > 0) {
 									if (possiblePositions[randY - 1][i] != 0) {
 										occupied = true;
-										randomPosition.clear();
+										randShipPosition.clear();
 										for (int j = randX; j < i; j++) {
 											possiblePositions[randY][j] = 0;
 										}
@@ -458,7 +483,7 @@ public class Pve implements FrameProportion{
 								if (randY < 9) {
 									if (possiblePositions[randY + 1][i] != 0) {
 										occupied = true;
-										randomPosition.clear();
+										randShipPosition.clear();
 										for (int j = randX; j < i; j++) {
 											possiblePositions[randY][j] = 0;
 										}
@@ -466,12 +491,12 @@ public class Pve implements FrameProportion{
 									}
 								}
 								possiblePositions[randY][i] = shipIndex + 1;
-								randomPosition.add(randPoint);
+								randShipPosition.add(randPoint);
 
 							// se il punto è occupato svuoto la lista e resetto i punti su possiblePositions
 							} else {
 								occupied = true;
-								randomPosition.clear();
+								randShipPosition.clear();
 								for (int j = randX; j < i; j++) {
 									possiblePositions[randY][j] = 0;
 								}
@@ -480,7 +505,7 @@ public class Pve implements FrameProportion{
 							// se la linea di punti non è occupata
 						}
 						if (!occupied) {
-							for(int[] pos : randomPosition) {
+							for(int[] pos : randShipPosition) {
 								computerNavy.get(shipIndex).getShipPosition().add(pos);
 							}
 							found = true;
