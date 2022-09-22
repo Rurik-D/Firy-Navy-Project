@@ -13,6 +13,9 @@ import utils.FrameProportion;
 
 
 /**
+ * This class manage the 2D movement of ships.
+ * 
+ * @see main.navy.PlayerShip
  * 
  * @author Emanuele D'Agostino
  * @author Leonardo Lavezzari
@@ -31,6 +34,19 @@ public class Movement implements MouseListener, MouseMotionListener, FramePropor
 		
 	}
 	
+	
+    /**
+     * Invoked when a mouse button is pressed on a component and then
+     * dragged.  {@code MOUSE_DRAGGED} events will continue to be
+     * delivered to the component where the drag originated until the
+     * mouse button is released (regardless of whether the mouse position
+     * is within the bounds of the component).
+     * <p>
+     * Due to platform-dependent Drag&amp;Drop implementations,
+     * {@code MOUSE_DRAGGED} events may not be delivered during a native
+     * Drag&amp;Drop operation.
+     * @param e the event to be processed
+     */
 	@Override
 	public void mouseDragged(MouseEvent event) {
 		if (GameButtons.getConfirmSetupVisible() && !GameButtons.getPause()) {
@@ -38,11 +54,23 @@ public class Movement implements MouseListener, MouseMotionListener, FramePropor
 		}
 	}
 
+	
+    /**
+     * Invoked when the mouse cursor has been moved onto a component
+     * but no buttons have been pushed.
+     * @param e the event to be processed
+     */
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
 	}
+	
 
+    /**
+     * Invoked when the mouse button has been clicked (pressed
+     * and released) on a component.
+     * @param e the event to be processed
+     */
 	@Override
 	public void mouseClicked(MouseEvent event) {
 	  if (event.getClickCount() == 2 && event.getButton() == MouseEvent.BUTTON1 && GameButtons.getConfirmSetupVisible() && !GameButtons.getPause()) {
@@ -50,7 +78,12 @@ public class Movement implements MouseListener, MouseMotionListener, FramePropor
 		    collisionCheck();
 	  }
 	}
+	
 
+    /**
+     * Invoked when a mouse button has been pressed on a component.
+     * @param e the event to be processed
+     */
 	@Override
 	public void mousePressed(MouseEvent event) {
 		if (GameButtons.getConfirmSetupVisible()) {
@@ -58,14 +91,19 @@ public class Movement implements MouseListener, MouseMotionListener, FramePropor
 			Y = event.getY();
 		}
 	}
-
+	
+	
+    /**
+     * Invoked when a mouse button has been released on a component.
+     * @param e the event to be processed
+     */
 	@Override
 	public void mouseReleased(MouseEvent event) {
 		if (GameButtons.getConfirmSetupVisible() && !GameButtons.getPause()) {
 			collisionCheck();
 			ship.updateShipPosition();
 			collisionCheck();
-			// controllo se ogni nave è stata posizionata, nel caso attivo il bottone per confermare il setup delle navi
+			// checks if each ship has been positioned, if so activate the button to confirm the ships setup
 			boolean allPositioned = true;
 			for (Ship s : Pve.getNavy().getPlayerNavy()) {
 				if (s.getShipPosition().get(0)[0] == -1) {
@@ -77,44 +115,68 @@ public class Movement implements MouseListener, MouseMotionListener, FramePropor
 		}
 
 	}
-
+	
+	
+    /**
+     * Invoked when the mouse enters a component.
+     * @param e the event to be processed.
+     */
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
 	}
-
+	
+	
+    /**
+     * Invoked when the mouse enters a component.
+     * @param e the event to be processed.
+     */
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 	}
 	
 	
-	private void collisionCheck() {
+	
+	/**
+	 * Checks if the ship is inside the grid.
+	 */
+	private boolean isInsideGrid() {
 		int currentX = ship.getX();
 		int currentY = ship.getY();
 		int shipW = ship.getWidth();
 		int shipH = ship.getHeight();
+		
+		return (posGridX < currentX && 
+				gridY < currentY && 
+				currentX + shipW - paramBorder - posErrTolerance < posGridX + gridSide && 
+				currentY + shipH - paramBorder - posErrTolerance < gridY + gridSide);
+	}
+
+	
+	/**
+	 * Checks if a certain position does not contain squares occupied
+	 * by other ships.
+	 */
+	private void collisionCheck() {
 		int currentSquareX;
 		int currentSquareY;
 		
-		if (posGridX < currentX && 
-				gridY < currentY && 
-				currentX + shipW - paramBorder - posErrTolerance < posGridX + gridSide && 
-				currentY + shipH - paramBorder - posErrTolerance < gridY + gridSide) {
-			
+		// if the ship is inside the position grid
+		if (isInsideGrid()) {
 			boolean occupied = false;
 			if (ship.getShipPosition().get(0)[0] != -1) {
 				squareOccupied:
 				for (Ship tmpShip : Pve.getNavy().getPlayerNavy()) {
-					//se la nave analizzata non è la nave passata a movement
+					// if the analyzed ship is not the ship that was passed to Movement
 					if (ship.getShipIndex() != tmpShip.getShipIndex()) {
-					//	per ogni cella occupata dalla nave
+						// for each square occupied by the ship
 						for (int[] square : ship.getShipPosition()) {
-					//		per ogni cella occupata dalle atre navi
+							// for each square occupied by others ships
 							for (int[] square2 : tmpShip.getShipPosition()) {
-					//			se la cella della nava occupa la cella di un'altra nave
+								// if one of the squares occupied by the analyzed ship is also occupied by another ship
 								if (square[0] == square2[0] && square[1] == square2[1]) {
-					//				rimando la nave alla posizione iniziale
+									// send the ship back to its initial position
 									ship.resetLocation(initialPostion);
 									occupied = true;
 									break squareOccupied;
@@ -124,9 +186,10 @@ public class Movement implements MouseListener, MouseMotionListener, FramePropor
 					}
 				}
 			}
+			// if the position is not occupied
 			if (!occupied) {
-				currentSquareX = ((int) (currentX - posGridX) / squareSide) * squareSide + posGridX;
-				currentSquareY = ((int) (currentY - gridY) / squareSide) * squareSide + gridY;
+				currentSquareX = ((int) (ship.getX() - posGridX) / squareSide) * squareSide + posGridX;
+				currentSquareY = ((int) (ship.getY() - gridY) / squareSide) * squareSide + gridY;
 
 				ship.setLocation(currentSquareX, currentSquareY);
 			}
