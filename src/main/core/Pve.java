@@ -58,7 +58,7 @@ public class Pve implements FrameProportion{
 	
 	
 	/**
-	 * @return the grid (JLabel) to place the ships
+	 * @return Navy object
 	 */
 	public static Navy getNavy() {
 		return navy;
@@ -66,7 +66,15 @@ public class Pve implements FrameProportion{
 	
 	
 	/**
-	 * 
+	 * @return List<ComputerShip> player navy
+	 */
+	public static List<ComputerShip> getComputerNavy() {
+		return computerNavy;
+	}
+	
+	
+	/**
+	 * Starts the generation of a random computer navy
 	 */
 	public static void setComputerNavy() {
 		setComputerPossiblePositions();
@@ -76,27 +84,19 @@ public class Pve implements FrameProportion{
 	
 	
 	/**
-	 * 
-	 */
-	public static List<ComputerShip> getComputerNavy() {
-		return computerNavy;
-	}
-	
-	
-	/**
-	 * 
+	 * Creates a 2D array of int that will be used to check collisions
 	 */
 	private static void setComputerPossiblePositions() {
 		for(int i = 0; i < 10; i++) {
 			for(int j = 0; j < 10; j++) {
-				possiblePositions[i][j] = 0;		// 0 libero, 1 occupato
+				possiblePositions[i][j] = 0;		// 0 libero, 0< occupato
 			}
 		}
 	}
 	
 	
 	/**
-	 * 
+	 * Checks if there is a new ship in the computer navy that has been sunk
 	 */
 	private static void checkComputerSunk(Ship ship, String squareName) {
 		Map<int[], Boolean> damages = navy.getNavyDamages("computer");
@@ -119,7 +119,7 @@ public class Pve implements FrameProportion{
 		
 
 	/**
-	 * 
+	 * Checks if there is a new ship in the player navy that has been sunk
 	 */
 	private static void checkPlayerSunk(Ship ship, String squareName) {
 		Map<int[], Boolean> damages = navy.getNavyDamages("player");
