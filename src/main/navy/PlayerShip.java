@@ -47,17 +47,18 @@ public class PlayerShip extends Ship{
 		setShipIcon();
 		setVisible(false);
 		updateShipPosition();
-		Movement move = new Movement(this, new Point(xPos, yPos));
+		new Movement(this);
 	}
 	
 	
-    public void resetLocation(Point p) {
-		if (shipW > shipH) {
+    public void resetLocation() {
+    	Point initialPos = new Point(xPos, yPos);
+    	if (shipW > shipH) {
 			int temp = shipW;
 			shipW = shipH;
 			shipH = temp;
 		}
-		setBounds(p.x, p.y, shipW, shipH);
+		setBounds(initialPos.x, initialPos.y, shipW, shipH);
 		type = type.substring(0, type.length() - 2) + "up";
 		
 		setIcon(ImagesManagement.getImage(shipW, shipH, imagesBundle.getString("image." + type)));

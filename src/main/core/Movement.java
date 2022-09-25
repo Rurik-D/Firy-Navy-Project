@@ -26,9 +26,8 @@ public class Movement implements MouseListener, MouseMotionListener, FramePropor
 	private PlayerShip ship;
 	private Point initialPostion;
 	
-	public Movement(PlayerShip ship, Point initialPostion) {
+	public Movement(PlayerShip ship) {
 		this.ship = ship;
-		this.initialPostion = initialPostion;
 		ship.addMouseListener(this);
 		ship.addMouseMotionListener(this);
 		
@@ -142,15 +141,15 @@ public class Movement implements MouseListener, MouseMotionListener, FramePropor
 	 * Checks if the ship is inside the grid.
 	 */
 	private boolean isInsideGrid() {
-		int currentX = ship.getX();
-		int currentY = ship.getY();
+		int shipX = ship.getX();
+		int shipY = ship.getY();
 		int shipW = ship.getWidth();
 		int shipH = ship.getHeight();
 		
-		return (posGridX < currentX && 
-				gridY < currentY && 
-				currentX + shipW - paramBorder - posErrTolerance < posGridX + gridSide && 
-				currentY + shipH - paramBorder - posErrTolerance < gridY + gridSide);
+		return (gridX < shipX && 
+				gridY < shipY && 
+				shipX + shipW - paramBorder - posErrTolerance < gridX + gridSide && 
+				shipY + shipH - paramBorder - posErrTolerance < gridY + gridSide);
 	}
 
 	
@@ -177,7 +176,7 @@ public class Movement implements MouseListener, MouseMotionListener, FramePropor
 								// if one of the squares occupied by the analyzed ship is also occupied by another ship
 								if (square[0] == square2[0] && square[1] == square2[1]) {
 									// send the ship back to its initial position
-									ship.resetLocation(initialPostion);
+									ship.resetLocation();
 									occupied = true;
 									break squareOccupied;
 								}
@@ -188,13 +187,13 @@ public class Movement implements MouseListener, MouseMotionListener, FramePropor
 			}
 			// if the position is not occupied
 			if (!occupied) {
-				currentSquareX = ((int) (ship.getX() - posGridX) / squareSide) * squareSide + posGridX;
+				currentSquareX = ((int) (ship.getX() - gridX) / squareSide) * squareSide + gridX;
 				currentSquareY = ((int) (ship.getY() - gridY) / squareSide) * squareSide + gridY;
 
 				ship.setLocation(currentSquareX, currentSquareY);
 			}
 		} else {
-			ship.resetLocation(initialPostion);
+			ship.resetLocation();
 		}
 	}
 	

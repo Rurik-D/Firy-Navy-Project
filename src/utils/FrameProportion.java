@@ -109,7 +109,7 @@ public interface FrameProportion{
 	
 	final int gridSide 		= 300;
 	final int gridY 		= 200;
-	final int posGridX 		= 300;
+	final int gridX 		= 300;
 	final int attGridX		= 950;
 	final int squareSide 	= (int) gridSide/10;
 	final int paramBorder 	= squareSide;

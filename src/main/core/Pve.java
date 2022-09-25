@@ -23,7 +23,7 @@ import utils.FrameProportion;
 public class Pve implements FrameProportion{
 	private static char[] letters = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
 	
-	private static Grid positionGrid = new Grid(posGridX, gridY, 1);
+	private static Grid positionGrid = new Grid(gridX, gridY, 1);
 	private static Grid attackGrid = new Grid(attGridX, gridY, 2);
 	
 	private static Navy navy = new Navy();
