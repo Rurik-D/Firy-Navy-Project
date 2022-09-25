@@ -332,8 +332,9 @@ public class Pve implements FrameProportion{
 			}
 
 		}
-
+		// se ho colpito
 		if (hitted) {
+			// resetto il contatore delle hit consecutive
 			consecutiveMissForBonus = 0;
 			if (!sunk) { textManage.hitMessage(2, letters[randAttack[1]] + "" + randAttack[0]); }
 			sunk = false;
@@ -349,7 +350,7 @@ public class Pve implements FrameProportion{
 	
 	
 	/**
-	 * Generate reandom positions for computer navy.
+	 * Generate random positions for computer navy.
 	 */
 	private static void generateComputerNavy() {
 		boolean vertical;
@@ -416,6 +417,7 @@ public class Pve implements FrameProportion{
 							// se il punto è libero aggiungo il punto alla lista e setto a 1 il punto su possiblePositions
 							if (possiblePositions[i][randX] == 0) {
 								
+								// se sto agli estremi non controllo il successivo/precedente per evitare l'outOfBounds
 								if (randX > 0) {
 									if ( possiblePositions[i][randX - 1] != 0 ) {
 										occupied = true;
@@ -469,6 +471,8 @@ public class Pve implements FrameProportion{
 							int[] randPoint = {i, randY};
 							// se il punto è libero aggiungo il punto alla lista e setto a 1 il punto su possiblePositions
 							if (possiblePositions[randY][i] == 0) {	
+								
+								// se sto agli estremi non controllo il successivo/precedente per evitare l'outOfBounds
 								if (randY > 0) {
 									if (possiblePositions[randY - 1][i] != 0) {
 										occupied = true;
@@ -523,16 +527,16 @@ public class Pve implements FrameProportion{
 
 
 //for (int i = 0; i < 10; i++) {
-//for (int j = 0; j < 10; j++) {
-//	System.out.print(possiblePositions[i][j] + " ");
-//}
-//System.out.println();
+//	for (int j = 0; j < 10; j++) {
+//		System.out.print(possiblePositions[i][j] + " ");
+//	}
+//	System.out.println();
 //}
 //
 //for (int i = 0; i < 10; i++) {
-//System.out.print(randomNavy.get(i).size() + " = ");
-//for (int j = 0; j < randomNavy.get(i).size(); j++) {
-//	System.out.print("[" + randomNavy.get(i).get(j)[0] + ", " + randomNavy.get(i).get(j)[1] + "]");
-//}
-//System.out.println();
+//	System.out.print(randomNavy.get(i).size() + " = ");
+//	for (int j = 0; j < randomNavy.get(i).size(); j++) {
+//		System.out.print("[" + randomNavy.get(i).get(j)[0] + ", " + randomNavy.get(i).get(j)[1] + "]");
+//	}
+//	System.out.println();
 //}
