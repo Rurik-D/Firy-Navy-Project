@@ -26,7 +26,6 @@ import main.navy.Ship;
  */
 public class GameButtons implements FrameProportion{
 	
-	
 	private static ResourceBundle resourceBundle = ResourceBundle.getBundle("utils.file/lang", Locale.forLanguageTag("en"));
 	private Font font = new Font("Segoe Script", Font.BOLD, fontDim);
 	private static JButton gameOptionBtn = new JButton(resourceBundle.getString("button.gameOptionBtn"));

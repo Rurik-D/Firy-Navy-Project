@@ -38,6 +38,9 @@ public class Pve implements FrameProportion{
 	
 	private static TextManagement text = MainFrame.getTextManage();
 	private static boolean sunk;
+	
+	private static List<String> playerAttacksMade = new ArrayList<>();
+	private static List<String> computerAttacksMade = new ArrayList<>();
 
 	
 	
@@ -96,7 +99,9 @@ public class Pve implements FrameProportion{
 	
 	
 	/**
-	 * Checks if there is a new ship in the computer navy that has been sunk
+	 * Checks if there is a ship in the computer navy that has been sunk.
+	 * @param ship The ship to be checked
+	 * @param squareName Sequence of char-int that make the coordinates (es. "A7", "B2", ecc..)
 	 */
 	private static void checkComputerSunk(Ship ship, String squareName) {
 		Map<int[], Boolean> damages = navy.getNavyDamages("computer");
@@ -119,7 +124,9 @@ public class Pve implements FrameProportion{
 		
 
 	/**
-	 * Checks if there is a new ship in the player navy that has been sunk
+	 * Checks if there is a ship in the player navy that has been sunk.
+	 * @param ship The ship to be checked
+	 * @param squareName Sequence of char-int that make the coordinates (es. "A7", "B2", ecc..)
 	 */
 	private static void checkPlayerSunk(Ship ship, String squareName) {
 		Map<int[], Boolean> damages = navy.getNavyDamages("player");
@@ -142,19 +149,41 @@ public class Pve implements FrameProportion{
 	
 	
 	/**
-	 * 
+	 * Manages the attack turnation.
+	 * @param hitLbl Label for player hit
+	 * @param missLbl Label for player miss
+	 * @param square Square where to make the attack
+	 * @param squareCode
 	 */
-	public static void makeAttack(JLabel hitLbl, JLabel missLbl, JButton square) {
-		playerAttack(hitLbl, missLbl, square);
+	public static void makeAttack(JLabel hitLbl, JLabel missLbl, JButton square, String squareCode) {
+		playerAttack(hitLbl, missLbl, square, squareCode);
 		computerAttack(playerNavy, positionGrid);
+//		
+//		System.out.println("____________________");
+//
+//		System.out.println("\nPlayer attacks:");
+//		for(String s : playerAttacksMade) {
+//			System.out.println(s);
+//
+//		}
+//		System.out.println();
+//		System.out.println("\nComputer attacks:");
+//		for(String s : computerAttacksMade) {
+//			System.out.println(s);
+//
+//		}
+//		System.out.println();
+//
 	}
 	
 	
 	/**
 	 * 
 	 */
-	private static void playerAttack(JLabel hitLbl, JLabel missLbl, JButton square) {
+	private static void playerAttack(JLabel hitLbl, JLabel missLbl, JButton square, String squareCode) {
 		boolean hit = false;
+		playerAttacksMade.add(squareCode);
+		
 		hit:
 		for (Ship ship: computerNavy) {
 			for (int[] occupiedSquare : ship.getShipPosition()) {	
@@ -181,7 +210,8 @@ public class Pve implements FrameProportion{
 	
 	
 	/**
-	 * 
+	 * @param
+	 * @param
 	 */
 	private static int[] makeComputerBonusAttack(List<PlayerShip> playerNavy, Grid navyGrid) {
 		boolean startAttack = false;
@@ -315,6 +345,8 @@ public class Pve implements FrameProportion{
 			}
 			
 		}
+		
+		computerAttacksMade.add(randAttack[0] + "" + randAttack[1]);
 		
 		// per ogni nave nella flotta del giocatore
 		hit:

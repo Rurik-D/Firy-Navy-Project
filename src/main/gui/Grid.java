@@ -167,27 +167,28 @@ public class Grid extends JLabel implements FrameProportion{
 	public void setAttGridButtons(List<ComputerShip> computerNavy, List<PlayerShip> playerNavy) {	
 		attackGridCover.setVisible(false);
 		
-		for (int i = 0; i<10; i++) {
-			for (int j = 0; j<10; j++) {
+		for (int x = 0; x<10; x++) {
+			for (int y = 0; y<10; y++) {
 				JButton square;
 				JLabel hitLbl;
 				JLabel missLbl;
+				String squareCode = x + "" + y;
 				
 				hitLbl = new JLabel("");
-				hitLbl.setName( i + "" + j );
-				hitLbl.setBounds(squareSide*i + paramBorder, squareSide*j + paramBorder, squareSide, squareSide);
+				hitLbl.setName( x + "" + y );
+				hitLbl.setBounds(squareSide*x + paramBorder, squareSide*y + paramBorder, squareSide, squareSide);
 				hitLbl.setVisible(false);
 				hitLbl.setIcon(ImagesManagement.getHitLbl(squareSide));
 				
 				missLbl = new JLabel("");
-				missLbl.setName( letters[j] +  "" + i );
-				missLbl.setBounds(squareSide*i + paramBorder, squareSide*j + paramBorder, squareSide, squareSide);
+				missLbl.setName( letters[y] +  "" + x );
+				missLbl.setBounds(squareSide*x + paramBorder, squareSide*y + paramBorder, squareSide, squareSide);
 				missLbl.setVisible(false);
 				missLbl.setIcon(ImagesManagement.getMissLbl(squareSide));
 				
 				square = new JButton("");
-				square.setName( letters[j] +  "" + i );
-				square.setBounds(squareSide*i + paramBorder, squareSide*j + paramBorder, squareSide, squareSide);
+				square.setName( letters[y] +  "" + x );
+				square.setBounds(squareSide*x + paramBorder, squareSide*y + paramBorder, squareSide, squareSide);
 				square.setOpaque(false);
 				square.setContentAreaFilled(false);
 				square.setVisible(true);
@@ -196,7 +197,7 @@ public class Grid extends JLabel implements FrameProportion{
 				square.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						Pve.makeAttack(hitLbl, missLbl, square);
+						Pve.makeAttack(hitLbl, missLbl, square, squareCode);
 					}
 				});
 				add(missLbl);

@@ -1,6 +1,5 @@
 package main.core;
 
-import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -24,7 +23,6 @@ public class Movement implements MouseListener, MouseMotionListener, FramePropor
 	private int X, Y;
 	private int squareSide = Grid.getSquareSide();
 	private PlayerShip ship;
-	private Point initialPostion;
 	
 	public Movement(PlayerShip ship) {
 		this.ship = ship;
@@ -60,9 +58,7 @@ public class Movement implements MouseListener, MouseMotionListener, FramePropor
      * @param e the event to be processed
      */
 	@Override
-	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
-	}
+	public void mouseMoved(MouseEvent e) {}
 	
 
     /**
@@ -121,9 +117,7 @@ public class Movement implements MouseListener, MouseMotionListener, FramePropor
      * @param e the event to be processed.
      */
 	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-	}
+	public void mouseEntered(MouseEvent e) {}
 	
 	
     /**
@@ -131,9 +125,7 @@ public class Movement implements MouseListener, MouseMotionListener, FramePropor
      * @param e the event to be processed.
      */
 	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-	}
+	public void mouseExited(MouseEvent e) {}
 	
 	
 	
