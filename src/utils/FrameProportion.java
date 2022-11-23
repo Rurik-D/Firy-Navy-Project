@@ -55,6 +55,7 @@ public interface FrameProportion{
 	final int nicknameBtnY 	= (int)Math.round(HEIGHT * 21.99 / 100);
 	final int confirmBtnY 	= (int)Math.round(HEIGHT * 27.199 / 100);
 	final int startGameBtnY = (int)Math.round(HEIGHT * 50.347 / 100);
+	final int confirmBtnW 	= (int)Math.round(WIDTH * 16.776 / 100);
 	final int selectNickW 	= (int)Math.round(WIDTH * 15.299 / 100);
 	final int pveMenuW 		= (int)Math.round(WIDTH * 16.276 / 100);
 	final int nicknameBtnW 	= (int)Math.round(WIDTH * 13.02 / 100);
@@ -83,17 +84,18 @@ public interface FrameProportion{
 	final int backToGameW 	= 400;
 	final int backToGameX 	= (int)WIDTH/2 - backToGameW/2;
 	
-	final int mainMenuBtnW 	= 300;
+	final int mainMenuBtnW 	= 430;
 	final int mainMenuBtnX 	= (int)WIDTH/2 - mainMenuBtnW/2;
 	final int mainMenuBtnY 	= 100;
 	
 	final int gameTopBtnsY 	= 60;
 	
-	final int yesSaveBtnX 	= WIDTH/2 - 210;
-	final int noSaveBtnX 	= WIDTH/2 - 85;
+	final int yesSaveBtnX 	= WIDTH/2 - 150;
+	final int noSaveBtnX 	= WIDTH/2 - 25;
 	final int backGameOptX 	= WIDTH/2 - 30;
 	
-	final int saveLabelX 	= WIDTH/2 - extLabelW/2;
+	final int mainMenuLblX 	= WIDTH/2 - extLabelW/2;
+	final int mainMenuLblW 	= extLabelW + 40;
 	
 	final int timerLblX 	= WIDTH/2 - 60;
 	final int timerLblW 	= 150;

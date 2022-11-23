@@ -34,20 +34,20 @@ public class MenuButtons implements FrameProportion{
 	
 	private static ResourceBundle languageBundle = ResourceBundle.getBundle("utils.file/lang", Locale.forLanguageTag("en"));
 	private static ResourceBundle imagesBundle = ResourceBundle.getBundle("utils.file/images");
-	private static JButton startBtn = new JButton(languageBundle.getString("button.startBtn"));
-	private static JButton optionBtn = new JButton(languageBundle.getString("button.optionBtn"));
-	private static JButton exitBtn = new JButton(languageBundle.getString("button.exitBtn"));
+	private static JButton startBtn = new JButton(languageBundle.getString("button.start"));
+	private static JButton optionBtn = new JButton(languageBundle.getString("button.option"));
+	private static JButton exitBtn = new JButton(languageBundle.getString("button.exit"));
 	private JButton backToMenuBtn = new JButton(languageBundle.getString("button.back"));
 	private JButton backToOptBtn = new JButton(languageBundle.getString("button.back"));
-	private JButton langBtn = new JButton(languageBundle.getString("button.langBtn"));
-	private JButton volumeBtn = new JButton(languageBundle.getString("button.volumeBtn"));
-	private JButton extYesBtn = new JButton(languageBundle.getString("button.extYesBtn"));
-	private JButton extNoBtn = new JButton(languageBundle.getString("button.extNoBtn"));
-	private JButton startGameBtn = new JButton(languageBundle.getString("button.startGameBtn"));
-	private JButton confirmBtn = new JButton(languageBundle.getString("button.confirmBtn"));
-	private JButton nicknameBtn = new JButton(languageBundle.getString("button.nicknameBtn"));
-	private JButton itaBtn = new JButton(languageBundle.getString("button.itaBtn"));
-	private JButton engBtn = new JButton(languageBundle.getString("button.engBtn"));
+	private JButton langBtn = new JButton(languageBundle.getString("button.lang"));
+	private JButton volumeBtn = new JButton(languageBundle.getString("button.volume"));
+	private JButton extYesBtn = new JButton(languageBundle.getString("button.yes"));
+	private JButton extNoBtn = new JButton(languageBundle.getString("button.no"));
+	private JButton startGameBtn = new JButton(languageBundle.getString("button.startGame"));
+	private JButton confirmBtn = new JButton(languageBundle.getString("button.confirm"));
+	private JButton nicknameBtn = new JButton(languageBundle.getString("button.nickname"));
+	private JButton itaBtn = new JButton(languageBundle.getString("button.ita"));
+	private JButton engBtn = new JButton(languageBundle.getString("button.eng"));
 	private JButton moreVolumeBtn = new JButton("+");
 	private JButton lessVolumeBtn = new JButton("-");
 	private JLabel extLabel = new JLabel(languageBundle.getString("label.extLabel"));
@@ -368,7 +368,7 @@ public class MenuButtons implements FrameProportion{
 		extNoBtn.setBounds(noBtnX, yesBtnY, yesBtnW, buttonH);
 		extLabel.setBounds(extLabelX, extLabelY, extLabelW, buttonH);
 		nicknameBtn.setBounds(pveMenuX, nicknameBtnY, pveMenuW, buttonH);
-		confirmBtn.setBounds(pveMenuX, confirmBtnY, pveMenuW, buttonH);
+		confirmBtn.setBounds(pveMenuX, confirmBtnY, confirmBtnW, buttonH);
 		startGameBtn.setBounds(pveMenuX, startGameBtnY, pveMenuW, buttonH);
 		selectNickname.setBounds(selectNickX, nicknameBtnY, selectNickW, buttonH);
 		lessVolumeBtn.setBounds(lessVolumeBtnX, volumeBtnsY, lessVolumeBtnW, buttonH);
@@ -573,20 +573,20 @@ public class MenuButtons implements FrameProportion{
 	 */
 	private void setLanguageLocalBtns(String kLang) {
 		languageBundle  = ResourceBundle.getBundle("utils.file/lang", Locale.forLanguageTag(kLang)) ;
-		startBtn.setText(languageBundle.getString("button.startBtn"));
-		optionBtn.setText(languageBundle.getString("button.optionBtn"));
-		exitBtn.setText(languageBundle.getString("button.exitBtn"));
+		startBtn.setText(languageBundle.getString("button.start"));
+		optionBtn.setText(languageBundle.getString("button.option"));
+		exitBtn.setText(languageBundle.getString("button.exit"));
 		backToMenuBtn.setText(languageBundle.getString("button.back"));
 		backToOptBtn.setText(languageBundle.getString("button.back"));
-		langBtn.setText(languageBundle.getString("button.langBtn"));
-		volumeBtn.setText(languageBundle.getString("button.volumeBtn"));
-		extYesBtn.setText(languageBundle.getString("button.extYesBtn"));
-		extNoBtn.setText(languageBundle.getString("button.extNoBtn"));
-		startGameBtn.setText(languageBundle.getString("button.startGameBtn"));
-		confirmBtn.setText(languageBundle.getString("button.confirmBtn"));
-		nicknameBtn.setText(languageBundle.getString("button.nicknameBtn"));
-		engBtn.setText(languageBundle.getString("button.engBtn"));
-		itaBtn.setText(languageBundle.getString("button.itaBtn"));
+		langBtn.setText(languageBundle.getString("button.lang"));
+		volumeBtn.setText(languageBundle.getString("button.volume"));
+		extYesBtn.setText(languageBundle.getString("button.yes"));
+		extNoBtn.setText(languageBundle.getString("button.no"));
+		startGameBtn.setText(languageBundle.getString("button.startGame"));
+		confirmBtn.setText(languageBundle.getString("button.confirm"));
+		nicknameBtn.setText(languageBundle.getString("button.nickname"));
+		engBtn.setText(languageBundle.getString("button.eng"));
+		itaBtn.setText(languageBundle.getString("button.ita"));
 		extLabel.setText(languageBundle.getString("label.extLabel"));
 	}
 	

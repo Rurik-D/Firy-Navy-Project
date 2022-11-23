@@ -28,13 +28,13 @@ public class GameButtons implements FrameProportion{
 	
 	private static ResourceBundle resourceBundle = ResourceBundle.getBundle("utils.file/lang", Locale.forLanguageTag("en"));
 	private Font font = new Font("Segoe Script", Font.BOLD, fontDim);
-	private static JButton gameOptionBtn = new JButton(resourceBundle.getString("button.gameOptionBtn"));
-	private static JButton mainMenuBtn = new JButton(resourceBundle.getString("button.mainMenuBtn"));
+	private static JButton gameOptionBtn = new JButton(resourceBundle.getString("button.gameOption"));
+	private static JButton mainMenuBtn = new JButton(resourceBundle.getString("button.mainMenu"));
 	private static JButton backToGameBtn = new JButton(resourceBundle.getString("button.back")); 
-	private static JButton yesSaveBtn = new JButton(resourceBundle.getString("button.yesSaveBtn"));
-	private static JButton noSaveBtn = new JButton(resourceBundle.getString("button.noSaveBtn"));
+	private static JButton yesBtn = new JButton(resourceBundle.getString("button.yes"));
+	private static JButton noBtn = new JButton(resourceBundle.getString("button.no"));
 	private static JButton confirmSetupBtn = new JButton(resourceBundle.getString("button.confirmSetup"));
-	private static JLabel saveLabel = new JLabel(resourceBundle.getString("button.saveLabel"));
+	private static JLabel mainMenuLbl = new JLabel(resourceBundle.getString("button.saveLabel"));
 	private static JLabel timerLbl = GameTimer.getTimerLbl();
 	private static JLabel oldScroll = ImagesManagement.getOldScroll();
 	private static TextManagement textManage = MainFrame.getTextManage();
@@ -52,43 +52,43 @@ public class GameButtons implements FrameProportion{
 		gameOptionBtn.setVisible(false);
 		mainMenuBtn.setVisible(false);
 		backToGameBtn.setVisible(false);
-		yesSaveBtn.setVisible(false);
-		noSaveBtn.setVisible(false);
-		saveLabel.setVisible(false);
+		yesBtn.setVisible(false);
+		noBtn.setVisible(false);
+		mainMenuLbl.setVisible(false);
 		timerLbl.setVisible(false);
 		confirmSetupBtn.setVisible(false);
 		
 		gameOptionBtn.setBounds(gameOptionX, gameOptionY, gameOptionW, buttonH);
 		backToGameBtn.setBounds(backToGameX, gameTopBtnsY, backToGameW, buttonH);
 		mainMenuBtn.setBounds(mainMenuBtnX, gameOptionY, mainMenuBtnW, buttonH);
-		yesSaveBtn.setBounds(yesSaveBtnX, gameTopBtnsY, yesBtnW, buttonH);
-		noSaveBtn.setBounds(noSaveBtnX, gameTopBtnsY, yesBtnW, buttonH);
-		saveLabel.setBounds(saveLabelX, gameOptionY, extLabelW, buttonH);
+		yesBtn.setBounds(yesSaveBtnX, gameTopBtnsY, yesBtnW, buttonH);
+		noBtn.setBounds(noSaveBtnX, gameTopBtnsY, yesBtnW, buttonH);
+		mainMenuLbl.setBounds(mainMenuLblX, gameOptionY, mainMenuLblW, buttonH);
 		timerLbl.setBounds(timerLblX, gameTopBtnsY, timerLblW, buttonH);
 		confirmSetupBtn.setBounds(confirmSetupX, confirmSetupY, confirmSetupW, buttonH);
 		
 		gameOptionBtn.setFont(font);
 		mainMenuBtn.setFont(font);
 		backToGameBtn.setFont(font);
-		yesSaveBtn.setFont(font);
-		noSaveBtn.setFont(font);
-		saveLabel.setFont(font);
+		yesBtn.setFont(font);
+		noBtn.setFont(font);
+		mainMenuLbl.setFont(font);
 		timerLbl.setFont(font);
 		confirmSetupBtn.setFont(font);
 		
 		setTrasparent(gameOptionBtn);
 		setTrasparent(mainMenuBtn);
 		setTrasparent(backToGameBtn);
-		setTrasparent(yesSaveBtn);
-		setTrasparent(noSaveBtn);
+		setTrasparent(yesBtn);
+		setTrasparent(noBtn);
 		setTrasparent(confirmSetupBtn);
 		
 		mainPanel.add(mainMenuBtn);
 		mainPanel.add(gameOptionBtn);
 		mainPanel.add(backToGameBtn);
-		mainPanel.add(noSaveBtn);
-		mainPanel.add(yesSaveBtn);
-		mainPanel.add(saveLabel);
+		mainPanel.add(noBtn);
+		mainPanel.add(yesBtn);
+		mainPanel.add(mainMenuLbl);
 		mainPanel.add(timerLbl);
 		mainPanel.add(confirmSetupBtn);
 
@@ -114,21 +114,21 @@ public class GameButtons implements FrameProportion{
 				confirmSetupBtn.setVisible(false);
 				mainMenuBtn.setVisible(false);
 				backToGameBtn.setVisible(false);
-				yesSaveBtn.setVisible(true);
-				noSaveBtn.setVisible(true);
-				saveLabel.setVisible(true);
+				yesBtn.setVisible(true);
+				noBtn.setVisible(true);
+				mainMenuLbl.setVisible(true);
 
 			}
 		});
-		yesSaveBtn.addMouseListener(new MouseAdapter() {
+		yesBtn.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				SoundsManagement.clickMenuBtn();
 				SoundsManagement.stop("gameSong");
 				SoundsManagement.start("menuSong");
 
-				yesSaveBtn.setVisible(false);
-				noSaveBtn.setVisible(false);
-				saveLabel.setVisible(false);
+				yesBtn.setVisible(false);
+				noBtn.setVisible(false);
+				mainMenuLbl.setVisible(false);
 				MainFrame.getScrollPnl().setVisible(false);
 				Pve.getPositionGrid().setVisible(false);
 				Pve.getAttackGrid().setVisible(false);
@@ -173,7 +173,7 @@ public class GameButtons implements FrameProportion{
 			}
 		});
 	
-		noSaveBtn.addMouseListener(new MouseAdapter() {
+		noBtn.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				SoundsManagement.clickMenuBtn();
 				if (confirmSetupVisible) {confirmSetupBtn.setVisible(true);}
@@ -181,10 +181,10 @@ public class GameButtons implements FrameProportion{
 				timerLbl.setVisible(true);
 				mainMenuBtn.setVisible(false);
 				backToGameBtn.setVisible(false);
-				yesSaveBtn.setVisible(false);
-				noSaveBtn.setVisible(false);
-				saveLabel.setVisible(false);
-				noSaveBtn.setVisible(false);
+				yesBtn.setVisible(false);
+				noBtn.setVisible(false);
+				mainMenuLbl.setVisible(false);
+				noBtn.setVisible(false);
 				pause = false;
 				textManage.resumeMessage();
 				GameTimer.startTimer();
@@ -308,12 +308,12 @@ public class GameButtons implements FrameProportion{
 	public static void setGameBtnsLanguage(String kLang) {
 		resourceBundle  = ResourceBundle.getBundle("utils.file/lang", Locale.forLanguageTag(kLang)) ;
 
-		gameOptionBtn.setText(resourceBundle.getString("button.gameOptionBtn"));
-		mainMenuBtn.setText(resourceBundle.getString("button.mainMenuBtn"));
+		gameOptionBtn.setText(resourceBundle.getString("button.gameOption"));
+		mainMenuBtn.setText(resourceBundle.getString("button.mainMenu"));
 		backToGameBtn.setText(resourceBundle.getString("button.back")); 
-		yesSaveBtn.setText(resourceBundle.getString("button.yesSaveBtn"));
-		noSaveBtn.setText(resourceBundle.getString("button.noSaveBtn"));
-		saveLabel.setText(resourceBundle.getString("button.saveLabel"));
+		yesBtn.setText(resourceBundle.getString("button.yes"));
+		noBtn.setText(resourceBundle.getString("button.no"));
+		mainMenuLbl.setText(resourceBundle.getString("button.saveLabel"));
 	}
 	
 }
