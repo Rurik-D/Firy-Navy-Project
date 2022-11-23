@@ -37,11 +37,8 @@ public class MenuButtons implements FrameProportion{
 	private static JButton startBtn = new JButton(languageBundle.getString("button.startBtn"));
 	private static JButton optionBtn = new JButton(languageBundle.getString("button.optionBtn"));
 	private static JButton exitBtn = new JButton(languageBundle.getString("button.exitBtn"));
-	private JButton pveBtn = new JButton(languageBundle.getString("button.pveBtn"));
-	private JButton pvpBtn = new JButton(languageBundle.getString("button.pvpBtn"));
 	private JButton backToMenuBtn = new JButton(languageBundle.getString("button.back"));
 	private JButton backToOptBtn = new JButton(languageBundle.getString("button.back"));
-	private JButton backToStartBtn = new JButton(languageBundle.getString("button.back"));
 	private JButton langBtn = new JButton(languageBundle.getString("button.langBtn"));
 	private JButton volumeBtn = new JButton(languageBundle.getString("button.volumeBtn"));
 	private JButton extYesBtn = new JButton(languageBundle.getString("button.extYesBtn"));
@@ -89,9 +86,8 @@ public class MenuButtons implements FrameProportion{
 				startBtn.setVisible(false);
 				optionBtn.setVisible(false);
 				exitBtn.setVisible(false);
-				pveBtn.setVisible(true);
-				pvpBtn.setVisible(true);
 				backToMenuBtn.setVisible(true);
+				nicknameBtn.setVisible(true);
 			}
 		});
 		
@@ -115,29 +111,6 @@ public class MenuButtons implements FrameProportion{
 			}
 		});
 		
-		pveBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				SoundsManagement.clickMenuBtn();
-				pvpBtn.setVisible(false);
-				pveBtn.setVisible(false);
-				backToMenuBtn.setVisible(false);
-				nicknameBtn.setVisible(true);
-				backToStartBtn.setVisible(true);
-			}
-		});
-		
-		pvpBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				SoundsManagement.clickMenuBtn();
-				pvpBtn.setVisible(false);
-				pveBtn.setVisible(false);
-				backToMenuBtn.setVisible(false);
-				nicknameBtn.setVisible(true);
-				backToStartBtn.setVisible(true);
-				
-			}
-		});
-		
 		backToMenuBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -155,27 +128,6 @@ public class MenuButtons implements FrameProportion{
 			}
 		});
 		
-		backToStartBtn.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				SoundsManagement.clickMenuBtn();
-				for (int i = 0; i<6; i++) {
-					avatarBtns.get(i).setVisible(false);
-				}
-				nicknameBtn.setVisible(false);
-				confirmBtn.setVisible(false);
-				startGameBtn.setVisible(false);
-				selectNickname.setVisible(false);
-				obstacle = true;
-				selectNickname.setText("");
-				backToStartBtn.setVisible(false);
-				
-				pveBtn.setVisible(true);
-				pvpBtn.setVisible(true);
-				backToMenuBtn.setVisible(true);
-				
-			}
-		});
 		extNoBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SoundsManagement.clickMenuBtn();
@@ -294,7 +246,7 @@ public class MenuButtons implements FrameProportion{
 				nicknameBtn.setVisible(false);
 				confirmBtn.setVisible(false);
 				confirmBtn.setVisible(false);
-				backToStartBtn.setVisible(false);
+				backToMenuBtn.setVisible(false);
 				
 				TextManagement.hideTitle();
 				ImagesManagement.getMenuBackground().setVisible(false);
@@ -357,11 +309,8 @@ public class MenuButtons implements FrameProportion{
 		startBtn.setVisible(true);
 		optionBtn.setVisible(true);
 		exitBtn.setVisible(true);
-		pvpBtn.setVisible(false);
-		pveBtn.setVisible(false);
 		backToMenuBtn.setVisible(false);
 		backToOptBtn.setVisible(false);
-		backToStartBtn.setVisible(false);
 		langBtn.setVisible(false);
 		volumeBtn.setVisible(false);
 		moreVolumeBtn.setVisible(false);
@@ -411,11 +360,8 @@ public class MenuButtons implements FrameProportion{
 		startBtn.setBounds(buttonX, buttonY - buttonH * 2, buttonW, buttonH);
 		optionBtn.setBounds(buttonX, buttonY - buttonH, buttonW, buttonH);
 		exitBtn.setBounds(buttonX, buttonY, buttonW, buttonH);
-		pveBtn.setBounds(buttonX, buttonY - buttonH * 2, buttonW, buttonH);
-		pvpBtn.setBounds(buttonX, buttonY - buttonH, buttonW, buttonH);
 		backToMenuBtn.setBounds(buttonX, buttonY, buttonW, buttonH);
 		backToOptBtn.setBounds(buttonX, buttonY, buttonW, buttonH);
-		backToStartBtn.setBounds(buttonX, buttonY, buttonW, buttonH);
 		langBtn.setBounds(buttonX, buttonY - buttonH, buttonW, buttonH);
 		volumeBtn.setBounds(buttonX, buttonY - buttonH * 2, buttonW, buttonH);
 		extYesBtn.setBounds(yesBtnX, yesBtnY, yesBtnW, buttonH);
@@ -445,11 +391,8 @@ public class MenuButtons implements FrameProportion{
 		startBtn.setFont(font);		
 		optionBtn.setFont(font);
 		exitBtn.setFont(font);
-		pveBtn.setFont(font);
-		pvpBtn.setFont(font);
 		backToMenuBtn.setFont(font);
 		backToOptBtn.setFont(font);
-		backToStartBtn.setFont(font);
 		langBtn.setFont(font);
 		volumeBtn.setFont(font);
 		volumeLevel.setFont(font);
@@ -483,15 +426,12 @@ public class MenuButtons implements FrameProportion{
 		setTrasparent(exitBtn);
 		setTrasparent(extYesBtn);
 		setTrasparent(extNoBtn);
-		setTrasparent(pveBtn);
-		setTrasparent(pvpBtn);
 		setTrasparent(backToMenuBtn);
 		setTrasparent(backToOptBtn);
 		setTrasparent(volumeBtn);
 		setTrasparent(moreVolumeBtn);
 		setTrasparent(lessVolumeBtn);
 		setTrasparent(langBtn);
-		setTrasparent(backToStartBtn);
 		setTrasparent(startGameBtn);
 		setTrasparent(confirmBtn);
 		setTrasparent(nicknameBtn);
@@ -508,11 +448,8 @@ public class MenuButtons implements FrameProportion{
 		mainPanel.add(startBtn);
 		mainPanel.add(optionBtn);
 		mainPanel.add(exitBtn);
-		mainPanel.add(pveBtn);
-		mainPanel.add(pvpBtn);
 		mainPanel.add(backToMenuBtn);
 		mainPanel.add(backToOptBtn);
-		mainPanel.add(backToStartBtn);
 		mainPanel.add(volumeBtn);
 		mainPanel.add(moreVolumeBtn);
 		mainPanel.add(lessVolumeBtn);
@@ -639,11 +576,8 @@ public class MenuButtons implements FrameProportion{
 		startBtn.setText(languageBundle.getString("button.startBtn"));
 		optionBtn.setText(languageBundle.getString("button.optionBtn"));
 		exitBtn.setText(languageBundle.getString("button.exitBtn"));
-		pveBtn.setText(languageBundle.getString("button.pveBtn"));
-		pvpBtn.setText(languageBundle.getString("button.pvpBtn"));
 		backToMenuBtn.setText(languageBundle.getString("button.back"));
 		backToOptBtn.setText(languageBundle.getString("button.back"));
-		backToStartBtn.setText(languageBundle.getString("button.back"));
 		langBtn.setText(languageBundle.getString("button.langBtn"));
 		volumeBtn.setText(languageBundle.getString("button.volumeBtn"));
 		extYesBtn.setText(languageBundle.getString("button.extYesBtn"));
