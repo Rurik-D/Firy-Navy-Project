@@ -60,6 +60,13 @@ public class Pve implements FrameProportion{
 	}
 	
 	
+	public static void resetGrids() {
+		positionGrid = new Grid(gridX, gridY, 1);
+		attackGrid = new Grid(attGridX, gridY, 2);
+	}
+
+	
+	
 	/**
 	 * @return Navy object
 	 */

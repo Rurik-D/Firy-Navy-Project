@@ -33,6 +33,7 @@ public class Grid extends JLabel implements FrameProportion{
 	private List<JLabel> missList = new ArrayList<>();
 	private List<JLabel> hitList = new ArrayList<>();
 	private JLabel gridBackground = ImagesManagement.getGridBackground(paramBorder, paramBorder, gridSide, gridSide);
+	private int type;
 	private int x;
 	private int y;
 	
@@ -51,8 +52,8 @@ public class Grid extends JLabel implements FrameProportion{
 	public Grid (int x, int y, int type) {
 		this.x = x;
 		this.y = y;
+		this.type = type;
 		setGrid();
-		
 		if (type == 1) {
 			setPosGridButtons();
 		} else {
@@ -207,6 +208,20 @@ public class Grid extends JLabel implements FrameProportion{
 		}
 		add(gridBackground);
 	}
+	
+//	public void resetGrid() {
+//		hitList.clear();
+//		missList.clear();
+//		this.removeAll();
+//		
+//		setGrid();
+//		if (type == 1) {
+//			setPosGridButtons();
+//		} else {
+//			add(attackGridCover);
+//		}
+
+//	}
 	
 	
 	/**

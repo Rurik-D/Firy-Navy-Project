@@ -149,6 +149,8 @@ public class GameButtons implements FrameProportion{
 				
 				// se ho confermato il setup rimuovo le navi dalla griglia e le aggiungo al main panel
 				if (!confirmSetupVisible) {
+					Pve.resetGrids();
+
 					MainFrame.getMainPanel().remove(ImagesManagement.getGameBackground());
 					MainFrame.getMainPanel().remove(oldScroll);
 					MainFrame.getMainPanel().remove(Pve.getPositionGrid());
@@ -168,8 +170,11 @@ public class GameButtons implements FrameProportion{
 				MenuButtons.getSquareCpuLabel().setVisible(false);
 				timerLbl.setVisible(false);
 				confirmSetupVisible = true;
+				
+//				Pve.getAttackGrid().resetGrid();
+//				Pve.getPositionGrid().resetGrid();
+				
 				GameTimer.resetTimer();
-
 			}
 		});
 	
